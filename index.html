@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Pre-Read — Golden-Set Operating Model for Proactive Adoption Sub-Agent</title>
+<style>
+  :root{
+    --bg:#f7f8fa; --panel:#fff; --ink:#1a1d24; --muted:#5b6270; --line:#d4d9e0;
+    --current:#2563eb; --current-soft:#e8f0fe;
+    --extend:#7c3aed; --extend-soft:#f1e9fe;
+    --accent:#0f9d76; --accent-soft:#e2f6ef;
+    --warn:#c2410c; --warn-soft:#fdece0;
+  }
+  @media (prefers-color-scheme: dark){
+    :root{ --bg:#0f1218; --panel:#171b23; --ink:#eef1f6; --muted:#9aa3b2; --line:#2b313c;
+      --current-soft:#16233f; --extend-soft:#251a3d; --accent-soft:#123128; --warn-soft:#3a2113; }
+  }
+  *{box-sizing:border-box;}
+  body{margin:0;background:var(--bg);color:var(--ink);
+    font:15px/1.55 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+    padding:32px 24px 64px;}
+  .wrap{max-width:860px;margin:0 auto;}
+  .kicker{font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:var(--extend);margin:0 0 6px;}
+  h1{font-size:26px;margin:0 0 6px;letter-spacing:-.01em;}
+  .sub{color:var(--muted);margin:0 0 18px;}
+  .facts{display:flex;flex-wrap:wrap;gap:10px;margin:0 0 24px;}
+  .fact{background:var(--panel);border:1px solid var(--line);border-radius:8px;padding:8px 12px;font-size:12.5px;}
+  .fact b{display:block;color:var(--muted);font-size:10.5px;text-transform:uppercase;letter-spacing:.05em;font-weight:700;}
+  .fact span{color:var(--ink);font-weight:600;}
+
+  section{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:20px 22px;margin:0 0 16px;}
+  section h2{font-size:13px;text-transform:uppercase;letter-spacing:.06em;color:var(--muted);margin:0 0 12px;
+    display:flex;align-items:center;gap:8px;}
+  .num{display:inline-flex;align-items:center;justify-content:center;width:22px;height:22px;border-radius:6px;
+    background:var(--extend-soft);color:var(--extend);font-size:12px;font-weight:800;}
+  p{margin:0 0 10px;}
+  p:last-child{margin-bottom:0;}
+  ul.tight{margin:6px 0 0;padding-left:20px;}
+  ul.tight li{margin:6px 0;font-size:14px;}
+  ul.tight li b{font-weight:600;}
+  .muted{color:var(--muted);}
+
+  /* mini operating-model flow */
+  .flow{display:flex;align-items:stretch;gap:0;flex-wrap:wrap;margin-top:6px;}
+  .stp{flex:1 1 0;min-width:120px;border:1px solid var(--line);border-radius:9px;padding:9px 10px;background:var(--bg);}
+  .stp.cur{border-top:3px solid var(--current);}
+  .stp.ext{border-top:3px solid var(--extend);}
+  .stp b{font-size:12.5px;display:block;}
+  .stp span{font-size:11px;color:var(--muted);}
+  .arw{align-self:center;padding:0 4px;color:var(--muted);}
+  .track-tag{font-size:11px;font-weight:700;letter-spacing:.04em;margin:14px 0 2px;}
+  .track-tag.cur{color:var(--current);} .track-tag.ext{color:var(--extend);}
+  @media(max-width:640px){.flow{flex-direction:column;}.arw{transform:rotate(90deg);}}
+
+  /* mini timeline */
+  .tl{display:grid;grid-template-columns:130px 1fr;gap:8px 12px;align-items:center;margin-top:4px;}
+  .tl .lbl{font-size:12.5px;color:var(--ink);}
+  .tl .bar-wrap{position:relative;height:16px;background:var(--bg);border-radius:5px;border:1px solid var(--line);overflow:hidden;}
+  .tl .bar{position:absolute;top:0;bottom:0;border-radius:4px;}
+  .b-cur{background:var(--current);} .b-ext{background:var(--extend);} .b-gate{background:var(--accent);}
+  .tl-axis{display:grid;grid-template-columns:130px 1fr;gap:12px;margin-top:8px;font-size:10.5px;color:var(--muted);}
+  .tl-axis .ends{display:flex;justify-content:space-between;}
+
+  /* mini matrix */
+  table{width:100%;border-collapse:collapse;margin-top:4px;font-size:12.5px;}
+  th,td{border:1px solid var(--line);padding:7px 9px;text-align:left;}
+  th{background:var(--bg);font-size:10.5px;text-transform:uppercase;letter-spacing:.04em;color:var(--muted);}
+  .tot{background:var(--accent-soft);font-weight:700;}
+  .tot td{color:var(--accent);}
+
+  .callout{border-radius:10px;padding:12px 15px;font-size:13px;margin-top:12px;}
+  .callout.warn{background:var(--warn-soft);border:1px dashed var(--warn);}
+  .callout.warn b{color:var(--warn);}
+  .callout.accent{background:var(--accent-soft);border:1px solid var(--accent);}
+  .callout.accent b{color:var(--accent);}
+
+  .legend{display:flex;flex-wrap:wrap;gap:14px;font-size:12px;margin-top:10px;color:var(--muted);}
+  .legend span{display:inline-flex;align-items:center;gap:5px;}
+  .dot{width:11px;height:11px;border-radius:3px;display:inline-block;}
+  .d-cur{background:var(--current);}.d-ext{background:var(--extend);}.d-gate{background:var(--accent);}
+
+  footer{margin-top:26px;font-size:11.5px;color:var(--muted);border-top:1px solid var(--line);padding-top:14px;}
+  .ts{display:inline-block;font-size:10.5px;color:var(--muted);background:var(--panel);border:1px solid var(--line);border-radius:4px;padding:0 5px;margin-left:3px;}
+  a.deep{color:var(--extend);text-decoration:none;font-size:12px;font-weight:600;
+    display:inline-flex;align-items:center;gap:4px;padding:3px 9px;border:1px solid var(--extend);
+    border-radius:999px;margin-left:auto;transition:background .12s;}
+  a.deep:hover{background:var(--extend-soft);}
+  section h2{justify-content:space-between;}
+  footer a{color:var(--extend);text-decoration:none;font-weight:600;}
+  footer a:hover{text-decoration:underline;}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <p class="kicker">Pre-read · 30-min working session</p>
+  <h1>Golden-Set Operating Model → Proactive Adoption Sub-Agent</h1>
+  <p class="sub">Adoption Retriever expansion to Agentforce + Data Cloud · alignment with Maya Robles-Wong &amp; Helen Matsumoto</p>
+
+  <div class="facts">
+    <div class="fact"><b>Organizer</b><span>Stephanie Stancombe</span></div>
+    <div class="fact"><b>Attendees</b><span>Maya Robles-Wong · Helen Matsumoto</span></div>
+    <div class="fact"><b>Release</b><span>Sept 28 (run-list Sep 24)</span></div>
+    <div class="fact"><b>Eval assessment due</b><span>Late August</span></div>
+    <div class="fact"><b>Intake</b><span>#2497 (onboarding)</span></div>
+  </div>
+
+  <!-- WHY -->
+  <section>
+    <h2><span class="num">1</span> Why we're meeting</h2>
+    <p>The Adoption Retriever is expanding to <b>Agentforce</b> and <b>Data Cloud</b> for the September release. We've aligned that
+    <b>curating and maintaining a high-quality golden set</b> is more valuable than repeating the prior quantitative method — so
+    evaluation is now on the critical path.</p>
+    <p>Your team already runs a golden-set operating model (synthetic utterance generation → manual review → maintenance loop).
+    <b>The goal of this call:</b> decide whether that model can be reused — or needs to fork — to cover the
+    <b>proactive adoption sub-agent</b>, and size the net-new effort against the late-August deadline.</p>
+  </section>
+
+  <!-- OPERATING MODEL -->
+  <section>
+    <h2><span class="num">2</span> The operating model — current vs proposed extension
+      <a class="deep" href="golden-set-operating-model.html">View detail →</a></h2>
+    <div class="track-tag cur">TRACK A · running today (Maya's team)</div>
+    <div class="flow">
+      <div class="stp cur"><b>Synthetic utterances</b><span>ground-truth known; Trailhead-sourced</span></div>
+      <div class="arw">→</div>
+      <div class="stp cur"><b>Run through retriever</b><span>standalone + full-agent</span></div>
+      <div class="arw">→</div>
+      <div class="stp cur"><b>Manual review</b><span>judge returned links</span></div>
+      <div class="arw">→</div>
+      <div class="stp cur"><b>Maintain golden set</b><span>curate + refresh loop ↺</span></div>
+    </div>
+    <div class="track-tag ext">TRACK B · proposed extension (to align)</div>
+    <div class="flow">
+      <div class="stp ext"><b>Net-new utterances</b><span>per cloud, taxonomy-aligned</span></div>
+      <div class="arw">→</div>
+      <div class="stp ext"><b>Expanded filters</b><span>new-cloud modules + docs/KB</span></div>
+      <div class="arw">→</div>
+      <div class="stp ext"><b>Proactive review</b><span>beyond onboarding</span></div>
+      <div class="arw">→</div>
+      <div class="stp ext"><b>Shared maintenance?</b><span>reuse cadence or fork ↺</span></div>
+    </div>
+    <div class="legend">
+      <span><i class="dot d-cur"></i> existing model</span>
+      <span><i class="dot d-ext"></i> proposed extension</span>
+    </div>
+  </section>
+
+  <!-- TIMELINE -->
+  <section>
+    <h2><span class="num">3</span> Workback timeline — evaluation is the long pole
+      <a class="deep" href="workback-timeline.html">View detail →</a></h2>
+    <div class="tl">
+      <div class="lbl">Align (this call)</div><div class="bar-wrap"><div class="bar b-ext" style="left:0%;width:17%;"></div></div>
+      <div class="lbl">Author utterances</div><div class="bar-wrap"><div class="bar b-ext" style="left:12%;width:29%;"></div></div>
+      <div class="lbl">Manual review</div><div class="bar-wrap"><div class="bar b-ext" style="left:33%;width:29%;"></div></div>
+      <div class="lbl">Filter build</div><div class="bar-wrap"><div class="bar b-cur" style="left:21%;width:20%;"></div></div>
+      <div class="lbl">Eval assessment</div><div class="bar-wrap"><div class="bar b-gate" style="left:54%;width:16%;"></div></div>
+      <div class="lbl">Run-list → GA</div><div class="bar-wrap"><div class="bar b-cur" style="left:83%;width:17%;"></div></div>
+    </div>
+    <div class="tl-axis"><div></div><div class="ends"><span>Jul 14</span><span>Aug</span><span>Sep 24 · Sep 28</span></div></div>
+    <div class="callout accent"><b>Critical path:</b> technical build is low-effort (filter expansion), so utterance authoring + review is the long pole.
+    Working back from the late-August assessment, <b>authoring needs to start early August</b> — which makes this alignment call time-sensitive.</div>
+  </section>
+
+  <!-- EFFORT -->
+  <section>
+    <h2><span class="num">4</span> Effort straw-man — to correct together
+      <a class="deep" href="utterance-effort-matrix.html">View detail →</a></h2>
+    <table>
+      <thead><tr><th>Context / mode</th><th>Agentforce</th><th>Data Cloud</th></tr></thead>
+      <tbody>
+        <tr><td>Onboarding · standalone</td><td>~75 authored</td><td>~75 authored</td></tr>
+        <tr><td>Onboarding · full-agent</td><td>reuse + review</td><td>reuse + review</td></tr>
+        <tr><td>Proactive · standalone</td><td>~100 authored</td><td>~100 authored</td></tr>
+        <tr><td>Proactive · full-agent</td><td>reuse + review</td><td>reuse + review</td></tr>
+        <tr class="tot"><td>Straw-man total</td><td colspan="2">≈350 authored · ≈700 reviews · ~15 person-days @10min</td></tr>
+      </tbody>
+    </table>
+    <div class="callout warn"><b>⚠ Numbers are a straw-man, not data.</b> Assumes ~100 utterances/facet for significance (≈95% CI ±10%),
+    full-agent mode reuses standalone utterances, ~10 min review each. <b>Built for Maya to correct — don't treat as committed.</b></div>
+  </section>
+
+  <!-- DECISIONS -->
+  <section>
+    <h2><span class="num">5</span> Decisions &amp; open questions for the call</h2>
+    <p class="muted" style="font-size:13px;">What we need to walk out with:</p>
+    <ul class="tight">
+      <li><b>Fit:</b> reuse the loop as-is, adapt it, or fork for proactive adoption?</li>
+      <li><b>Synthetic coverage:</b> can generation produce proactive-adoption utterances, or must they be hand-authored?</li>
+      <li><b>Ground truth:</b> do known-answer sets exist for the new clouds, or need creating?</li>
+      <li><b>Effort + ownership:</b> validate the counts above; who authors, reviews, maintains?</li>
+      <li><b>Timeline fit:</b> can this deliver the late-August assessment?</li>
+      <li><b>Taxonomy:</b> Agentforce vs Process Automation &amp; Intelligence vs Data 360 — which map to which retriever tags? <span class="ts">pending Trailhead review</span></li>
+    </ul>
+  </section>
+
+  <footer>
+    Sources: Adoption Retriever Workback Planning (Jul 13, 2026) — operating model <span class="ts">00:24:33</span> ·
+    net-new utterances <span class="ts">00:15:53</span> · manual review effort <span class="ts">00:16:49</span> ·
+    standalone + full-agent <span class="ts">00:19:36 / 00:21:21</span> · timeline <span class="ts">00:29:25 / 00:31:32</span>.
+    Track B, timeline positions, and all counts are proposals for discussion — not decided.
+    <br><br>Companion detail files: <a href="golden-set-operating-model.html">operating model</a> ·
+    <a href="workback-timeline.html">workback timeline</a> ·
+    <a href="utterance-effort-matrix.html">utterance-effort matrix</a>
+    <span style="opacity:.75;">(links open the full versions — keep all four files in the same folder)</span>
+  </footer>
+</div>
+</body>
+</html>

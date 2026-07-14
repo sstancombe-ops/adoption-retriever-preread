@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Workback Timeline — Adoption Retriever Eval (Sept Release)</title>
+<style>
+  :root {
+    --bg:#f7f8fa; --panel:#fff; --ink:#1a1d24; --muted:#5b6270; --line:#d4d9e0;
+    --build:#2563eb; --build-soft:#e8f0fe;
+    --eval:#7c3aed; --eval-soft:#f1e9fe;
+    --gate:#0f9d76; --gate-soft:#e2f6ef;
+    --milestone:#c2410c; --milestone-soft:#fdece0;
+    --grid:#e6e9ee;
+  }
+  @media (prefers-color-scheme: dark){
+    :root{ --bg:#0f1218; --panel:#171b23; --ink:#eef1f6; --muted:#9aa3b2; --line:#2b313c;
+      --build-soft:#16233f; --eval-soft:#251a3d; --gate-soft:#123128; --milestone-soft:#3a2113; --grid:#232833; }
+  }
+  *{box-sizing:border-box;}
+  body{margin:0;background:var(--bg);color:var(--ink);
+    font:15px/1.5 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+    padding:32px 24px 64px;}
+  .wrap{max-width:1120px;margin:0 auto;}
+  header h1{font-size:24px;margin:0 0 4px;letter-spacing:-.01em;}
+  header p.sub{margin:0 0 4px;color:var(--muted);}
+  header p.meta{margin:0 0 24px;color:var(--muted);font-size:13px;}
+  .legend{display:flex;flex-wrap:wrap;gap:16px;margin:0 0 20px;font-size:13px;}
+  .legend span{display:inline-flex;align-items:center;gap:6px;color:var(--muted);}
+  .dot{width:12px;height:12px;border-radius:3px;display:inline-block;}
+  .d-build{background:var(--build);} .d-eval{background:var(--eval);}
+  .d-gate{background:var(--gate);} .d-ms{background:var(--milestone);}
+
+  /* Gantt */
+  .gantt{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:18px 18px 8px;overflow-x:auto;}
+  .months{display:grid;grid-template-columns:200px repeat(12,1fr);align-items:end;margin-bottom:6px;min-width:840px;}
+  .months .corner{font-size:11px;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:.06em;}
+  .months .m{font-size:11px;font-weight:600;color:var(--muted);text-align:center;border-left:1px solid var(--grid);padding:2px 0;}
+  .row{display:grid;grid-template-columns:200px repeat(12,1fr);align-items:center;min-width:840px;height:40px;position:relative;}
+  .row:nth-child(even) .track{background:linear-gradient(var(--grid),var(--grid));background-size:100% 1px;background-repeat:no-repeat;background-position:center;}
+  .row .label{font-size:13px;padding-right:10px;color:var(--ink);}
+  .row .label small{display:block;color:var(--muted);font-size:11px;}
+  .track{grid-column:2 / span 12;position:relative;height:100%;border-left:1px solid var(--grid);}
+  /* vertical week gridlines via repeating bg */
+  .track::before{content:"";position:absolute;inset:0;
+    background-image:repeating-linear-gradient(90deg,var(--grid) 0 1px,transparent 1px calc(100%/12));
+    opacity:.6;}
+  .bar{position:absolute;top:50%;transform:translateY(-50%);height:20px;border-radius:6px;
+    display:flex;align-items:center;padding:0 8px;font-size:11px;font-weight:600;color:#fff;white-space:nowrap;overflow:hidden;z-index:1;}
+  .bar.build{background:var(--build);}
+  .bar.eval{background:var(--eval);}
+  .bar.gate{background:var(--gate);}
+  .marker{position:absolute;top:0;bottom:0;width:0;border-left:2px dashed var(--milestone);z-index:2;}
+  .marker span{position:absolute;top:-2px;left:4px;font-size:10px;color:var(--milestone);font-weight:700;white-space:nowrap;background:var(--panel);padding:0 3px;}
+
+  .cal{display:flex;flex-wrap:wrap;gap:12px;margin:22px 0 8px;}
+  .ms{flex:1 1 180px;background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:12px 14px;border-top:3px solid var(--milestone);}
+  .ms .date{font-size:12px;font-weight:700;color:var(--milestone);}
+  .ms .name{font-size:14px;margin:3px 0 2px;font-weight:600;}
+  .ms .who{font-size:12px;color:var(--muted);}
+
+  .callout{background:var(--milestone-soft);border:1px dashed var(--milestone);border-radius:12px;padding:14px 16px;margin-top:18px;font-size:13px;}
+  .callout b{color:var(--milestone);}
+  footer{margin-top:28px;font-size:12px;color:var(--muted);border-top:1px solid var(--line);padding-top:14px;}
+  .ts{display:inline-block;font-size:11px;color:var(--muted);background:var(--bg);border:1px solid var(--line);border-radius:4px;padding:0 5px;margin-left:4px;}
+  @media (max-width:720px){ .months,.row{min-width:760px;} }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <h1>Workback Timeline — Adoption Retriever Eval</h1>
+    <p class="sub">Backwards plan from the Sept release for the Agentforce + Data Cloud expansion &amp; golden-set evaluation</p>
+    <p class="meta">Draft for the Maya / Helen alignment call · today = Jul 14, 2026 · dates from Workback Planning notes (Jul 13, 2026)</p>
+  </header>
+
+  <div class="legend">
+    <span><i class="dot d-build"></i> Build / technical (low-effort filter expansion)</span>
+    <span><i class="dot d-eval"></i> Evaluation (golden-set — the critical path)</span>
+    <span><i class="dot d-gate"></i> Assessment / gate</span>
+    <span><i class="dot d-ms"></i> Fixed milestone</span>
+  </div>
+
+  <div class="gantt">
+    <!-- 12 columns = mid-Jul .. late-Sep, roughly weekly -->
+    <div class="months">
+      <div class="corner">Workstream</div>
+      <div class="m">Jul 14</div><div class="m">Jul 21</div><div class="m">Jul 28</div>
+      <div class="m">Aug 4</div><div class="m">Aug 11</div><div class="m">Aug 18</div>
+      <div class="m">Aug 25</div><div class="m">Sep 1</div><div class="m">Sep 8</div>
+      <div class="m">Sep 15</div><div class="m">Sep 22</div><div class="m">Sep 28</div>
+    </div>
+
+    <div class="row">
+      <div class="label">Align on approach<small>Maya call + taxonomy w/ Trailhead</small></div>
+      <div class="track"><div class="bar eval" style="left:0%;width:16.6%;">Alignment</div></div>
+    </div>
+
+    <div class="row">
+      <div class="label">Author net-new utterances<small>Agentforce + Data Cloud</small></div>
+      <div class="track"><div class="bar eval" style="left:12.5%;width:29%;">Utterance creation</div></div>
+    </div>
+
+    <div class="row">
+      <div class="label">Manual relevance review<small>standalone + full-agent</small></div>
+      <div class="track"><div class="bar eval" style="left:33%;width:29%;">Review loop</div></div>
+    </div>
+
+    <div class="row">
+      <div class="label">Technical build<small>filter expansion (low effort)</small></div>
+      <div class="track"><div class="bar build" style="left:20.8%;width:20%;">Filter expansion</div></div>
+    </div>
+
+    <div class="row">
+      <div class="label">Formal eval assessment<small>required before run-list</small></div>
+      <div class="track"><div class="bar gate" style="left:54%;width:16%;">Eval assessment</div></div>
+    </div>
+
+    <div class="row">
+      <div class="label">Release readiness<small>run-list → launch</small></div>
+      <div class="track">
+        <div class="bar build" style="left:83%;width:13%;">Run-list → GA</div>
+        <div class="marker" style="left:87.5%;"><span>Sep 24 run-list</span></div>
+        <div class="marker" style="left:100%;"><span>Sep 28 release</span></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="cal">
+    <div class="ms">
+      <div class="date">Late August</div>
+      <div class="name">Formal eval assessment due</div>
+      <div class="who">Prereq to hit the release — the true deadline that pulls everything left</div>
+    </div>
+    <div class="ms">
+      <div class="date">Thursdays (weekly)</div>
+      <div class="name">Program tracker review</div>
+      <div class="who">Cody Rodgers · updates via Slack intake #2497 · moving to Linear</div>
+    </div>
+    <div class="ms">
+      <div class="date">Sep 24</div>
+      <div class="name">Run-list review</div>
+      <div class="who">Release gate before GA</div>
+    </div>
+    <div class="ms">
+      <div class="date">Sep 28</div>
+      <div class="name">September release</div>
+      <div class="who">Target launch date</div>
+    </div>
+  </div>
+
+  <div class="callout">
+    <b>Critical-path read:</b> the technical work is low-effort (filter expansion), so
+    <b>evaluation is the long pole</b> — utterance authoring + manual review must finish in time to feed the
+    <b>late-August</b> assessment. Working back, utterance creation needs to start by <b>early August</b>,
+    which makes the Maya alignment call (week of Jul 21) time-sensitive.
+  </div>
+
+  <footer>
+    Sources: Workback Planning notes (Jul 13, 2026) — Sept release Sep 28, run-list Sep 24, eval assessment late Aug
+    <span class="ts">00:29:25 / 00:31:32</span> · planned date Aug 3 for expansion <span class="ts">00:03:39</span> ·
+    filter expansion is low-effort <span class="ts">00:27:38</span> · weekly Thursday tracker, Google Sheets → Linear <span class="ts">00:28:31</span>.
+    Bar positions are planning estimates for discussion — dates to be confirmed with Allyson &amp; Cody.
+  </footer>
+</div>
+</body>
+</html>

@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Golden-Set Operating Model — Extension to Proactive Adoption Sub-Agent</title>
+<style>
+  :root {
+    --bg: #f7f8fa;
+    --panel: #ffffff;
+    --ink: #1a1d24;
+    --muted: #5b6270;
+    --line: #d4d9e0;
+    --current: #2563eb;      /* blue — existing model */
+    --current-soft: #e8f0fe;
+    --extend: #7c3aed;       /* purple — proposed extension */
+    --extend-soft: #f1e9fe;
+    --accent: #0f9d76;       /* green — outputs / decisions */
+    --accent-soft: #e2f6ef;
+    --warn: #c2410c;         /* amber — open questions */
+    --warn-soft: #fdece0;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg: #0f1218; --panel: #171b23; --ink: #eef1f6; --muted: #9aa3b2;
+      --line: #2b313c; --current-soft: #16233f; --extend-soft: #251a3d;
+      --accent-soft: #123128; --warn-soft: #3a2113;
+    }
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0; background: var(--bg); color: var(--ink);
+    font: 15px/1.5 -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    padding: 32px 24px 64px;
+  }
+  .wrap { max-width: 1080px; margin: 0 auto; }
+  header h1 { font-size: 24px; margin: 0 0 4px; letter-spacing: -0.01em; }
+  header p.sub { margin: 0 0 4px; color: var(--muted); }
+  header p.meta { margin: 0 0 24px; color: var(--muted); font-size: 13px; }
+  .legend { display: flex; flex-wrap: wrap; gap: 16px; margin: 0 0 28px; font-size: 13px; }
+  .legend span { display: inline-flex; align-items: center; gap: 6px; color: var(--muted); }
+  .dot { width: 12px; height: 12px; border-radius: 3px; display: inline-block; }
+  .d-current { background: var(--current); }
+  .d-extend  { background: var(--extend); }
+  .d-accent  { background: var(--accent); }
+  .d-warn    { background: var(--warn); }
+
+  .track-label {
+    font-size: 12px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em;
+    margin: 28px 0 12px; display: flex; align-items: center; gap: 8px;
+  }
+  .track-label.current { color: var(--current); }
+  .track-label.extend  { color: var(--extend); }
+  .pill {
+    font-size: 10px; font-weight: 600; padding: 2px 8px; border-radius: 999px;
+    text-transform: none; letter-spacing: 0;
+  }
+  .pill.today { background: var(--current-soft); color: var(--current); }
+  .pill.proposed { background: var(--extend-soft); color: var(--extend); }
+
+  .flow { display: flex; align-items: stretch; gap: 0; flex-wrap: wrap; }
+  .step {
+    flex: 1 1 0; min-width: 150px; background: var(--panel); border: 1px solid var(--line);
+    border-radius: 12px; padding: 14px 14px 16px; position: relative;
+  }
+  .step .n { font-size: 11px; font-weight: 700; color: var(--muted); }
+  .step h3 { margin: 4px 0 6px; font-size: 15px; }
+  .step p { margin: 0; font-size: 13px; color: var(--muted); }
+  .step.current { border-top: 3px solid var(--current); }
+  .step.extend  { border-top: 3px solid var(--extend); }
+  .arrow { align-self: center; padding: 0 6px; color: var(--muted); font-size: 20px; flex: 0 0 auto; }
+  .loopback {
+    margin-top: 10px; font-size: 12px; color: var(--accent); font-weight: 600;
+    display: flex; align-items: center; gap: 6px;
+  }
+
+  .grid2 { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-top: 8px; }
+  @media (max-width: 720px){ .grid2 { grid-template-columns: 1fr; } .flow { flex-direction: column; } .arrow{ transform: rotate(90deg); } }
+  .card {
+    background: var(--panel); border: 1px solid var(--line); border-radius: 12px; padding: 16px;
+  }
+  .card h4 { margin: 0 0 10px; font-size: 14px; display: flex; align-items: center; gap: 8px; }
+  .card.accent { border-left: 3px solid var(--accent); }
+  .card.warn   { border-left: 3px solid var(--warn); }
+  ul.tight { margin: 0; padding-left: 18px; }
+  ul.tight li { margin: 5px 0; font-size: 13px; color: var(--muted); }
+  ul.tight li b { color: var(--ink); font-weight: 600; }
+
+  .banner {
+    background: var(--extend-soft); border: 1px dashed var(--extend); color: var(--ink);
+    border-radius: 12px; padding: 14px 16px; margin: 10px 0 4px; font-size: 13px;
+  }
+  .banner b { color: var(--extend); }
+  footer { margin-top: 32px; font-size: 12px; color: var(--muted); border-top: 1px solid var(--line); padding-top: 14px; }
+  .ts { display:inline-block; font-size: 11px; color: var(--muted); background: var(--bg); border:1px solid var(--line); border-radius:4px; padding:0 5px; margin-left:6px;}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <h1>Golden-Set Operating Model → Proactive Adoption Sub-Agent</h1>
+    <p class="sub">Working diagram for the Maya / Helen alignment call — Adoption Retriever expansion (Agentforce + Data Cloud)</p>
+    <p class="meta">Draft for discussion · derived from Workback Planning notes (Jul 13, 2026) · target Sept 28 release, eval assessment due late August</p>
+  </header>
+
+  <div class="legend">
+    <span><i class="dot d-current"></i> Existing model (Maya's team, today)</span>
+    <span><i class="dot d-extend"></i> Proposed extension (what we're aligning on)</span>
+    <span><i class="dot d-accent"></i> Output / gate</span>
+    <span><i class="dot d-warn"></i> Open question for the call</span>
+  </div>
+
+  <!-- CURRENT MODEL -->
+  <div class="track-label current">
+    Track A — Current operating model <span class="pill today">running today</span>
+  </div>
+  <div class="flow">
+    <div class="step current">
+      <div class="n">STEP 1</div>
+      <h3>Generate synthetic utterances</h3>
+      <p>Ground-truth answers are known. Trailhead-sourced utterances added to the baseline set.</p>
+    </div>
+    <div class="arrow">→</div>
+    <div class="step current">
+      <div class="n">STEP 2</div>
+      <h3>Run through retriever</h3>
+      <p>Tested standalone <em>and</em> within full agent context. Returns candidate links/sources.</p>
+    </div>
+    <div class="arrow">→</div>
+    <div class="step current">
+      <div class="n">STEP 3</div>
+      <h3>Manual relevance review</h3>
+      <p>Testers judge returned links for relevance — the substantial-effort step.</p>
+    </div>
+    <div class="arrow">→</div>
+    <div class="step current">
+      <div class="n">STEP 4</div>
+      <h3>Maintain golden set</h3>
+      <p>Curate + refresh. Feeds Answer Quality (AQ) / synthetic baseline program.
+      <span class="loopback">↺ loop back to Step 1 (maintenance cadence)</span></p>
+    </div>
+  </div>
+
+  <div class="banner">
+    <b>The question for this call:</b> can this exact loop be reused — or does it need to fork — to cover the
+    <b>proactive adoption sub-agent</b> as the retriever expands to Agentforce &amp; Data Cloud?
+  </div>
+
+  <!-- EXTENSION -->
+  <div class="track-label extend">
+    Track B — Proposed extension to proactive adoption <span class="pill proposed">to align</span>
+  </div>
+  <div class="flow">
+    <div class="step extend">
+      <div class="n">STEP 1′</div>
+      <h3>Net-new utterances per cloud</h3>
+      <p>Author net-new utterances for <b>Agentforce</b> &amp; <b>Data Cloud</b>, aligned to product-feature taxonomy.</p>
+    </div>
+    <div class="arrow">→</div>
+    <div class="step extend">
+      <div class="n">STEP 2′</div>
+      <h3>Retriever w/ expanded filters</h3>
+      <p>Same retriever, filters expanded to new-cloud Trailhead modules + docs/KB via metadata tags.</p>
+    </div>
+    <div class="arrow">→</div>
+    <div class="step extend">
+      <div class="n">STEP 3′</div>
+      <h3>Manual review (proactive)</h3>
+      <p>Relevance review for proactive-adoption context — not just onboarding.</p>
+    </div>
+    <div class="arrow">→</div>
+    <div class="step extend">
+      <div class="n">STEP 4′</div>
+      <h3>Shared maintenance loop?</h3>
+      <p>Reuse Maya's cadence &amp; tooling — or stand up a parallel one?
+      <span class="loopback">↺ same maintenance model, extended scope</span></p>
+    </div>
+  </div>
+
+  <div class="grid2">
+    <div class="card accent">
+      <h4><i class="dot d-accent"></i> What we need out of the call</h4>
+      <ul class="tight">
+        <li><b>Fit decision:</b> reuse loop as-is, adapt, or fork for proactive adoption</li>
+        <li><b>Effort sizing:</b> how many net-new utterances = statistically significant, per cloud</li>
+        <li><b>Ownership:</b> who authors, who reviews, who maintains</li>
+        <li><b>Timeline fit:</b> can it deliver the <b>late-August</b> eval assessment</li>
+        <li><b>Tooling:</b> does synthetic generation transfer to proactive-adoption utterances</li>
+      </ul>
+    </div>
+    <div class="card warn">
+      <h4><i class="dot d-warn"></i> Open questions to resolve</h4>
+      <ul class="tight">
+        <li>Can synthetic generation produce <b>proactive-adoption</b> utterances, or must they be hand-authored?</li>
+        <li>Do ground-truth answers exist for the new clouds, or need creating?</li>
+        <li>Taxonomy: Agentforce vs Process Automation &amp; Intelligence vs Data 360 — which map to which tags? <span class="ts">pending Trailhead review</span></li>
+        <li>Maintenance cadence &amp; who owns it once live</li>
+        <li>Standalone-retriever vs full-agent eval — both in scope?</li>
+      </ul>
+    </div>
+  </div>
+
+  <footer>
+    Sources: Adoption Retriever Workback Planning (Jul 13, 2026) — Evaluation Operating Model
+    <span class="ts">00:24:33</span> · net-new utterances for net-new clouds <span class="ts">00:15:53</span> ·
+    manual review effort <span class="ts">00:16:49</span> · standalone + full-agent testing <span class="ts">00:19:36 / 00:21:21</span>.
+    Track B is a proposal for discussion, not a decided design.
+  </footer>
+</div>
+</body>
+</html>

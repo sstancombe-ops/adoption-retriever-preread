@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Utterance-Effort Scoping Matrix — Adoption Retriever Eval</title>
+<style>
+  :root{
+    --bg:#f7f8fa; --panel:#fff; --ink:#1a1d24; --muted:#5b6270; --line:#d4d9e0;
+    --agf:#2563eb; --agf-soft:#e8f0fe;
+    --dc:#7c3aed; --dc-soft:#f1e9fe;
+    --accent:#0f9d76; --accent-soft:#e2f6ef;
+    --warn:#c2410c; --warn-soft:#fdece0;
+    --head:#eef1f6;
+  }
+  @media (prefers-color-scheme: dark){
+    :root{ --bg:#0f1218; --panel:#171b23; --ink:#eef1f6; --muted:#9aa3b2; --line:#2b313c;
+      --agf-soft:#16233f; --dc-soft:#251a3d; --accent-soft:#123128; --warn-soft:#3a2113; --head:#1f2531; }
+  }
+  *{box-sizing:border-box;}
+  body{margin:0;background:var(--bg);color:var(--ink);
+    font:15px/1.5 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+    padding:32px 24px 64px;}
+  .wrap{max-width:1080px;margin:0 auto;}
+  header h1{font-size:24px;margin:0 0 4px;letter-spacing:-.01em;}
+  header p.sub{margin:0 0 4px;color:var(--muted);}
+  header p.meta{margin:0 0 22px;color:var(--muted);font-size:13px;}
+
+  table{width:100%;border-collapse:separate;border-spacing:0;background:var(--panel);
+    border:1px solid var(--line);border-radius:12px;overflow:hidden;}
+  th,td{padding:12px 14px;text-align:left;font-size:13px;border-bottom:1px solid var(--line);vertical-align:top;}
+  thead th{background:var(--head);font-size:11px;text-transform:uppercase;letter-spacing:.06em;color:var(--muted);}
+  tbody tr:last-child td{border-bottom:none;}
+  .ctx{font-weight:600;color:var(--ink);}
+  .ctx small{display:block;color:var(--muted);font-weight:400;font-size:11.5px;margin-top:2px;}
+  .cloud-agf{border-left:3px solid var(--agf);}
+  .cloud-dc{border-left:3px solid var(--dc);}
+  .cell b{display:block;font-size:14px;color:var(--ink);}
+  .cell span{color:var(--muted);font-size:12px;}
+  .est{display:inline-block;font-size:11px;font-weight:700;padding:1px 7px;border-radius:999px;margin-top:4px;}
+  .est.tbd{background:var(--warn-soft);color:var(--warn);}
+  .est.hi{background:var(--dc-soft);color:var(--dc);}
+  .est.md{background:var(--agf-soft);color:var(--agf);}
+  .total-row td{background:var(--accent-soft);font-weight:600;}
+  .total-row td b{color:var(--accent);}
+
+  .legend{display:flex;flex-wrap:wrap;gap:16px;margin:0 0 18px;font-size:13px;}
+  .legend span{display:inline-flex;align-items:center;gap:6px;color:var(--muted);}
+  .dot{width:12px;height:12px;border-radius:3px;display:inline-block;}
+  .d-agf{background:var(--agf);} .d-dc{background:var(--dc);}
+
+  .grid2{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:18px;}
+  @media(max-width:720px){.grid2{grid-template-columns:1fr;}}
+  .card{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:16px;}
+  .card.warn{border-left:3px solid var(--warn);}
+  .card.accent{border-left:3px solid var(--accent);}
+  .card h4{margin:0 0 10px;font-size:14px;display:flex;align-items:center;gap:8px;}
+  ul.tight{margin:0;padding-left:18px;}
+  ul.tight li{margin:5px 0;font-size:13px;color:var(--muted);}
+  ul.tight li b{color:var(--ink);font-weight:600;}
+  .note{background:var(--warn-soft);border:1px dashed var(--warn);border-radius:12px;padding:12px 15px;margin-top:16px;font-size:13px;}
+  .note b{color:var(--warn);}
+  footer{margin-top:26px;font-size:12px;color:var(--muted);border-top:1px solid var(--line);padding-top:14px;}
+  .ts{display:inline-block;font-size:11px;color:var(--muted);background:var(--bg);border:1px solid var(--line);border-radius:4px;padding:0 5px;margin-left:4px;}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <h1>Utterance-Effort Scoping Matrix</h1>
+    <p class="sub">Sizing the net-new manual effort to build a statistically significant golden set for the retriever expansion</p>
+    <p class="meta">Draft for the Maya / Helen call — numbers are a <b>straw-man to react to</b>, structure derived from Workback Planning notes (Jul 13, 2026)</p>
+  </header>
+
+  <div class="note" style="margin-top:0;margin-bottom:18px;background:var(--warn-soft);">
+    <b>⚠ These counts are a straw-man, not data.</b> Assumptions: ~100 utterances/facet for statistical significance
+    (≈95% CI ±10% around a 50% relevance rate); full-agent mode reuses the standalone utterances (adds a review pass, not new authoring);
+    ~10 min reviewer load per utterance. <b>Purpose: give Maya something to correct, not a number to trust.</b>
+  </div>
+
+  <div class="legend">
+    <span><i class="dot d-agf"></i> Agentforce</span>
+    <span><i class="dot d-dc"></i> Data Cloud (Data 360)</span>
+    <span>Each cell = # net-new utterances × manual review load</span>
+  </div>
+
+  <table>
+    <thead>
+      <tr>
+        <th style="width:26%;">Agent context / eval mode</th>
+        <th>Agentforce</th>
+        <th>Data Cloud (Data 360)</th>
+        <th style="width:22%;">Notes</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td class="ctx">Onboarding sub-agent<small>retriever standalone</small></td>
+        <td class="cell cloud-agf"><b>~75 utterances</b><span>author net-new + review each link</span><br><span class="est md">~75 authored</span></td>
+        <td class="cell cloud-dc"><b>~75 utterances</b><span>author net-new + review each link</span><br><span class="est md">~75 authored</span></td>
+        <td>Extends existing onboarding set (intake #2497); synthetic gen likely covers most</td>
+      </tr>
+      <tr>
+        <td class="ctx">Onboarding sub-agent<small>full-agent context</small></td>
+        <td class="cell cloud-agf"><b>+0 new · 75 reviews</b><span>reuse standalone utterances</span><br><span class="est md">review only</span></td>
+        <td class="cell cloud-dc"><b>+0 new · 75 reviews</b><span>reuse standalone utterances</span><br><span class="est md">review only</span></td>
+        <td>Retriever tested inside full agent — 2nd review pass, no new authoring</td>
+      </tr>
+      <tr>
+        <td class="ctx">Proactive adoption sub-agent<small>retriever standalone</small></td>
+        <td class="cell cloud-agf"><b>~100 utterances</b><span>net-new — likely hand-authored</span><br><span class="est hi">~100 authored · highest effort</span></td>
+        <td class="cell cloud-dc"><b>~100 utterances</b><span>net-new — likely hand-authored</span><br><span class="est hi">~100 authored · highest effort</span></td>
+        <td>Open question for Maya — does synthetic gen cover proactive intents?</td>
+      </tr>
+      <tr>
+        <td class="ctx">Proactive adoption sub-agent<small>full-agent context</small></td>
+        <td class="cell cloud-agf"><b>+0 new · 100 reviews</b><span>reuse standalone utterances</span><br><span class="est md">review only</span></td>
+        <td class="cell cloud-dc"><b>+0 new · 100 reviews</b><span>reuse standalone utterances</span><br><span class="est md">review only</span></td>
+        <td>Confirm this mode is in scope for Sept vs fast-follow</td>
+      </tr>
+      <tr class="total-row">
+        <td>Straw-man totals</td>
+        <td><b>~175 authored · ~350 reviews</b></td>
+        <td><b>~175 authored · ~350 reviews</b></td>
+        <td><b>≈350 authored · ≈700 reviews · ~15 person-days @10min</b></td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div class="grid2">
+    <div class="card accent">
+      <h4>Effort drivers (per the notes)</h4>
+      <ul class="tight">
+        <li><b>Net-new clouds → net-new utterances</b> — nothing reusable from prior sets <span class="ts">00:15:53</span></li>
+        <li><b>Manual review is the cost</b> — testers run each utterance, then judge every returned link for relevance <span class="ts">00:16:49</span></li>
+        <li><b>Two eval modes</b> — retriever standalone <em>and</em> within full agent context <span class="ts">00:19:36 / 00:21:21</span></li>
+        <li><b>Statistical significance</b> — the target volume is what makes this substantial <span class="ts">00:16:49</span></li>
+      </ul>
+    </div>
+    <div class="card warn">
+      <h4>Fill these in with Maya</h4>
+      <ul class="tight">
+        <li>Utterances/cell needed for statistical significance</li>
+        <li>Which cells synthetic generation can cover vs hand-author</li>
+        <li>Reviewer time per utterance → total person-days</li>
+        <li>Whether proactive-adoption rows are in scope for the Sept release or a fast-follow</li>
+        <li>Whether full-agent-context rows can reuse the standalone utterances</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="note">
+    <b>How to use in the call:</b> fill the blank cells live. The grand total × reviewer-time-per-utterance
+    gives the person-days estimate — drop that onto the workback timeline to confirm utterance authoring can
+    start early enough to hit the <b>late-August</b> eval assessment.
+  </div>
+
+  <footer>
+    Sources: Workback Planning notes (Jul 13, 2026) — net-new utterances for net-new clouds
+    <span class="ts">00:15:53</span> · manual review effort <span class="ts">00:16:49</span> ·
+    standalone + full-agent testing <span class="ts">00:19:36 / 00:21:21</span> · onboarding intake #2497 <span class="ts">00:04:37</span>.
+    All counts are placeholders to be set with Maya's team.
+  </footer>
+</div>
+</body>
+</html>

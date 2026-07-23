@@ -1,0 +1,1637 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Adoption Retriever - Product Roadmap FY27</title>
+    <style>
+        :root {
+            color-scheme: light;
+            --primary-purple: #7F3FBF;
+            --dark-purple: #5B21B6;
+            --light-purple: #F3E8FF;
+            --card-purple: #E9D5FF;
+            --dark-navy: #032D60;
+            --navy-blue: #1E3A8A;
+            --success-green: #10B981;
+            --evolved-orange: #F59E0B;
+            --yellow-metric: #FEF3C7;
+            --gray-pill: #E5E7EB;
+            --gray-600: #4B5563;
+            --gray-900: #111827;
+            --white: #FFFFFF;
+            --border-radius: 12px;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, sans-serif;
+            background: #F9FAFB;
+            color: var(--gray-900);
+            line-height: 1.5;
+            padding: 30px 20px;
+        }
+
+        .container {
+            max-width: 1800px;
+            margin: 0 auto;
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 30px;
+            padding: 25px;
+            background: var(--white);
+            border-radius: var(--border-radius);
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+        }
+
+        h1 {
+            font-size: 2.2rem;
+            color: var(--dark-navy);
+            margin-bottom: 8px;
+            font-weight: 700;
+        }
+
+        .subtitle {
+            font-size: 1rem;
+            color: var(--gray-600);
+            margin-bottom: 20px;
+        }
+
+        .legend {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            margin-top: 20px;
+            padding-top: 20px;
+            border-top: 1px solid #E5E7EB;
+            flex-wrap: wrap;
+        }
+
+        .legend-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 0.75rem;
+            color: #6B7280;
+            position: relative;
+            cursor: help;
+            transition: all 0.2s ease;
+        }
+
+        .legend-item:hover {
+            color: var(--dark-navy);
+        }
+
+        .legend-item .legend-tooltip {
+            visibility: hidden;
+            opacity: 0;
+            position: absolute;
+            bottom: 100%;
+            left: 50%;
+            transform: translateX(-50%) translateY(-5px);
+            background: #1F2937;
+            color: white;
+            padding: 8px 12px;
+            border-radius: 6px;
+            font-size: 0.7rem;
+            white-space: nowrap;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            z-index: 1000;
+            transition: all 0.2s ease;
+            margin-bottom: 8px;
+        }
+
+        .legend-item .legend-tooltip::after {
+            content: '';
+            position: absolute;
+            top: 100%;
+            left: 50%;
+            transform: translateX(-50%);
+            border: 5px solid transparent;
+            border-top-color: #1F2937;
+        }
+
+        .legend-item:hover .legend-tooltip {
+            visibility: visible;
+            opacity: 1;
+            transform: translateX(-50%) translateY(0);
+        }
+
+        .legend-badge {
+            padding: 3px 8px;
+            border-radius: 4px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            text-transform: uppercase;
+        }
+
+        .legend-badge.status-new {
+            background: var(--success-green);
+            color: var(--white);
+        }
+
+        .legend-badge.status-progress {
+            background: var(--evolved-orange);
+            color: var(--white);
+        }
+
+        .legend-badge.critical {
+            background: #FEF3C7;
+            border: 1px solid #F59E0B;
+            color: #92400E;
+        }
+
+        .legend-badge.standard {
+            background: var(--gray-pill);
+            border: 1px solid #D1D5DB;
+            color: var(--gray-600);
+        }
+
+        .roadmap-table {
+            background: var(--white);
+            border-radius: var(--border-radius);
+            overflow: hidden;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+            margin-top: 25px;
+        }
+
+        .phase-headers {
+            display: grid;
+            grid-template-columns: 200px repeat(4, 1fr);
+            background: var(--dark-navy);
+            color: var(--white);
+        }
+
+        .phase-header {
+            padding: 18px;
+            text-align: center;
+            font-weight: 700;
+            font-size: 1rem;
+            border-right: 1px solid rgba(255, 255, 255, 0.15);
+        }
+
+        .phase-header:last-child {
+            border-right: none;
+        }
+
+        .phase-subtitle {
+            font-size: 0.8rem;
+            font-weight: 400;
+            color: rgba(255, 255, 255, 0.8);
+            margin-top: 4px;
+        }
+
+        .swim-lane {
+            display: grid;
+            grid-template-columns: 200px repeat(4, 1fr);
+            border-bottom: 1px solid #E5E7EB;
+            min-height: 200px;
+        }
+
+        .swim-lane:last-child {
+            border-bottom: none;
+        }
+
+        .swim-lane-title {
+            background: var(--dark-navy);
+            padding: 20px;
+            font-weight: 700;
+            font-size: 1.05rem;
+            color: var(--white);
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            justify-content: flex-start;
+            border-right: 1px solid #E5E7EB;
+        }
+
+        .swim-lane-subtitle {
+            font-size: 0.75rem;
+            font-weight: 400;
+            color: rgba(255, 255, 255, 0.7);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-top: 4px;
+        }
+
+        .phase-column {
+            padding: 16px;
+            border-right: 1px solid #E5E7EB;
+            background: #FAFAFA;
+        }
+
+        .phase-column:last-child {
+            border-right: none;
+        }
+
+        .initiative-card {
+            background: var(--card-purple);
+            border: 2px solid var(--primary-purple);
+            border-radius: 10px;
+            padding: 14px;
+            margin-bottom: 14px;
+            position: relative;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .initiative-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(127, 63, 191, 0.2);
+        }
+
+        .initiative-card.expanded {
+            box-shadow: 0 6px 16px rgba(127, 63, 191, 0.25);
+        }
+
+        .status-badge {
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            padding: 4px 8px;
+            border-radius: 4px;
+            font-size: 0.7rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.3px;
+        }
+
+        .status-badge.new {
+            background: var(--success-green);
+            color: var(--white);
+        }
+
+        .status-badge.in-progress {
+            background: var(--evolved-orange);
+            color: var(--white);
+        }
+
+        .status-badge.planned {
+            background: var(--navy-blue);
+            color: var(--white);
+        }
+
+        .workstream-label {
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            color: var(--dark-purple);
+            margin-top: 35px;
+            margin-bottom: 8px;
+        }
+
+        .workstream-icon {
+            font-size: 0.9rem;
+        }
+
+        .card-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 6px;
+            margin-bottom: 10px;
+        }
+
+        .tag-pill {
+            display: inline-block;
+            padding: 4px 10px;
+            border-radius: 6px;
+            font-size: 0.72rem;
+            font-weight: 600;
+            border: 1px solid;
+        }
+
+        .tag-pill.product {
+            background: var(--white);
+            border-color: #D1D5DB;
+            color: var(--gray-900);
+        }
+
+        .card-title {
+            font-size: 1rem;
+            font-weight: 700;
+            color: var(--dark-purple);
+            margin-bottom: 8px;
+            margin-top: 8px;
+            line-height: 1.3;
+        }
+
+        .card-description {
+            font-size: 0.85rem;
+            color: var(--gray-900);
+            line-height: 1.5;
+            margin-bottom: 10px;
+        }
+
+        .metric-pill {
+            display: inline-flex;
+            align-items: center;
+            padding: 4px 10px;
+            border-radius: 6px;
+            font-size: 0.72rem;
+            font-weight: 600;
+            background: var(--yellow-metric);
+            border: 1px solid #FDE68A;
+            color: #92400E;
+            margin-bottom: 8px;
+            margin-right: 6px;
+        }
+
+        .deliverable-pill {
+            display: inline-flex;
+            align-items: center;
+            gap: 4px;
+            padding: 4px 10px;
+            border-radius: 6px;
+            font-size: 0.72rem;
+            font-weight: 600;
+            background: var(--gray-pill);
+            border: 1px solid #D1D5DB;
+            color: var(--gray-600);
+            margin-top: 8px;
+        }
+
+        .enabler-pill {
+            display: inline-flex;
+            align-items: center;
+            gap: 4px;
+            padding: 4px 10px;
+            border-radius: 6px;
+            font-size: 0.72rem;
+            font-weight: 600;
+            background: #DBEAFE;
+            border: 1px solid #60A5FA;
+            color: #1E40AF;
+            margin-bottom: 8px;
+        }
+
+        .unlocks-section {
+            margin-top: 12px;
+            padding: 12px;
+            background: #F0FDF4;
+            border-left: 3px solid #10B981;
+            border-radius: 6px;
+        }
+
+        .unlocks-section h5 {
+            font-size: 0.8rem;
+            font-weight: 700;
+            color: #065F46;
+            margin-bottom: 8px;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .unlocks-section ul {
+            list-style: none;
+            padding-left: 0;
+            margin: 0;
+        }
+
+        .unlocks-section li {
+            padding: 4px 0 4px 18px;
+            position: relative;
+            font-size: 0.78rem;
+            color: #065F46;
+        }
+
+        .unlocks-section li::before {
+            content: '→';
+            position: absolute;
+            left: 0;
+            color: #10B981;
+            font-weight: 700;
+        }
+
+        .expand-indicator {
+            position: absolute;
+            bottom: 10px;
+            right: 10px;
+            font-size: 0.85rem;
+            color: var(--primary-purple);
+            transition: transform 0.2s;
+        }
+
+        .initiative-card.expanded .expand-indicator {
+            transform: rotate(180deg);
+        }
+
+        .expanded-content {
+            display: none;
+            margin-top: 14px;
+            padding-top: 14px;
+            border-top: 2px solid var(--primary-purple);
+        }
+
+        .initiative-card.expanded .expanded-content {
+            display: block;
+            animation: slideDown 0.25s ease;
+        }
+
+        @keyframes slideDown {
+            from {
+                opacity: 0;
+                transform: translateY(-6px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .section-title {
+            font-size: 0.8rem;
+            font-weight: 700;
+            color: var(--dark-purple);
+            margin-bottom: 8px;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .kpi-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 8px;
+            margin-bottom: 12px;
+        }
+
+        .kpi-item {
+            background: var(--white);
+            padding: 8px;
+            border-radius: 6px;
+            border-left: 3px solid var(--primary-purple);
+            font-size: 0.75rem;
+        }
+
+        .kpi-label {
+            display: block;
+            font-weight: 600;
+            color: var(--gray-600);
+            margin-bottom: 3px;
+        }
+
+        .kpi-value {
+            display: block;
+            font-weight: 700;
+            color: var(--dark-purple);
+            font-size: 0.85rem;
+        }
+
+        .dependency-details {
+            font-size: 0.78rem;
+            color: var(--gray-900);
+            line-height: 1.5;
+        }
+
+        .dependency-details ul {
+            list-style: none;
+            padding-left: 0;
+            margin-top: 6px;
+        }
+
+        .dependency-details li {
+            padding: 5px 0 5px 14px;
+            position: relative;
+        }
+
+        .dependency-details li::before {
+            content: '→';
+            position: absolute;
+            left: 0;
+            color: var(--primary-purple);
+            font-weight: 700;
+        }
+
+        .top-header {
+            background: var(--dark-navy);
+            padding: 20px 40px;
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            margin: -30px -20px 30px -20px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .cloud-icon {
+            width: 48px;
+            height: 48px;
+            fill: #00A1E0;
+        }
+
+        .top-header-text {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            font-size: 1.5rem;
+            font-weight: 300;
+            color: #FFFFFF;
+        }
+
+        .top-header-title {
+            font-weight: 700;
+            letter-spacing: 0.5px;
+        }
+
+        .top-header-separator {
+            color: rgba(255, 255, 255, 0.5);
+            font-weight: 300;
+        }
+
+        .top-header-subtitle {
+            font-weight: 300;
+            color: rgba(255, 255, 255, 0.9);
+        }
+
+        footer {
+            margin-top: 30px;
+            padding: 20px;
+            text-align: center;
+            color: var(--gray-600);
+            font-size: 0.85rem;
+            background: var(--white);
+            border-radius: var(--border-radius);
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+        }
+
+        @media (max-width: 1400px) {
+            .phase-headers, .swim-lane {
+                grid-template-columns: 180px repeat(4, 1fr);
+            }
+            .kpi-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="top-header">
+            <svg class="cloud-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
+                <path d="M82.5,47.5c-0.8-11.6-10.4-20.8-22.2-20.8c-7.9,0-14.8,4.1-18.8,10.3c-1.6-0.8-3.4-1.2-5.2-1.2c-6.6,0-12,5.4-12,12c0,0.3,0,0.6,0,0.9C18.1,50.3,13.5,56.3,13.5,63.3c0,8.6,7,15.6,15.6,15.6h45.8c8.6,0,15.6-7,15.6-15.6C90.5,55.3,87.2,49.3,82.5,47.5z"/>
+            </svg>
+            <div class="top-header-text">
+                <span class="top-header-title">Lifecycle Success</span>
+                <span class="top-header-separator">|</span>
+                <span class="top-header-subtitle">Agentic Workflow Vision</span>
+            </div>
+        </div>
+
+        <header>
+            <h1>Adoption Retriever - Product Roadmap</h1>
+            <p class="subtitle">FY27 Strategic Initiatives | Answer Quality & Multi-Modal Content</p>
+
+            <div class="legend">
+                <div class="legend-item">
+                    <span class="legend-badge status-new">NEW</span>
+                    <span>New Initiative</span>
+                    <span class="legend-tooltip">Newly identified initiative in early planning stages</span>
+                </div>
+                <div class="legend-item">
+                    <span class="legend-badge status-progress">IN PROGRESS</span>
+                    <span>Active Development</span>
+                    <span class="legend-tooltip">Work has begun with active development, design, or implementation</span>
+                </div>
+                <div class="legend-item">
+                    <span class="legend-badge planned">PLANNED</span>
+                    <span>Future Initiative</span>
+                    <span class="legend-tooltip">Planned for future phases with defined roadmap placement</span>
+                </div>
+                <div class="legend-item">
+                    <span class="legend-badge critical">Critical Dep</span>
+                    <span>Blocking / High Impact</span>
+                    <span class="legend-tooltip">Critical blocker - must complete before dependent initiatives can proceed</span>
+                </div>
+                <div class="legend-item">
+                    <span class="legend-badge standard">Standard Dep</span>
+                    <span>Supporting / Lower Priority</span>
+                    <span class="legend-tooltip">Supporting dependency - enhances but does not block dependent work</span>
+                </div>
+            </div>
+        </header>
+
+        <div class="roadmap-table">
+            <div class="phase-headers">
+                <div class="phase-header">TEAM</div>
+                <div class="phase-header">
+                    Phase 0 - Intake & Discovery
+                </div>
+                <div class="phase-header">
+                    Phase 1 - Experimentation & Prototyping
+                </div>
+                <div class="phase-header">
+                    Phase 2 - Implementation
+                </div>
+                <div class="phase-header">
+                    Phase 3 - Productization
+                </div>
+            </div>
+
+            <!-- CSS ENABLEMENT ROW -->
+            <div class="swim-lane">
+                <div class="swim-lane-title">
+                    CSS Enablement
+                    <span class="swim-lane-subtitle">PLATFORM & DATA</span>
+                </div>
+
+                <!-- Phase 0: Intake -->
+                <div class="phase-column">
+                    <div class="initiative-card">
+                        <span class="status-badge new">NEW</span>
+                        <div class="workstream-label">
+                            <span class="workstream-icon">★</span>
+                            PERSONALIZATION
+                        </div>
+                        <div class="card-tags">
+                            <span class="tag-pill product">I-2952</span>
+                            <span class="tag-pill product">Multi-Cloud</span>
+                        </div>
+                        <h3 class="card-title">Adoption Guidance Experience Expansion to Other Clouds</h3>
+                        <p class="card-description">Expand Adoption Guidance beyond Sales and Service Cloud to all Salesforce products (Industries, Data Cloud, Marketing, Commerce, Field Service) with cross-cloud personalization and signal detection.</p>
+                        <span class="metric-pill">🎯 83% attrition risk reduction</span>
+                        <div>
+                            <span class="deliverable-pill">📋 MULTI-CLOUD EXPANSION</span>
+                        </div>
+                        <span class="expand-indicator">▼</span>
+
+                        <div class="expanded-content">
+                            <div class="section-title">📊 Related KPIs</div>
+                            <div class="kpi-grid">
+                                <div class="kpi-item">
+                                    <span class="kpi-label">Product Adoption Rate</span>
+                                    <span class="kpi-value">↑ Feature Activation</span>
+                                </div>
+                                <div class="kpi-item">
+                                    <span class="kpi-label">Happy Path Completion</span>
+                                    <span class="kpi-value">Cross-Cloud Journey</span>
+                                </div>
+                                <div class="kpi-item">
+                                    <span class="kpi-label">Attrition Reduction</span>
+                                    <span class="kpi-value">83% Risk Mitigation</span>
+                                </div>
+                                <div class="kpi-item">
+                                    <span class="kpi-label">Agent CSAT</span>
+                                    <span class="kpi-value">4.5+ Satisfaction</span>
+                                </div>
+                            </div>
+                            <div class="section-title">⚠️ Hard Dependencies</div>
+                            <div class="dependency-details">
+                                <ul>
+                                    <li><strong>C360 Multi-Cloud Signals:</strong> Adoption data across Industries, Revenue, Finance, Data Cloud, Marketing, Commerce, Field Service</li>
+                                    <li><strong>Content Partnership:</strong> Cloud-specific best practices, setup guides, feature documentation</li>
+                                    <li><strong>Product Entitlements:</strong> Cross-cloud SKU mapping and entitlement validation</li>
+                                    <li><strong>Platform Instrumentation:</strong> Cross-product usage telemetry and feature adoption tracking</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Phase 1: Discovery & Prototype -->
+                <div class="phase-column">
+                    <div class="initiative-card">
+                        <span class="status-badge in-progress">IN PROGRESS</span>
+                        <div class="workstream-label">
+                            <span class="workstream-icon">★</span>
+                            PERSONALIZATION
+                        </div>
+                        <div class="card-tags">
+                            <span class="tag-pill product">C360 Data Graph</span>
+                            <span class="tag-pill product">Cloud Atlas</span>
+                        </div>
+                        <h3 class="card-title">C360 Unified Identity & Personalization Layer</h3>
+                        <p class="card-description">Enable real-time agent personalization via native C360 Data Graphs, providing instant access to user entitlements, adoption signals, and product context without legacy middleware.</p>
+                        <span class="metric-pill">🕒 Sub-second API retrieval</span>
+                        <div>
+                            <span class="deliverable-pill">📋 CONTACT & TENANT DATA GRAPHS</span>
+                        </div>
+                        <span class="expand-indicator">▼</span>
+
+                        <div class="expanded-content">
+                            <div class="section-title">📊 Related KPIs</div>
+                            <div class="kpi-grid">
+                                <div class="kpi-item">
+                                    <span class="kpi-label">Latency</span>
+                                    <span class="kpi-value">&lt;2 sec Auth+Graph</span>
+                                </div>
+                                <div class="kpi-item">
+                                    <span class="kpi-label">Accuracy</span>
+                                    <span class="kpi-value">100% Attribute Match</span>
+                                </div>
+                                <div class="kpi-item">
+                                    <span class="kpi-label">Adoption Coverage</span>
+                                    <span class="kpi-value">100% KYC Use Cases</span>
+                                </div>
+                                <div class="kpi-item">
+                                    <span class="kpi-label">Reliability</span>
+                                    <span class="kpi-value">99.99% Uptime</span>
+                                </div>
+                            </div>
+                            <div class="section-title">⚠️ Hard Dependencies</div>
+                            <div class="dependency-details">
+                                <ul>
+                                    <li><strong>C360 Data Graph:</strong> Contact-level graph (user identity, entitlements), Tenant-level graph (adoption signals, SKUs)</li>
+                                    <li><strong>Cloud Atlas:</strong> Standalone auth-z service validating User-Tenant relationships before graph queries</li>
+                                    <li><strong>CSS Data Pipeline:</strong> Adoption Depth signals, CSS scores (12-month average), Success Plan metadata</li>
+                                    <li><strong>OrgCS Integration:</strong> Contact records, Service Contracts, Product Entitlements, Designated Contact mapping</li>
+                                </ul>
+                            </div>
+
+                            <div class="unlocks-section">
+                                <h5>🔓 Unlocks These Initiatives</h5>
+                                <ul>
+                                    <li><strong>Expand to Agentforce & Data Cloud:</strong> Product SKUs enable real-time entitlement filtering</li>
+                                    <li><strong>Goal-Driven Onboarding:</strong> Tenant lifecycle & adoption signals enable stage-based coaching</li>
+                                    <li><strong>Expert Coaching & Best Practices:</strong> Service contract level enables Premier content filtering</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Phase 2: Productization -->
+                <div class="phase-column"></div>
+
+                <!-- Phase 3: GTM Readiness -->
+                <div class="phase-column"></div>
+            </div>
+
+            <!-- DATA ENGINEERING ROW -->
+            <div class="swim-lane">
+                <div class="swim-lane-title">
+                    Data Engineering
+                    <span class="swim-lane-subtitle">DATA PIPELINES & FEEDS</span>
+                </div>
+
+                <!-- Phase 0: Intake -->
+                <div class="phase-column"></div>
+
+                <!-- Phase 1: Discovery & Prototype -->
+                <div class="phase-column">
+                    <div class="initiative-card">
+                        <span class="status-badge in-progress">IN PROGRESS</span>
+                        <div class="workstream-label">
+                            <span class="workstream-icon">★</span>
+                            ENABLEMENT
+                        </div>
+                        <div class="card-tags">
+                            <span class="tag-pill product">CSS Snowflake</span>
+                            <span class="tag-pill product">C360</span>
+                        </div>
+                        <h3 class="card-title">CSS Data Pipeline & Adoption Signals</h3>
+                        <p class="card-description">Build data pipeline to surface CSS Adoption Depth signals, 12-month average scores, and Success Plan metadata for tenant-level personalization.</p>
+                        <span class="metric-pill">🕒 Hourly refresh cadence</span>
+                        <div>
+                            <span class="deliverable-pill">📋 SNOWFLAKE → C360 INTEGRATION</span>
+                        </div>
+                        <span class="expand-indicator">▼</span>
+
+                        <div class="expanded-content">
+                            <div class="section-title">📊 Related KPIs</div>
+                            <div class="kpi-grid">
+                                <div class="kpi-item">
+                                    <span class="kpi-label">Data Freshness</span>
+                                    <span class="kpi-value">Hourly Sync</span>
+                                </div>
+                                <div class="kpi-item">
+                                    <span class="kpi-label">Signal Coverage</span>
+                                    <span class="kpi-value">27+ PAD Signals</span>
+                                </div>
+                                <div class="kpi-item">
+                                    <span class="kpi-label">Data Accuracy</span>
+                                    <span class="kpi-value">100% Match to Source</span>
+                                </div>
+                                <div class="kpi-item">
+                                    <span class="kpi-label">Pipeline Reliability</span>
+                                    <span class="kpi-value">99.9% Uptime</span>
+                                </div>
+                            </div>
+                            <div class="section-title">⚠️ Hard Dependencies</div>
+                            <div class="dependency-details">
+                                <ul>
+                                    <li><strong>CSS Snowflake:</strong> Access to adoption signal tables, DMO refresh schedules</li>
+                                    <li><strong>C360:</strong> Tenant-level data graph ingestion endpoints, schema alignment</li>
+                                    <li><strong>OrgCS:</strong> Org62/OrgCS data models for tenant mapping</li>
+                                </ul>
+                            </div>
+
+                            <div class="unlocks-section">
+                                <h5>🔓 Enables Initiatives</h5>
+                                <ul>
+                                    <li><strong>C360 Unified Identity:</strong> Tenant adoption context for agent personalization</li>
+                                    <li><strong>Goal-Driven Onboarding:</strong> Feature activation signals for stage detection</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="initiative-card">
+                        <span class="status-badge in-progress">IN PROGRESS</span>
+                        <div class="workstream-label">
+                            <span class="workstream-icon">★</span>
+                            ENABLEMENT
+                        </div>
+                        <div class="card-tags">
+                            <span class="tag-pill product">OrgCS</span>
+                            <span class="tag-pill product">Entitlements</span>
+                        </div>
+                        <h3 class="card-title">Product Entitlement & Contract Data Feed</h3>
+                        <p class="card-description">Surface active product SKUs, Service Contract entitlements, and support tier metadata for SKU-based filtering and Premier content routing.</p>
+                        <span class="metric-pill">🕒 Real-time entitlement lookup</span>
+                        <div>
+                            <span class="deliverable-pill">📋 ORGCS → C360 FEED</span>
+                        </div>
+                        <span class="expand-indicator">▼</span>
+
+                        <div class="expanded-content">
+                            <div class="section-title">📊 Related KPIs</div>
+                            <div class="kpi-grid">
+                                <div class="kpi-item">
+                                    <span class="kpi-label">Entitlement Accuracy</span>
+                                    <span class="kpi-value">100% SKU Match</span>
+                                </div>
+                                <div class="kpi-item">
+                                    <span class="kpi-label">Data Latency</span>
+                                    <span class="kpi-value">&lt;2 sec Query</span>
+                                </div>
+                                <div class="kpi-item">
+                                    <span class="kpi-label">Contract Coverage</span>
+                                    <span class="kpi-value">All Service Tiers</span>
+                                </div>
+                                <div class="kpi-item">
+                                    <span class="kpi-label">Feed Reliability</span>
+                                    <span class="kpi-value">99.99% Uptime</span>
+                                </div>
+                            </div>
+                            <div class="section-title">⚠️ Hard Dependencies</div>
+                            <div class="dependency-details">
+                                <ul>
+                                    <li><strong>OrgCS:</strong> Account, Service Contract, Entitlement objects access</li>
+                                    <li><strong>Product Catalog:</strong> SKU definitions, product family mappings</li>
+                                    <li><strong>C360:</strong> Contact & Tenant graph ingestion endpoints</li>
+                                </ul>
+                            </div>
+
+                            <div class="unlocks-section">
+                                <h5>🔓 Enables Initiatives</h5>
+                                <ul>
+                                    <li><strong>Expand to Agentforce & Data Cloud:</strong> SKU-based content filtering</li>
+                                    <li><strong>Expert Coaching:</strong> Premier/Signature entitlement routing</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Phase 2: Implementation & Experimentation -->
+                <div class="phase-column"></div>
+
+                <!-- Phase 3: Productization -->
+                <div class="phase-column"></div>
+            </div>
+
+            <!-- PLATFORM ENGINEERING ROW -->
+            <div class="swim-lane">
+                <div class="swim-lane-title">
+                    Platform Engineering
+                    <span class="swim-lane-subtitle">AGENT UI & RENDERING</span>
+                </div>
+
+                <!-- Phase 0: Intake -->
+                <div class="phase-column"></div>
+
+                <!-- Phase 1: Discovery & Prototype -->
+                <div class="phase-column">
+                    <div class="initiative-card">
+                        <span class="status-badge in-progress">IN PROGRESS</span>
+                        <div class="workstream-label">
+                            <span class="workstream-icon">★</span>
+                            ENABLEMENT
+                        </div>
+                        <div class="card-tags">
+                            <span class="tag-pill product">Agent UI</span>
+                            <span class="tag-pill product">Rendering</span>
+                        </div>
+                        <h3 class="card-title">Agent UI - Embedded Image Rendering</h3>
+                        <p class="card-description">Build Agent UI capability to render embedded images inline with chat responses, supporting responsive display and accessibility standards.</p>
+                        <span class="metric-pill">🕒 Image load &lt;500ms</span>
+                        <div>
+                            <span class="deliverable-pill">📋 IMAGE COMPONENT BUILD</span>
+                        </div>
+                        <span class="expand-indicator">▼</span>
+
+                        <div class="expanded-content">
+                            <div class="section-title">📊 Related KPIs</div>
+                            <div class="kpi-grid">
+                                <div class="kpi-item">
+                                    <span class="kpi-label">Image Load Time</span>
+                                    <span class="kpi-value">&lt;500ms</span>
+                                </div>
+                                <div class="kpi-item">
+                                    <span class="kpi-label">Accessibility</span>
+                                    <span class="kpi-value">WCAG 2.2 AA</span>
+                                </div>
+                                <div class="kpi-item">
+                                    <span class="kpi-label">Responsive Display</span>
+                                    <span class="kpi-value">All Breakpoints</span>
+                                </div>
+                                <div class="kpi-item">
+                                    <span class="kpi-label">Graceful Fallback</span>
+                                    <span class="kpi-value">100% Coverage</span>
+                                </div>
+                            </div>
+                            <div class="section-title">⚠️ Hard Dependencies</div>
+                            <div class="dependency-details">
+                                <ul>
+                                    <li><strong>Agent UI Framework:</strong> Chat component extension points, markdown renderer</li>
+                                    <li><strong>CDN/Hosting:</strong> Image hosting infrastructure, caching strategy</li>
+                                    <li><strong>Security:</strong> Image URL validation, XSS prevention</li>
+                                </ul>
+                            </div>
+
+                            <div class="unlocks-section">
+                                <h5>🔓 Enables Initiatives</h5>
+                                <ul>
+                                    <li><strong>Trailhead Content - Embedded Images:</strong> Visual aid rendering in chat responses</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="initiative-card">
+                        <span class="status-badge in-progress">IN PROGRESS</span>
+                        <div class="workstream-label">
+                            <span class="workstream-icon">★</span>
+                            ENABLEMENT
+                        </div>
+                        <div class="card-tags">
+                            <span class="tag-pill product">Agent UI</span>
+                            <span class="tag-pill product">Video Player</span>
+                        </div>
+                        <h3 class="card-title">Agent UI - Embedded Video Player</h3>
+                        <p class="card-description">Build Agent UI capability to render embedded video players inline with chat responses, supporting VidYard integration and analytics tracking.</p>
+                        <span class="metric-pill">🕒 Player load &lt;1s</span>
+                        <div>
+                            <span class="deliverable-pill">📋 VIDEO PLAYER COMPONENT</span>
+                        </div>
+                        <span class="expand-indicator">▼</span>
+
+                        <div class="expanded-content">
+                            <div class="section-title">📊 Related KPIs</div>
+                            <div class="kpi-grid">
+                                <div class="kpi-item">
+                                    <span class="kpi-label">Player Load Time</span>
+                                    <span class="kpi-value">&lt;1 second</span>
+                                </div>
+                                <div class="kpi-item">
+                                    <span class="kpi-label">Playback Success</span>
+                                    <span class="kpi-value">99.5% Rate</span>
+                                </div>
+                                <div class="kpi-item">
+                                    <span class="kpi-label">Analytics Integration</span>
+                                    <span class="kpi-value">Play Events Tracked</span>
+                                </div>
+                                <div class="kpi-item">
+                                    <span class="kpi-label">Graceful Fallback</span>
+                                    <span class="kpi-value">Link on Failure</span>
+                                </div>
+                            </div>
+                            <div class="section-title">⚠️ Hard Dependencies</div>
+                            <div class="dependency-details">
+                                <ul>
+                                    <li><strong>Agent UI Framework:</strong> Video embed component, responsive player controls</li>
+                                    <li><strong>VidYard SDK:</strong> Player embed API, authentication, analytics hooks</li>
+                                    <li><strong>Content Security:</strong> CSP policies for video embedding, iframe sandboxing</li>
+                                </ul>
+                            </div>
+
+                            <div class="unlocks-section">
+                                <h5>🔓 Enables Initiatives</h5>
+                                <ul>
+                                    <li><strong>VidYard Videos Integration:</strong> Embedded video playback in chat responses</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Phase 2: Implementation & Experimentation -->
+                <div class="phase-column"></div>
+
+                <!-- Phase 3: Productization -->
+                <div class="phase-column"></div>
+            </div>
+
+            <!-- LEGAL & COMPLIANCE ROW -->
+            <div class="swim-lane">
+                <div class="swim-lane-title">
+                    Legal & Compliance
+                    <span class="swim-lane-subtitle">APPROVALS & GOVERNANCE</span>
+                </div>
+
+                <!-- Phase 0: Intake -->
+                <div class="phase-column"></div>
+
+                <!-- Phase 1: Discovery & Prototype -->
+                <div class="phase-column"></div>
+
+                <!-- Phase 2: Implementation & Experimentation -->
+                <div class="phase-column">
+                    <div class="initiative-card">
+                        <span class="status-badge in-progress">IN PROGRESS</span>
+                        <div class="workstream-label">
+                            <span class="workstream-icon">★</span>
+                            COMPLIANCE
+                        </div>
+                        <div class="card-tags">
+                            <span class="tag-pill product">Legal Council</span>
+                            <span class="tag-pill product">TBC</span>
+                        </div>
+                        <h3 class="card-title">Trailblazer Community Legal Approval</h3>
+                        <p class="card-description">Secure legal approval to ingest and surface Trailblazer Community Q&A content in Agentforce, including UGC usage rights, PII scrubbing requirements, and attribution standards.</p>
+                        <span class="metric-pill">🕒 PII scrubbing pre-ingestion</span>
+                        <div>
+                            <span class="deliverable-pill">📋 LEGAL SIGN-OFF</span>
+                        </div>
+                        <span class="expand-indicator">▼</span>
+
+                        <div class="expanded-content">
+                            <div class="section-title">📊 Related KPIs</div>
+                            <div class="kpi-grid">
+                                <div class="kpi-item">
+                                    <span class="kpi-label">Legal Approval</span>
+                                    <span class="kpi-value">Signed Off</span>
+                                </div>
+                                <div class="kpi-item">
+                                    <span class="kpi-label">PIA Approval</span>
+                                    <span class="kpi-value">Trust Team Sign-Off</span>
+                                </div>
+                                <div class="kpi-item">
+                                    <span class="kpi-label">AI Council</span>
+                                    <span class="kpi-value">Approved</span>
+                                </div>
+                                <div class="kpi-item">
+                                    <span class="kpi-label">Data Cloud Committee</span>
+                                    <span class="kpi-value">Final Approval</span>
+                                </div>
+                            </div>
+                            <div class="section-title">⚠️ Hard Dependencies</div>
+                            <div class="dependency-details">
+                                <ul>
+                                    <li><strong>Legal Council:</strong> UGC usage rights, attribution requirements, liability assessment</li>
+                                    <li><strong>Trust Team:</strong> PIA (Privacy Impact Assessment) approval, PII scrubbing requirements</li>
+                                    <li><strong>AI Council:</strong> Community content use case approval for Agentforce</li>
+                                    <li><strong>Data Cloud Committee:</strong> Final sign-off on C360 ingestion</li>
+                                </ul>
+                            </div>
+
+                            <div class="unlocks-section">
+                                <h5>🔓 Enables Initiatives</h5>
+                                <ul>
+                                    <li><strong>Trailblazer Community Q&A:</strong> Legal clearance to ingest and surface community content</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Phase 3: Productization -->
+                <div class="phase-column"></div>
+            </div>
+
+            <!-- CSDP ENABLEMENT ROW -->
+            <div class="swim-lane">
+                <div class="swim-lane-title">
+                    CSDP Enablement
+                    <span class="swim-lane-subtitle">RETRIEVER & INDEXING</span>
+                </div>
+
+                <!-- Phase 0: Intake -->
+                <div class="phase-column">
+                    <div class="initiative-card">
+                        <span class="status-badge new">NEW</span>
+                        <div class="workstream-label">
+                            <span class="workstream-icon">★</span>
+                            PERSONALIZATION
+                        </div>
+                        <div class="card-tags">
+                            <span class="tag-pill product">I-2951</span>
+                            <span class="tag-pill product">Onboarding</span>
+                        </div>
+                        <h3 class="card-title">Onboarding Expansion - Other Clouds</h3>
+                        <p class="card-description">Extend personalized onboarding guidance beyond Sales/Service Cloud to Industries (FINS, Revenue), Tableau, Marketing, Commerce, and Field Service for Standard and Premier customers in first 90 days.</p>
+                        <span class="metric-pill">🎯 14% → 8.4% attrition target</span>
+                        <div>
+                            <span class="deliverable-pill">📋 MULTI-CLOUD ONBOARDING</span>
+                        </div>
+                        <span class="expand-indicator">▼</span>
+
+                        <div class="expanded-content">
+                            <div class="section-title">📊 Related KPIs</div>
+                            <div class="kpi-grid">
+                                <div class="kpi-item">
+                                    <span class="kpi-label">Attrition Reduction</span>
+                                    <span class="kpi-value">14% → 8.4% Target</span>
+                                </div>
+                                <div class="kpi-item">
+                                    <span class="kpi-label">Onboarding Guide Engagement</span>
+                                    <span class="kpi-value">↑ Guide CTR</span>
+                                </div>
+                                <div class="kpi-item">
+                                    <span class="kpi-label">Time to Activation</span>
+                                    <span class="kpi-value">↓ First 90 Days</span>
+                                </div>
+                                <div class="kpi-item">
+                                    <span class="kpi-label">Customer Satisfaction</span>
+                                    <span class="kpi-value">↑ Onboarding CSAT</span>
+                                </div>
+                            </div>
+                            <div class="section-title">⚠️ Hard Dependencies</div>
+                            <div class="dependency-details">
+                                <ul>
+                                    <li><strong>Content Partnership:</strong> Onboarding plans for Industries, Tableau, Marketing, Commerce, Field Service</li>
+                                    <li><strong>C360 Tenant Data:</strong> Purchase date, product SKUs, lifecycle stage detection</li>
+                                    <li><strong>CSDP:</strong> Multi-cloud onboarding content indexing and retrieval</li>
+                                    <li><strong>Agent Personalization:</strong> 90-day lifecycle filtering and cloud-specific routing</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="initiative-card">
+                        <span class="status-badge planned">PLANNED</span>
+                        <div class="workstream-label">
+                            <span class="workstream-icon">★</span>
+                            ANSWER QUALITY
+                        </div>
+                        <div class="card-tags">
+                            <span class="tag-pill product">Expert Coaching</span>
+                            <span class="tag-pill product">Premier</span>
+                        </div>
+                        <span class="enabler-pill">⚡ Requires: C360 Identity</span>
+                        <h3 class="card-title">Expert Coaching & Best Practices</h3>
+                        <p class="card-description">Provide strategic "why" layer explaining business value and industry best practices, transforming Agent from executor to advisor.</p>
+                        <span class="metric-pill">🕒 Strategic Context</span>
+                        <div>
+                            <span class="deliverable-pill">📋 FRAMEWORK EXTRACTION</span>
+                        </div>
+                        <span class="expand-indicator">▼</span>
+
+                        <div class="expanded-content">
+                            <div class="section-title">📊 Related KPIs</div>
+                            <div class="kpi-grid">
+                                <div class="kpi-item">
+                                    <span class="kpi-label">Strategic Context</span>
+                                    <span class="kpi-value">↑ "Why" Guidance</span>
+                                </div>
+                                <div class="kpi-item">
+                                    <span class="kpi-label">Business Alignment</span>
+                                    <span class="kpi-value">Goal-Outcome Mapping</span>
+                                </div>
+                                <div class="kpi-item">
+                                    <span class="kpi-label">Premier Engagement</span>
+                                    <span class="kpi-value">↑ Entitlement Usage</span>
+                                </div>
+                                <div class="kpi-item">
+                                    <span class="kpi-label">Best Practice Adoption</span>
+                                    <span class="kpi-value">Framework Application</span>
+                                </div>
+                            </div>
+                            <div class="section-title">⚠️ Hard Dependencies</div>
+                            <div class="dependency-details">
+                                <ul>
+                                    <li><strong>CSDP:</strong> Transcript/audio indexing, strategic framework extraction</li>
+                                    <li><strong>Content Partnership:</strong> Expert Coaching transcript access, Onboarding sessions</li>
+                                    <li><strong>SME:</strong> Strategic framework validation, business outcome mapping</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Phase 1: Discovery & Prototype -->
+                <div class="phase-column">
+                    <div class="initiative-card">
+                        <span class="status-badge in-progress">IN PROGRESS</span>
+                        <div class="workstream-label">
+                            <span class="workstream-icon">★</span>
+                            ANSWER QUALITY
+                        </div>
+                        <div class="card-tags">
+                            <span class="tag-pill product">Adoption Retriever</span>
+                            <span class="tag-pill product">Agent UI</span>
+                        </div>
+                        <h3 class="card-title">Trailhead Content - Embedded Images</h3>
+                        <p class="card-description">Enable inline screenshots and diagrams to reduce ambiguity in complex setup instructions for visual learners.</p>
+                        <span class="metric-pill">🕒 Visual Aid Inclusion Rate</span>
+                        <div>
+                            <span class="deliverable-pill">📋 IMAGE URL PRESERVATION</span>
+                        </div>
+                        <span class="expand-indicator">▼</span>
+
+                        <div class="expanded-content">
+                            <div class="section-title">📊 Related KPIs</div>
+                            <div class="kpi-grid">
+                                <div class="kpi-item">
+                                    <span class="kpi-label">Answer Completeness</span>
+                                    <span class="kpi-value">Visual Aid Inclusion</span>
+                                </div>
+                                <div class="kpi-item">
+                                    <span class="kpi-label">Time-to-Value</span>
+                                    <span class="kpi-value">↓ Setup Time</span>
+                                </div>
+                                <div class="kpi-item">
+                                    <span class="kpi-label">Content Engagement</span>
+                                    <span class="kpi-value">Image CTR</span>
+                                </div>
+                                <div class="kpi-item">
+                                    <span class="kpi-label">Answer CSAT</span>
+                                    <span class="kpi-value">↑ Satisfaction</span>
+                                </div>
+                            </div>
+                            <div class="section-title">⚠️ Hard Dependencies</div>
+                            <div class="dependency-details">
+                                <ul>
+                                    <li><strong>CSDP:</strong> Modify chunking pipeline to preserve image URLs from HTML body</li>
+                                    <li><strong>Platform:</strong> Agent UI capability to render embedded images inline</li>
+                                    <li><strong>Trailhead:</strong> Image URL structure consistency, accessibility metadata</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="initiative-card">
+                        <span class="status-badge in-progress">IN PROGRESS</span>
+                        <div class="workstream-label">
+                            <span class="workstream-icon">★</span>
+                            ANSWER QUALITY
+                        </div>
+                        <div class="card-tags">
+                            <span class="tag-pill product">Adoption Retriever</span>
+                            <span class="tag-pill product">VidYard API</span>
+                        </div>
+                        <h3 class="card-title">VidYard Videos Integration</h3>
+                        <p class="card-description">Surface video transcripts and embedded players for "watch & learn" experiences, supporting visual learners who struggle with text-only instructions.</p>
+                        <span class="metric-pill">🕒 Video → CTA → Setup</span>
+                        <div>
+                            <span class="deliverable-pill">📋 VIDEO TRANSCRIPT INDEX</span>
+                        </div>
+                        <span class="expand-indicator">▼</span>
+
+                        <div class="expanded-content">
+                            <div class="section-title">📊 Related KPIs</div>
+                            <div class="kpi-grid">
+                                <div class="kpi-item">
+                                    <span class="kpi-label">Video Engagement</span>
+                                    <span class="kpi-value">Starts, Completions</span>
+                                </div>
+                                <div class="kpi-item">
+                                    <span class="kpi-label">Task Completion</span>
+                                    <span class="kpi-value">↑ Setup Success</span>
+                                </div>
+                                <div class="kpi-item">
+                                    <span class="kpi-label">Conversion Path</span>
+                                    <span class="kpi-value">Video → CTA → Setup</span>
+                                </div>
+                                <div class="kpi-item">
+                                    <span class="kpi-label">Drop-Off Rate</span>
+                                    <span class="kpi-value">↓ At Explanation</span>
+                                </div>
+                            </div>
+                            <div class="section-title">⚠️ Hard Dependencies</div>
+                            <div class="dependency-details">
+                                <ul>
+                                    <li><strong>CSDP:</strong> Video transcript indexing pipeline, metadata extraction</li>
+                                    <li><strong>Platform:</strong> Embedded video player in Agent UI</li>
+                                    <li><strong>VidYard:</strong> API access, transcript extraction, analytics integration</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Phase 2: Productization -->
+                <div class="phase-column">
+                    <div class="initiative-card">
+                        <span class="status-badge new">NEW</span>
+                        <div class="workstream-label">
+                            <span class="workstream-icon">★</span>
+                            ANSWER QUALITY
+                        </div>
+                        <div class="card-tags">
+                            <span class="tag-pill product">Adoption Retriever</span>
+                            <span class="tag-pill product">Trailhead</span>
+                        </div>
+                        <h3 class="card-title">Trailhead & Trailblazer Content</h3>
+                        <p class="card-description">Deliver task-oriented, step-by-step guidance with sequential click-paths, enabling users to complete tasks without leaving chat.</p>
+                        <span class="metric-pill">🕒 57% → 91% Recall</span>
+                        <div>
+                            <span class="deliverable-pill">📋 PRODUCTION INDEX</span>
+                        </div>
+                        <span class="expand-indicator">▼</span>
+
+                        <div class="expanded-content">
+                            <div class="section-title">📊 Related KPIs</div>
+                            <div class="kpi-grid">
+                                <div class="kpi-item">
+                                    <span class="kpi-label">Contextual Recall</span>
+                                    <span class="kpi-value">57% → 91%</span>
+                                </div>
+                                <div class="kpi-item">
+                                    <span class="kpi-label">Contextual Precision</span>
+                                    <span class="kpi-value">63% → 81%</span>
+                                </div>
+                                <div class="kpi-item">
+                                    <span class="kpi-label">Answer Relevancy</span>
+                                    <span class="kpi-value">84% → 90%+</span>
+                                </div>
+                                <div class="kpi-item">
+                                    <span class="kpi-label">Faithfulness</span>
+                                    <span class="kpi-value">Maintain 96%</span>
+                                </div>
+                            </div>
+                            <div class="section-title">⚠️ Hard Dependencies</div>
+                            <div class="dependency-details">
+                                <ul>
+                                    <li><strong>CSDP:</strong> New search index architecture, multi-dimensional filtering</li>
+                                    <li><strong>Qual Eval:</strong> Baseline RAG metrics, golden utterance set creation</li>
+                                    <li><strong>SME:</strong> Validation of golden utterance set</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="initiative-card">
+                        <span class="status-badge in-progress">IN PROGRESS</span>
+                        <div class="workstream-label">
+                            <span class="workstream-icon">★</span>
+                            ANSWER QUALITY
+                        </div>
+                        <div class="card-tags">
+                            <span class="tag-pill product">Adoption Retriever</span>
+                            <span class="tag-pill product">Community</span>
+                        </div>
+                        <h3 class="card-title">Trailblazer Community Q&A</h3>
+                        <p class="card-description">Incorporate peer-validated "Best Answers" for edge cases and real-world troubleshooting not covered in official documentation.</p>
+                        <span class="metric-pill">🕒 Peer-Validated Solutions</span>
+                        <div>
+                            <span class="deliverable-pill">📋 LEGAL APPROVAL</span>
+                        </div>
+                        <span class="expand-indicator">▼</span>
+
+                        <div class="expanded-content">
+                            <div class="section-title">📊 Related KPIs</div>
+                            <div class="kpi-grid">
+                                <div class="kpi-item">
+                                    <span class="kpi-label">Edge Case Coverage</span>
+                                    <span class="kpi-value">↑ Uncommon Scenarios</span>
+                                </div>
+                                <div class="kpi-item">
+                                    <span class="kpi-label">Troubleshooting Success</span>
+                                    <span class="kpi-value">↑ Issue Resolution</span>
+                                </div>
+                                <div class="kpi-item">
+                                    <span class="kpi-label">Real-World Relevance</span>
+                                    <span class="kpi-value">Peer-Validated</span>
+                                </div>
+                                <div class="kpi-item">
+                                    <span class="kpi-label">Content Freshness</span>
+                                    <span class="kpi-value">Recent Q&A Index</span>
+                                </div>
+                            </div>
+                            <div class="section-title">⚠️ Hard Dependencies</div>
+                            <div class="dependency-details">
+                                <ul>
+                                    <li><strong>Legal:</strong> UGC usage rights, attribution requirements</li>
+                                    <li><strong>CSDP:</strong> Community indexing architecture, Best Answer filtering</li>
+                                    <li><strong>Community:</strong> API access to Q&A data, moderation feeds</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="initiative-card">
+                        <span class="status-badge planned">PLANNED</span>
+                        <div class="workstream-label">
+                            <span class="workstream-icon">★</span>
+                            PERSONALIZATION
+                        </div>
+                        <div class="card-tags">
+                            <span class="tag-pill product">Agentforce</span>
+                            <span class="tag-pill product">Data Cloud</span>
+                        </div>
+                        <span class="enabler-pill">⚡ Requires: C360 Identity</span>
+                        <h3 class="card-title">Expand to Agentforce & Data Cloud</h3>
+                        <p class="card-description">Automatically filter content to user's entitlements and product context, eliminating irrelevant guidance for features they don't own.</p>
+                        <span class="metric-pill">🕒 SKU-Based Relevance</span>
+                        <div>
+                            <span class="deliverable-pill">📋 CROSS-PRODUCT ARCHITECTURE</span>
+                        </div>
+                        <span class="expand-indicator">▼</span>
+
+                        <div class="expanded-content">
+                            <div class="section-title">📊 Related KPIs</div>
+                            <div class="kpi-grid">
+                                <div class="kpi-item">
+                                    <span class="kpi-label">Cross-Product Reach</span>
+                                    <span class="kpi-value">All Clouds Coverage</span>
+                                </div>
+                                <div class="kpi-item">
+                                    <span class="kpi-label">Personalization Accuracy</span>
+                                    <span class="kpi-value">SKU-Based Relevance</span>
+                                </div>
+                                <div class="kpi-item">
+                                    <span class="kpi-label">Feature Activation</span>
+                                    <span class="kpi-value">↑ All Products</span>
+                                </div>
+                                <div class="kpi-item">
+                                    <span class="kpi-label">Content Consistency</span>
+                                    <span class="kpi-value">Unified Experience</span>
+                                </div>
+                            </div>
+                            <div class="section-title">⚠️ Hard Dependencies</div>
+                            <div class="dependency-details">
+                                <ul>
+                                    <li><strong>CSDP Platform:</strong> Multi-tenant retriever architecture, product-scoped indexing</li>
+                                    <li><strong>Entitlement:</strong> Real-time SKU/entitlement lookup, product feature mapping</li>
+                                    <li><strong>Content Teams:</strong> Agentforce content, Data Cloud docs, unified taxonomy</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Phase 3: GTM Readiness -->
+                <div class="phase-column"></div>
+            </div>
+
+            <!-- DS ENGINEERING ROW -->
+            <div class="swim-lane">
+                <div class="swim-lane-title">
+                    DS Engineering
+                    <span class="swim-lane-subtitle">AGENT CAPABILITIES</span>
+                </div>
+
+                <!-- Phase 0: Intake -->
+                <div class="phase-column"></div>
+
+                <!-- Phase 1: Discovery & Prototype -->
+                <div class="phase-column">
+                    <div class="initiative-card">
+                        <span class="status-badge in-progress">IN PROGRESS</span>
+                        <div class="workstream-label">
+                            <span class="workstream-icon">★</span>
+                            PERSONALIZATION
+                        </div>
+                        <div class="card-tags">
+                            <span class="tag-pill product">Agent State</span>
+                            <span class="tag-pill product">CSS Signals</span>
+                        </div>
+                        <span class="enabler-pill">⚡ Requires: C360 Identity</span>
+                        <h3 class="card-title">Goal-Driven Onboarding</h3>
+                        <p class="card-description">Proactively surface next-step guidance based on tenant age and onboarding stage, turning episodic help into continuous coaching.</p>
+                        <span class="metric-pill">🕒 ↓ Days to Feature Use</span>
+                        <div>
+                            <span class="deliverable-pill">📋 PROGRESS TRACKING</span>
+                        </div>
+                        <span class="expand-indicator">▼</span>
+
+                        <div class="expanded-content">
+                            <div class="section-title">📊 Related KPIs</div>
+                            <div class="kpi-grid">
+                                <div class="kpi-item">
+                                    <span class="kpi-label">Onboarding Completion</span>
+                                    <span class="kpi-value">↑ Checklist Progress</span>
+                                </div>
+                                <div class="kpi-item">
+                                    <span class="kpi-label">Time-to-First-Value</span>
+                                    <span class="kpi-value">↓ Days to Feature Use</span>
+                                </div>
+                                <div class="kpi-item">
+                                    <span class="kpi-label">Adoption Velocity</span>
+                                    <span class="kpi-value">↑ Feature Activation</span>
+                                </div>
+                                <div class="kpi-item">
+                                    <span class="kpi-label">Nudge Engagement</span>
+                                    <span class="kpi-value">CTR on Recommendations</span>
+                                </div>
+                            </div>
+                            <div class="section-title">⚠️ Hard Dependencies</div>
+                            <div class="dependency-details">
+                                <ul>
+                                    <li><strong>Product Context:</strong> Tenant start date, onboarding stage, feature usage telemetry</li>
+                                    <li><strong>Agent State:</strong> Conversation history persistence, checklist tracking</li>
+                                    <li><strong>CSS:</strong> Success plan tier, customer goals, health score</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Phase 2: Implementation -->
+                <div class="phase-column"></div>
+
+                <!-- Phase 3: Productization -->
+                <div class="phase-column"></div>
+            </div>
+
+            <!-- PRODUCT RESEARCH ROW -->
+            <div class="swim-lane">
+                <div class="swim-lane-title">
+                    Product Research
+                    <span class="swim-lane-subtitle">INSIGHTS & TELEMETRY</span>
+                </div>
+
+                <!-- Phase 0: Intake -->
+                <div class="phase-column">
+                    <div class="initiative-card">
+                        <span class="status-badge planned">PLANNED</span>
+                        <div class="workstream-label">
+                            <span class="workstream-icon">★</span>
+                            MEASUREMENT
+                        </div>
+                        <div class="card-tags">
+                            <span class="tag-pill product">Analytics</span>
+                            <span class="tag-pill product">Tableau</span>
+                        </div>
+                        <h3 class="card-title">Enhanced Adoption Telemetry</h3>
+                        <p class="card-description">Prove which content types drive highest task completion via conversion path tracking, enabling data-driven answer quality optimization.</p>
+                        <span class="metric-pill">🕒 Source → Activation</span>
+                        <div>
+                            <span class="deliverable-pill">📋 ADOPTION FUNNEL DASHBOARD</span>
+                        </div>
+                        <span class="expand-indicator">▼</span>
+
+                        <div class="expanded-content">
+                            <div class="section-title">📊 Related KPIs</div>
+                            <div class="kpi-grid">
+                                <div class="kpi-item">
+                                    <span class="kpi-label">Content Attribution</span>
+                                    <span class="kpi-value">Source → Activation</span>
+                                </div>
+                                <div class="kpi-item">
+                                    <span class="kpi-label">Drop-Off Analysis</span>
+                                    <span class="kpi-value">Funnel Stage Breakdown</span>
+                                </div>
+                                <div class="kpi-item">
+                                    <span class="kpi-label">ROI Measurement</span>
+                                    <span class="kpi-value">Content Investment Value</span>
+                                </div>
+                                <div class="kpi-item">
+                                    <span class="kpi-label">Iteration Velocity</span>
+                                    <span class="kpi-value">Data-Driven Improvements</span>
+                                </div>
+                            </div>
+                            <div class="section-title">⚠️ Hard Dependencies</div>
+                            <div class="dependency-details">
+                                <ul>
+                                    <li><strong>Analytics:</strong> Event instrumentation (clicks, plays, opens), session stitching</li>
+                                    <li><strong>Data Pipeline:</strong> Agent event stream, product usage telemetry</li>
+                                    <li><strong>BI:</strong> Adoption funnel visualizations, content performance reports</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Phase 1: Discovery & Prototype -->
+                <div class="phase-column"></div>
+
+                <!-- Phase 2: Productization -->
+                <div class="phase-column"></div>
+
+                <!-- Phase 3: GTM Readiness -->
+                <div class="phase-column"></div>
+            </div>
+        </div>
+
+        <footer>
+            <p><strong>Product Owner:</strong> Stephanie Stancombe (sstancombe@salesforce.com)</p>
+            <p><strong>V2MOM Alignment:</strong> M1. Improve Help Agent Answer Quality | Digital Success Method 2</p>
+            <p><strong>CSDP Program:</strong> AI Engineering & Agentic Systems | FY27</p>
+            <p><strong>Last Updated:</strong> July 2026</p>
+        </footer>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const cards = document.querySelectorAll('.initiative-card');
+
+            cards.forEach(card => {
+                card.addEventListener('click', function(e) {
+                    this.classList.toggle('expanded');
+                });
+            });
+        });
+    </script>
+</body>
+</html>

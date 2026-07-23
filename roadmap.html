@@ -778,6 +778,56 @@
                 <!-- Phase 1: Discovery & Prototype -->
                 <div class="phase-column">
                     <div class="initiative-card">
+                        <span class="status-badge new">NEW</span>
+                        <div class="workstream-label">
+                            <span class="workstream-icon">★</span>
+                            MEASUREMENT
+                        </div>
+                        <div class="card-tags">
+                            <span class="tag-pill product">I-2489</span>
+                            <span class="tag-pill product">Data Pipeline</span>
+                        </div>
+                        <h3 class="card-title">Lifecycle Success Measurement Data Pipeline</h3>
+                        <p class="card-description">Build cross-system data pipeline connecting Agent conversation logs with CSS product adoption data, license activation, and feature usage telemetry for end-to-end impact measurement.</p>
+                        <span class="metric-pill">🔗 Multi-Source Integration</span>
+                        <div>
+                            <span class="deliverable-pill">📋 DATA LAKE INTEGRATION</span>
+                        </div>
+                        <span class="expand-indicator">▼</span>
+
+                        <div class="expanded-content">
+                            <div class="section-title">📊 Related KPIs</div>
+                            <div class="kpi-grid">
+                                <div class="kpi-item">
+                                    <span class="kpi-label">Data Freshness</span>
+                                    <span class="kpi-value">Daily Refresh</span>
+                                </div>
+                                <div class="kpi-item">
+                                    <span class="kpi-label">Match Rate</span>
+                                    <span class="kpi-value">Agent → Product Telemetry</span>
+                                </div>
+                                <div class="kpi-item">
+                                    <span class="kpi-label">Attribution Coverage</span>
+                                    <span class="kpi-value">Entry Source Tracking</span>
+                                </div>
+                                <div class="kpi-item">
+                                    <span class="kpi-label">Pipeline Reliability</span>
+                                    <span class="kpi-value">99.5% Uptime</span>
+                                </div>
+                            </div>
+                            <div class="section-title">⚠️ Hard Dependencies</div>
+                            <div class="dependency-details">
+                                <ul>
+                                    <li><strong>Agent Logs:</strong> Conversation transcripts, intent classification, entry attribution (CTA ID, email ID, utterance)</li>
+                                    <li><strong>CSS Snowflake:</strong> Product adoption scores, feature activation telemetry (authenticated access)</li>
+                                    <li><strong>License Data:</strong> License activation & utilization tracking (authenticated access)</li>
+                                    <li><strong>Account Mapping:</strong> User-to-Account, Account-to-Org linking for attribution window analysis</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="initiative-card">
                         <span class="status-badge in-progress">IN PROGRESS</span>
                         <div class="workstream-label">
                             <span class="workstream-icon">★</span>
@@ -893,7 +943,57 @@
                 </div>
 
                 <!-- Phase 2: Implementation & Experimentation -->
-                <div class="phase-column"></div>
+                <div class="phase-column">
+                    <div class="initiative-card">
+                        <span class="status-badge new">NEW</span>
+                        <div class="workstream-label">
+                            <span class="workstream-icon">★</span>
+                            MEASUREMENT
+                        </div>
+                        <div class="card-tags">
+                            <span class="tag-pill product">I-2489</span>
+                            <span class="tag-pill product">Analytics</span>
+                        </div>
+                        <h3 class="card-title">Lifecycle Success Performance & Impact Measurement</h3>
+                        <p class="card-description">Establish unified measurement framework tracking Help Agent performance from entry → engagement → intent → activation → business impact, enabling cohort-based benchmarking and incrementality analysis.</p>
+                        <span class="metric-pill">📊 Entry to Activation Funnel</span>
+                        <div>
+                            <span class="deliverable-pill">📋 CROSS-SYSTEM TELEMETRY</span>
+                        </div>
+                        <span class="expand-indicator">▼</span>
+
+                        <div class="expanded-content">
+                            <div class="section-title">📊 Related KPIs</div>
+                            <div class="kpi-grid">
+                                <div class="kpi-item">
+                                    <span class="kpi-label">Guided Success Rate</span>
+                                    <span class="kpi-value">% Intent → Activation</span>
+                                </div>
+                                <div class="kpi-item">
+                                    <span class="kpi-label">Onboarding Success</span>
+                                    <span class="kpi-value">Time to Activation</span>
+                                </div>
+                                <div class="kpi-item">
+                                    <span class="kpi-label">Adoption Success</span>
+                                    <span class="kpi-value">Feature Expansion Rate</span>
+                                </div>
+                                <div class="kpi-item">
+                                    <span class="kpi-label">Incrementality</span>
+                                    <span class="kpi-value">Agent vs Non-Agent</span>
+                                </div>
+                            </div>
+                            <div class="section-title">⚠️ Hard Dependencies</div>
+                            <div class="dependency-details">
+                                <ul>
+                                    <li><strong>Data Engineering:</strong> Cross-system mapping (Agent logs, CSS data, product telemetry, license data)</li>
+                                    <li><strong>Analytics:</strong> Entry attribution tracking (CTA, email, utterance), funnel dashboards</li>
+                                    <li><strong>DS Engineering:</strong> Intent classification (adoption vs onboarding), success modeling, benchmark modeling</li>
+                                    <li><strong>Product Telemetry:</strong> Feature activation events, CSS adoption scores (authenticated access)</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
 
                 <!-- Phase 3: Productization -->
                 <div class="phase-column"></div>

@@ -721,147 +721,19 @@
             color: var(--gray-600);
         }
 
-        /* Wave Strategy - illustrated ascending wave visual */
+        /* Wave Strategy - illustrated wave visual (image capture of source slide) */
         .wave-visual {
-            position: relative;
             width: 100%;
-            aspect-ratio: 1000 / 460;
             margin: 10px 0 24px;
-        }
-
-        .wave-svg-bg {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            z-index: 1;
-        }
-
-        .wave-mini-table {
-            position: absolute;
-            left: 1.5%;
-            top: 3%;
-            z-index: 3;
-            background: var(--white);
-            border: 1px solid var(--card-purple);
-            border-radius: 8px;
-            padding: 10px 14px;
-            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
-            font-size: 0.72rem;
-            min-width: 150px;
-        }
-
-        .wave-mini-table .wmt-row {
-            display: flex;
-            justify-content: space-between;
-            gap: 16px;
-            padding: 2px 0;
-            color: var(--gray-900);
-        }
-
-        .wave-mini-table .wmt-row strong {
-            color: var(--dark-purple);
-        }
-
-        .wave-circle-lg {
-            position: absolute;
-            z-index: 3;
-            transform: translate(-50%, -50%);
-            width: 108px;
-            height: 108px;
-            border-radius: 50%;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            color: var(--white);
-            font-weight: 700;
-            text-align: center;
-            border: 3px solid rgba(255, 255, 255, 0.65);
-            box-shadow: 0 6px 14px rgba(91, 33, 182, 0.35);
-        }
-
-        .wave-circle-lg .wave-num {
-            font-size: 0.65rem;
-            opacity: 0.85;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-        }
-
-        .wave-circle-lg .wave-name {
-            font-size: 0.9rem;
-            margin-top: 2px;
-            line-height: 1.15;
-        }
-
-        .wave-1 {
-            background: linear-gradient(135deg, #5B21B6, #7F3FBF);
-        }
-
-        .wave-2 {
-            background: linear-gradient(135deg, #7F3FBF, #A855F7);
-        }
-
-        .wave-3 {
-            background: linear-gradient(135deg, #A855F7, #D8B4FE);
-        }
-
-        .wave-pill {
-            position: absolute;
-            z-index: 2;
-            transform: translate(-50%, -50%);
-            background: var(--white);
-            border: 2px solid var(--primary-purple);
             border-radius: 10px;
-            padding: 8px 12px;
-            font-size: 0.7rem;
-            color: var(--gray-900);
-            text-align: center;
-            max-width: 150px;
-            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+            box-shadow: 0 1px 4px rgba(0, 0, 0, 0.08);
         }
 
-        .wave-pill strong {
+        .wave-visual-img {
             display: block;
-            color: var(--dark-purple);
-            font-size: 0.74rem;
-            margin-bottom: 2px;
-        }
-
-        .wave-crest-icon {
-            position: absolute;
-            z-index: 4;
-            transform: translate(-50%, -50%);
-            font-size: 1.7rem;
-        }
-
-        @media (max-width: 1400px) {
-            .wave-circle-lg {
-                width: 74px;
-                height: 74px;
-            }
-            .wave-circle-lg .wave-num {
-                font-size: 0.55rem;
-            }
-            .wave-circle-lg .wave-name {
-                font-size: 0.68rem;
-            }
-            .wave-pill {
-                max-width: 105px;
-                font-size: 0.6rem;
-                padding: 6px 8px;
-            }
-            .wave-pill strong {
-                font-size: 0.64rem;
-            }
-            .wave-mini-table {
-                font-size: 0.6rem;
-                padding: 6px 10px;
-            }
-            .wave-crest-icon {
-                font-size: 1.2rem;
-            }
+            width: 100%;
+            height: auto;
         }
 
         .value-add-badge {
@@ -1216,76 +1088,7 @@
             <p class="intro-subtitle">How we introduce our strategy to outside stakeholders: a rolling content wave that fuels the agent</p>
 
             <div class="wave-visual">
-                <svg class="wave-svg-bg" viewBox="0 0 1000 460" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
-                    <defs>
-                        <linearGradient id="waveGrad1" x1="0%" y1="0%" x2="100%" y2="100%">
-                            <stop offset="0%" stop-color="#5B21B6"/>
-                            <stop offset="100%" stop-color="#7F3FBF"/>
-                        </linearGradient>
-                        <linearGradient id="waveGrad2" x1="0%" y1="0%" x2="100%" y2="100%">
-                            <stop offset="0%" stop-color="#7F3FBF"/>
-                            <stop offset="100%" stop-color="#A855F7"/>
-                        </linearGradient>
-                        <linearGradient id="waveGrad3" x1="0%" y1="0%" x2="100%" y2="100%">
-                            <stop offset="0%" stop-color="#A855F7"/>
-                            <stop offset="100%" stop-color="#D8B4FE"/>
-                        </linearGradient>
-                    </defs>
-                    <!-- shoreline baseline -->
-                    <path d="M0,440 C200,410 350,430 500,405 C650,380 800,400 1000,360" fill="none" stroke="#E9D5FF" stroke-width="4" opacity="0.8"/>
-                    <!-- three ascending wave crests -->
-                    <path transform="translate(60,160)" d="M0,300 C0,220 30,170 90,145 C40,135 25,90 70,60 C130,20 210,50 205,115 C200,180 150,225 90,250 C50,265 15,285 0,300 Z" fill="url(#waveGrad1)" opacity="0.94"/>
-                    <path transform="translate(330,100)" d="M0,300 C0,220 30,170 90,145 C40,135 25,90 70,60 C130,20 210,50 205,115 C200,180 150,225 90,250 C50,265 15,285 0,300 Z" fill="url(#waveGrad2)" opacity="0.94"/>
-                    <path transform="translate(600,40)" d="M0,300 C0,220 30,170 90,145 C40,135 25,90 70,60 C130,20 210,50 205,115 C200,180 150,225 90,250 C50,265 15,285 0,300 Z" fill="url(#waveGrad3)" opacity="0.94"/>
-                </svg>
-
-                <div class="wave-mini-table">
-                    <div class="wmt-row"><span>Sales Cloud</span><strong>~994</strong></div>
-                    <div class="wmt-row"><span>Service Cloud</span><strong>~576</strong></div>
-                    <div class="wmt-row"><span>Platform</span><strong>~2,086</strong></div>
-                </div>
-
-                <div class="wave-circle-lg wave-1" style="left: 22%; top: 59%;">
-                    <span class="wave-num">Wave 1</span>
-                    <span class="wave-name">Trailhead<br>Content</span>
-                </div>
-                <div class="wave-circle-lg wave-2" style="left: 49%; top: 46%;">
-                    <span class="wave-num">Wave 2</span>
-                    <span class="wave-name">Videos</span>
-                </div>
-                <div class="wave-circle-lg wave-3" style="left: 76%; top: 33%;">
-                    <span class="wave-num">Wave 3</span>
-                    <span class="wave-name">Best<br>Practices</span>
-                </div>
-
-                <div class="wave-crest-icon" style="left: 90%; top: 19%; color: #F59E0B;">⭐</div>
-
-                <div class="wave-pill" style="left: 19.5%; top: 89%;">
-                    <strong><span style="color:#10B981;">✔</span> Trailhead Modules</strong>
-                    Sales, Service and Platform
-                </div>
-                <div class="wave-pill" style="left: 35%; top: 79%;">
-                    <strong>Trailblazer Community</strong>
-                    Questions and Best Answers
-                </div>
-
-                <div class="wave-pill" style="left: 46%; top: 84%;">
-                    <strong><span style="color:#10B981;">✔</span> Vidyard Videos</strong>
-                    with Transcripts
-                </div>
-                <div class="wave-pill" style="left: 61%; top: 72%;">
-                    <strong>Micro Videos</strong>
-                    Tier 1 Framework
-                </div>
-
-                <div class="wave-pill" style="left: 72%; top: 74%;">
-                    <strong><span style="color:#10B981;">✔</span> Expert Coaching</strong>
-                    &amp; Onboarding Transcripts
-                </div>
-                <div class="wave-pill" style="left: 87%; top: 63%;">
-                    <strong>Best Practices Content</strong>
-                    Admin &amp; SFDC Blog Content
-                </div>
+                <img src="wave-strategy.png" alt="Adoption Retriever Strategy: Wave 1 Trailhead Content, Wave 2 Videos, Wave 3 Best Practices" class="wave-visual-img">
             </div>
 
             <div class="wave-value-strip">

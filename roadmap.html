@@ -552,6 +552,500 @@
             color: rgba(255, 255, 255, 0.9);
         }
 
+        /* ===== Intro / Strategy Sections ===== */
+        .intro-card {
+            background: var(--white);
+            border-radius: var(--border-radius);
+            padding: 30px;
+            margin-bottom: 25px;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+        }
+
+        .intro-card h2 {
+            font-size: 1.6rem;
+            color: var(--dark-navy);
+            margin-bottom: 6px;
+            font-weight: 700;
+        }
+
+        .intro-subtitle {
+            font-size: 0.95rem;
+            color: var(--gray-600);
+            margin-bottom: 20px;
+        }
+
+        /* Executive Summary */
+        .exec-columns {
+            display: grid;
+            grid-template-columns: 1fr 1fr 260px;
+            gap: 24px;
+            align-items: start;
+        }
+
+        .exec-col p {
+            font-size: 0.85rem;
+            color: var(--gray-900);
+            margin-bottom: 10px;
+            line-height: 1.6;
+        }
+
+        .exec-col ul {
+            list-style: none;
+            padding: 0;
+            font-size: 0.85rem;
+            margin-bottom: 10px;
+        }
+
+        .exec-col li {
+            padding-left: 16px;
+            position: relative;
+            margin-bottom: 6px;
+        }
+
+        .exec-col li::before {
+            content: '→';
+            position: absolute;
+            left: 0;
+            color: var(--primary-purple);
+            font-weight: 700;
+        }
+
+        .bottom-line-box {
+            background: var(--light-purple);
+            border: 2px solid var(--primary-purple);
+            border-radius: 10px;
+            padding: 16px;
+            text-align: center;
+        }
+
+        .bottom-line-box .label {
+            font-size: 0.75rem;
+            font-weight: 700;
+            color: var(--dark-purple);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 6px;
+            margin-bottom: 8px;
+        }
+
+        .bottom-line-box .statement {
+            font-size: 1rem;
+            font-weight: 700;
+            color: var(--dark-navy);
+        }
+
+        .trust-shift {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 14px;
+            margin-top: 18px;
+            flex-wrap: wrap;
+        }
+
+        .trust-pill {
+            padding: 8px 16px;
+            border: 2px solid var(--primary-purple);
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            color: var(--dark-purple);
+            background: var(--white);
+        }
+
+        .trust-arrow {
+            color: var(--primary-purple);
+            font-weight: 700;
+        }
+
+        .exec-footer-note {
+            text-align: center;
+            margin-top: 18px;
+            font-size: 0.9rem;
+            font-weight: 700;
+            color: var(--dark-navy);
+        }
+
+        /* Persona */
+        .persona-card {
+            display: flex;
+            gap: 20px;
+            align-items: flex-start;
+            background: var(--light-purple);
+            border-radius: 10px;
+            padding: 20px;
+            margin-top: 20px;
+        }
+
+        .persona-icon {
+            font-size: 2.2rem;
+            flex-shrink: 0;
+        }
+
+        .persona-card h3 {
+            font-size: 1.05rem;
+            color: var(--dark-purple);
+            margin-bottom: 2px;
+        }
+
+        .persona-tagline {
+            font-size: 0.8rem;
+            font-weight: 600;
+            color: var(--gray-600);
+            margin-bottom: 8px;
+        }
+
+        .persona-card p.persona-desc {
+            font-size: 0.85rem;
+            color: var(--gray-900);
+            margin-bottom: 10px;
+            line-height: 1.5;
+        }
+
+        .persona-traits {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+
+        .persona-trait {
+            font-size: 0.72rem;
+            font-weight: 600;
+            padding: 4px 10px;
+            border-radius: 6px;
+            background: var(--white);
+            border: 1px solid #D1D5DB;
+            color: var(--gray-600);
+        }
+
+        /* Wave Strategy */
+        .wave-track {
+            display: flex;
+            align-items: flex-start;
+            justify-content: space-between;
+            gap: 10px;
+            margin: 30px 0 10px;
+            flex-wrap: wrap;
+        }
+
+        .wave-node-group {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            flex: 1;
+            min-width: 200px;
+        }
+
+        .wave-circle {
+            width: 92px;
+            height: 92px;
+            border-radius: 50%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            color: var(--white);
+            font-weight: 700;
+            text-align: center;
+            box-shadow: 0 4px 10px rgba(127, 63, 191, 0.3);
+            margin-bottom: 14px;
+        }
+
+        .wave-circle .wave-num {
+            font-size: 0.65rem;
+            opacity: 0.85;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .wave-circle .wave-name {
+            font-size: 0.88rem;
+            margin-top: 2px;
+        }
+
+        .wave-1 {
+            background: linear-gradient(135deg, #5B21B6, #7F3FBF);
+        }
+
+        .wave-2 {
+            background: linear-gradient(135deg, #7F3FBF, #A855F7);
+        }
+
+        .wave-3 {
+            background: linear-gradient(135deg, #A855F7, #D8B4FE);
+        }
+
+        .wave-arrow {
+            align-self: center;
+            font-size: 1.8rem;
+            color: var(--primary-purple);
+            margin: 32px 4px 0;
+        }
+
+        .wave-detail-box {
+            background: var(--white);
+            border: 2px solid var(--primary-purple);
+            border-radius: 10px;
+            padding: 12px;
+            font-size: 0.78rem;
+            color: var(--gray-900);
+            text-align: center;
+            width: 100%;
+            margin-bottom: 10px;
+        }
+
+        .wave-detail-box strong {
+            display: block;
+            color: var(--dark-purple);
+            font-size: 0.82rem;
+            margin-bottom: 4px;
+        }
+
+        .wave-stats-bar {
+            display: flex;
+            justify-content: center;
+            gap: 40px;
+            margin-top: 20px;
+            padding-top: 20px;
+            border-top: 1px solid #E5E7EB;
+            flex-wrap: wrap;
+            text-align: center;
+        }
+
+        .wave-stat {
+            max-width: 240px;
+        }
+
+        .wave-stat .stat-big {
+            font-size: 1.6rem;
+            font-weight: 700;
+            color: var(--dark-purple);
+        }
+
+        .wave-stat .stat-label {
+            font-size: 0.75rem;
+            color: var(--gray-600);
+            margin-top: 4px;
+            line-height: 1.4;
+        }
+
+        .value-add-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            padding: 6px 14px;
+            border: 2px solid var(--primary-purple);
+            border-radius: 20px;
+            font-size: 0.78rem;
+            font-weight: 700;
+            color: var(--dark-purple);
+            margin-bottom: 10px;
+        }
+
+        .wave-volume-bar {
+            display: flex;
+            gap: 16px;
+            margin-top: 18px;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        /* Next Phase Progression */
+        .progression-track {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 16px;
+            margin-top: 20px;
+        }
+
+        .progression-card {
+            background: var(--light-purple);
+            border: 2px solid var(--primary-purple);
+            border-radius: 10px;
+            padding: 16px;
+        }
+
+        .progression-card.done {
+            background: var(--card-purple);
+        }
+
+        .progression-badge {
+            display: inline-block;
+            font-size: 0.65rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            padding: 2px 8px;
+            border-radius: 4px;
+            margin-bottom: 8px;
+            letter-spacing: 0.3px;
+            color: var(--white);
+        }
+
+        .progression-badge.foundation {
+            background: var(--dark-purple);
+        }
+
+        .progression-badge.elevation {
+            background: var(--primary-purple);
+        }
+
+        .progression-badge.transformation {
+            background: #A855F7;
+        }
+
+        .progression-card h4 {
+            font-size: 1rem;
+            color: var(--dark-purple);
+            margin-bottom: 6px;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .progression-card .unlock-tag {
+            font-size: 0.72rem;
+            font-weight: 600;
+            color: var(--gray-600);
+            margin-bottom: 8px;
+            text-transform: uppercase;
+        }
+
+        .progression-card ul {
+            list-style: none;
+            padding: 0;
+            font-size: 0.78rem;
+            color: var(--gray-900);
+            line-height: 1.6;
+        }
+
+        .progression-card li {
+            padding-left: 14px;
+            position: relative;
+            margin-bottom: 4px;
+        }
+
+        .progression-card li::before {
+            content: '→';
+            position: absolute;
+            left: 0;
+            color: var(--primary-purple);
+            font-weight: 700;
+        }
+
+        .progression-check {
+            color: #10B981;
+            font-size: 1.1rem;
+            margin-left: 2px;
+        }
+
+        /* Journey Flow */
+        .journey-flow {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-top: 20px;
+        }
+
+        .journey-step {
+            background: var(--light-purple);
+            border: 2px solid var(--primary-purple);
+            border-radius: 10px;
+            padding: 14px;
+            flex: 1;
+            min-width: 160px;
+            text-align: center;
+        }
+
+        .journey-step .step-icon {
+            font-size: 1.4rem;
+            margin-bottom: 6px;
+            display: block;
+        }
+
+        .journey-step h5 {
+            font-size: 0.82rem;
+            color: var(--dark-purple);
+            margin-bottom: 4px;
+        }
+
+        .journey-step p {
+            font-size: 0.72rem;
+            color: var(--gray-600);
+            line-height: 1.4;
+        }
+
+        .journey-arrow-sep {
+            font-size: 1.3rem;
+            color: var(--primary-purple);
+            font-weight: 700;
+        }
+
+        .journey-branch-note {
+            text-align: center;
+            margin-top: 16px;
+            font-size: 0.8rem;
+            color: var(--gray-600);
+            font-style: italic;
+        }
+
+        /* KPI Overview */
+        .kpi-overview-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 16px;
+            margin-top: 20px;
+        }
+
+        .stat-tile {
+            background: var(--light-purple);
+            border-radius: 10px;
+            padding: 18px;
+            text-align: center;
+            border: 2px solid var(--primary-purple);
+        }
+
+        .stat-tile .stat-value {
+            font-size: 1.7rem;
+            font-weight: 700;
+            color: var(--dark-purple);
+        }
+
+        .stat-tile .stat-desc {
+            font-size: 0.75rem;
+            color: var(--gray-600);
+            margin-top: 6px;
+            line-height: 1.4;
+        }
+
+        .stat-tile.baseline .stat-value {
+            color: #92400E;
+        }
+
+        .stat-tile.goal .stat-value {
+            color: #10B981;
+        }
+
+        @media (max-width: 1400px) {
+            .exec-columns {
+                grid-template-columns: 1fr;
+            }
+            .progression-track, .kpi-overview-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            .wave-track {
+                flex-direction: column;
+            }
+            .wave-arrow {
+                transform: rotate(90deg);
+                margin: 0;
+            }
+        }
+
         footer {
             margin-top: 30px;
             padding: 20px;
@@ -618,6 +1112,163 @@
                 </div>
             </div>
         </header>
+
+        <!-- ===== Executive Summary ===== -->
+        <div class="intro-card">
+            <h2>Executive Summary</h2>
+            <p class="intro-subtitle">Why we're here, and the experience we're building toward</p>
+            <div class="exec-columns">
+                <div class="exec-col">
+                    <p><strong>AI informs. Community validates. Together, they enable action.</strong></p>
+                    <p>Customers don't need another tool that tells them what to do — they need a guided path that combines trustworthy AI insight with real community validation, so every recommendation feels earned, not guessed.</p>
+                </div>
+                <div class="exec-col">
+                    <p>The trust model for adoption guidance is shifting:</p>
+                    <div class="trust-shift">
+                        <span class="trust-pill">Verify, then Trust</span>
+                        <span class="trust-arrow">→</span>
+                        <span class="trust-pill">Co-create, then Trust</span>
+                    </div>
+                    <ul style="margin-top: 12px;">
+                        <li>AI surfaces the right content, at the right moment</li>
+                        <li>Community and experts validate what actually works</li>
+                        <li>Customers act with confidence, not guesswork</li>
+                    </ul>
+                </div>
+                <div class="exec-col">
+                    <div class="bottom-line-box">
+                        <div class="label">⭐ Bottom Line</div>
+                        <div class="statement">Confidence comes from consensus, not computation.</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- ===== Persona ===== -->
+        <div class="intro-card">
+            <h2>Who We're Designing For</h2>
+            <p class="intro-subtitle">The customer at the center of this strategy</p>
+            <div class="persona-card">
+                <div class="persona-icon">🧭</div>
+                <div>
+                    <h3>The Solo Navigator</h3>
+                    <div class="persona-tagline">a.k.a. "The Accidental Admin"</div>
+                    <p class="persona-desc">A business owner or department lead who ends up owning Salesforce administration without deep technical training. They are goal-oriented but often feel <em>lost</em> in the platform — self-reliant by necessity, not by preference, and they favor clear, multi-modal guidance (short videos, checklists, examples) over dense documentation.</p>
+                    <div class="persona-traits">
+                        <span class="persona-trait">Low technical acumen</span>
+                        <span class="persona-trait">Goal-driven, not tool-driven</span>
+                        <span class="persona-trait">Prefers multi-modal guidance</span>
+                        <span class="persona-trait">Self-reliant by necessity</span>
+                        <span class="persona-trait">Time-constrained</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- ===== Adoption Retriever Wave Strategy ===== -->
+        <div class="intro-card">
+            <h2>Adoption Retriever Strategy — The Three Waves</h2>
+            <p class="intro-subtitle">How we introduce our strategy to outside stakeholders: a rolling content wave that fuels the agent</p>
+
+            <div class="wave-track">
+                <div class="wave-node-group">
+                    <div class="wave-circle wave-1">
+                        <span class="wave-num">Wave 1</span>
+                        <span class="wave-name">Trailhead Content</span>
+                    </div>
+                    <div class="wave-detail-box">
+                        <strong>✔ Trailhead Modules</strong>
+                        Trailblazer Community Q&A
+                    </div>
+                </div>
+                <div class="wave-arrow">→</div>
+                <div class="wave-node-group">
+                    <div class="wave-circle wave-2">
+                        <span class="wave-num">Wave 2</span>
+                        <span class="wave-name">Videos</span>
+                    </div>
+                    <div class="wave-detail-box">
+                        <strong>✔ Vidyard Videos</strong>
+                        with Transcripts + Micro Videos
+                    </div>
+                </div>
+                <div class="wave-arrow">→</div>
+                <div class="wave-node-group">
+                    <div class="wave-circle wave-3">
+                        <span class="wave-num">Wave 3</span>
+                        <span class="wave-name">Best Practices</span>
+                    </div>
+                    <div class="wave-detail-box">
+                        <strong>✔ Expert Coaching</strong>
+                        Onboarding Transcripts + Best Practices Content
+                    </div>
+                </div>
+            </div>
+
+            <div class="wave-stats-bar">
+                <div class="wave-stat">
+                    <div class="stat-big">~994</div>
+                    <div class="stat-label">Sales Cloud Trailhead Units</div>
+                </div>
+                <div class="wave-stat">
+                    <div class="stat-big">~576</div>
+                    <div class="stat-label">Service Cloud Trailhead Units</div>
+                </div>
+                <div class="wave-stat">
+                    <div class="stat-big">~2,086</div>
+                    <div class="stat-label">Platform Trailhead Units</div>
+                </div>
+            </div>
+            <div style="text-align: center; margin-top: 20px;">
+                <span class="value-add-badge">⭐ ~3,656 Trailhead Units</span>
+                <span class="value-add-badge">✅ 15 Adoption-Related Videos</span>
+                <div style="font-size: 0.78rem; color: var(--gray-600); margin-top: 8px;">Value-Add: directly addresses the "Absence of Strategic Context" gap in today's guidance experience</div>
+            </div>
+        </div>
+
+        <!-- ===== Next Phase for Agentic Success (simplified) ===== -->
+        <div class="intro-card">
+            <h2>The Next Phase for Agentic Success</h2>
+            <p class="intro-subtitle">Our maturity path — bridging strategy into execution</p>
+            <div class="progression-track">
+                <div class="progression-card">
+                    <span class="progression-badge foundation">Foundation</span>
+                    <h4>1. Comprehension</h4>
+                    <div class="unlock-tag">Unlocks: Content Understanding</div>
+                    <ul>
+                        <li>Ingest & structure Trailhead, video, and community content</li>
+                        <li>Establish a shared knowledge base for the agent</li>
+                    </ul>
+                </div>
+                <div class="progression-card">
+                    <span class="progression-badge elevation">Elevation</span>
+                    <h4>2. Conscientious <span class="progression-check">✔</span></h4>
+                    <div class="unlock-tag">Unlocks: Trustworthy Guidance</div>
+                    <ul>
+                        <li>Apply quality & compliance guardrails to every recommendation</li>
+                        <li>Validate against expert & community best practices</li>
+                    </ul>
+                </div>
+                <div class="progression-card">
+                    <span class="progression-badge elevation">Elevation</span>
+                    <h4>3. Contextual <span class="progression-check">✔</span></h4>
+                    <div class="unlock-tag">Unlocks: Personalized Journeys</div>
+                    <ul>
+                        <li>Tailor guidance to the customer's cloud, role, and goal</li>
+                        <li>Sequence the right content at the right moment</li>
+                    </ul>
+                </div>
+                <div class="progression-card done">
+                    <span class="progression-badge transformation">Transformation</span>
+                    <h4>4. Cognition <span class="progression-check">⭐</span></h4>
+                    <div class="unlock-tag">Unlocks: Autonomous Action</div>
+                    <ul>
+                        <li>Agent reasons across signals to proactively drive adoption</li>
+                        <li>Customers co-create outcomes with the agent, at scale</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
 
         <div class="roadmap-table">
             <div class="phase-headers">
@@ -1711,6 +2362,68 @@
 
                 <!-- Phase 3: GTM Readiness -->
                 <div class="phase-column"></div>
+            </div>
+        </div>
+
+        <!-- ===== High-Level Journey Map ===== -->
+        <div class="intro-card">
+            <h2>High-Level Journey Map</h2>
+            <p class="intro-subtitle">Success Guidance, Onboarding, and Adoption Prompt Flows</p>
+            <div class="journey-flow">
+                <div class="journey-step">
+                    <span class="step-icon">💬</span>
+                    <h5>Customer Prompt</h5>
+                    <p>Unauthenticated, Onboarding, or Adoption intent detected</p>
+                </div>
+                <div class="journey-arrow-sep">→</div>
+                <div class="journey-step">
+                    <span class="step-icon">🔎</span>
+                    <h5>CSS Signals & KYC</h5>
+                    <p>Contextualize using product, entitlement, and usage signals</p>
+                </div>
+                <div class="journey-arrow-sep">→</div>
+                <div class="journey-step">
+                    <span class="step-icon">📋</span>
+                    <h5>Golden Checklist</h5>
+                    <p>Match intent to the right guided path (Trailhead / Video / Best Practice)</p>
+                </div>
+                <div class="journey-arrow-sep">→</div>
+                <div class="journey-step">
+                    <span class="step-icon">🙋</span>
+                    <h5>Human Handoff</h5>
+                    <p>Escalate to expert or community when confidence is low</p>
+                </div>
+                <div class="journey-arrow-sep">→</div>
+                <div class="journey-step">
+                    <span class="step-icon">📈</span>
+                    <h5>Progress Tracking</h5>
+                    <p>Measure completion and feed signals back into personalization</p>
+                </div>
+            </div>
+            <p class="journey-branch-note">Flow branches by authentication state and journey stage (Unauthenticated / Authenticated-Onboarding / Authenticated-Adoption) to keep guidance relevant to where the customer is.</p>
+        </div>
+
+        <!-- ===== KPIs ===== -->
+        <div class="intro-card">
+            <h2>KPIs — What Success Looks Like</h2>
+            <p class="intro-subtitle">Key measures we're tracking across the roadmap</p>
+            <div class="kpi-overview-grid">
+                <div class="stat-tile baseline">
+                    <div class="stat-value">5.6%</div>
+                    <div class="stat-desc">Feature-activation baseline today</div>
+                </div>
+                <div class="stat-tile baseline">
+                    <div class="stat-value">56%</div>
+                    <div class="stat-desc">Customers report a fragmented adoption experience</div>
+                </div>
+                <div class="stat-tile goal">
+                    <div class="stat-value">57%→91%</div>
+                    <div class="stat-desc">Contextual recall improvement target</div>
+                </div>
+                <div class="stat-tile goal">
+                    <div class="stat-value">⭐ 3,656</div>
+                    <div class="stat-desc">Trailhead units mapped into guided journeys</div>
+                </div>
             </div>
         </div>
 

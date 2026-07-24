@@ -11,6 +11,9 @@
             --dark-purple: #5B21B6;
             --light-purple: #F3E8FF;
             --card-purple: #E9D5FF;
+            --expansion-purple: #C026D3;
+            --expansion-purple-dark: #86198F;
+            --expansion-purple-light: #F5D0FE;
             --dark-navy: #032D60;
             --navy-blue: #1E3A8A;
             --success-green: #10B981;
@@ -154,6 +157,24 @@
             color: var(--gray-600);
         }
 
+        .legend-swatch {
+            display: inline-block;
+            width: 14px;
+            height: 14px;
+            border-radius: 4px;
+            border: 2px solid;
+        }
+
+        .legend-swatch.card-purple-swatch {
+            background: var(--card-purple);
+            border-color: var(--primary-purple);
+        }
+
+        .legend-swatch.expansion-purple-swatch {
+            background: var(--expansion-purple-light);
+            border-color: var(--expansion-purple);
+        }
+
         .roadmap-table {
             background: var(--white);
             border-radius: var(--border-radius);
@@ -249,6 +270,40 @@
 
         .initiative-card.expanded {
             box-shadow: 0 6px 16px rgba(127, 63, 191, 0.25);
+        }
+
+        /* Expansion-of-existing-architecture cards get a distinct light-purple/fuchsia treatment
+           to visually separate them from net-new-functionality experimentation cards. */
+        .initiative-card.expansion-effort {
+            background: var(--expansion-purple-light);
+            border-color: var(--expansion-purple);
+        }
+
+        .initiative-card.expansion-effort:hover {
+            box-shadow: 0 4px 12px rgba(192, 38, 211, 0.25);
+        }
+
+        .initiative-card.expansion-effort.expanded {
+            box-shadow: 0 6px 16px rgba(192, 38, 211, 0.3);
+        }
+
+        .initiative-card.expansion-effort .workstream-label,
+        .initiative-card.expansion-effort .card-title,
+        .initiative-card.expansion-effort .section-title,
+        .initiative-card.expansion-effort .kpi-value {
+            color: var(--expansion-purple-dark);
+        }
+
+        .initiative-card.expansion-effort .expand-indicator {
+            color: var(--expansion-purple);
+        }
+
+        .initiative-card.expansion-effort .expanded-content {
+            border-top-color: var(--expansion-purple);
+        }
+
+        .initiative-card.expansion-effort .kpi-item {
+            border-left-color: var(--expansion-purple);
         }
 
         .status-badge {
@@ -1027,6 +1082,16 @@
                     <span>Supporting / Lower Priority</span>
                     <span class="legend-tooltip">Supporting dependency - enhances but does not block dependent work</span>
                 </div>
+                <div class="legend-item">
+                    <span class="legend-swatch card-purple-swatch"></span>
+                    <span>Experimentation (Net New)</span>
+                    <span class="legend-tooltip">Net-new functionality being explored or built for the first time</span>
+                </div>
+                <div class="legend-item">
+                    <span class="legend-swatch expansion-purple-swatch"></span>
+                    <span>Expansion (Existing Architecture)</span>
+                    <span class="legend-tooltip">Extending already-built architecture/capability to new clouds, products, or scope</span>
+                </div>
             </div>
         </header>
 
@@ -1162,7 +1227,7 @@
 
                 <!-- Phase 0: Intake -->
                 <div class="phase-column">
-                    <div class="initiative-card">
+                    <div class="initiative-card expansion-effort">
                         <span class="status-badge new">NEW</span>
                         <div class="workstream-label">
                             <span class="workstream-icon">★</span>
@@ -1734,7 +1799,7 @@
 
                 <!-- Phase 0: Intake -->
                 <div class="phase-column">
-                    <div class="initiative-card">
+                    <div class="initiative-card expansion-effort">
                         <span class="status-badge new">NEW</span>
                         <div class="workstream-label">
                             <span class="workstream-icon">★</span>
@@ -1834,7 +1899,7 @@
                         </div>
                     </div>
 
-                    <div class="initiative-card">
+                    <div class="initiative-card expansion-effort">
                         <span class="status-badge new">NEW</span>
                         <div class="workstream-label">
                             <span class="workstream-icon">★</span>
@@ -2097,7 +2162,7 @@
                         </div>
                     </div>
 
-                    <div class="initiative-card">
+                    <div class="initiative-card expansion-effort">
                         <span class="status-badge planned">PLANNED</span>
                         <div class="workstream-label">
                             <span class="workstream-icon">★</span>

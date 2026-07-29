@@ -1568,193 +1568,6 @@
                     </div>
                 </div>
 
-                <!-- Release Lane: Pipeline (No Fixed Release) -->
-                <div class="release-lane">
-                    <div class="release-lane-header">
-                        <div class="release-month">Pipeline</div>
-                        <div class="release-branch">Waves 2 & 3 &middot; Content & Measurement</div>
-                    </div>
-                    <div class="release-lane-grid">
-                    <!-- Card 3: VidYard Videos -->
-                    <div class="initiative-card expansion-card">
-                        <div class="card-header">
-                            <span class="status-badge planned">PLANNED</span>
-                            <span class="card-phase">Wave 2</span>
-                        </div>
-                        <h3 class="card-title">VidYard Videos Integration</h3>
-                        <p class="card-description">Surface video transcripts and embedded players for "watch & learn" experiences, supporting visual learners who struggle with text-only instructions. Requires Agent UI video player component and VidYard SDK integration.</p>
-                        <div class="card-pills">
-                            <span class="pill product">VidYard API</span>
-                            <span class="pill product">Agent UI</span>
-                            <span class="pill metric">Video &rarr; CTA &rarr; Setup</span>
-                        </div>
-                        <span class="expand-indicator">&#x25BC;</span>
-                        <div class="expanded-content">
-                            <div class="detail-section-title">Related KPIs</div>
-                            <div class="detail-kpi-grid">
-                                <div class="detail-kpi-item">
-                                    <span class="detail-kpi-label">Video Engagement</span>
-                                    <span class="detail-kpi-value">Starts & Completions</span>
-                                </div>
-                                <div class="detail-kpi-item">
-                                    <span class="detail-kpi-label">Task Completion</span>
-                                    <span class="detail-kpi-value">&uarr; Setup Success</span>
-                                </div>
-                                <div class="detail-kpi-item">
-                                    <span class="detail-kpi-label">Conversion Path</span>
-                                    <span class="detail-kpi-value">Video &rarr; CTA &rarr; Setup</span>
-                                </div>
-                                <div class="detail-kpi-item">
-                                    <span class="detail-kpi-label">Player Load Time</span>
-                                    <span class="detail-kpi-value">&lt;1 second</span>
-                                </div>
-                            </div>
-                            <div class="detail-section-title">Hard Dependencies</div>
-                            <ul class="dependency-list">
-                                <li><strong>CSDP:</strong> Video transcript indexing pipeline, metadata extraction</li>
-                                <li><strong>Platform Engineering:</strong> Embedded video player component in Agent UI</li>
-                                <li><strong>VidYard:</strong> SDK access, transcript extraction API, analytics hooks</li>
-                                <li><strong>Content Security:</strong> CSP policies for video embedding, iframe sandboxing</li>
-                            </ul>
-                        </div>
-                    </div>
-
-                    <!-- Card 4: Trailblazer Community Q&A -->
-                    <div class="initiative-card expansion-card">
-                        <div class="card-header">
-                            <span class="status-badge in-progress">IN PROGRESS</span>
-                            <span class="card-phase">Wave 3</span>
-                        </div>
-                        <h3 class="card-title">Trailblazer Community Q&A</h3>
-                        <p class="card-description">Incorporate peer-validated "Best Answers" for edge cases and real-world troubleshooting not covered in official documentation. Requires legal approval for UGC ingestion and PII scrubbing.</p>
-                        <div class="card-pills">
-                            <span class="pill product">Community</span>
-                            <span class="pill product">Legal</span>
-                            <span class="pill dependency">Requires: Legal Sign-Off</span>
-                        </div>
-                        <span class="expand-indicator">&#x25BC;</span>
-                        <div class="expanded-content">
-                            <div class="detail-section-title">Related KPIs</div>
-                            <div class="detail-kpi-grid">
-                                <div class="detail-kpi-item">
-                                    <span class="detail-kpi-label">Edge Case Coverage</span>
-                                    <span class="detail-kpi-value">&uarr; Uncommon Scenarios</span>
-                                </div>
-                                <div class="detail-kpi-item">
-                                    <span class="detail-kpi-label">Troubleshooting Success</span>
-                                    <span class="detail-kpi-value">&uarr; Issue Resolution</span>
-                                </div>
-                                <div class="detail-kpi-item">
-                                    <span class="detail-kpi-label">Real-World Relevance</span>
-                                    <span class="detail-kpi-value">Peer-Validated</span>
-                                </div>
-                                <div class="detail-kpi-item">
-                                    <span class="detail-kpi-label">Content Freshness</span>
-                                    <span class="detail-kpi-value">Recent Q&A Index</span>
-                                </div>
-                            </div>
-                            <div class="detail-section-title">Hard Dependencies</div>
-                            <ul class="dependency-list">
-                                <li><strong>Legal:</strong> UGC usage rights, attribution requirements, PII scrubbing pre-ingestion</li>
-                                <li><strong>Trust Team:</strong> PIA (Privacy Impact Assessment) approval</li>
-                                <li><strong>AI Council:</strong> Community content use case approval for Agentforce</li>
-                                <li><strong>CSDP:</strong> Community indexing architecture, Best Answer filtering</li>
-                            </ul>
-                        </div>
-                    </div>
-
-                    <!-- Card 5: Measurement Data Pipeline -->
-                    <div class="initiative-card expansion-card">
-                        <div class="card-header">
-                            <span class="status-badge new">NEW</span>
-                            <span class="card-phase">Data Engineering</span>
-                        </div>
-                        <h3 class="card-title">Lifecycle Success Measurement Data Pipeline</h3>
-                        <p class="card-description">Build cross-system data pipeline connecting Agent conversation logs with CSS product adoption data, license activation, and feature usage telemetry for end-to-end impact measurement.</p>
-                        <div class="card-pills">
-                            <span class="pill product">I-2489</span>
-                            <span class="pill product">Data Pipeline</span>
-                            <span class="pill metric">Multi-Source Integration</span>
-                        </div>
-                        <span class="expand-indicator">&#x25BC;</span>
-                        <div class="expanded-content">
-                            <div class="detail-section-title">Related KPIs</div>
-                            <div class="detail-kpi-grid">
-                                <div class="detail-kpi-item">
-                                    <span class="detail-kpi-label">Data Freshness</span>
-                                    <span class="detail-kpi-value">Daily Refresh</span>
-                                </div>
-                                <div class="detail-kpi-item">
-                                    <span class="detail-kpi-label">Match Rate</span>
-                                    <span class="detail-kpi-value">Agent &rarr; Product Telemetry</span>
-                                </div>
-                                <div class="detail-kpi-item">
-                                    <span class="detail-kpi-label">Attribution Coverage</span>
-                                    <span class="detail-kpi-value">Entry Source Tracking</span>
-                                </div>
-                                <div class="detail-kpi-item">
-                                    <span class="detail-kpi-label">Pipeline Reliability</span>
-                                    <span class="detail-kpi-value">99.5% Uptime</span>
-                                </div>
-                            </div>
-                            <div class="detail-section-title">Hard Dependencies</div>
-                            <ul class="dependency-list">
-                                <li><strong>Agent Logs:</strong> Conversation transcripts, intent classification, entry attribution (CTA ID, email ID, utterance)</li>
-                                <li><strong>CSS Snowflake:</strong> Product adoption scores, feature activation telemetry (authenticated access)</li>
-                                <li><strong>License Data:</strong> License activation & utilization tracking</li>
-                                <li><strong>Account Mapping:</strong> User-to-Account, Account-to-Org linking for attribution window analysis</li>
-                                <li><strong>C360 Data Graph:</strong> <em>Foundation SHIPPED 7/23</em> &mdash; Customer Success Score graph on CSDP roadmap (next layer of DG_User_Personalization)</li>
-                            </ul>
-                        </div>
-                    </div>
-
-                    <!-- Card 6: Performance & Impact Measurement -->
-                    <div class="initiative-card expansion-card">
-                        <div class="card-header">
-                            <span class="status-badge new">NEW</span>
-                            <span class="card-phase">Analytics</span>
-                        </div>
-                        <h3 class="card-title">Lifecycle Success Performance & Impact Measurement</h3>
-                        <p class="card-description">Establish unified measurement framework tracking Help Agent performance from entry &rarr; engagement &rarr; intent &rarr; activation &rarr; business impact, enabling cohort-based benchmarking and incrementality analysis.</p>
-                        <div class="card-pills">
-                            <span class="pill product">I-2489</span>
-                            <span class="pill product">Analytics</span>
-                            <span class="pill metric">Entry to Activation Funnel</span>
-                        </div>
-                        <span class="expand-indicator">&#x25BC;</span>
-                        <div class="expanded-content">
-                            <div class="detail-section-title">Related KPIs</div>
-                            <div class="detail-kpi-grid">
-                                <div class="detail-kpi-item">
-                                    <span class="detail-kpi-label">Guided Success Rate</span>
-                                    <span class="detail-kpi-value">% Intent &rarr; Activation</span>
-                                </div>
-                                <div class="detail-kpi-item">
-                                    <span class="detail-kpi-label">Onboarding Success</span>
-                                    <span class="detail-kpi-value">Time to Activation</span>
-                                </div>
-                                <div class="detail-kpi-item">
-                                    <span class="detail-kpi-label">Adoption Success</span>
-                                    <span class="detail-kpi-value">Feature Expansion Rate</span>
-                                </div>
-                                <div class="detail-kpi-item">
-                                    <span class="detail-kpi-label">Incrementality</span>
-                                    <span class="detail-kpi-value">Agent vs Non-Agent</span>
-                                </div>
-                            </div>
-                            <div class="detail-section-title">Hard Dependencies</div>
-                            <ul class="dependency-list">
-                                <li><strong>Data Engineering:</strong> Cross-system mapping (Agent logs, CSS data, product telemetry, license data)</li>
-                                <li><strong>Analytics:</strong> Entry attribution tracking (CTA, email, utterance), funnel dashboards</li>
-                                <li><strong>DS Engineering:</strong> Intent classification (adoption vs onboarding), success modeling</li>
-                                <li><strong>Product Telemetry:</strong> Feature activation events, CSS adoption scores</li>
-                                <li><strong>C360 Data Graph:</strong> <em>Foundation SHIPPED 7/23</em> &mdash; User onboarding journey tracking on CSDP roadmap (enables entry &rarr; activation funnel)</li>
-                            </ul>
-                        </div>
-                    </div>
-                    </div>
-                </div>
-
                 <!-- Release Lane: October -->
                 <div class="release-lane">
                     <div class="release-lane-header">
@@ -2071,6 +1884,193 @@
                 </div>
             </div>
 
+
+                <!-- Release Lane: Pipeline (No Fixed Release) -->
+                <div class="release-lane">
+                    <div class="release-lane-header">
+                        <div class="release-month">Pipeline</div>
+                        <div class="release-branch">Waves 2 & 3 &middot; Content & Measurement</div>
+                    </div>
+                    <div class="release-lane-grid">
+                    <!-- Card 3: VidYard Videos -->
+                    <div class="initiative-card expansion-card">
+                        <div class="card-header">
+                            <span class="status-badge planned">PLANNED</span>
+                            <span class="card-phase">Wave 2</span>
+                        </div>
+                        <h3 class="card-title">VidYard Videos Integration</h3>
+                        <p class="card-description">Surface video transcripts and embedded players for "watch & learn" experiences, supporting visual learners who struggle with text-only instructions. Requires Agent UI video player component and VidYard SDK integration.</p>
+                        <div class="card-pills">
+                            <span class="pill product">VidYard API</span>
+                            <span class="pill product">Agent UI</span>
+                            <span class="pill metric">Video &rarr; CTA &rarr; Setup</span>
+                        </div>
+                        <span class="expand-indicator">&#x25BC;</span>
+                        <div class="expanded-content">
+                            <div class="detail-section-title">Related KPIs</div>
+                            <div class="detail-kpi-grid">
+                                <div class="detail-kpi-item">
+                                    <span class="detail-kpi-label">Video Engagement</span>
+                                    <span class="detail-kpi-value">Starts & Completions</span>
+                                </div>
+                                <div class="detail-kpi-item">
+                                    <span class="detail-kpi-label">Task Completion</span>
+                                    <span class="detail-kpi-value">&uarr; Setup Success</span>
+                                </div>
+                                <div class="detail-kpi-item">
+                                    <span class="detail-kpi-label">Conversion Path</span>
+                                    <span class="detail-kpi-value">Video &rarr; CTA &rarr; Setup</span>
+                                </div>
+                                <div class="detail-kpi-item">
+                                    <span class="detail-kpi-label">Player Load Time</span>
+                                    <span class="detail-kpi-value">&lt;1 second</span>
+                                </div>
+                            </div>
+                            <div class="detail-section-title">Hard Dependencies</div>
+                            <ul class="dependency-list">
+                                <li><strong>CSDP:</strong> Video transcript indexing pipeline, metadata extraction</li>
+                                <li><strong>Platform Engineering:</strong> Embedded video player component in Agent UI</li>
+                                <li><strong>VidYard:</strong> SDK access, transcript extraction API, analytics hooks</li>
+                                <li><strong>Content Security:</strong> CSP policies for video embedding, iframe sandboxing</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <!-- Card 4: Trailblazer Community Q&A -->
+                    <div class="initiative-card expansion-card">
+                        <div class="card-header">
+                            <span class="status-badge in-progress">IN PROGRESS</span>
+                            <span class="card-phase">Wave 3</span>
+                        </div>
+                        <h3 class="card-title">Trailblazer Community Q&A</h3>
+                        <p class="card-description">Incorporate peer-validated "Best Answers" for edge cases and real-world troubleshooting not covered in official documentation. Requires legal approval for UGC ingestion and PII scrubbing.</p>
+                        <div class="card-pills">
+                            <span class="pill product">Community</span>
+                            <span class="pill product">Legal</span>
+                            <span class="pill dependency">Requires: Legal Sign-Off</span>
+                        </div>
+                        <span class="expand-indicator">&#x25BC;</span>
+                        <div class="expanded-content">
+                            <div class="detail-section-title">Related KPIs</div>
+                            <div class="detail-kpi-grid">
+                                <div class="detail-kpi-item">
+                                    <span class="detail-kpi-label">Edge Case Coverage</span>
+                                    <span class="detail-kpi-value">&uarr; Uncommon Scenarios</span>
+                                </div>
+                                <div class="detail-kpi-item">
+                                    <span class="detail-kpi-label">Troubleshooting Success</span>
+                                    <span class="detail-kpi-value">&uarr; Issue Resolution</span>
+                                </div>
+                                <div class="detail-kpi-item">
+                                    <span class="detail-kpi-label">Real-World Relevance</span>
+                                    <span class="detail-kpi-value">Peer-Validated</span>
+                                </div>
+                                <div class="detail-kpi-item">
+                                    <span class="detail-kpi-label">Content Freshness</span>
+                                    <span class="detail-kpi-value">Recent Q&A Index</span>
+                                </div>
+                            </div>
+                            <div class="detail-section-title">Hard Dependencies</div>
+                            <ul class="dependency-list">
+                                <li><strong>Legal:</strong> UGC usage rights, attribution requirements, PII scrubbing pre-ingestion</li>
+                                <li><strong>Trust Team:</strong> PIA (Privacy Impact Assessment) approval</li>
+                                <li><strong>AI Council:</strong> Community content use case approval for Agentforce</li>
+                                <li><strong>CSDP:</strong> Community indexing architecture, Best Answer filtering</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <!-- Card 5: Measurement Data Pipeline -->
+                    <div class="initiative-card expansion-card">
+                        <div class="card-header">
+                            <span class="status-badge new">NEW</span>
+                            <span class="card-phase">Data Engineering</span>
+                        </div>
+                        <h3 class="card-title">Lifecycle Success Measurement Data Pipeline</h3>
+                        <p class="card-description">Build cross-system data pipeline connecting Agent conversation logs with CSS product adoption data, license activation, and feature usage telemetry for end-to-end impact measurement.</p>
+                        <div class="card-pills">
+                            <span class="pill product">I-2489</span>
+                            <span class="pill product">Data Pipeline</span>
+                            <span class="pill metric">Multi-Source Integration</span>
+                        </div>
+                        <span class="expand-indicator">&#x25BC;</span>
+                        <div class="expanded-content">
+                            <div class="detail-section-title">Related KPIs</div>
+                            <div class="detail-kpi-grid">
+                                <div class="detail-kpi-item">
+                                    <span class="detail-kpi-label">Data Freshness</span>
+                                    <span class="detail-kpi-value">Daily Refresh</span>
+                                </div>
+                                <div class="detail-kpi-item">
+                                    <span class="detail-kpi-label">Match Rate</span>
+                                    <span class="detail-kpi-value">Agent &rarr; Product Telemetry</span>
+                                </div>
+                                <div class="detail-kpi-item">
+                                    <span class="detail-kpi-label">Attribution Coverage</span>
+                                    <span class="detail-kpi-value">Entry Source Tracking</span>
+                                </div>
+                                <div class="detail-kpi-item">
+                                    <span class="detail-kpi-label">Pipeline Reliability</span>
+                                    <span class="detail-kpi-value">99.5% Uptime</span>
+                                </div>
+                            </div>
+                            <div class="detail-section-title">Hard Dependencies</div>
+                            <ul class="dependency-list">
+                                <li><strong>Agent Logs:</strong> Conversation transcripts, intent classification, entry attribution (CTA ID, email ID, utterance)</li>
+                                <li><strong>CSS Snowflake:</strong> Product adoption scores, feature activation telemetry (authenticated access)</li>
+                                <li><strong>License Data:</strong> License activation & utilization tracking</li>
+                                <li><strong>Account Mapping:</strong> User-to-Account, Account-to-Org linking for attribution window analysis</li>
+                                <li><strong>C360 Data Graph:</strong> <em>Foundation SHIPPED 7/23</em> &mdash; Customer Success Score graph on CSDP roadmap (next layer of DG_User_Personalization)</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <!-- Card 6: Performance & Impact Measurement -->
+                    <div class="initiative-card expansion-card">
+                        <div class="card-header">
+                            <span class="status-badge new">NEW</span>
+                            <span class="card-phase">Analytics</span>
+                        </div>
+                        <h3 class="card-title">Lifecycle Success Performance & Impact Measurement</h3>
+                        <p class="card-description">Establish unified measurement framework tracking Help Agent performance from entry &rarr; engagement &rarr; intent &rarr; activation &rarr; business impact, enabling cohort-based benchmarking and incrementality analysis.</p>
+                        <div class="card-pills">
+                            <span class="pill product">I-2489</span>
+                            <span class="pill product">Analytics</span>
+                            <span class="pill metric">Entry to Activation Funnel</span>
+                        </div>
+                        <span class="expand-indicator">&#x25BC;</span>
+                        <div class="expanded-content">
+                            <div class="detail-section-title">Related KPIs</div>
+                            <div class="detail-kpi-grid">
+                                <div class="detail-kpi-item">
+                                    <span class="detail-kpi-label">Guided Success Rate</span>
+                                    <span class="detail-kpi-value">% Intent &rarr; Activation</span>
+                                </div>
+                                <div class="detail-kpi-item">
+                                    <span class="detail-kpi-label">Onboarding Success</span>
+                                    <span class="detail-kpi-value">Time to Activation</span>
+                                </div>
+                                <div class="detail-kpi-item">
+                                    <span class="detail-kpi-label">Adoption Success</span>
+                                    <span class="detail-kpi-value">Feature Expansion Rate</span>
+                                </div>
+                                <div class="detail-kpi-item">
+                                    <span class="detail-kpi-label">Incrementality</span>
+                                    <span class="detail-kpi-value">Agent vs Non-Agent</span>
+                                </div>
+                            </div>
+                            <div class="detail-section-title">Hard Dependencies</div>
+                            <ul class="dependency-list">
+                                <li><strong>Data Engineering:</strong> Cross-system mapping (Agent logs, CSS data, product telemetry, license data)</li>
+                                <li><strong>Analytics:</strong> Entry attribution tracking (CTA, email, utterance), funnel dashboards</li>
+                                <li><strong>DS Engineering:</strong> Intent classification (adoption vs onboarding), success modeling</li>
+                                <li><strong>Product Telemetry:</strong> Feature activation events, CSS adoption scores</li>
+                                <li><strong>C360 Data Graph:</strong> <em>Foundation SHIPPED 7/23</em> &mdash; User onboarding journey tracking on CSDP roadmap (enables entry &rarr; activation funnel)</li>
+                            </ul>
+                        </div>
+                    </div>
+                    </div>
+                </div>
             <!-- Experimentation View -->
             <div class="roadmap-view" id="view-experimentation">
                 <div class="roadmap-description experiment-desc">

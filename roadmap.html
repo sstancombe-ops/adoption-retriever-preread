@@ -856,32 +856,57 @@
             margin-bottom: 4px;
         }
 
+        /* ===== Tab 1 Dark Executive Theme (expertCoaching style) ===== */
+        #tab-strategy {
+            background: linear-gradient(160deg, #032D60 0%, #0B3D7A 40%, #164A8A 70%, #1B5297 100%);
+            border-radius: 0 0 var(--radius-lg) var(--radius-lg);
+            padding: 40px 36px;
+        }
+
+        #tab-strategy .section-card {
+            border-bottom-color: rgba(255, 255, 255, 0.08);
+        }
+
+        #tab-strategy .section-card h2 {
+            color: var(--sf-white);
+            font-size: 1.6rem;
+            letter-spacing: -0.3px;
+        }
+
+        #tab-strategy .section-subtitle {
+            color: rgba(255, 255, 255, 0.6);
+        }
+
         /* ===== Challenge Block (Tab 1) ===== */
         .challenge-block {
-            background: var(--sf-gray-50);
-            border: 2px solid var(--sf-gray-100);
+            background: rgba(255, 255, 255, 0.06);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.12);
             border-radius: var(--radius-md);
-            padding: 24px;
+            padding: 28px;
             cursor: pointer;
             transition: all 0.2s ease;
             position: relative;
         }
 
         .challenge-block:hover {
-            border-color: var(--sf-electric-blue);
-            box-shadow: var(--shadow-sm);
+            background: rgba(255, 255, 255, 0.09);
+            border-color: rgba(1, 118, 211, 0.4);
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
         }
 
         .challenge-block .expand-indicator {
             position: absolute;
             bottom: 12px;
             right: 14px;
+            color: rgba(255, 255, 255, 0.3);
             transition: transform 0.2s;
         }
 
         .challenge-block.expanded .expand-indicator {
             transform: rotate(180deg);
-            color: var(--sf-electric-blue);
+            color: var(--sf-cloud-blue);
         }
 
         .challenge-tension {
@@ -899,42 +924,54 @@
         }
 
         .tension-label {
-            font-size: 1rem;
+            font-size: 1.05rem;
             font-weight: 700;
-            color: var(--sf-navy);
+            color: var(--sf-white);
             margin-bottom: 4px;
         }
 
         .tension-desc {
             font-size: 0.78rem;
-            color: var(--sf-gray-600);
+            color: rgba(255, 255, 255, 0.6);
         }
 
         .tension-arrow {
             font-size: 1.8rem;
-            color: var(--sf-electric-blue);
+            color: var(--sf-cloud-blue);
             font-weight: 300;
         }
 
         .challenge-thesis {
             text-align: center;
-            font-size: 0.85rem;
-            color: var(--sf-gray-800);
+            font-size: 0.88rem;
+            color: rgba(255, 255, 255, 0.85);
             line-height: 1.6;
             max-width: 700px;
             margin: 0 auto;
+        }
+
+        .challenge-thesis strong {
+            color: var(--sf-white);
         }
 
         .challenge-detail {
             display: none;
             margin-top: 16px;
             padding-top: 16px;
-            border-top: 1px solid var(--sf-gray-100);
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
         }
 
         .challenge-block.expanded .challenge-detail {
             display: block;
             animation: slideDown 0.25s ease;
+        }
+
+        #tab-strategy .challenge-detail .dependency-list li {
+            color: rgba(255, 255, 255, 0.8);
+        }
+
+        #tab-strategy .challenge-detail .dependency-list li::before {
+            color: var(--sf-cloud-blue);
         }
 
         /* ===== Executive Expand Block (Tab 1) ===== */
@@ -947,9 +984,33 @@
         }
 
         .exec-headline {
-            font-size: 1.05rem;
-            color: var(--sf-navy);
+            font-size: 1.2rem;
+            color: var(--sf-white);
             margin-bottom: 12px;
+        }
+
+        #tab-strategy .trust-pill {
+            background: rgba(255, 255, 255, 0.08);
+            border-color: var(--sf-cloud-blue);
+            color: var(--sf-white);
+        }
+
+        #tab-strategy .trust-arrow {
+            color: var(--sf-cloud-blue);
+        }
+
+        #tab-strategy .bottom-line-box {
+            background: rgba(0, 161, 224, 0.1);
+            border-color: rgba(0, 161, 224, 0.3);
+        }
+
+        #tab-strategy .bottom-line-box .label {
+            color: var(--sf-cloud-blue);
+        }
+
+        #tab-strategy .bottom-line-box .statement {
+            color: var(--sf-white);
+            font-size: 1.05rem;
         }
 
         .exec-expand-block {
@@ -970,6 +1031,83 @@
         .exec-expand-block.expanded .exec-expand-trigger span {
             display: inline-block;
             transform: rotate(180deg) translateY(2px);
+        }
+
+        #tab-strategy .exec-expand-trigger span {
+            color: var(--sf-cloud-blue) !important;
+        }
+
+        #tab-strategy .exec-col p {
+            color: rgba(255, 255, 255, 0.8);
+        }
+
+        #tab-strategy .exec-col li {
+            color: rgba(255, 255, 255, 0.8);
+        }
+
+        #tab-strategy .exec-col li::before {
+            color: var(--sf-cloud-blue);
+        }
+
+        #tab-strategy .exec-col strong {
+            color: var(--sf-white);
+        }
+
+        /* ===== Persona (Tab 1 dark override) ===== */
+        #tab-strategy .persona-card {
+            background: rgba(255, 255, 255, 0.06);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.12);
+        }
+
+        #tab-strategy .persona-card h3 {
+            color: var(--sf-white);
+        }
+
+        #tab-strategy .persona-tagline {
+            color: rgba(255, 255, 255, 0.5);
+        }
+
+        #tab-strategy .persona-card p.persona-desc {
+            color: rgba(255, 255, 255, 0.8);
+        }
+
+        #tab-strategy .persona-trait {
+            background: rgba(255, 255, 255, 0.08);
+            border-color: rgba(255, 255, 255, 0.15);
+            color: rgba(255, 255, 255, 0.7);
+        }
+
+        /* ===== Wave Visual (Tab 1 dark override) ===== */
+        #tab-strategy .wave-visual {
+            border-radius: var(--radius-md);
+            overflow: hidden;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+        }
+
+        /* ===== KPI Tiles (Tab 1 dark override) ===== */
+        #tab-strategy .kpi-tile {
+            background: rgba(255, 255, 255, 0.06);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.12);
+        }
+
+        #tab-strategy .kpi-tile .kpi-value {
+            color: var(--sf-white);
+        }
+
+        #tab-strategy .kpi-tile.baseline .kpi-value {
+            color: #FFB347;
+        }
+
+        #tab-strategy .kpi-tile.goal .kpi-value {
+            color: #5DE5A8;
+        }
+
+        #tab-strategy .kpi-tile .kpi-desc {
+            color: rgba(255, 255, 255, 0.6);
         }
 
         /* ===== Permutation Cards (Tab 3) ===== */

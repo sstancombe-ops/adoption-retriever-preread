@@ -856,6 +856,303 @@
             margin-bottom: 4px;
         }
 
+        /* ===== Challenge Block (Tab 1) ===== */
+        .challenge-block {
+            background: var(--sf-gray-50);
+            border: 2px solid var(--sf-gray-100);
+            border-radius: var(--radius-md);
+            padding: 24px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            position: relative;
+        }
+
+        .challenge-block:hover {
+            border-color: var(--sf-electric-blue);
+            box-shadow: var(--shadow-sm);
+        }
+
+        .challenge-block .expand-indicator {
+            position: absolute;
+            bottom: 12px;
+            right: 14px;
+            transition: transform 0.2s;
+        }
+
+        .challenge-block.expanded .expand-indicator {
+            transform: rotate(180deg);
+            color: var(--sf-electric-blue);
+        }
+
+        .challenge-tension {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 24px;
+            margin-bottom: 16px;
+        }
+
+        .tension-side {
+            text-align: center;
+            flex: 1;
+            max-width: 280px;
+        }
+
+        .tension-label {
+            font-size: 1rem;
+            font-weight: 700;
+            color: var(--sf-navy);
+            margin-bottom: 4px;
+        }
+
+        .tension-desc {
+            font-size: 0.78rem;
+            color: var(--sf-gray-600);
+        }
+
+        .tension-arrow {
+            font-size: 1.8rem;
+            color: var(--sf-electric-blue);
+            font-weight: 300;
+        }
+
+        .challenge-thesis {
+            text-align: center;
+            font-size: 0.85rem;
+            color: var(--sf-gray-800);
+            line-height: 1.6;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        .challenge-detail {
+            display: none;
+            margin-top: 16px;
+            padding-top: 16px;
+            border-top: 1px solid var(--sf-gray-100);
+        }
+
+        .challenge-block.expanded .challenge-detail {
+            display: block;
+            animation: slideDown 0.25s ease;
+        }
+
+        /* ===== Executive Expand Block (Tab 1) ===== */
+        .exec-surface {
+            text-align: center;
+        }
+
+        .exec-thesis {
+            margin-bottom: 8px;
+        }
+
+        .exec-headline {
+            font-size: 1.05rem;
+            color: var(--sf-navy);
+            margin-bottom: 12px;
+        }
+
+        .exec-expand-block {
+            margin-top: 12px;
+            cursor: pointer;
+            text-align: center;
+        }
+
+        .exec-expand-content {
+            display: none;
+        }
+
+        .exec-expand-block.expanded .exec-expand-content {
+            display: block;
+            animation: slideDown 0.25s ease;
+        }
+
+        .exec-expand-block.expanded .exec-expand-trigger span {
+            display: inline-block;
+            transform: rotate(180deg) translateY(2px);
+        }
+
+        /* ===== Permutation Cards (Tab 3) ===== */
+        .permutation-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 16px;
+        }
+
+        .permutation-card {
+            background: var(--sf-white);
+            border: 2px solid var(--sf-gray-100);
+            border-radius: var(--radius-md);
+            cursor: pointer;
+            transition: all 0.2s ease;
+            overflow: hidden;
+        }
+
+        .permutation-card:hover {
+            border-color: var(--sf-electric-blue);
+            box-shadow: var(--shadow-sm);
+        }
+
+        .permutation-card.expanded {
+            border-color: var(--sf-electric-blue);
+            box-shadow: var(--shadow-md);
+        }
+
+        .permutation-surface {
+            padding: 20px;
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            position: relative;
+        }
+
+        .permutation-icon {
+            font-size: 1.6rem;
+            flex-shrink: 0;
+        }
+
+        .permutation-info h4 {
+            font-size: 0.9rem;
+            font-weight: 700;
+            color: var(--sf-navy);
+            margin-bottom: 4px;
+        }
+
+        .permutation-info p {
+            font-size: 0.75rem;
+            color: var(--sf-gray-600);
+            line-height: 1.4;
+        }
+
+        .permutation-card .expand-indicator {
+            position: absolute;
+            top: 14px;
+            right: 14px;
+            bottom: auto;
+            transition: transform 0.2s;
+        }
+
+        .permutation-card.expanded .expand-indicator {
+            transform: rotate(180deg);
+            color: var(--sf-electric-blue);
+        }
+
+        .permutation-detail {
+            display: none;
+            padding: 0 20px 20px;
+        }
+
+        .permutation-card.expanded .permutation-detail {
+            display: block;
+            animation: slideDown 0.25s ease;
+        }
+
+        .permutation-table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 0.76rem;
+        }
+
+        .permutation-table td {
+            padding: 8px 0;
+            vertical-align: top;
+            border-bottom: 1px solid var(--sf-gray-100);
+            color: var(--sf-gray-800);
+            line-height: 1.5;
+        }
+
+        .permutation-table td:first-child {
+            width: 110px;
+            color: var(--sf-gray-600);
+            font-weight: 600;
+            padding-right: 12px;
+        }
+
+        .permutation-table tr:last-child td {
+            border-bottom: none;
+        }
+
+        /* ===== Phase Detail (Tab 3 Progression) ===== */
+        .progression-card.expandable {
+            cursor: pointer;
+            position: relative;
+            transition: all 0.2s ease;
+        }
+
+        .progression-card.expandable:hover {
+            box-shadow: var(--shadow-sm);
+            transform: translateY(-1px);
+        }
+
+        .progression-card.expandable.expanded {
+            box-shadow: var(--shadow-md);
+        }
+
+        .phase-expand {
+            position: static;
+            display: block;
+            text-align: center;
+            margin-top: 8px;
+            font-size: 0.7rem;
+            color: var(--sf-gray-200);
+            transition: transform 0.2s;
+        }
+
+        .progression-card.expanded .phase-expand {
+            transform: rotate(180deg);
+            color: var(--sf-electric-blue);
+        }
+
+        .phase-detail {
+            display: none;
+            margin-top: 12px;
+            padding-top: 12px;
+            border-top: 1px solid rgba(1, 118, 211, 0.15);
+        }
+
+        .progression-card.expanded .phase-detail {
+            display: block;
+            animation: slideDown 0.25s ease;
+        }
+
+        .phase-detail-section {
+            margin-bottom: 12px;
+        }
+
+        .phase-detail-section:last-child {
+            margin-bottom: 0;
+        }
+
+        .phase-detail-section strong {
+            display: block;
+            font-size: 0.72rem;
+            font-weight: 700;
+            color: var(--sf-navy);
+            text-transform: uppercase;
+            letter-spacing: 0.3px;
+            margin-bottom: 4px;
+        }
+
+        .phase-detail-section ul {
+            list-style: none;
+            padding: 0;
+            font-size: 0.72rem;
+            color: var(--sf-gray-800);
+        }
+
+        .phase-detail-section li {
+            padding-left: 12px;
+            position: relative;
+            margin-bottom: 3px;
+        }
+
+        .phase-detail-section li::before {
+            content: '\2022';
+            position: absolute;
+            left: 0;
+            color: var(--sf-electric-blue);
+        }
+
         /* Responsive */
         @media (max-width: 1200px) {
             .exec-grid {
@@ -870,6 +1167,16 @@
             .roadmap-grid {
                 grid-template-columns: 1fr;
             }
+            .permutation-grid {
+                grid-template-columns: 1fr;
+            }
+            .challenge-tension {
+                flex-direction: column;
+                gap: 12px;
+            }
+            .tension-arrow {
+                transform: rotate(90deg);
+            }
         }
 
         @media (max-width: 768px) {
@@ -881,6 +1188,9 @@
             }
             .tab-content {
                 padding: 20px;
+            }
+            .progression-track {
+                grid-template-columns: 1fr;
             }
         }
     </style>
@@ -907,32 +1217,76 @@
 
         <!-- ===== TAB 1: Strategy & Vision ===== -->
         <div class="tab-content active" id="tab-strategy">
+            <!-- The Challenge -->
+            <div class="section-card">
+                <h2>The Challenge</h2>
+                <p class="section-subtitle">Why the current model isn't enough</p>
+                <div class="challenge-block" onclick="this.classList.toggle('expanded')">
+                    <div class="challenge-surface">
+                        <div class="challenge-tension">
+                            <div class="tension-side">
+                                <div class="tension-label">Human Error</div>
+                                <div class="tension-desc">Users are accustomed to navigating around it</div>
+                            </div>
+                            <div class="tension-arrow">&harr;</div>
+                            <div class="tension-side">
+                                <div class="tension-label">Agentic Error</div>
+                                <div class="tension-desc">A new category users are learning to evaluate</div>
+                            </div>
+                        </div>
+                        <p class="challenge-thesis">In a world where agent-guided self-service is becoming the norm, humans still long for connectivity to others. The challenge is integrating trusted human insights with agent intelligence to achieve a necessary <strong>"balance of intellect."</strong></p>
+                        <span class="expand-indicator">&#x25BC;</span>
+                    </div>
+                    <div class="challenge-detail">
+                        <ul class="dependency-list">
+                            <li>Users have developed a skepticism toward standalone AI, shifting their focus to "agentic error" in a way that mirrors their views on human error</li>
+                            <li>Communities (Trailhead, Partners, Developer) contain the most reliable solutions because users rely on the collective expertise of their peers</li>
+                            <li>The relationship between AI + humans is not about replacing people, but about finding synergistic balance to drive collaborative success</li>
+                            <li>Standalone AI is no longer seen as inherently authoritative &mdash; one signal remains consistently trusted: the voice of the community</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
             <!-- Executive Summary -->
             <div class="section-card">
                 <h2>Executive Summary</h2>
-                <p class="section-subtitle">Why we're here, and the experience we're building toward</p>
-                <div class="exec-grid">
-                    <div class="exec-col">
-                        <p><strong>AI informs. Community validates. Together, they enable action.</strong></p>
-                        <p>Customers don't need another tool that tells them what to do &mdash; they need a guided path that combines trustworthy AI insight with real community validation, so every recommendation feels earned, not guessed.</p>
-                    </div>
-                    <div class="exec-col">
-                        <p>The trust model for adoption guidance is shifting:</p>
+                <div class="exec-surface">
+                    <div class="exec-thesis">
+                        <p class="exec-headline"><strong>AI informs. Community validates. Together, they enable action.</strong></p>
                         <div class="trust-shift">
                             <span class="trust-pill">Verify, then Trust</span>
                             <span class="trust-arrow">&rarr;</span>
                             <span class="trust-pill">Co-create, then Trust</span>
                         </div>
-                        <ul style="margin-top: 12px;">
-                            <li>AI surfaces the right content, at the right moment</li>
-                            <li>Community and experts validate what actually works</li>
-                            <li>Customers act with confidence, not guesswork</li>
-                        </ul>
                     </div>
-                    <div class="exec-col">
-                        <div class="bottom-line-box">
-                            <div class="label">Bottom Line</div>
-                            <div class="statement">Confidence comes from consensus, not computation.</div>
+                    <div class="bottom-line-box" style="margin-top: 16px;">
+                        <div class="label">Bottom Line</div>
+                        <div class="statement">Confidence comes from consensus, not computation.</div>
+                    </div>
+                </div>
+                <div class="exec-expand-block" onclick="this.classList.toggle('expanded')">
+                    <div class="exec-expand-trigger">
+                        <span style="font-size: 0.78rem; color: var(--sf-electric-blue); font-weight: 600; cursor: pointer;">What this means in practice &#x25BC;</span>
+                    </div>
+                    <div class="exec-expand-content">
+                        <div class="exec-grid" style="margin-top: 14px;">
+                            <div class="exec-col">
+                                <p>Trust is no longer a gate at the end of the journey &mdash; it is constructed in real time through the interplay of:</p>
+                                <ul>
+                                    <li><strong>Agent intelligence:</strong> speed, synthesis, execution</li>
+                                    <li><strong>Human insight:</strong> context, nuance, lived experience</li>
+                                    <li><strong>Community validation:</strong> proof, consensus, credibility</li>
+                                </ul>
+                            </div>
+                            <div class="exec-col">
+                                <p>The opportunity is not to replace verification, but to embed it into the experience itself &mdash; so users no longer have to leave the flow to confirm what they've been told.</p>
+                                <ul>
+                                    <li>AI surfaces the right content, at the right moment</li>
+                                    <li>Community and experts validate what actually works</li>
+                                    <li>Customers act with confidence, not guesswork</li>
+                                </ul>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -947,7 +1301,7 @@
                     <div>
                         <h3>The Solo Navigator</h3>
                         <div class="persona-tagline">a.k.a. "The Accidental Admin"</div>
-                        <p class="persona-desc">A business owner or department lead who ends up owning Salesforce administration without deep technical training. They are goal-oriented but often feel <em>lost</em> in the platform &mdash; self-reliant by necessity, not by preference, and they favor clear, multi-modal guidance (short videos, checklists, examples) over dense documentation.</p>
+                        <p class="persona-desc">A business owner or department lead at an SMB who has become an "Accidental Admin." They have little to no formal technical experience with Salesforce and operate without a dedicated Admin or named human success resource.</p>
                         <div class="persona-traits">
                             <span class="persona-trait">Low technical acumen</span>
                             <span class="persona-trait">Goal-driven, not tool-driven</span>
@@ -962,7 +1316,7 @@
             <!-- Three Waves -->
             <div class="section-card">
                 <h2>Adoption Retriever Strategy &mdash; The Three Waves</h2>
-                <p class="section-subtitle">How we introduce our strategy to outside stakeholders: a rolling content wave that fuels the agent</p>
+                <p class="section-subtitle">A rolling content wave that fuels the agent</p>
                 <div class="wave-visual">
                     <img src="wave-strategy.png" alt="Adoption Retriever Strategy: Wave 1 Trailhead Content, Wave 2 Videos, Wave 3 Best Practices" class="wave-visual-img">
                 </div>
@@ -1389,15 +1743,81 @@
                         <p>Measure completion and feed signals back into personalization</p>
                     </div>
                 </div>
-                <p class="journey-branch-note">Flow branches by authentication state and journey stage (Unauthenticated / Authenticated-Onboarding / Authenticated-Adoption) to keep guidance relevant to where the customer is.</p>
+            </div>
+
+            <!-- Journey Permutations -->
+            <div class="section-card">
+                <h2>Journey Permutations</h2>
+                <p class="section-subtitle">The flow branches by authentication state and journey stage — click to see trigger logic and behavior</p>
+                <div class="permutation-grid">
+                    <div class="permutation-card" onclick="this.classList.toggle('expanded')">
+                        <div class="permutation-surface">
+                            <span class="permutation-icon">&#x1F310;</span>
+                            <div class="permutation-info">
+                                <h4>Unauthenticated</h4>
+                                <p>Visitor has no session context — generic guidance only</p>
+                            </div>
+                            <span class="expand-indicator">&#x25BC;</span>
+                        </div>
+                        <div class="permutation-detail">
+                            <table class="permutation-table">
+                                <tr><td><strong>Trigger</strong></td><td>No session / no identity resolution</td></tr>
+                                <tr><td><strong>Available context</strong></td><td>Utterance intent only; no product, entitlement, or usage data</td></tr>
+                                <tr><td><strong>Content strategy</strong></td><td>General Trailhead recommendations, public documentation, community links</td></tr>
+                                <tr><td><strong>Escalation path</strong></td><td>Prompt to authenticate for personalized guidance; community forum link</td></tr>
+                                <tr><td><strong>What's excluded</strong></td><td>CSS signals, Golden Checklist, personalized journeys, adoption scoring</td></tr>
+                            </table>
+                        </div>
+                    </div>
+                    <div class="permutation-card" onclick="this.classList.toggle('expanded')">
+                        <div class="permutation-surface">
+                            <span class="permutation-icon">&#x1F331;</span>
+                            <div class="permutation-info">
+                                <h4>Authenticated &mdash; Onboarding</h4>
+                                <p>&le;90 days from Product Order Start Date</p>
+                            </div>
+                            <span class="expand-indicator">&#x25BC;</span>
+                        </div>
+                        <div class="permutation-detail">
+                            <table class="permutation-table">
+                                <tr><td><strong>Trigger</strong></td><td>Product Order Start Date &le; 90 days ago (per C360 Data Graph)</td></tr>
+                                <tr><td><strong>Available context</strong></td><td>Contact identity, entitlements, product bundle, checklist progress</td></tr>
+                                <tr><td><strong>Content strategy</strong></td><td>Phase-gated checklist (v4), bundled Agentforce + Data Cloud setup, "get started" orientation content</td></tr>
+                                <tr><td><strong>Guided path</strong></td><td>Golden Checklist &rarr; phase-by-phase completion &rarr; feature-activation milestones</td></tr>
+                                <tr><td><strong>Escalation path</strong></td><td>Expert Coaching referral when stuck on setup blockers</td></tr>
+                                <tr><td><strong>Success signal</strong></td><td>Time to first feature activation; checklist phase completion rate</td></tr>
+                            </table>
+                        </div>
+                    </div>
+                    <div class="permutation-card" onclick="this.classList.toggle('expanded')">
+                        <div class="permutation-surface">
+                            <span class="permutation-icon">&#x1F680;</span>
+                            <div class="permutation-info">
+                                <h4>Authenticated &mdash; Adoption</h4>
+                                <p>&gt;90 days from Tenant Create Date</p>
+                            </div>
+                            <span class="expand-indicator">&#x25BC;</span>
+                        </div>
+                        <div class="permutation-detail">
+                            <table class="permutation-table">
+                                <tr><td><strong>Trigger</strong></td><td>Tenant Create Date &gt; 90 days ago (per C360 Data Graph)</td></tr>
+                                <tr><td><strong>Available context</strong></td><td>Full CSS signals: usage patterns, feature adoption scores, case history, search behavior</td></tr>
+                                <tr><td><strong>Content strategy</strong></td><td>Goal-driven feature expansion, "dig deeper" paths, best-practice content from community, use-case-specific Trailhead modules</td></tr>
+                                <tr><td><strong>Guided path</strong></td><td>Feature recommendation engine &rarr; adoption avenues &rarr; gamification milestones</td></tr>
+                                <tr><td><strong>Escalation path</strong></td><td>Human handoff when confidence is low; community thread linking for validation</td></tr>
+                                <tr><td><strong>Success signal</strong></td><td>Feature expansion rate; CSS adoption score delta; repeat engagement</td></tr>
+                            </table>
+                        </div>
+                    </div>
+                </div>
             </div>
 
             <!-- Progression -->
             <div class="section-card">
                 <h2>The Next Phase for Agentic Success</h2>
-                <p class="section-subtitle">Our maturity path &mdash; bridging strategy into execution</p>
+                <p class="section-subtitle">Our maturity path &mdash; click each phase for what's in/out of the index and what it unlocks</p>
                 <div class="progression-track">
-                    <div class="progression-card">
+                    <div class="progression-card expandable" onclick="this.classList.toggle('expanded')">
                         <span class="progression-badge foundation">Foundation</span>
                         <h4>1. Comprehension</h4>
                         <div class="unlock-tag">Unlocks: Content Understanding</div>
@@ -1405,8 +1825,30 @@
                             <li>Ingest & structure Trailhead, video, and community content</li>
                             <li>Establish a shared knowledge base for the agent</li>
                         </ul>
+                        <span class="expand-indicator phase-expand">&#x25BC;</span>
+                        <div class="phase-detail">
+                            <div class="phase-detail-section">
+                                <strong>What's in the index:</strong>
+                                <ul>
+                                    <li>Trailhead modules & units (3,656 mapped)</li>
+                                    <li>Product Documentation (Sales, Service)</li>
+                                    <li>Knowledge Articles (active, EN)</li>
+                                </ul>
+                            </div>
+                            <div class="phase-detail-section">
+                                <strong>Notable exclusions:</strong>
+                                <ul>
+                                    <li>Videos (Wave 2), Community Q&A (Wave 3)</li>
+                                    <li>Non-English content</li>
+                                    <li>Deprecated / archived articles</li>
+                                </ul>
+                            </div>
+                            <div class="phase-detail-section">
+                                <strong>Phase unlocks:</strong> Agent can respond to "how do I set up X?" with structured Trailhead guidance and product docs — single-source, no personalization.
+                            </div>
+                        </div>
                     </div>
-                    <div class="progression-card">
+                    <div class="progression-card expandable" onclick="this.classList.toggle('expanded')">
                         <span class="progression-badge elevation">Elevation</span>
                         <h4>2. Conscientious <span class="progression-check">&#x2714;</span></h4>
                         <div class="unlock-tag">Unlocks: Trustworthy Guidance</div>
@@ -1414,8 +1856,29 @@
                             <li>Apply quality & compliance guardrails to every recommendation</li>
                             <li>Validate against expert & community best practices</li>
                         </ul>
+                        <span class="expand-indicator phase-expand">&#x25BC;</span>
+                        <div class="phase-detail">
+                            <div class="phase-detail-section">
+                                <strong>What's added:</strong>
+                                <ul>
+                                    <li>Trailhead voice & personality layer (consistent tone)</li>
+                                    <li>Citation requirements for every answer</li>
+                                    <li>Guardrail: no hallucinated features, no deprecated paths</li>
+                                </ul>
+                            </div>
+                            <div class="phase-detail-section">
+                                <strong>Notable exclusions:</strong>
+                                <ul>
+                                    <li>User-specific context (still generic per cloud)</li>
+                                    <li>Case history awareness</li>
+                                </ul>
+                            </div>
+                            <div class="phase-detail-section">
+                                <strong>Phase unlocks:</strong> Agent answers are credible and verifiable — every claim links back to a source, and the voice feels like a trusted guide rather than a search engine.
+                            </div>
+                        </div>
                     </div>
-                    <div class="progression-card">
+                    <div class="progression-card expandable" onclick="this.classList.toggle('expanded')">
                         <span class="progression-badge elevation">Elevation</span>
                         <h4>3. Contextual <span class="progression-check">&#x2714;</span></h4>
                         <div class="unlock-tag">Unlocks: Personalized Journeys</div>
@@ -1423,8 +1886,30 @@
                             <li>Tailor guidance to the customer's cloud, role, and goal</li>
                             <li>Sequence the right content at the right moment</li>
                         </ul>
+                        <span class="expand-indicator phase-expand">&#x25BC;</span>
+                        <div class="phase-detail">
+                            <div class="phase-detail-section">
+                                <strong>What's added:</strong>
+                                <ul>
+                                    <li>C360 Data Graph signals (SHIPPED 7/23): contact identity, entitlements, sub-200ms retrieval</li>
+                                    <li>Case history mixes + search behavior patterns</li>
+                                    <li>Journey-stage awareness (Onboarding vs. Adoption triggers)</li>
+                                </ul>
+                            </div>
+                            <div class="phase-detail-section">
+                                <strong>Notable exclusions:</strong>
+                                <ul>
+                                    <li>Proactive outreach (agent-initiated, not customer-initiated)</li>
+                                    <li>Cross-org pattern learning</li>
+                                    <li>Predictive churn scoring</li>
+                                </ul>
+                            </div>
+                            <div class="phase-detail-section">
+                                <strong>Phase unlocks:</strong> Answers become personal — the agent knows your product, your stage, and your gaps. Recommendations narrow from "all Sales Cloud content" to "what you haven't set up yet."
+                            </div>
+                        </div>
                     </div>
-                    <div class="progression-card done">
+                    <div class="progression-card done expandable" onclick="this.classList.toggle('expanded')">
                         <span class="progression-badge transformation">Transformation</span>
                         <h4>4. Cognition</h4>
                         <div class="unlock-tag">Unlocks: Autonomous Action</div>
@@ -1432,6 +1917,28 @@
                             <li>Agent reasons across signals to proactively drive adoption</li>
                             <li>Customers co-create outcomes with the agent, at scale</li>
                         </ul>
+                        <span class="expand-indicator phase-expand">&#x25BC;</span>
+                        <div class="phase-detail">
+                            <div class="phase-detail-section">
+                                <strong>What's added:</strong>
+                                <ul>
+                                    <li>Gamification: milestone tracking, adoption streaks, progress badges</li>
+                                    <li>Journey tracking: proactive next-step suggestions based on completion</li>
+                                    <li>Cross-signal reasoning: combining usage + case + community patterns</li>
+                                </ul>
+                            </div>
+                            <div class="phase-detail-section">
+                                <strong>Notable exclusions (current):</strong>
+                                <ul>
+                                    <li>Autonomous configuration changes</li>
+                                    <li>Multi-tenant optimization</li>
+                                    <li>Revenue-attribution modeling</li>
+                                </ul>
+                            </div>
+                            <div class="phase-detail-section">
+                                <strong>Phase unlocks:</strong> The agent anticipates what you need before you ask — it surfaces the next step, celebrates progress, and connects you with peers on similar journeys.
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>

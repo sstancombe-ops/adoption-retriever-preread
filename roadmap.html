@@ -1052,9 +1052,9 @@
             animation: slideDown 0.25s ease;
         }
 
-        .exec-expand-block.expanded .exec-expand-trigger span {
+        .exec-expand-block.expanded .exec-expand-trigger .expand-arrow {
             display: inline-block;
-            transform: rotate(180deg) translateY(2px);
+            transform: rotate(180deg);
         }
 
         /* ===== Persona (Tab 1 refined) ===== */
@@ -1369,7 +1369,7 @@
                 </div>
                 <div class="exec-expand-block" onclick="this.classList.toggle('expanded')">
                     <div class="exec-expand-trigger">
-                        <span style="font-size: 0.78rem; color: var(--sf-electric-blue); font-weight: 600; cursor: pointer;">What this means in practice &#x25BC;</span>
+                        <span style="font-size: 0.78rem; color: var(--sf-electric-blue); font-weight: 600; cursor: pointer;">What this means in practice <span class="expand-arrow">&#x25BC;</span></span>
                     </div>
                     <div class="exec-expand-content">
                         <div class="exec-grid" style="margin-top: 14px;">

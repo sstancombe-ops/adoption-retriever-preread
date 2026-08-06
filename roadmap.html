@@ -1608,62 +1608,13 @@
                 <div class="release-lane">
                     <div class="release-lane-header">
                         <div class="release-month">September 2026</div>
-                        <div class="release-branch">OrgCS.264.1 &middot; Prod Sep 25</div>
+                        <div class="release-branch">OrgCS.264.1 &middot; Prod Sep 25 &middot; Unified: both SubAgents</div>
                     </div>
+                    <p style="margin: 0 0 14px; font-size: 0.85rem; color: var(--sf-gray-600); line-height: 1.45;">
+                        <strong style="color: var(--sf-navy);">Locked (Roxanne, Aug 6):</strong> Agentforce + Data Cloud and Financial Services ship for <em>both</em> Onboarding and Adoption in September. Shared retriever / shared content pool &mdash; no staggered cloud staging by SubAgent.
+                    </p>
                     <div class="release-lane-grid">
-                    <!-- Card 1: Industry Cloud (FINS) Adoption SubAgent -->
-                    <div class="initiative-card expansion-card">
-                        <div class="card-header">
-                            <span class="status-badge in-progress">IN PROGRESS</span>
-                            <span class="card-phase">September Release</span>
-                        </div>
-                        <h3 class="card-title">Adoption SubAgent &mdash; Industry Cloud (FINS) <span class="verified-badge" title="CSDP workflow submitted">&#x2713;</span></h3>
-                        <p class="card-description">Expand the Adoption SubAgent retriever to Industry Cloud (FINS) product documentation, Trailhead modules, and Knowledge Articles. First cloud milestone toward extending Adoption Retriever to all clouds by end of FY.</p>
-                        <div class="card-pills">
-                            <span class="pill product">Industry Cloud (FINS)</span>
-                            <span class="pill product">I-2952</span>
-                            <span class="pill target">UAT 9/10 &middot; Prod 9/25</span>
-                            <span class="pill metric">Wave 1 of All-Clouds Expansion</span>
-                            <span class="pill target">C360 Identity: LIVE</span>
-                        </div>
-                        <span class="expand-indicator">&#x25BC;</span>
-                        <div class="expanded-content">
-                            <div class="detail-section-title">CSDP Workflow Submission</div>
-                            <ul class="workflow-links">
-                                <li><a href="https://salesforce.enterprise.slack.com/archives/C0B7NENH9QF/p1784909385272319" target="_blank" rel="noopener">Expand Adoption Retriever to Financial Services (Adoption SubAgent)</a></li>
-                                <li><a href="https://salesforce.enterprise.slack.com/archives/C0B7NENH9QF/p1784922203827319" target="_blank" rel="noopener">Data Graph: Expand Agent-led Onboarding and Adoption eligibility for new clouds</a></li>
-                            </ul>
-                            <div class="detail-section-title">Related KPIs</div>
-                            <div class="detail-kpi-grid">
-                                <div class="detail-kpi-item">
-                                    <span class="detail-kpi-label">V2MOM Measure</span>
-                                    <span class="detail-kpi-value">M1: Answer Quality</span>
-                                </div>
-                                <div class="detail-kpi-item">
-                                    <span class="detail-kpi-label">Content Coverage</span>
-                                    <span class="detail-kpi-value">125 KAs + 2,143 Docs + Trailhead</span>
-                                </div>
-                                <div class="detail-kpi-item">
-                                    <span class="detail-kpi-label">Language Support</span>
-                                    <span class="detail-kpi-value">English + FIGSPJA</span>
-                                </div>
-                                <div class="detail-kpi-item">
-                                    <span class="detail-kpi-label">Release Target</span>
-                                    <span class="detail-kpi-value">September 2026</span>
-                                </div>
-                            </div>
-                            <div class="detail-section-title">Hard Dependencies</div>
-                            <ul class="dependency-list">
-                                <li><strong>Business Readiness:</strong> Revenue/eligibility criteria for FINS adoption guidance confirmed</li>
-                                <li><strong>CSDP:</strong> Retriever indexing workflow submitted for FSC (standard intake)</li>
-                                <li><strong>Content Sources:</strong> Trailhead PFT (aLVEE00000016GH4AY), Knowledge taxonomy "Industry-Financial Services", Product Docs (id=ind.fsc)</li>
-                                <li><strong>C360 Identity Layer:</strong> <em>SHIPPED 7/23</em> &mdash; DG_User_Personalization live in prod (contact identity, entitlements, sub-200ms, 99.99% uptime)</li>
-                                <li><strong>Scope Note:</strong> FSC onboarding (full transition journey) explicitly deferred; September = adoption guidance only</li>
-                            </ul>
-                        </div>
-                    </div>
-
-                    <!-- Card 2: Agentforce & Data Cloud Onboarding -->
+                    <!-- Card 1: Onboarding — Agentforce & Data Cloud -->
                     <div class="initiative-card expansion-card">
                         <div class="card-header">
                             <span class="status-badge in-progress">IN PROGRESS</span>
@@ -1708,93 +1659,36 @@
                             <ul class="dependency-list">
                                 <li><strong>Content Structure:</strong> Agentforce = Phase 4 of bundled v4 checklist (Phases 1-3 remain Sales/Service)</li>
                                 <li><strong>Data Cloud:</strong> Enablement prerequisite only &mdash; no dig-deeper standalone content needed</li>
-                                <li><strong>CSDP:</strong> Retriever indexing workflow (standard intake)</li>
+                                <li><strong>CSDP:</strong> Retriever indexing workflow (standard intake); Helen spike on filter vs complex tagging path</li>
                                 <li><strong>Trailhead PFTs:</strong> Agentforce (aLyEE0000000Ig50AE), Data Cloud (aLyEE0000000Ig80AE)</li>
-                                <li><strong>C360 Identity Layer:</strong> <em>SHIPPED 7/23</em> &mdash; DG_User_Personalization live in prod (role, language, timezone, entitlements available for personalization)</li>
+                                <li><strong>Architecture:</strong> Shared pool with Adoption &mdash; AF/DC content lands for both SubAgents in this release</li>
+                                <li><strong>C360 Identity Layer:</strong> <em>SHIPPED 7/23</em> &mdash; DG_User_Personalization live in prod</li>
                                 <li><strong>Localization:</strong> English + FIGSPJA</li>
                             </ul>
                         </div>
                     </div>
 
-                    <!-- Card: Golden Dataset / Answer Quality Baseline (Sept expansion gate) -->
+                    <!-- Card 2: Adoption — Agentforce & Data Cloud (pulled forward from Oct) -->
                     <div class="initiative-card expansion-card">
                         <div class="card-header">
                             <span class="status-badge in-progress">IN PROGRESS</span>
                             <span class="card-phase">September Release</span>
                         </div>
-                        <h3 class="card-title">Golden Dataset Baseline &mdash; Multi-Cloud Expansion Evals <span class="verified-badge" title="CSDP workflow submitted">&#x2713;</span></h3>
-                        <p class="card-description">Establish a new golden dataset baseline (~54&ndash;66 utterances) for quantitative retrieval + answer quality evaluation ahead of September multi-cloud expansion. Covers Adoption (Sales, Service, FSC) and Onboarding (Sales+Agentforce, Service+Agentforce). Partnering with Helen (CSDP) and Maya (evals) on operating model, sampling, and utterance generation.</p>
-                        <div class="card-pills">
-                            <span class="pill product">Answer Quality</span>
-                            <span class="pill product">Helen + Maya</span>
-                            <span class="pill metric">~54&ndash;66 utterances</span>
-                            <span class="pill target">Coverage over volume</span>
-                            <span class="pill dependency">Operating model: blocking</span>
-                        </div>
-                        <span class="expand-indicator">&#x25BC;</span>
-                        <div class="expanded-content">
-                            <div class="detail-section-title">CSDP Workflow Submission</div>
-                            <ul class="workflow-links">
-                                <li><a href="https://salesforce.enterprise.slack.com/archives/C0B7NENH9QF/p1784576026562999" target="_blank" rel="noopener">Creation of the golden dataset &mdash; Adoption Retriever</a></li>
-                            </ul>
-                            <div class="detail-section-title">Related KPIs</div>
-                            <div class="detail-kpi-grid">
-                                <div class="detail-kpi-item">
-                                    <span class="detail-kpi-label">Adoption Utterances</span>
-                                    <span class="detail-kpi-value">14 per cloud (Sales / Service / FSC)</span>
-                                </div>
-                                <div class="detail-kpi-item">
-                                    <span class="detail-kpi-label">Onboarding Utterances</span>
-                                    <span class="detail-kpi-value">12 per cloud (Sales+AgF / Service+AgF)</span>
-                                </div>
-                                <div class="detail-kpi-item">
-                                    <span class="detail-kpi-label">Sampling Method</span>
-                                    <span class="detail-kpi-value">Coverage-first (not TCD-weighted)</span>
-                                </div>
-                                <div class="detail-kpi-item">
-                                    <span class="detail-kpi-label">Release Gate</span>
-                                    <span class="detail-kpi-value">Sept expansion answer quality</span>
-                                </div>
-                            </div>
-                            <div class="detail-section-title">Hard Dependencies</div>
-                            <ul class="dependency-list">
-                                <li><strong>Operating model (BLOCKING):</strong> Helen + Maya + Wynnona align on golden dataset process / hand-off format before Sept delivery commitment</li>
-                                <li><strong>Content scoping (parallel):</strong> Stephanie + Francis &mdash; onboarding flow steps + article selection against v4 checklist (Phase 4 Agentforce)</li>
-                                <li><strong>Utterance generation:</strong> Helen's team &mdash; LLM-driven synthetic utterances after sampling strategy locked</li>
-                                <li><strong>SME review:</strong> Multi-article mapping + quality review before eval run</li>
-                                <li><strong>Why Expansion:</strong> Required to evaluate answer quality when grounding expands to FSC + Agentforce/DC &mdash; not a standalone experiment</li>
-                            </ul>
-                        </div>
-                    </div>
-                    </div>
-                </div>
-
-                <!-- Release Lane: October -->
-                <div class="release-lane">
-                    <div class="release-lane-header">
-                        <div class="release-month">October 2026</div>
-                        <div class="release-branch">OrgCS.264.2 &middot; Prod Oct 23</div>
-                    </div>
-                    <div class="release-lane-grid">
-                    <!-- Card 7: Agentforce & Data Cloud — Adoption (Oct) -->
-                    <div class="initiative-card expansion-card">
-                        <div class="card-header">
-                            <span class="status-badge planned">PLANNED</span>
-                            <span class="card-phase">October Release</span>
-                        </div>
                         <h3 class="card-title">Adoption SubAgent &mdash; Agentforce & Data Cloud <span class="verified-badge" title="CSDP Intake Request Workflow Completed">&#x2713;</span></h3>
-                        <p class="card-description">Extend the Adoption SubAgent retriever to Agentforce and Data Cloud product documentation. Builds on the September onboarding expansion to add adoption-specific guidance paths for existing customers.</p>
+                        <p class="card-description">Extend the Adoption SubAgent retriever to Agentforce and Data Cloud in the same September cut as Onboarding. Ships with the shared content pool &mdash; adoption-specific guidance paths for existing customers alongside onboarding Phase 4 enablement.</p>
                         <div class="card-pills">
                             <span class="pill product">Agentforce</span>
                             <span class="pill product">Data Cloud</span>
                             <span class="pill dependency">Adoption</span>
-                            <span class="pill target">Prod 10/23</span>
+                            <span class="pill target">UAT 9/10 &middot; Prod 9/25</span>
+                            <span class="pill metric">Pulled forward from Oct</span>
                         </div>
                         <span class="expand-indicator">&#x25BC;</span>
                         <div class="expanded-content">
                             <div class="detail-section-title">CSDP Workflow Submission</div>
                             <ul class="workflow-links">
                                 <li><a href="https://salesforce.enterprise.slack.com/archives/C0B7NENH9QF/p1785776121866359" target="_blank" rel="noopener">Expand Adoption Retriever-Adoption SubAgent &mdash; Agentforce &amp; Data Cloud</a></li>
+                                <li><a href="https://salesforce.enterprise.slack.com/archives/C0B7NENH9QF/p1782923212674829" target="_blank" rel="noopener">Expand Adoption Retriever to Agentforce &amp; Data Cloud</a></li>
                             </ul>
                             <div class="detail-section-title">Related KPIs</div>
                             <div class="detail-kpi-grid">
@@ -1806,29 +1700,196 @@
                                     <span class="detail-kpi-label">Feature Expansion</span>
                                     <span class="detail-kpi-value">Guided &rarr; Activated</span>
                                 </div>
+                                <div class="detail-kpi-item">
+                                    <span class="detail-kpi-label">Release Target</span>
+                                    <span class="detail-kpi-value">September 2026</span>
+                                </div>
                             </div>
                             <div class="detail-section-title">Hard Dependencies</div>
                             <ul class="dependency-list">
-                                <li><strong>Prerequisite:</strong> September onboarding expansion live (Agentforce &amp; Data Cloud)</li>
+                                <li><strong>Decision:</strong> Roxanne approved unified Sept expansion (Aug 6) &mdash; no longer Oct-only for Adoption AF/DC</li>
+                                <li><strong>Signals:</strong> AF/DC CSS readiness may be incomplete; plan degraded-signal / alternate triggers with business + AQ partners</li>
                                 <li><strong>CSDP:</strong> Adoption retriever indexing workflow (standard intake)</li>
                                 <li><strong>Content:</strong> Adoption-specific feature paths for Agentforce and Data Cloud use cases</li>
+                                <li><strong>Architecture:</strong> Shared pool with Onboarding &mdash; content enablement is one wave for both SubAgents</li>
                             </ul>
                         </div>
                     </div>
 
-                    <!-- Card 8: Marketing Cloud Next -->
+                    <!-- Card 3: Onboarding — Industry Cloud (FINS) (pulled forward from Oct) -->
+                    <div class="initiative-card expansion-card">
+                        <div class="card-header">
+                            <span class="status-badge in-progress">IN PROGRESS</span>
+                            <span class="card-phase">September Release</span>
+                        </div>
+                        <h3 class="card-title">Onboarding SubAgent &mdash; Industry Cloud (FINS) <span class="verified-badge" title="CSDP Intake Request Workflow Completed">&#x2713;</span></h3>
+                        <p class="card-description">Add onboarding guidance for Financial Services Cloud in the same September cut as Adoption FINS. Provides transition-journey support for new FINS customers alongside adoption feature guidance.</p>
+                        <div class="card-pills">
+                            <span class="pill product">Industry Cloud (FINS)</span>
+                            <span class="pill dependency">Onboarding</span>
+                            <span class="pill target">UAT 9/10 &middot; Prod 9/25</span>
+                            <span class="pill metric">Pulled forward from Oct</span>
+                        </div>
+                        <span class="expand-indicator">&#x25BC;</span>
+                        <div class="expanded-content">
+                            <div class="detail-section-title">CSDP Workflow Submission</div>
+                            <ul class="workflow-links">
+                                <li><a href="https://salesforce.enterprise.slack.com/archives/C0B7NENH9QF/p1785776222294919" target="_blank" rel="noopener">Expand Adoption Retriever-Onboarding SubAgent &mdash; Industry Cloud (FINS)</a></li>
+                                <li><a href="https://salesforce.enterprise.slack.com/archives/C0B7NENH9QF/p1784922203827319" target="_blank" rel="noopener">Data Graph: Expand Agent-led Onboarding and Adoption eligibility for new clouds</a></li>
+                            </ul>
+                            <div class="detail-section-title">Related KPIs</div>
+                            <div class="detail-kpi-grid">
+                                <div class="detail-kpi-item">
+                                    <span class="detail-kpi-label">Onboarding Completion</span>
+                                    <span class="detail-kpi-value">Checklist Phase %</span>
+                                </div>
+                                <div class="detail-kpi-item">
+                                    <span class="detail-kpi-label">Time to Activation</span>
+                                    <span class="detail-kpi-value">Days to First Feature</span>
+                                </div>
+                                <div class="detail-kpi-item">
+                                    <span class="detail-kpi-label">Release Target</span>
+                                    <span class="detail-kpi-value">September 2026</span>
+                                </div>
+                            </div>
+                            <div class="detail-section-title">Hard Dependencies</div>
+                            <ul class="dependency-list">
+                                <li><strong>Decision:</strong> Roxanne approved unified Sept expansion (Aug 6) &mdash; FINS onboarding no longer Oct-only</li>
+                                <li><strong>Content:</strong> FINS onboarding checklist structure and phase gating</li>
+                                <li><strong>CSDP:</strong> Standard intake for onboarding retriever indexing</li>
+                                <li><strong>Architecture:</strong> Shared pool with Adoption &mdash; FINS content lands for both SubAgents in this release</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <!-- Card 4: Adoption — Industry Cloud (FINS) -->
+                    <div class="initiative-card expansion-card">
+                        <div class="card-header">
+                            <span class="status-badge in-progress">IN PROGRESS</span>
+                            <span class="card-phase">September Release</span>
+                        </div>
+                        <h3 class="card-title">Adoption SubAgent &mdash; Industry Cloud (FINS) <span class="verified-badge" title="CSDP workflow submitted">&#x2713;</span></h3>
+                        <p class="card-description">Expand the Adoption SubAgent retriever to Industry Cloud (FINS) product documentation, Trailhead modules, and Knowledge Articles. Ships with Onboarding FINS in the same September wave.</p>
+                        <div class="card-pills">
+                            <span class="pill product">Industry Cloud (FINS)</span>
+                            <span class="pill product">I-2952</span>
+                            <span class="pill target">UAT 9/10 &middot; Prod 9/25</span>
+                            <span class="pill metric">Wave 1 of All-Clouds Expansion</span>
+                            <span class="pill target">C360 Identity: LIVE</span>
+                        </div>
+                        <span class="expand-indicator">&#x25BC;</span>
+                        <div class="expanded-content">
+                            <div class="detail-section-title">CSDP Workflow Submission</div>
+                            <ul class="workflow-links">
+                                <li><a href="https://salesforce.enterprise.slack.com/archives/C0B7NENH9QF/p1784909385272319" target="_blank" rel="noopener">Expand Adoption Retriever to Financial Services (Adoption SubAgent)</a></li>
+                                <li><a href="https://salesforce.enterprise.slack.com/archives/C0B7NENH9QF/p1784922203827319" target="_blank" rel="noopener">Data Graph: Expand Agent-led Onboarding and Adoption eligibility for new clouds</a></li>
+                            </ul>
+                            <div class="detail-section-title">Related KPIs</div>
+                            <div class="detail-kpi-grid">
+                                <div class="detail-kpi-item">
+                                    <span class="detail-kpi-label">V2MOM Measure</span>
+                                    <span class="detail-kpi-value">M1: Answer Quality</span>
+                                </div>
+                                <div class="detail-kpi-item">
+                                    <span class="detail-kpi-label">Content Coverage</span>
+                                    <span class="detail-kpi-value">125 KAs + 2,143 Docs + Trailhead</span>
+                                </div>
+                                <div class="detail-kpi-item">
+                                    <span class="detail-kpi-label">Language Support</span>
+                                    <span class="detail-kpi-value">English + FIGSPJA</span>
+                                </div>
+                                <div class="detail-kpi-item">
+                                    <span class="detail-kpi-label">Release Target</span>
+                                    <span class="detail-kpi-value">September 2026</span>
+                                </div>
+                            </div>
+                            <div class="detail-section-title">Hard Dependencies</div>
+                            <ul class="dependency-list">
+                                <li><strong>Business Readiness:</strong> Revenue/eligibility criteria for FINS adoption guidance confirmed; FINS CSS landing for Sept</li>
+                                <li><strong>CSDP:</strong> Retriever indexing workflow submitted for FSC (standard intake)</li>
+                                <li><strong>Content Sources:</strong> Trailhead PFT (aLVEE00000016GH4AY), Knowledge taxonomy "Industry-Financial Services", Product Docs (id=ind.fsc)</li>
+                                <li><strong>C360 Identity Layer:</strong> <em>SHIPPED 7/23</em> &mdash; DG_User_Personalization live in prod</li>
+                                <li><strong>Architecture:</strong> Shared pool with Onboarding &mdash; FINS content lands for both SubAgents in this release</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <!-- Card 5: Golden Dataset / Answer Quality Baseline -->
+                    <div class="initiative-card expansion-card">
+                        <div class="card-header">
+                            <span class="status-badge in-progress">IN PROGRESS</span>
+                            <span class="card-phase">September Release</span>
+                        </div>
+                        <h3 class="card-title">Golden Dataset Baseline &mdash; Multi-Cloud Expansion Evals <span class="verified-badge" title="CSDP workflow submitted">&#x2713;</span></h3>
+                        <p class="card-description">Establish a golden dataset baseline for quantitative retrieval + answer quality evaluation ahead of the unified September expansion. Covers both SubAgents across Sales, Service, Agentforce/Data Cloud, and FINS. AQ path: Yelli ATA + SME validation (Digital Success Quality).</p>
+                        <div class="card-pills">
+                            <span class="pill product">Answer Quality</span>
+                            <span class="pill product">Yelli + SME</span>
+                            <span class="pill metric">Coverage-first</span>
+                            <span class="pill target">Both SubAgents &times; AF/DC + FINS</span>
+                            <span class="pill dependency">Lower-env / ATA</span>
+                        </div>
+                        <span class="expand-indicator">&#x25BC;</span>
+                        <div class="expanded-content">
+                            <div class="detail-section-title">CSDP Workflow Submission</div>
+                            <ul class="workflow-links">
+                                <li><a href="https://salesforce.enterprise.slack.com/archives/C0B7NENH9QF/p1784576026562999" target="_blank" rel="noopener">Creation of the golden dataset &mdash; Adoption Retriever</a></li>
+                            </ul>
+                            <div class="detail-section-title">Related KPIs</div>
+                            <div class="detail-kpi-grid">
+                                <div class="detail-kpi-item">
+                                    <span class="detail-kpi-label">Adoption Utterances</span>
+                                    <span class="detail-kpi-value">Per cloud (Sales / Service / FSC / AF+DC)</span>
+                                </div>
+                                <div class="detail-kpi-item">
+                                    <span class="detail-kpi-label">Onboarding Utterances</span>
+                                    <span class="detail-kpi-value">Per cloud (Sales / Service / FSC / AF+DC)</span>
+                                </div>
+                                <div class="detail-kpi-item">
+                                    <span class="detail-kpi-label">Sampling Method</span>
+                                    <span class="detail-kpi-value">Coverage-first (not TCD-weighted)</span>
+                                </div>
+                                <div class="detail-kpi-item">
+                                    <span class="detail-kpi-label">Release Gate</span>
+                                    <span class="detail-kpi-value">Sept unified expansion AQ</span>
+                                </div>
+                            </div>
+                            <div class="detail-section-title">Hard Dependencies</div>
+                            <ul class="dependency-list">
+                                <li><strong>AQ path:</strong> Yelli ATA in lower env (or prod interim) + SME validation &mdash; Helen is not primary AQ owner</li>
+                                <li><strong>Content scoping (parallel):</strong> Stephanie + Francis &mdash; onboarding flow steps + article selection against v4 checklist (Phase 4 Agentforce)</li>
+                                <li><strong>Negative evals:</strong> Scope with Roxanne against unified Sept intent (cross-contamination guardrails vs obsolete stagger negatives)</li>
+                                <li><strong>Why Expansion:</strong> Required to evaluate answer quality when grounding expands to FSC + Agentforce/DC for both SubAgents</li>
+                            </ul>
+                        </div>
+                    </div>
+                    </div>
+                </div>
+
+                <!-- Release Lane: October -->
+                <div class="release-lane">
+                    <div class="release-lane-header">
+                        <div class="release-month">October 2026</div>
+                        <div class="release-branch">OrgCS.264.2 &middot; Prod Oct 23 &middot; Both SubAgents</div>
+                    </div>
+                    <p style="margin: 0 0 14px; font-size: 0.85rem; color: var(--sf-gray-600); line-height: 1.45;">
+                        <strong style="color: var(--sf-navy);">Locked (Roxanne, Aug 6):</strong> Both SubAgents expand to Marketing Cloud Next. AF/DC and FINS moved into the September unified cut.
+                    </p>
+                    <div class="release-lane-grid">
+                    <!-- Card: Marketing Cloud Next -->
                     <div class="initiative-card expansion-card">
                         <div class="card-header">
                             <span class="status-badge planned">PLANNED</span>
                             <span class="card-phase">October Release</span>
                         </div>
                         <h3 class="card-title">Adoption & Onboarding &mdash; Marketing Cloud Next <span class="verified-badge" title="CSDP workflow submitted">&#x2713;</span></h3>
-                        <p class="card-description">Expand both Adoption and Onboarding SubAgents to Marketing Cloud Next (the next-gen marketing platform). Covers onboarding setup guidance and adoption feature expansion paths.</p>
+                        <p class="card-description">Expand both Adoption and Onboarding SubAgents to Marketing Cloud Next (Marketing App taxonomy). Covers onboarding setup guidance and adoption feature expansion paths &mdash; same-release enablement for both experiences.</p>
                         <div class="card-pills">
                             <span class="pill product">Marketing Cloud Next</span>
                             <span class="pill dependency">Adoption</span>
                             <span class="pill dependency">Onboarding</span>
                             <span class="pill target">Prod 10/23</span>
+                            <span class="pill metric">Marketing App taxonomy</span>
                         </div>
                         <span class="expand-indicator">&#x25BC;</span>
                         <div class="expanded-content">
@@ -1847,51 +1908,17 @@
                                     <span class="detail-kpi-label">Onboarding Success</span>
                                     <span class="detail-kpi-value">Time to First Campaign</span>
                                 </div>
+                                <div class="detail-kpi-item">
+                                    <span class="detail-kpi-label">Scope</span>
+                                    <span class="detail-kpi-value">Both SubAgents · one release</span>
+                                </div>
                             </div>
                             <div class="detail-section-title">Hard Dependencies</div>
                             <ul class="dependency-list">
                                 <li><strong>CSDP:</strong> Retriever indexing for Marketing Cloud Next content sources</li>
-                                <li><strong>Content:</strong> Knowledge taxonomy tags, Product Documentation IDs, Trailhead PFT confirmation</li>
+                                <li><strong>Content:</strong> Knowledge taxonomy tags (CaseRoutingTaxonomy <code>Marketing App</code>), Product Documentation IDs, Trailhead PFT confirmation</li>
                                 <li><strong>Business Readiness:</strong> MC Next GA status and customer eligibility criteria</li>
-                            </ul>
-                        </div>
-                    </div>
-
-                    <!-- Card 9: Industry Cloud FINS — Onboarding (Oct) -->
-                    <div class="initiative-card expansion-card">
-                        <div class="card-header">
-                            <span class="status-badge planned">PLANNED</span>
-                            <span class="card-phase">October Release</span>
-                        </div>
-                        <h3 class="card-title">Onboarding SubAgent &mdash; Industry Cloud (FINS) <span class="verified-badge" title="CSDP Intake Request Workflow Completed">&#x2713;</span></h3>
-                        <p class="card-description">Add onboarding guidance for Financial Services Cloud. Builds on the September adoption expansion to provide full transition journey support for new FINS customers.</p>
-                        <div class="card-pills">
-                            <span class="pill product">FSC</span>
-                            <span class="pill dependency">Onboarding</span>
-                            <span class="pill target">Prod 10/23</span>
-                        </div>
-                        <span class="expand-indicator">&#x25BC;</span>
-                        <div class="expanded-content">
-                            <div class="detail-section-title">CSDP Workflow Submission</div>
-                            <ul class="workflow-links">
-                                <li><a href="https://salesforce.enterprise.slack.com/archives/C0B7NENH9QF/p1785776222294919" target="_blank" rel="noopener">Expand Adoption Retriever-Onboarding SubAgent &mdash; Industry Cloud (FINS)</a></li>
-                            </ul>
-                            <div class="detail-section-title">Related KPIs</div>
-                            <div class="detail-kpi-grid">
-                                <div class="detail-kpi-item">
-                                    <span class="detail-kpi-label">Onboarding Completion</span>
-                                    <span class="detail-kpi-value">Checklist Phase %</span>
-                                </div>
-                                <div class="detail-kpi-item">
-                                    <span class="detail-kpi-label">Time to Activation</span>
-                                    <span class="detail-kpi-value">Days to First Feature</span>
-                                </div>
-                            </div>
-                            <div class="detail-section-title">Hard Dependencies</div>
-                            <ul class="dependency-list">
-                                <li><strong>Prerequisite:</strong> September FSC adoption expansion live</li>
-                                <li><strong>Content:</strong> FINS onboarding checklist structure and phase gating</li>
-                                <li><strong>CSDP:</strong> Standard intake for onboarding retriever indexing</li>
+                                <li><strong>Architecture:</strong> Same shared-retriever model as Sept &mdash; both SubAgents expand together</li>
                             </ul>
                         </div>
                     </div>

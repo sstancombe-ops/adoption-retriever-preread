@@ -13,6 +13,7 @@ Working artifacts for the alignment call on extending the **golden-set operating
 | [`workback-timeline.html`](./workback-timeline.html) | Workback timeline — critical path from today to the Sept 28 release. |
 | [`utterance-effort-matrix.html`](./utterance-effort-matrix.html) | Utterance-effort scoping matrix — straw-man counts to correct live with Maya's team. |
 | [`trailhead_before_after.html`](./trailhead_before_after.html) | **WIP** Trailhead Wave 1A before/after — Practical Steps rewrite (Help-only → Trailhead + Help). Interactive toggle. |
+| [`journey-cards-walkthrough.html`](./journey-cards-walkthrough.html) | **Auth Help Home** interactive prototype — Get Started / Discover New Capabilities: on-card product CTAs (1–2) vs View more → agent asks (&gt;2). |
 
 ## Viewing
 

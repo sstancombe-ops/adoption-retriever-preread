@@ -1,0 +1,1123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Homepage Journey Cards — Auth Walkthrough (1–2 vs View more)</title>
+<meta name="description" content="Interactive prototype: authenticated Help Home Get Started / Discover New Capabilities — on-card product CTAs (1–2) vs View more agent disambiguation (>2).">
+<meta name="theme-color" content="#0176D3">
+<meta name="color-scheme" content="light">
+<style>
+@font-face {
+  font-family: 'Salesforce Sans';
+  src: local('Salesforce Sans Regular'), local('SalesforceSans-Regular');
+  font-weight: 400; font-style: normal; font-display: swap;
+}
+@font-face {
+  font-family: 'Salesforce Sans';
+  src: local('Salesforce Sans Bold'), local('SalesforceSans-Bold');
+  font-weight: 700; font-style: normal; font-display: swap;
+}
+@font-face {
+  font-family: 'Salesforce Sans';
+  src: local('Salesforce Sans Light'), local('SalesforceSans-Light');
+  font-weight: 300; font-style: normal; font-display: swap;
+}
+
+:root {
+  color-scheme: light;
+  --font: 'Salesforce Sans', 'Segoe UI', Arial, Helvetica, sans-serif;
+  --navy: #032D60;
+  --navy-2: #0B5CAB;
+  --text: #181818;
+  --text-2: #444444;
+  --text-3: #5C5C5C;
+  --blue: #0176D3;
+  --blue-bright: #1B96FF;
+  --blue-dark: #0B5CAB;
+  --cloud: #EAF5FE;
+  --cloud-2: #D8E6FE;
+  --hero: #F0F7FC;
+  --surface: #ffffff;
+  --border: #E5E5E5;
+  --border-2: #C9C9C9;
+  --sales: #0B827C;
+  --service: #E3066A;
+  --fins: #2E844A;
+  --shadow: 0 2px 8px rgba(3, 45, 96, 0.08), 0 1px 2px rgba(3, 45, 96, 0.06);
+  --shadow-lg: 0 8px 28px rgba(3, 45, 96, 0.14);
+  --radius: 16px;
+  --radius-sm: 12px;
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+html { color-scheme: light; }
+
+body {
+  font-family: var(--font);
+  background: #E8F1F8;
+  color: var(--text);
+  min-height: 100vh;
+  -webkit-font-smoothing: antialiased;
+}
+
+button, a { font-family: inherit; }
+
+/* ── Walkthrough chrome ── */
+.demo-bar {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background: #001E5B;
+  color: #fff;
+  border-bottom: 3px solid var(--blue-bright);
+  box-shadow: 0 4px 16px rgba(0, 30, 91, 0.25);
+}
+.demo-bar-inner {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 12px 20px 14px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px 20px;
+  align-items: flex-start;
+  justify-content: space-between;
+}
+.demo-brand {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  min-width: 220px;
+}
+.demo-brand .eyebrow {
+  font-size: 11px;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: #9BBFF5;
+  font-weight: 700;
+}
+.demo-brand h1 {
+  font-size: 15px;
+  font-weight: 700;
+  line-height: 1.25;
+}
+.demo-brand p {
+  font-size: 12px;
+  color: #C7D7F0;
+  max-width: 360px;
+  line-height: 1.35;
+}
+.scenario-tabs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  align-items: center;
+}
+.scenario-tabs label {
+  font-size: 11px;
+  color: #9BBFF5;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  margin-right: 4px;
+}
+.scenario-btn {
+  appearance: none;
+  border: 1px solid rgba(255,255,255,0.28);
+  background: rgba(255,255,255,0.06);
+  color: #fff;
+  border-radius: 999px;
+  padding: 8px 14px;
+  font-size: 12.5px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: background .15s, border-color .15s, transform .12s;
+  white-space: nowrap;
+}
+.scenario-btn:hover { background: rgba(255,255,255,0.14); }
+.scenario-btn[aria-pressed="true"] {
+  background: var(--blue-bright);
+  border-color: var(--blue-bright);
+  color: #001E5B;
+}
+.scenario-note {
+  width: 100%;
+  font-size: 12.5px;
+  line-height: 1.4;
+  color: #E8F1FF;
+  background: rgba(27, 150, 255, 0.18);
+  border: 1px solid rgba(27, 150, 255, 0.35);
+  border-radius: 10px;
+  padding: 8px 12px;
+}
+.scenario-note strong { color: #fff; }
+.scenario-note code {
+  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+  font-size: 11.5px;
+  background: rgba(0,0,0,0.25);
+  padding: 1px 5px;
+  border-radius: 4px;
+}
+
+/* ── App chrome ── */
+.app {
+  max-width: 1280px;
+  margin: 0 auto;
+  background: var(--surface);
+  min-height: calc(100vh - 120px);
+  box-shadow: 0 0 0 1px rgba(3,45,96,0.06);
+}
+
+.global-nav {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 24px;
+  border-bottom: 1px solid var(--border);
+  gap: 16px;
+  background: #fff;
+}
+.global-nav-left {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  min-width: 0;
+}
+.sf-logo {
+  width: 52px;
+  height: 36px;
+  flex-shrink: 0;
+}
+.global-links {
+  display: flex;
+  gap: 16px;
+  flex-wrap: wrap;
+  font-size: 13px;
+  color: var(--text-2);
+}
+.global-links span { cursor: default; }
+.global-nav-right {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+.search-pill {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: #F3F3F3;
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  padding: 7px 14px;
+  min-width: 180px;
+  color: var(--text-3);
+  font-size: 13px;
+}
+.avatar {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #0176D3, #1B96FF);
+  color: #fff;
+  display: grid;
+  place-items: center;
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.help-nav {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 12px 24px;
+  border-bottom: 1px solid var(--border);
+  background: #fff;
+}
+.help-brand {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-weight: 700;
+  color: var(--navy);
+  font-size: 18px;
+}
+.help-brand .cloud-mark {
+  width: 28px;
+  height: 20px;
+}
+.help-links {
+  display: flex;
+  gap: 22px;
+  flex-wrap: wrap;
+  font-size: 14px;
+  color: var(--navy);
+  font-weight: 600;
+}
+.help-links span { opacity: 0.9; }
+
+.org-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 10px 24px;
+  background: linear-gradient(90deg, #D8EAF8 0%, #E8F3FB 100%);
+  border-bottom: 1px solid #C9DFF0;
+}
+.org-left {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+.org-icon {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: #fff;
+  display: grid;
+  place-items: center;
+  box-shadow: var(--shadow);
+}
+.org-meta .label {
+  font-size: 11px;
+  color: var(--text-3);
+}
+.org-meta .value {
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--navy);
+}
+.switch-org {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: #fff;
+  border: 1px solid #B8D4EA;
+  border-radius: 999px;
+  padding: 8px 14px;
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--blue);
+  cursor: default;
+}
+
+/* ── Hero ── */
+.hero {
+  background: linear-gradient(180deg, #EAF5FE 0%, #F4F9FC 55%, #F7FBFE 100%);
+  padding: 28px 24px 40px;
+  position: relative;
+}
+.hero-head {
+  text-align: center;
+  margin-bottom: 28px;
+}
+.af-mascot {
+  width: 72px;
+  height: 72px;
+  margin: 0 auto 12px;
+  border-radius: 50%;
+  background: radial-gradient(circle at 35% 30%, #5EB1FF, #0176D3 55%, #0B5CAB);
+  display: grid;
+  place-items: center;
+  box-shadow: 0 8px 24px rgba(1, 118, 211, 0.28);
+  position: relative;
+}
+.af-mascot::before,
+.af-mascot::after {
+  content: '';
+  position: absolute;
+  width: 8px;
+  height: 8px;
+  background: var(--blue-bright);
+  border-radius: 50%;
+  opacity: 0.85;
+}
+.af-mascot::before { top: 4px; right: -2px; }
+.af-mascot::after { bottom: 10px; left: -6px; width: 6px; height: 6px; }
+.af-face {
+  width: 34px;
+  height: 22px;
+  position: relative;
+}
+.af-face .eye {
+  position: absolute;
+  top: 2px;
+  width: 8px;
+  height: 8px;
+  background: #111;
+  border-radius: 50%;
+  box-shadow: inset 0 -2px 0 #fff;
+}
+.af-face .eye.l { left: 4px; }
+.af-face .eye.r { right: 4px; }
+.af-face .mouth {
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 14px;
+  height: 7px;
+  border: 2px solid #111;
+  border-top: 0;
+  border-radius: 0 0 14px 14px;
+}
+.hero h2 {
+  font-size: 34px;
+  line-height: 1.15;
+  color: var(--navy);
+  font-weight: 700;
+  letter-spacing: -0.02em;
+}
+
+/* ── Cards ── */
+.cards {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 16px;
+  max-width: 1120px;
+  margin: 0 auto;
+}
+@media (max-width: 1100px) {
+  .cards { grid-template-columns: repeat(2, 1fr); }
+}
+@media (max-width: 640px) {
+  .cards { grid-template-columns: 1fr; }
+  .global-links, .help-links { display: none; }
+  .hero h2 { font-size: 26px; }
+}
+
+.card {
+  background: #fff;
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  padding: 20px 18px 16px;
+  display: flex;
+  flex-direction: column;
+  min-height: 280px;
+  border: 1px solid rgba(3,45,96,0.04);
+  transition: box-shadow .2s, transform .2s, outline-color .2s;
+  outline: 2px solid transparent;
+  outline-offset: 2px;
+}
+.card.focus {
+  outline-color: var(--blue-bright);
+  box-shadow: var(--shadow-lg);
+  transform: translateY(-2px);
+}
+.card.dim { opacity: 0.55; }
+.card-icon {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: var(--blue);
+  display: grid;
+  place-items: center;
+  margin-bottom: 14px;
+  color: #fff;
+  flex-shrink: 0;
+}
+.card h3 {
+  font-size: 18px;
+  font-weight: 700;
+  color: var(--navy);
+  margin-bottom: 8px;
+  line-height: 1.25;
+}
+.card .desc {
+  font-size: 13.5px;
+  line-height: 1.45;
+  color: var(--text-2);
+  margin-bottom: 16px;
+  flex: 0 0 auto;
+}
+.card-body {
+  margin-top: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.link-cta {
+  appearance: none;
+  background: none;
+  border: 0;
+  padding: 0;
+  color: var(--blue);
+  font-size: 14px;
+  font-weight: 700;
+  cursor: pointer;
+  text-align: left;
+  width: fit-content;
+}
+.link-cta:hover { text-decoration: underline; }
+.link-cta:focus-visible {
+  outline: 2px solid var(--blue-bright);
+  outline-offset: 3px;
+  border-radius: 4px;
+}
+
+.case-pill {
+  display: inline-flex;
+  align-items: center;
+  background: #EAF5FE;
+  color: var(--navy-2);
+  font-size: 12px;
+  font-weight: 700;
+  padding: 4px 10px;
+  border-radius: 999px;
+  width: fit-content;
+}
+.case-row {
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+  font-size: 13.5px;
+  font-weight: 700;
+  color: var(--navy);
+  line-height: 1.35;
+}
+.case-row svg { flex-shrink: 0; margin-top: 2px; color: var(--blue); }
+
+.product-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 8px 0;
+  border: 0;
+  background: none;
+  width: 100%;
+  text-align: left;
+  cursor: pointer;
+  border-radius: 10px;
+  transition: background .15s;
+}
+.product-row:hover { background: #F3F9FF; }
+.product-row:focus-visible {
+  outline: 2px solid var(--blue-bright);
+  outline-offset: 2px;
+}
+.product-ico {
+  width: 28px;
+  height: 28px;
+  border-radius: 6px;
+  display: grid;
+  place-items: center;
+  flex-shrink: 0;
+  color: #fff;
+}
+.product-ico.sales { background: var(--sales); }
+.product-ico.service { background: var(--service); }
+.product-ico.fins { background: var(--fins); }
+.product-meta {
+  flex: 1;
+  min-width: 0;
+}
+.product-name {
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--navy);
+}
+.progress {
+  margin-top: 5px;
+  height: 6px;
+  background: #E5EEF7;
+  border-radius: 999px;
+  overflow: hidden;
+  max-width: 120px;
+}
+.progress > span {
+  display: block;
+  height: 100%;
+  background: var(--navy);
+  border-radius: 999px;
+}
+.progress-label {
+  font-size: 11px;
+  color: var(--text-3);
+  margin-top: 2px;
+}
+
+.chat-dock {
+  max-width: 720px;
+  margin: 28px auto 0;
+  background: #fff;
+  border-radius: 999px;
+  box-shadow: var(--shadow-lg);
+  border: 1px solid #DCE8F3;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 10px 12px 10px 18px;
+}
+.chat-dock .spark { color: var(--text-3); flex-shrink: 0; }
+.chat-dock .placeholder {
+  flex: 1;
+  color: var(--text-3);
+  font-size: 14px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.send-btn {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  border: 0;
+  background: #C9C9C9;
+  color: #fff;
+  display: grid;
+  place-items: center;
+  cursor: default;
+}
+
+/* ── Chat panel (agent response) ── */
+.chat-panel {
+  position: fixed;
+  right: 20px;
+  bottom: 20px;
+  width: min(420px, calc(100vw - 40px));
+  max-height: min(560px, calc(100vh - 100px));
+  background: #fff;
+  border-radius: 16px;
+  box-shadow: 0 16px 48px rgba(3,45,96,0.22);
+  border: 1px solid #D5E4F2;
+  z-index: 200;
+  display: none;
+  flex-direction: column;
+  overflow: hidden;
+  animation: slideUp .22s ease;
+}
+.chat-panel.open { display: flex; }
+@keyframes slideUp {
+  from { opacity: 0; transform: translateY(16px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+.chat-panel-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 14px 16px;
+  background: linear-gradient(90deg, #0176D3, #1B96FF);
+  color: #fff;
+}
+.chat-panel-head h4 {
+  font-size: 14px;
+  font-weight: 700;
+}
+.chat-panel-head .sub {
+  font-size: 11px;
+  opacity: 0.9;
+  margin-top: 2px;
+}
+.chat-close {
+  appearance: none;
+  border: 0;
+  background: rgba(255,255,255,0.2);
+  color: #fff;
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  cursor: pointer;
+  font-size: 16px;
+  line-height: 1;
+}
+.chat-stream {
+  padding: 16px;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  background: #F7FBFE;
+}
+.bubble {
+  max-width: 92%;
+  padding: 10px 12px;
+  border-radius: 14px;
+  font-size: 13.5px;
+  line-height: 1.45;
+}
+.bubble.user {
+  align-self: flex-end;
+  background: var(--blue);
+  color: #fff;
+  border-bottom-right-radius: 4px;
+}
+.bubble.agent {
+  align-self: flex-start;
+  background: #fff;
+  border: 1px solid #DCE8F3;
+  color: var(--text);
+  border-bottom-left-radius: 4px;
+}
+.bubble .tag {
+  display: block;
+  font-size: 10px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  margin-bottom: 4px;
+  opacity: 0.75;
+}
+.utterance-chip {
+  display: inline-block;
+  margin-top: 8px;
+  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+  font-size: 11.5px;
+  background: #EAF5FE;
+  color: var(--navy);
+  border: 1px solid #BDD9F0;
+  padding: 4px 8px;
+  border-radius: 6px;
+}
+.choice-list {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-top: 10px;
+}
+.choice-btn {
+  appearance: none;
+  border: 1px solid #BDD9F0;
+  background: #fff;
+  border-radius: 10px;
+  padding: 10px 12px;
+  text-align: left;
+  cursor: pointer;
+  font-size: 13.5px;
+  font-weight: 700;
+  color: var(--navy);
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  transition: border-color .15s, background .15s;
+}
+.choice-btn:hover {
+  border-color: var(--blue);
+  background: #F3F9FF;
+}
+.path-banner {
+  font-size: 12px;
+  font-weight: 700;
+  padding: 8px 12px;
+  border-radius: 8px;
+  background: #E3FCEF;
+  color: #056764;
+  border: 1px solid #ACF0CC;
+}
+.path-banner.scale {
+  background: #FFF8E6;
+  color: #8C4B02;
+  border-color: #F9E3B0;
+}
+
+.footer-note {
+  max-width: 1280px;
+  margin: 16px auto 32px;
+  padding: 0 20px;
+  font-size: 12px;
+  color: var(--text-3);
+  line-height: 1.45;
+}
+.footer-note a { color: var(--blue); }
+</style>
+</head>
+<body>
+
+<!-- Walkthrough controls -->
+<header class="demo-bar">
+  <div class="demo-bar-inner">
+    <div class="demo-brand">
+      <div class="eyebrow">Prototype · Authenticated Help Home</div>
+      <h1>Journey Cards — product CTA vs View more</h1>
+      <p>Click a scenario, then click the highlighted card CTAs. Chat panel shows the utterance + path.</p>
+    </div>
+    <div class="scenario-tabs" role="group" aria-label="Walkthrough scenarios">
+      <label>Scenario</label>
+      <button type="button" class="scenario-btn" data-scenario="onboarding-1" aria-pressed="false">Get Started · 1 product</button>
+      <button type="button" class="scenario-btn" data-scenario="onboarding-2" aria-pressed="true">Get Started · 2 products</button>
+      <button type="button" class="scenario-btn" data-scenario="adoption-2" aria-pressed="false">Discover · 2 products</button>
+      <button type="button" class="scenario-btn" data-scenario="adoption-more" aria-pressed="false">Discover · View more (&gt;2)</button>
+    </div>
+    <div class="scenario-note" id="scenarioNote">
+      <strong>Low-friction path:</strong> Eligible for Sales + Service → both product CTAs on the card.
+      Click <strong>Sales</strong> or <strong>Service</strong> → fires a product-specific utterance
+      (<code>Continue my Sales setup</code> / <code>Get started with Service</code>) — no disambiguation step.
+    </div>
+  </div>
+</header>
+
+<div class="app" aria-label="Authenticated Salesforce Help homepage prototype">
+  <!-- Global nav -->
+  <div class="global-nav">
+    <div class="global-nav-left">
+      <svg class="sf-logo" viewBox="0 0 60 40" aria-hidden="true">
+        <path fill="#00A1E0" d="M23.6 10.2c1.5-1.6 3.7-2.6 6.1-2.6 2.7 0 5.1 1.3 6.6 3.3 1.5-1.1 3.3-1.7 5.2-1.7 4.5 0 8.1 3.5 8.1 7.8 0 .3 0 .6-.1.9 2.5.8 4.3 3.1 4.3 5.9 0 3.4-2.8 6.1-6.3 6.1-.5 0-1.1-.1-1.6-.2-1.3 2.3-3.8 3.9-6.7 3.9-1.4 0-2.7-.4-3.8-1-1.4 2.5-4.1 4.2-7.2 4.2-2.5 0-4.7-1.1-6.2-2.8-1.1.4-2.3.6-3.5.6-4.6 0-8.3-3.5-8.3-7.9 0-1.5.4-2.9 1.2-4.1C9.2 18.8 8 16.5 8 13.9c0-4.7 4-8.5 9-8.5 2.6 0 4.9 1.1 6.6 2.8z"/>
+      </svg>
+      <div class="global-links">
+        <span>Products</span><span>Industries</span><span>Customers</span>
+        <span>Learning</span><span>Support</span><span>Company</span><span>Salesforce+</span>
+      </div>
+    </div>
+    <div class="global-nav-right">
+      <div class="search-pill">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" aria-hidden="true"><circle cx="11" cy="11" r="7" stroke="currentColor" stroke-width="2"/><path d="M16.5 16.5L21 21" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+        Search Help
+      </div>
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true" style="color:#706e6b"><path d="M6.5 9.5c0-3 2.5-5.5 5.5-5.5s5.5 2.5 5.5 5.5c0 3.5-2 5-3 6.5-.7 1-1 2-1 3h-3c0-1.2.4-2.3 1.2-3.5.9-1.3 2.8-2.8 2.8-6 0-1.9-1.6-3.5-3.5-3.5S9 7.6 9 9.5" stroke="currentColor" stroke-width="1.6"/><path d="M10 21h4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>
+      <div class="avatar" title="Authenticated user">SS</div>
+    </div>
+  </div>
+
+  <!-- Help nav -->
+  <div class="help-nav">
+    <div class="help-brand">
+      <svg class="cloud-mark" viewBox="0 0 28 20" aria-hidden="true"><path fill="#00A1E0" d="M7.2 16.5c-2.7 0-4.9-2.1-4.9-4.7 0-2 1.3-3.8 3.1-4.4C5.8 4.7 8 3 10.7 3c2.2 0 4.1 1.1 5.2 2.8.7-.3 1.5-.5 2.3-.5 2.9 0 5.2 2.2 5.2 5 0 .2 0 .4-.1.6 1.6.5 2.7 1.9 2.7 3.6 0 2.1-1.8 3.9-4 3.9H7.2z"/></svg>
+      Help
+    </div>
+    <div class="help-links">
+      <span>Ask Agentforce</span>
+      <span>Product Documentation ▾</span>
+      <span>Trailhead Learning ▾</span>
+      <span>My Cases</span>
+      <span>Proactive Monitoring</span>
+    </div>
+  </div>
+
+  <!-- Org context -->
+  <div class="org-bar">
+    <div class="org-left">
+      <div class="org-icon" aria-hidden="true">
+        <svg width="18" height="14" viewBox="0 0 28 20"><path fill="#0176D3" d="M7.2 16.5c-2.7 0-4.9-2.1-4.9-4.7 0-2 1.3-3.8 3.1-4.4C5.8 4.7 8 3 10.7 3c2.2 0 4.1 1.1 5.2 2.8.7-.3 1.5-.5 2.3-.5 2.9 0 5.2 2.2 5.2 5 0 .2 0 .4-.1.6 1.6.5 2.7 1.9 2.7 3.6 0 2.1-1.8 3.9-4 3.9H7.2z"/></svg>
+      </div>
+      <div class="org-meta">
+        <div class="label">Currently working on</div>
+        <div class="value">Org Name12340000056789</div>
+      </div>
+    </div>
+    <div class="switch-org">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M4 7h12M16 7l-2-2m2 2-2 2M20 17H8m0 0 2-2m-2 2 2 2" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      Switch Org
+    </div>
+  </div>
+
+  <!-- Hero + cards -->
+  <section class="hero">
+    <div class="hero-head">
+      <div class="af-mascot" aria-hidden="true">
+        <div class="af-face"><span class="eye l"></span><span class="eye r"></span><span class="mouth"></span></div>
+      </div>
+      <h2>How can Agentforce help?</h2>
+    </div>
+
+    <div class="cards">
+      <!-- Card 1: Troubleshoot (static context) -->
+      <article class="card" id="cardTroubleshoot" data-role="context">
+        <div class="card-icon" aria-hidden="true">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M14.7 6.3a4 4 0 0 0-5.6 5.6l-5.4 5.4a1.5 1.5 0 0 0 2.1 2.1l5.4-5.4a4 4 0 0 0 5.6-5.6l-2.5 2.5-2.1-2.1 2.5-2.5z" fill="currentColor"/></svg>
+        </div>
+        <h3>Troubleshoot an Issue</h3>
+        <p class="desc">Diagnose issues with guided steps that identify affected products or features and provide potential solutions.</p>
+        <div class="card-body">
+          <button type="button" class="link-cta" data-action="troubleshoot">Ask Agentforce</button>
+        </div>
+      </article>
+
+      <!-- Card 2: Cases (static context) -->
+      <article class="card" id="cardCases" data-role="context">
+        <div class="card-icon" aria-hidden="true">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M9 6V5a2 2 0 0 1 2-2h2a2 2 0 0 1 2 2v1h4a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4zm2-1h2v1h-2V5z" fill="currentColor"/></svg>
+        </div>
+        <h3>Manage My Cases</h3>
+        <p class="desc">Stay on top of your support cases—track updates, add comments, and escalate issues in one place.</p>
+        <div class="card-body">
+          <span class="case-pill">Review Case update</span>
+          <div class="case-row">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M9 6V5a2 2 0 0 1 2-2h2a2 2 0 0 1 2 2v1h4a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4z" fill="currentColor"/></svg>
+            Approval process not triggering on opportunity update
+          </div>
+        </div>
+      </article>
+
+      <!-- Card 3: Get Started (Onboarding) -->
+      <article class="card focus" id="cardOnboarding" data-role="onboarding">
+        <div class="card-icon" aria-hidden="true">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M12 2l1.2 3.8L17 7l-3.8 1.2L12 12l-1.2-3.8L7 7l3.8-1.2L12 2zm6 8l.8 2.4L21 13l-2.2.6L18 16l-.8-2.4L15 13l2.2-.6L18 10zM6 14l.9 2.7L10 18l-3.1.9L6 22l-.9-3.1L2 18l3.1-.9L6 14z" fill="currentColor"/></svg>
+        </div>
+        <h3>Get Started</h3>
+        <p class="desc">Get guided assistance in setting up your new Salesforce products.</p>
+        <div class="card-body" id="onboardingBody"><!-- filled by JS --></div>
+      </article>
+
+      <!-- Card 4: Discover (Adoption) -->
+      <article class="card" id="cardAdoption" data-role="adoption">
+        <div class="card-icon" aria-hidden="true">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M12 2l1.2 3.8L17 7l-3.8 1.2L12 12l-1.2-3.8L7 7l3.8-1.2L12 2zm6 8l.8 2.4L21 13l-2.2.6L18 16l-.8-2.4L15 13l2.2-.6L18 10zM6 14l.9 2.7L10 18l-3.1.9L6 22l-.9-3.1L2 18l3.1-.9L6 14z" fill="currentColor"/></svg>
+        </div>
+        <h3>Discover New Capabilities</h3>
+        <p class="desc">Get personalized guidance on additional features available in your org.</p>
+        <div class="card-body" id="adoptionBody"><!-- filled by JS --></div>
+      </article>
+    </div>
+
+    <div class="chat-dock" aria-hidden="true">
+      <svg class="spark" width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M12 2l1.2 3.8L17 7l-3.8 1.2L12 12l-1.2-3.8L7 7l3.8-1.2L12 2z" fill="currentColor"/></svg>
+      <div class="placeholder">Ask Agentforce anything about your Salesforce org…</div>
+      <button type="button" class="send-btn" tabindex="-1" aria-hidden="true">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M3 11.5l17-8-7.5 18-2.2-7.3L3 11.5z" fill="currentColor"/></svg>
+      </button>
+    </div>
+  </section>
+</div>
+
+<!-- Agent chat panel -->
+<aside class="chat-panel" id="chatPanel" aria-live="polite" aria-label="Agentforce conversation">
+  <div class="chat-panel-head">
+    <div>
+      <h4>Agentforce</h4>
+      <div class="sub" id="chatSub">Journey started</div>
+    </div>
+    <button type="button" class="chat-close" id="chatClose" aria-label="Close chat">×</button>
+  </div>
+  <div class="chat-stream" id="chatStream"></div>
+</aside>
+
+<p class="footer-note">
+  Auth-only prototype for Josh walkthrough · Baseline:
+  <a href="https://www.figma.com/design/wMhAHWu5XTpscfjLRicLwK/Help-Home-Redesign?node-id=2307-12634" target="_blank" rel="noopener">Help Home Redesign (Figma)</a>
+  · Product rule: <strong>1 product</strong> → that CTA · <strong>exactly 2</strong> → primary + secondary on card ·
+  <strong>&gt;2</strong> → primary + View more [#] → agent asks which product.
+  Onboarding CTAs = Sales and/or Service only (Sept). Adoption priority = Sales &gt; Service &gt; Financial Services.
+</p>
+
+<script>
+(function () {
+  const NOTES = {
+    'onboarding-1': `<strong>Low-friction path (1 product):</strong> Only Sales is eligible → single product CTA on Get Started.
+      Click <strong>Sales</strong> → <code>Continue my Sales setup</code> (In Progress) — launches the Sales journey with no ask.`,
+    'onboarding-2': `<strong>Low-friction path (2 products):</strong> Eligible for Sales + Service → both product CTAs on the card.
+      Click <strong>Sales</strong> or <strong>Service</strong> → product-specific utterance
+      (<code>Continue my Sales setup</code> / <code>Get started with Service</code>) — no disambiguation step.`,
+    'adoption-2': `<strong>Low-friction path (Adoption, 2 products):</strong> Sales + Service on Discover New Capabilities.
+      Click either product → <code>Set up my unused Sales features</code> / <code>Set up my unused Service features</code> — no ask.`,
+    'adoption-more': `<strong>Scale path (&gt;2 products):</strong> Primary = highest priority (Sales) + <strong>View more (3)</strong>.
+      Click View more → utterance <code>Help me set up my unused Salesforce features</code> → agent asks which product
+      (Sales / Service / Financial Services).`
+  };
+
+  const ICO = {
+    sales: `<span class="product-ico sales" aria-hidden="true"><svg width="14" height="14" viewBox="0 0 24 24" fill="none"><path d="M4 16l5-5 4 4 7-8" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/><path d="M14 7h6v6" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>`,
+    service: `<span class="product-ico service" aria-hidden="true"><svg width="14" height="14" viewBox="0 0 24 24" fill="none"><path d="M12 20s-7-4.4-7-10a4 4 0 0 1 7-2.5A4 4 0 0 1 19 10c0 5.6-7 10-7 10z" fill="#fff"/></svg></span>`,
+    fins: `<span class="product-ico fins" aria-hidden="true"><svg width="14" height="14" viewBox="0 0 24 24" fill="none"><path d="M4 18V9l8-5 8 5v9H4z" stroke="#fff" stroke-width="1.8"/><path d="M9 18v-5h6v5" stroke="#fff" stroke-width="1.8"/></svg></span>`
+  };
+
+  let scenario = 'onboarding-2';
+
+  const onboardingBody = document.getElementById('onboardingBody');
+  const adoptionBody = document.getElementById('adoptionBody');
+  const noteEl = document.getElementById('scenarioNote');
+  const cardOnboarding = document.getElementById('cardOnboarding');
+  const cardAdoption = document.getElementById('cardAdoption');
+  const cardTroubleshoot = document.getElementById('cardTroubleshoot');
+  const cardCases = document.getElementById('cardCases');
+  const chatPanel = document.getElementById('chatPanel');
+  const chatStream = document.getElementById('chatStream');
+  const chatSub = document.getElementById('chatSub');
+
+  function productRow({ key, name, progress, utterance, pathLabel }) {
+    const progressHtml = progress != null
+      ? `<div class="progress" aria-hidden="true"><span style="width:${progress}%"></span></div><div class="progress-label">${progress}% complete</div>`
+      : '';
+    return `<button type="button" class="product-row" data-utterance="${escapeAttr(utterance)}" data-path="${escapeAttr(pathLabel)}" data-product="${key}">
+      ${ICO[key] || ''}
+      <span class="product-meta">
+        <span class="product-name">${name}</span>
+        ${progressHtml}
+      </span>
+    </button>`;
+  }
+
+  function viewMoreLink(count, utterance) {
+    return `<button type="button" class="link-cta" data-viewmore="1" data-utterance="${escapeAttr(utterance)}" data-path="Scale path — agent asks which product">View more (${count})</button>`;
+  }
+
+  function escapeAttr(s) {
+    return String(s).replace(/&/g,'&amp;').replace(/"/g,'&quot;').replace(/</g,'&lt;');
+  }
+
+  function render() {
+    noteEl.innerHTML = NOTES[scenario];
+
+    // Focus / dim cards
+    const focusOnboarding = scenario.startsWith('onboarding');
+    cardOnboarding.classList.toggle('focus', focusOnboarding);
+    cardOnboarding.classList.toggle('dim', !focusOnboarding);
+    cardAdoption.classList.toggle('focus', !focusOnboarding);
+    cardAdoption.classList.toggle('dim', focusOnboarding);
+    cardTroubleshoot.classList.add('dim');
+    cardCases.classList.add('dim');
+
+    // Get Started body
+    if (scenario === 'onboarding-1') {
+      onboardingBody.innerHTML = productRow({
+        key: 'sales', name: 'Sales', progress: 10,
+        utterance: 'Continue my Sales setup',
+        pathLabel: 'Low-friction — Sales journey, no disambiguation'
+      });
+    } else {
+      // Default / onboarding-2 / and when viewing adoption scenarios, show the 2-product Get Started as screenshot context
+      onboardingBody.innerHTML =
+        productRow({
+          key: 'sales', name: 'Sales', progress: 10,
+          utterance: 'Continue my Sales setup',
+          pathLabel: 'Low-friction — Sales journey, no disambiguation'
+        }) +
+        productRow({
+          key: 'service', name: 'Service', progress: null,
+          utterance: 'Get started with Service',
+          pathLabel: 'Low-friction — Service journey, no disambiguation'
+        });
+    }
+
+    // Discover body
+    if (scenario === 'adoption-2') {
+      adoptionBody.innerHTML =
+        productRow({
+          key: 'sales', name: 'Sales', progress: null,
+          utterance: 'Set up my unused Sales features',
+          pathLabel: 'Low-friction — Sales adoption journey, no disambiguation'
+        }) +
+        productRow({
+          key: 'service', name: 'Service', progress: null,
+          utterance: 'Set up my unused Service features',
+          pathLabel: 'Low-friction — Service adoption journey, no disambiguation'
+        });
+    } else if (scenario === 'adoption-more') {
+      adoptionBody.innerHTML =
+        productRow({
+          key: 'sales', name: 'Sales', progress: null,
+          utterance: 'Help me set up my unused Sales features',
+          pathLabel: 'Primary CTA — Sales (highest priority)'
+        }) +
+        viewMoreLink(3, 'Help me set up my unused Salesforce features');
+    } else {
+      // While focusing onboarding, keep Discover in the screenshot's View more state as ambient context
+      adoptionBody.innerHTML =
+        productRow({
+          key: 'sales', name: 'Sales', progress: null,
+          utterance: 'Help me set up my unused Sales features',
+          pathLabel: 'Primary CTA — Sales (highest priority)'
+        }) +
+        viewMoreLink(3, 'Help me set up my unused Salesforce features');
+    }
+
+    bindCardActions();
+  }
+
+  function bindCardActions() {
+    document.querySelectorAll('.product-row, .link-cta[data-viewmore], .link-cta[data-action]').forEach((el) => {
+      el.addEventListener('click', onActionClick);
+    });
+  }
+
+  function onActionClick(e) {
+    const btn = e.currentTarget;
+    if (btn.dataset.action === 'troubleshoot') {
+      openChat({
+        utterance: 'Help me troubleshoot an issue',
+        pathLabel: 'Context card (not part of this walkthrough)',
+        mode: 'direct',
+        product: null
+      });
+      return;
+    }
+    openChat({
+      utterance: btn.dataset.utterance,
+      pathLabel: btn.dataset.path,
+      mode: btn.dataset.viewmore ? 'disambiguate' : 'direct',
+      product: btn.dataset.product || null
+    });
+  }
+
+  function openChat({ utterance, pathLabel, mode, product }) {
+    chatPanel.classList.add('open');
+    chatSub.textContent = mode === 'disambiguate' ? 'Scale path — agent asks' : 'Product journey launched';
+    const pathClass = mode === 'disambiguate' ? 'path-banner scale' : 'path-banner';
+
+    let agentHtml = '';
+    if (mode === 'disambiguate') {
+      agentHtml = `
+        <div class="bubble agent">
+          <span class="tag">Agentforce</span>
+          I can help you set up unused features. Which product do you want to focus on?
+          <div class="choice-list">
+            <button type="button" class="choice-btn" data-pick="sales" data-utterance="Help me set up my unused Sales features">
+              ${ICO.sales} Sales
+            </button>
+            <button type="button" class="choice-btn" data-pick="service" data-utterance="Help me set up my unused Service features">
+              ${ICO.service} Service
+            </button>
+            <button type="button" class="choice-btn" data-pick="fins" data-utterance="Help me set up my unused Financial Services features">
+              ${ICO.fins} Financial Services
+            </button>
+          </div>
+          <span class="utterance-chip">View more → agent disambiguation</span>
+        </div>`;
+    } else {
+      const label = product === 'sales' ? 'Sales'
+        : product === 'service' ? 'Service'
+        : product === 'fins' ? 'Financial Services'
+        : 'your product';
+      agentHtml = `
+        <div class="bubble agent">
+          <span class="tag">Agentforce</span>
+          Got it — starting your <strong>${label}</strong> journey now. I’ll pull the right checklist and next steps for this org.
+          <span class="utterance-chip">Routed directly · no disambiguation</span>
+        </div>`;
+    }
+
+    chatStream.innerHTML = `
+      <div class="${pathClass}">${pathLabel}</div>
+      <div class="bubble user">
+        <span class="tag">You · card CTA</span>
+        ${utterance}
+      </div>
+      ${agentHtml}`;
+
+    chatStream.querySelectorAll('.choice-btn').forEach((b) => {
+      b.addEventListener('click', () => {
+        const pick = b.dataset.pick;
+        const u = b.dataset.utterance;
+        const name = pick === 'fins' ? 'Financial Services' : pick === 'service' ? 'Service' : 'Sales';
+        chatStream.innerHTML = `
+          <div class="path-banner">After agent ask → ${name} journey</div>
+          <div class="bubble user"><span class="tag">You</span>${name}</div>
+          <div class="bubble agent">
+            <span class="tag">Agentforce</span>
+            Perfect — launching unused-feature guidance for <strong>${name}</strong>.
+            <span class="utterance-chip">${u}</span>
+          </div>`;
+      });
+    });
+  }
+
+  document.getElementById('chatClose').addEventListener('click', () => {
+    chatPanel.classList.remove('open');
+  });
+
+  document.querySelectorAll('.scenario-btn').forEach((btn) => {
+    btn.addEventListener('click', () => {
+      scenario = btn.dataset.scenario;
+      document.querySelectorAll('.scenario-btn').forEach((b) => {
+        b.setAttribute('aria-pressed', b === btn ? 'true' : 'false');
+      });
+      chatPanel.classList.remove('open');
+      render();
+    });
+  });
+
+  render();
+})();
+</script>
+</body>
+</html>

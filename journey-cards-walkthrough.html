@@ -313,54 +313,17 @@ button, a { font-family: inherit; }
   margin-bottom: 28px;
 }
 .af-mascot {
-  width: 72px;
-  height: 72px;
+  width: 91px;
+  height: 91px;
   margin: 0 auto 12px;
-  border-radius: 50%;
-  background: radial-gradient(circle at 35% 30%, #5EB1FF, #0176D3 55%, #0B5CAB);
-  display: grid;
-  place-items: center;
-  box-shadow: 0 8px 24px rgba(1, 118, 211, 0.28);
-  position: relative;
+  display: block;
+  overflow: hidden;
 }
-.af-mascot::before,
-.af-mascot::after {
-  content: '';
-  position: absolute;
-  width: 8px;
-  height: 8px;
-  background: var(--blue-bright);
-  border-radius: 50%;
-  opacity: 0.85;
-}
-.af-mascot::before { top: 4px; right: -2px; }
-.af-mascot::after { bottom: 10px; left: -6px; width: 6px; height: 6px; }
-.af-face {
-  width: 34px;
-  height: 22px;
-  position: relative;
-}
-.af-face .eye {
-  position: absolute;
-  top: 2px;
-  width: 8px;
-  height: 8px;
-  background: #111;
-  border-radius: 50%;
-  box-shadow: inset 0 -2px 0 #fff;
-}
-.af-face .eye.l { left: 4px; }
-.af-face .eye.r { right: 4px; }
-.af-face .mouth {
-  position: absolute;
-  bottom: 0;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 14px;
-  height: 7px;
-  border: 2px solid #111;
-  border-top: 0;
-  border-radius: 0 0 14px 14px;
+.af-mascot img {
+  width: 100%;
+  height: 100%;
+  display: block;
+  object-fit: cover;
 }
 .hero h2 {
   font-size: 34px;
@@ -805,7 +768,7 @@ button, a { font-family: inherit; }
   <section class="hero">
     <div class="hero-head">
       <div class="af-mascot" aria-hidden="true">
-        <div class="af-face"><span class="eye l"></span><span class="eye r"></span><span class="mouth"></span></div>
+        <img src="assets/agentforce-mascot.png" width="91" height="91" alt="">
       </div>
       <h2>How can Agentforce help?</h2>
     </div>

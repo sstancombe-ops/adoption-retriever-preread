@@ -242,8 +242,13 @@
             <div class="callout now">
                 <strong>Now (immediate):</strong> Balaji reviews Adoption / FSC utterances.
                 Francis already confirmed Onboarding Phase 4 labels (Aug 11).
-                Outcome of today’s <em>September Golden Dataset — Utterances Review</em> with Jelena + Balaji:
+                From today’s <em>September Golden Dataset — Utterances Review</em> (Jelena + Balaji):
                 Balaji review is the first open gate before Jelena can ingest / run ATA.
+            </div>
+            <div class="callout info" style="margin-top:10px;">
+                <strong>Also aligned (Weekly Connect, Aug 17):</strong> evaluations must sit inside the broader Sept project / workback plan
+                (Stephanie · Roxanne). Ali + Cody own landing the plan with env-build dates so utterance testing can proceed.
+                <a class="deep" href="https://docs.google.com/document/d/1DYIxG6_OJe5CQ8uJbNai3lrSwIpKogdHhuxhRdd9iIc/edit?tab=t.36abydyxjufe" target="_blank" rel="noopener">Meeting notes</a>
             </div>
         </div>
 
@@ -307,9 +312,10 @@
                 <li>
                     <div class="n">4</div>
                     <div>
-                        <b>Lower-env content readiness (Allyson ↔ Helen) <span class="chip todo">Parallel</span></b>
-                        <span>Phase 4 / FSC content available in lower env for Jelena runs. Prod interim OK if lower env lags (Roxanne path).</span>
-                        <div class="meta-row"><span class="chip build">Build</span><span class="chip todo">Before / during ATA</span></div>
+                        <b>Lower-env / QA6 readiness for utterance testing <span class="chip todo">Parallel · gate for ATA</span></b>
+                        <span>Weekly Connect (Aug 17): waiting on <strong>when builds are ready in lower environments — specifically QA6</strong> — so utterances can be tested.
+                        Stephanie · Ali coordinating with Cody on env-build schedules. Prod interim OK if lower env lags (Roxanne path), but QA6 is the preferred path.</span>
+                        <div class="meta-row"><span class="chip build">Build</span><span class="chip next">Need dates from Cody / Ali</span></div>
                     </div>
                 </li>
                 <li>
@@ -396,15 +402,15 @@
                 <tbody>
                     <tr>
                         <td><strong>Shared retriever content</strong> (AF + DC + FINS)</td>
-                        <td>Helen / CSDP</td>
-                        <td>Indexed by UAT</td>
-                        <td><span class="chip build">In progress</span> Intakes submitted</td>
+                        <td>Helen / CSDP · Sam</td>
+                        <td>Indexed for QA / UAT</td>
+                        <td><span class="chip build">In progress</span> FINS articles: expected for QA <strong>next week</strong>; Sam — answer quality impact, <em>not</em> a development blocker</td>
                     </tr>
                     <tr>
-                        <td><strong>FINS Adoption eligibility</strong></td>
-                        <td>Balaji / Amritha</td>
-                        <td>Datagraph UAT green</td>
-                        <td><span class="chip live">Filters filled</span> on Checklist</td>
+                        <td><strong>FINS Adoption eligibility + CSS signals</strong></td>
+                        <td>Balaji / Amritha · Sam</td>
+                        <td>Datagraph UAT green · signals live</td>
+                        <td><span class="chip live">Filters filled</span> · <span class="chip live">Signals confirmed</span> (Weekly Connect — goal mapping working for Sept Finance Cloud)</td>
                     </tr>
                     <tr>
                         <td><strong>Onboarding AF/DC Phase 4 experience</strong></td>
@@ -413,10 +419,10 @@
                         <td><span class="chip live">Titles locked</span></td>
                     </tr>
                     <tr>
-                        <td><strong>Program plan / env-build dates</strong></td>
-                        <td>Cody (+ Kavita)</td>
-                        <td>Workback dates explicit</td>
-                        <td><span class="chip next">Due after Kavita · EOD Tue bump</span></td>
+                        <td><strong>Program / workback plan with eval + env dates</strong></td>
+                        <td>Ali Salehifar · Cody Rodgers (+ Kavita) · Stephanie</td>
+                        <td>QA6 / env-build dates explicit · eval timelines in plan</td>
+                        <td><span class="chip next">Aligned Aug 17</span> Ali + Cody finalize plan incl. evaluations; Cody syncing Kavita on env builds</td>
                     </tr>
                     <tr>
                         <td><strong>Adoption AF/DC experience</strong></td>
@@ -429,6 +435,12 @@
                         <td>Stephanie / Allyson</td>
                         <td>Go/no-go item</td>
                         <td><span class="chip todo">Watch — not automatic blocker</span></td>
+                    </tr>
+                    <tr>
+                        <td><strong>Agent V2 traffic / language contingency</strong></td>
+                        <td>Balaji · Roxanne · Sam · Mena (surface)</td>
+                        <td>Mitigate CTA → V1 mismatch if traffic &lt;100%</td>
+                        <td><span class="chip next">Watch</span> Currently ~5% V2; contingency + surface-logic align called out in Weekly Connect</td>
                     </tr>
                 </tbody>
             </table>
@@ -460,18 +472,24 @@
                     </tr>
                     <tr>
                         <td>3</td>
-                        <td>Confirm lower-env readiness window with Helen / Allyson</td>
-                        <td>Allyson · Helen</td>
+                        <td>Get QA6 / lower-env build dates so utterance testing can start (feeds Jelena ATA)</td>
+                        <td>Cody · Ali · Stephanie</td>
                         <td>This week</td>
                     </tr>
                     <tr>
                         <td>4</td>
-                        <td>Land Cody program plan dates (env builds) after Kavita</td>
-                        <td>Cody</td>
-                        <td>EOD Tue Aug 18+</td>
+                        <td>Finalize Sept project / workback plan with evaluation timelines (Weekly Connect ask)</td>
+                        <td>Ali · Cody · Stephanie</td>
+                        <td>This week</td>
                     </tr>
                     <tr>
                         <td>5</td>
+                        <td>Confirm FINS articles landed for QA (Sam: next week, non-blocking for eng)</td>
+                        <td>Sam / CSDP · Balaji</td>
+                        <td>Week of Aug 24</td>
+                    </tr>
+                    <tr>
+                        <td>6</td>
                         <td>Lock formal eval assessment date (planning: by Sep 3)</td>
                         <td>Stephanie · Jelena</td>
                         <td>By Aug 22</td>
@@ -480,12 +498,23 @@
             </table>
         </div>
 
+        <div class="section">
+            <h2>6 · Track separately (not on Sept 264.1 critical path)</h2>
+            <ul style="padding-left:18px;color:var(--sf-gray-600);font-size:0.9rem;">
+                <li style="margin:6px 0;"><strong>KYC → Data Graph source switch</strong> — Sam / Ben pros-cons + Tzlil mock/test-tenant support (Weekly Connect).</li>
+                <li style="margin:6px 0;"><strong>MCP / Knowledge Graph hybrid PoC</strong> — demo next week; full implementation + regression eval window <strong>Oct 1–12</strong> · go-live Oct 23 (October workback later).</li>
+                <li style="margin:6px 0;"><strong>Near-term UAT defects</strong> — embedded video repeatability; adoption CTA → third-pass guidance bug (Sam filed). Track in current UAT, not as Sept expansion scope.</li>
+                <li style="margin:6px 0;"><strong>GitHub worldwide outage</strong> (Aug 17) delayed today’s UAT deploy / non-English tester invites — watch for knock-on if it slips lower-env schedules.</li>
+            </ul>
+        </div>
+
         <footer>
             <p><strong>Sr. Product Manager:</strong> Stephanie Stancombe · Lifecycle Success Lead</p>
             <p><strong>Sources:</strong> Sept golden-dataset next steps (Aug 10–11) · Francis Phase 4 confirm ·
                 September Golden Dataset Utterances Review (Aug 17 · Jelena + Balaji) ·
+                <a class="deep" href="https://docs.google.com/document/d/1DYIxG6_OJe5CQ8uJbNai3lrSwIpKogdHhuxhRdd9iIc/edit?tab=t.36abydyxjufe" target="_blank" rel="noopener">Adoption Guidance Weekly Connect notes (Aug 17)</a> ·
                 Cloud Expansion Checklist · Roadmap OrgCS.264.1 cards</p>
-            <p><strong>Note:</strong> Mid-August → early-September eval dates are planning targets — tighten once Balaji signs off and Jelena confirms ATA capacity.</p>
+            <p><strong>Note:</strong> Mid-August → early-September eval dates are planning targets — tighten once Balaji signs off, QA6 dates land, and Jelena confirms ATA capacity.</p>
             <p><a class="deep" href="roadmap.html#september-2026">Return to September on Product Roadmap</a></p>
         </footer>
     </div>

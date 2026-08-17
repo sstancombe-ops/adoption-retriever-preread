@@ -298,12 +298,12 @@
         }
         .bar.cp .spark svg { width: 10px; height: 10px; }
         .row.has-markers .track {
-            height: 64px;
+            height: 72px;
         }
         .row.has-markers .bar {
-            top: auto;
-            bottom: 8px;
-            transform: none;
+            top: 50%;
+            bottom: auto;
+            transform: translateY(-50%);
         }
         .marker {
             position: absolute;
@@ -340,11 +340,20 @@
             gap: 4px;
         }
         .marker.uat span { color: var(--build); border-color: #B0D5F0; }
-        .marker.prod span { color: var(--gate); border-color: #B5E0C0; }
         .marker.signoff span {
             color: var(--sf-navy);
             border-color: #032D60;
             background: #EAF5FE;
+            left: auto;
+            right: 6px;
+            top: 2px;
+        }
+        .marker.prod span {
+            color: var(--gate);
+            border-color: #B5E0C0;
+            top: auto;
+            bottom: 4px;
+            left: 5px;
         }
         .marker.signoff .so-icon {
             display: inline-flex;

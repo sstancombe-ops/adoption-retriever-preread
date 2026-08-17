@@ -780,9 +780,10 @@
             display: flex;
             align-items: baseline;
             gap: 12px;
-            margin-bottom: 14px;
+            margin-bottom: 10px;
             padding-bottom: 10px;
             border-bottom: 1px solid var(--sf-gray-100);
+            flex-wrap: wrap;
         }
 
         .release-month {
@@ -801,6 +802,61 @@
             border: 1px solid var(--sf-gray-100);
             padding: 2px 10px;
             border-radius: 12px;
+        }
+
+        .release-header-actions {
+            margin-left: auto;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .release-workback-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            font-size: 0.78rem;
+            font-weight: 700;
+            color: var(--sf-electric-blue);
+            text-decoration: none;
+            background: var(--sf-cloud-blue-light);
+            border: 1px solid #B0D5F0;
+            padding: 4px 12px;
+            border-radius: 999px;
+            white-space: nowrap;
+        }
+
+        .release-workback-link:hover {
+            background: #d6ecfa;
+            text-decoration: none;
+        }
+
+        .release-subtabs {
+            display: flex;
+            gap: 4px;
+            margin: 0 0 14px;
+            padding: 0;
+            border-bottom: 1px solid var(--sf-gray-100);
+        }
+
+        .release-subtab {
+            font-size: 0.8rem;
+            font-weight: 600;
+            color: var(--sf-gray-600);
+            text-decoration: none;
+            padding: 8px 14px 10px;
+            border-bottom: 2px solid transparent;
+            margin-bottom: -1px;
+        }
+
+        .release-subtab:hover {
+            color: var(--sf-navy);
+            text-decoration: none;
+        }
+
+        .release-subtab.active {
+            color: var(--sf-electric-blue);
+            border-bottom-color: var(--sf-electric-blue);
         }
 
         .release-lane-grid {
@@ -1608,10 +1664,17 @@
                 </div>
 
                 <!-- Release Lane: September -->
-                <div class="release-lane">
+                <div class="release-lane" id="september-2026">
                     <div class="release-lane-header">
                         <div class="release-month">September 2026</div>
                         <div class="release-branch">OrgCS.264.1 &middot; Prod Sep 25 &middot; Unified: both SubAgents</div>
+                        <div class="release-header-actions">
+                            <a class="release-workback-link" href="workback-september-2026.html">Workback plan →</a>
+                        </div>
+                    </div>
+                    <div class="release-subtabs" aria-label="September release views">
+                        <a class="release-subtab active" href="#september-2026">Initiatives</a>
+                        <a class="release-subtab" href="workback-september-2026.html">Workback plan</a>
                     </div>
                     <div class="release-lane-grid">
                     <!-- Card 1: Onboarding — Agentforce & Data Cloud -->

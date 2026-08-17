@@ -25,9 +25,14 @@
             --sf-error-light: #FEDAD8;
             --sf-purple: #7526C2;
             --sf-purple-light: #F0E6FB;
-            --radius-md: 10px;
+            --build: #0176D3;
+            --eval: #7526C2;
+            --gate: #2E844A;
+            --ms: #DD7A01;
             --radius-lg: 16px;
             --shadow-sm: 0 1px 3px rgba(3, 45, 96, 0.08);
+            --label-w: 210px;
+            --cols: 7;
         }
         * { margin: 0; padding: 0; box-sizing: border-box; }
         body {
@@ -63,7 +68,7 @@
             padding: 6px 14px;
         }
         .top-bar a.back:hover { background: rgba(255,255,255,0.1); }
-        .wrap { max-width: 1100px; margin: 0 auto; padding: 28px 24px 64px; }
+        .wrap { max-width: 1180px; margin: 0 auto; padding: 28px 24px 64px; }
         .hero {
             background: linear-gradient(135deg, #EAF5FE 0%, #fff 55%);
             border: 1px solid var(--sf-gray-100);
@@ -73,7 +78,7 @@
             margin-bottom: 16px;
         }
         .hero h1 { font-size: 1.55rem; color: var(--sf-navy); margin-bottom: 8px; letter-spacing: -0.01em; }
-        .hero p { color: var(--sf-gray-600); max-width: 860px; }
+        .hero p { color: var(--sf-gray-600); max-width: 900px; }
         .facts { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 16px; }
         .fact {
             background: var(--sf-white);
@@ -83,6 +88,15 @@
             font-size: 12.5px;
         }
         .fact b { display: block; color: var(--sf-gray-600); font-size: 10.5px; text-transform: uppercase; letter-spacing: 0.05em; }
+        .callout {
+            border-radius: 10px;
+            padding: 12px 15px;
+            font-size: 0.9rem;
+            margin-top: 12px;
+        }
+        .callout.warn { background: var(--sf-warning-light); border: 1px dashed var(--sf-warning); }
+        .callout.info { background: var(--sf-cloud-blue-light); border: 1px solid #B0D5F0; }
+        .callout.now { background: var(--sf-error-light); border: 1px solid var(--sf-error); }
         .section {
             background: var(--sf-white);
             border: 1px solid var(--sf-gray-100);
@@ -98,37 +112,168 @@
             color: var(--sf-gray-600);
             margin-bottom: 14px;
         }
-        .section h3 { font-size: 1.05rem; color: var(--sf-navy); margin: 0 0 8px; }
-        .callout {
-            border-radius: 10px;
-            padding: 12px 15px;
-            font-size: 0.92rem;
-            margin-top: 12px;
+        .legend {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 14px;
+            margin: 0 0 14px;
+            font-size: 0.8rem;
+            color: var(--sf-gray-600);
         }
-        .callout.warn { background: var(--sf-warning-light); border: 1px dashed var(--sf-warning); }
-        .callout.ok { background: var(--sf-success-light); border: 1px solid var(--sf-success); }
-        .callout.info { background: var(--sf-cloud-blue-light); border: 1px solid #B0D5F0; }
-        .callout.now {
-            background: var(--sf-error-light);
-            border: 1px solid var(--sf-error);
-            margin-bottom: 14px;
+        .legend span { display: inline-flex; align-items: center; gap: 6px; }
+        .dot { width: 12px; height: 12px; border-radius: 3px; display: inline-block; }
+        .d-eval { background: var(--eval); }
+        .d-build { background: var(--build); }
+        .d-gate { background: var(--gate); }
+        .d-ms { background: var(--ms); }
+        .d-done { background: #94A3B8; }
+
+        .gantt-wrap { overflow-x: auto; margin: 0 -4px; padding: 0 4px; }
+        .gantt {
+            min-width: 920px;
+            border: 1px solid var(--sf-gray-100);
+            border-radius: 12px;
+            background: #FAFCFF;
+            padding: 14px 14px 10px;
         }
+        .months {
+            display: grid;
+            grid-template-columns: var(--label-w) repeat(var(--cols), 1fr);
+            align-items: end;
+            margin-bottom: 4px;
+        }
+        .months .corner {
+            font-size: 0.68rem;
+            font-weight: 700;
+            color: var(--sf-gray-600);
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            padding-right: 8px;
+        }
+        .months .m {
+            font-size: 0.72rem;
+            font-weight: 700;
+            color: var(--sf-gray-600);
+            text-align: center;
+            border-left: 1px solid var(--sf-gray-100);
+            padding: 2px 0 6px;
+        }
+        .row {
+            display: grid;
+            grid-template-columns: var(--label-w) 1fr;
+            align-items: center;
+            min-height: 42px;
+        }
+        .row .label {
+            font-size: 0.8rem;
+            color: var(--sf-navy);
+            font-weight: 600;
+            padding-right: 10px;
+            line-height: 1.25;
+        }
+        .row .label small {
+            display: block;
+            color: var(--sf-gray-600);
+            font-size: 0.68rem;
+            font-weight: 500;
+            margin-top: 1px;
+        }
+        .track {
+            position: relative;
+            height: 42px;
+            border-left: 1px solid var(--sf-gray-100);
+            background-image: repeating-linear-gradient(
+                90deg,
+                transparent 0,
+                transparent calc(100% / var(--cols) - 1px),
+                var(--sf-gray-100) calc(100% / var(--cols) - 1px),
+                var(--sf-gray-100) calc(100% / var(--cols))
+            );
+        }
+        .bar {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            height: 22px;
+            border-radius: 6px;
+            display: flex;
+            align-items: center;
+            padding: 0 8px;
+            font-size: 0.68rem;
+            font-weight: 700;
+            color: #fff;
+            white-space: nowrap;
+            overflow: hidden;
+            z-index: 1;
+            box-shadow: 0 1px 2px rgba(3,45,96,0.12);
+        }
+        .bar.eval { background: var(--eval); }
+        .bar.build { background: var(--build); }
+        .bar.gate { background: var(--gate); }
+        .bar.done { background: #94A3B8; }
+        .bar.now {
+            background: var(--sf-error);
+            box-shadow: 0 0 0 2px #fff, 0 0 0 3px var(--sf-error);
+        }
+        .marker {
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            width: 0;
+            border-left: 2px dashed var(--ms);
+            z-index: 2;
+        }
+        .marker.uat { border-left-color: var(--build); }
+        .marker.prod { border-left-color: var(--gate); border-left-style: solid; }
+        .marker span {
+            position: absolute;
+            top: 2px;
+            left: 4px;
+            font-size: 0.62rem;
+            font-weight: 800;
+            color: var(--ms);
+            white-space: nowrap;
+            background: rgba(255,255,255,0.92);
+            padding: 0 3px;
+            border-radius: 3px;
+        }
+        .marker.uat span { color: var(--build); }
+        .marker.prod span { color: var(--gate); }
+        .today {
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            width: 0;
+            border-left: 2px solid var(--sf-error);
+            z-index: 3;
+            pointer-events: none;
+        }
+        .today span {
+            position: absolute;
+            bottom: 2px;
+            left: 4px;
+            font-size: 0.62rem;
+            font-weight: 800;
+            color: var(--sf-error);
+            background: #fff;
+            padding: 0 3px;
+            border-radius: 3px;
+        }
+
         .chip {
             display: inline-block;
             font-size: 0.7rem;
             font-weight: 700;
             border-radius: 999px;
             padding: 2px 8px;
-            letter-spacing: 0.02em;
         }
         .chip.live { background: var(--sf-success-light); color: var(--sf-success); }
         .chip.next { background: var(--sf-warning-light); color: var(--sf-warning); }
         .chip.todo { background: var(--sf-cloud-blue-light); color: var(--sf-electric-blue); }
         .chip.done { background: var(--sf-success-light); color: var(--sf-success); }
         .chip.blocked { background: var(--sf-error-light); color: var(--sf-error); }
-        .chip.eval { background: var(--sf-purple-light); color: var(--sf-purple); }
-        .chip.build { background: var(--sf-cloud-blue-light); color: var(--sf-electric-blue); }
-        table { width: 100%; border-collapse: collapse; font-size: 0.84rem; margin-top: 6px; }
+
+        table { width: 100%; border-collapse: collapse; font-size: 0.84rem; margin-top: 4px; }
         th, td { border: 1px solid var(--sf-gray-100); padding: 9px 11px; text-align: left; vertical-align: top; }
         th {
             background: var(--sf-gray-50);
@@ -137,33 +282,12 @@
             letter-spacing: 0.04em;
             color: var(--sf-gray-600);
         }
-        .steps { list-style: none; padding: 0; margin: 0; }
-        .steps li {
-            display: grid;
-            grid-template-columns: 36px 1fr;
-            gap: 12px;
-            padding: 12px 0;
-            border-bottom: 1px solid var(--sf-gray-100);
-        }
-        .steps li:last-child { border-bottom: none; }
-        .steps .n {
-            width: 28px; height: 28px; border-radius: 50%;
-            background: var(--sf-electric-blue); color: #fff;
-            font-size: 0.75rem; font-weight: 700;
-            display: flex; align-items: center; justify-content: center;
-            margin-top: 2px;
-        }
-        .steps .n.done { background: var(--sf-success); }
-        .steps .n.now { background: var(--sf-error); }
-        .steps .n.eval { background: var(--sf-purple); }
-        .steps b { display: block; color: var(--sf-navy); margin-bottom: 3px; }
-        .steps span { font-size: 0.86rem; color: var(--sf-gray-600); }
-        .meta-row { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 6px; }
+        a.deep { color: var(--sf-electric-blue); font-weight: 600; text-decoration: none; }
+        a.deep:hover { text-decoration: underline; }
         .split {
             display: grid;
             grid-template-columns: 1fr 1fr;
             gap: 14px;
-            margin-top: 8px;
         }
         @media (max-width: 800px) { .split { grid-template-columns: 1fr; } }
         .pane {
@@ -174,29 +298,9 @@
         }
         .pane.onb { border-top: 3px solid var(--sf-purple); }
         .pane.adp { border-top: 3px solid var(--sf-electric-blue); }
-        .pane h3 { font-size: 0.95rem; margin-bottom: 8px; }
+        .pane h3 { font-size: 0.95rem; color: var(--sf-navy); margin-bottom: 8px; }
         .pane ul { margin: 0; padding-left: 18px; font-size: 0.86rem; color: var(--sf-gray-600); }
         .pane li { margin: 5px 0; }
-        a.deep { color: var(--sf-electric-blue); font-weight: 600; text-decoration: none; }
-        a.deep:hover { text-decoration: underline; }
-        .ms-grid {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 10px;
-            margin-top: 8px;
-        }
-        @media (max-width: 900px) { .ms-grid { grid-template-columns: 1fr 1fr; } }
-        @media (max-width: 560px) { .ms-grid { grid-template-columns: 1fr; } }
-        .ms {
-            border: 1px solid var(--sf-gray-100);
-            border-radius: 12px;
-            padding: 12px 14px;
-            background: #fff;
-            border-top: 3px solid var(--sf-warning);
-        }
-        .ms .date { font-size: 0.72rem; font-weight: 700; color: var(--sf-warning); text-transform: uppercase; letter-spacing: 0.04em; }
-        .ms .name { font-size: 0.92rem; font-weight: 700; color: var(--sf-navy); margin: 4px 0 2px; }
-        .ms .who { font-size: 0.78rem; color: var(--sf-gray-600); }
         footer {
             margin-top: 20px;
             font-size: 0.8rem;
@@ -204,14 +308,7 @@
             border-top: 1px solid var(--sf-gray-100);
             padding-top: 14px;
         }
-        code {
-            font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
-            font-size: 0.78rem;
-            background: var(--sf-gray-50);
-            border: 1px solid var(--sf-gray-100);
-            border-radius: 4px;
-            padding: 1px 5px;
-        }
+        .note { font-size: 0.78rem; color: var(--sf-gray-600); margin-top: 10px; }
     </style>
 </head>
 <body>
@@ -228,9 +325,8 @@
         <div class="hero">
             <h1>September 2026 workback plan</h1>
             <p>
-                Backwards plan from <strong>Prod Sep 25</strong> (UAT Sep 10) for OrgCS.264.1 —
-                shared retriever expansion + SubAgent experiences that ship in September,
-                with <strong>eval / golden-dataset timelines</strong> on the critical path.
+                Gantt from <strong>today (Aug 17)</strong> back from <strong>Prod Sep 25</strong> (UAT Sep 10).
+                Eval / golden-dataset is the critical path; content, eligibility, and env builds run in parallel.
             </p>
             <div class="facts">
                 <div class="fact"><b>Release</b><span>OrgCS.264.1 · Prod Sep 25</span></div>
@@ -240,257 +336,184 @@
                 <div class="fact"><b>Last refreshed</b><span>Aug 17, 2026</span></div>
             </div>
             <div class="callout now">
-                <strong>Now (immediate):</strong> Balaji reviews Adoption / FSC utterances.
-                Francis already confirmed Onboarding Phase 4 labels (Aug 11).
-                From today’s <em>September Golden Dataset — Utterances Review</em> (Jelena + Balaji):
-                Balaji review is the first open gate before Jelena can ingest / run ATA.
-            </div>
-            <div class="callout info" style="margin-top:10px;">
-                <strong>Also aligned (Weekly Connect, Aug 17):</strong> evaluations must sit inside the broader Sept project / workback plan
-                (Stephanie · Roxanne). Ali + Cody own landing the plan with env-build dates so utterance testing can proceed.
-                <a class="deep" href="https://docs.google.com/document/d/1DYIxG6_OJe5CQ8uJbNai3lrSwIpKogdHhuxhRdd9iIc/edit?tab=t.36abydyxjufe" target="_blank" rel="noopener">Meeting notes</a>
+                <strong>Now:</strong> Balaji reviews Adoption / FSC utterances (Francis Onboarding Phase 4 already confirmed Aug 11).
+                Blocks Jelena suite ingest / ATA.
             </div>
         </div>
 
         <div class="section">
-            <h2>1 · What ships in September (scope locked)</h2>
+            <h2>Gantt · Aug 17 → Sep 25</h2>
+            <div class="legend">
+                <span><i class="dot d-eval"></i> Eval / golden set</span>
+                <span><i class="dot d-build"></i> Build / content / env</span>
+                <span><i class="dot d-gate"></i> Release gate</span>
+                <span><i class="dot d-done"></i> Done</span>
+                <span><i class="dot d-ms"></i> Fixed milestone</span>
+            </div>
+
+            <div class="gantt-wrap">
+                <div class="gantt">
+                    <!-- 7 weeks: Aug 17, 24, 31, Sep 7, 14, 21, 28 — each ≈14.286% -->
+                    <div class="months">
+                        <div class="corner">Workstream</div>
+                        <div class="m">Aug 17</div>
+                        <div class="m">Aug 24</div>
+                        <div class="m">Aug 31</div>
+                        <div class="m">Sep 7</div>
+                        <div class="m">Sep 14</div>
+                        <div class="m">Sep 21</div>
+                        <div class="m">Sep 28</div>
+                    </div>
+
+                    <div class="row">
+                        <div class="label">Francis Phase 4 labels<small>Onboarding Sales + Service</small></div>
+                        <div class="track">
+                            <div class="bar done" style="left:0%;width:2%;" title="Done Aug 11">✓</div>
+                            <div class="today" style="left:2%;"><span>Today</span></div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="label">Balaji utterance review<small>FSC Adoption seeds · NOW</small></div>
+                        <div class="track">
+                            <div class="bar now" style="left:0%;width:10%;">Review</div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="label">Jelena suite ingest + ATA<small>38 utterances · after Balaji</small></div>
+                        <div class="track">
+                            <div class="bar eval" style="left:8%;width:28%;">ATA window</div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="label">QA6 / lower-env builds<small>Utterance testing · Cody / Ali</small></div>
+                        <div class="track">
+                            <div class="bar build" style="left:0%;width:48%;">Env dates TBD → ready for ATA</div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="label">SME validation<small>Derek AF/DC · FSC SME</small></div>
+                        <div class="track">
+                            <div class="bar eval" style="left:22%;width:20%;">SME</div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="label">Formal eval assessment<small>Gate before UAT</small></div>
+                        <div class="track">
+                            <div class="bar gate" style="left:28%;width:14%;">Assessment</div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="label">FINS articles → QA<small>Non-blocking for eng</small></div>
+                        <div class="track">
+                            <div class="bar build" style="left:14%;width:18%;">QA next week</div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="label">Shared content indexing<small>AF + DC + FINS · CSDP</small></div>
+                        <div class="track">
+                            <div class="bar build" style="left:0%;width:52%;">CSDP indexing → UAT</div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="label">FINS eligibility + signals<small>Filters filled · signals OK</small></div>
+                        <div class="track">
+                            <div class="bar build" style="left:0%;width:52%;">Datagraph / CSS ready</div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="label">Release readiness<small>UAT → run-list → Prod</small></div>
+                        <div class="track">
+                            <div class="bar gate" style="left:48%;width:30%;">UAT → GA</div>
+                            <div class="marker uat" style="left:48%;"><span>Sep 10 UAT</span></div>
+                            <div class="marker" style="left:78%;"><span>Run-list ~23–24</span></div>
+                            <div class="marker prod" style="left:86%;"><span>Sep 25 Prod</span></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <p class="note">
+                Column starts = week of date. Bar positions are planning estimates — tighten once Balaji signs off, QA6 dates land, and Jelena locks ATA capacity.
+                <strong>Eval critical path:</strong> Balaji → ATA → SME → formal assessment must finish left of Sep 10 UAT.
+            </p>
+            <div class="callout warn">
+                <strong>Critical-path read:</strong> technical indexing and FINS filters can run in parallel, but utterance → ATA → SME → assessment is the long pole.
+                Weekly Connect (Aug 17): Ali + Cody finalize the project plan with eval timelines + env-build dates
+                (<a class="deep" href="https://docs.google.com/document/d/1DYIxG6_OJe5CQ8uJbNai3lrSwIpKogdHhuxhRdd9iIc/edit?tab=t.36abydyxjufe" target="_blank" rel="noopener">notes</a>).
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>What ships in September</h2>
             <div class="split">
                 <div class="pane onb">
                     <h3>Onboarding experience</h3>
                     <ul>
-                        <li><strong>Agentforce + Data Cloud</strong> — Phase 4 of Sales/Service checklists (UAT 9/10 · Prod 9/25)</li>
-                        <li>Data 360 = Step 1 prerequisite only (not its own step)</li>
+                        <li><strong>Agentforce + Data Cloud</strong> Phase 4 (UAT 9/10 · Prod 9/25)</li>
+                        <li>Data 360 = Step 1 prerequisite only</li>
                         <li>Francis Phase 4 titles confirmed</li>
                     </ul>
                 </div>
                 <div class="pane adp">
                     <h3>Adoption experience + shared content</h3>
                     <ul>
-                        <li><strong>Adoption experience:</strong> FINS only (filters filled)</li>
-                        <li><strong>Shared retriever content:</strong> AF + DC + FINS (Adoption AF/DC <em>experience</em> waits on Oct eligibility/CSS)</li>
-                        <li>Golden set: 12 Sales + 12 Service Onboarding + 14 FSC Adoption = <strong>38 utterances</strong></li>
+                        <li><strong>Adoption experience:</strong> FINS only</li>
+                        <li><strong>Shared content:</strong> AF + DC + FINS (Adoption AF/DC experience → Oct)</li>
+                        <li>Golden set: 12 + 12 + 14 = <strong>38 utterances</strong></li>
                     </ul>
                 </div>
             </div>
-            <div class="callout info">
-                See also: <a class="deep" href="adoption-eligibility.html#h2-readiness">H2 readiness checklist</a> ·
-                <a class="deep" href="roadmap.html#september-2026">September roadmap cards</a>
-            </div>
         </div>
 
         <div class="section">
-            <h2>2 · Eval critical path (golden dataset)</h2>
-            <p style="color:var(--sf-gray-600);font-size:0.9rem;margin-bottom:10px;">
-                Ops model unchanged: Jelena ATA → SME validates answers (not ChatGPT ideal answers).
-                Sheet: <a class="deep" href="https://docs.google.com/spreadsheets/d/1CHJ1VItLcNV0FYESeVOyRLQygZL7aWZbieiNwCLm5Ec/edit" target="_blank" rel="noopener">September Golden Dataset — Utterances</a>.
-            </p>
-            <ol class="steps">
-                <li>
-                    <div class="n done">1</div>
-                    <div>
-                        <b>Francis — Onboarding Phase 4 labels confirmed <span class="chip done">Done Aug 11</span></b>
-                        <span>Sales: Coworker · Pipeline Management · Account Management. Service: Coworker · Service Assistant. Data 360 = Step 1 prerequisite only.</span>
-                        <div class="meta-row"><span class="chip eval">Eval</span><span class="chip done">Unblocks utterance Locations</span></div>
-                    </div>
-                </li>
-                <li>
-                    <div class="n now">2</div>
-                    <div>
-                        <b>Balaji — review utterances (Adoption / FSC + overall seed quality) <span class="chip next">NOW</span></b>
-                        <span>First open gate after today’s Jelena + Balaji review. Confirm FSC avenue coverage (14) and any Adoption-side wording before suite ingest. Francis Onboarding path already locked.</span>
-                        <div class="meta-row"><span class="chip eval">Eval</span><span class="chip blocked">Blocks ATA ingest</span></div>
-                    </div>
-                </li>
-                <li>
-                    <div class="n eval">3</div>
-                    <div>
-                        <b>Jelena — suite ingest + ATA <span class="chip todo">Next</span></b>
-                        <span>Append 38 as a new suite (separate from Knowledge GD). Ideal answers stay blank until ATA + SME. Align suite naming / persona with Jelena.</span>
-                        <div class="meta-row"><span class="chip eval">Eval</span><span class="chip todo">Target: week of Aug 18–22 once Balaji signs off</span></div>
-                    </div>
-                </li>
-                <li>
-                    <div class="n">4</div>
-                    <div>
-                        <b>Lower-env / QA6 readiness for utterance testing <span class="chip todo">Parallel · gate for ATA</span></b>
-                        <span>Weekly Connect (Aug 17): waiting on <strong>when builds are ready in lower environments — specifically QA6</strong> — so utterances can be tested.
-                        Stephanie · Ali coordinating with Cody on env-build schedules. Prod interim OK if lower env lags (Roxanne path), but QA6 is the preferred path.</span>
-                        <div class="meta-row"><span class="chip build">Build</span><span class="chip next">Need dates from Cody / Ali</span></div>
-                    </div>
-                </li>
-                <li>
-                    <div class="n eval">5</div>
-                    <div>
-                        <b>SME validation after ATA <span class="chip todo">After ATA</span></b>
-                        <span>Derek (AF/DC) · FSC SME TBD. Lock Status → SME Reviewed. No ChatGPT ideal answers.</span>
-                        <div class="meta-row"><span class="chip eval">Eval</span><span class="chip todo">Target: complete before formal assessment</span></div>
-                    </div>
-                </li>
-                <li>
-                    <div class="n eval">6</div>
-                    <div>
-                        <b>Formal eval assessment <span class="chip next">Gate before UAT</span></b>
-                        <span>Required before treating Sept expansion as release-ready. Pulls the golden-set work left of UAT (Sep 10).</span>
-                        <div class="meta-row"><span class="chip eval">Eval gate</span><span class="chip next">Target: by Sep 3 (planning — confirm with Jelena)</span></div>
-                    </div>
-                </li>
-            </ol>
-            <div class="callout warn">
-                <strong>Critical-path read:</strong> eval is the long pole. Technical filter / content indexing can proceed in parallel,
-                but <strong>Balaji utterance sign-off → Jelena ATA → SME → formal assessment</strong> must finish before UAT (Sep 10)
-                or the Sept experience claims are at risk.
-            </div>
-        </div>
-
-        <div class="section">
-            <h2>3 · Fixed milestones (work backwards from Prod)</h2>
-            <div class="ms-grid">
-                <div class="ms">
-                    <div class="date">Now · Aug 17–20</div>
-                    <div class="name">Balaji utterance review</div>
-                    <div class="who">Balaji · Stephanie · Jelena informed</div>
-                </div>
-                <div class="ms">
-                    <div class="date">Aug 18–29</div>
-                    <div class="name">ATA + SME window</div>
-                    <div class="who">Jelena ATA · Derek / FSC SME</div>
-                </div>
-                <div class="ms">
-                    <div class="date">By ~Sep 3</div>
-                    <div class="name">Formal eval assessment</div>
-                    <div class="who">Jelena / Stephanie · confirm exact date</div>
-                </div>
-                <div class="ms">
-                    <div class="date">Sep 10</div>
-                    <div class="name">UAT</div>
-                    <div class="who">OrgCS.264.1 lower / UAT cut</div>
-                </div>
-                <div class="ms" style="border-top-color:var(--sf-error);">
-                    <div class="date" style="color:var(--sf-error);">Sep 23–24</div>
-                    <div class="name">Run-list review</div>
-                    <div class="who">Release gate (confirm with Cody / Allyson)</div>
-                </div>
-                <div class="ms" style="border-top-color:var(--sf-success);">
-                    <div class="date" style="color:var(--sf-success);">Sep 25</div>
-                    <div class="name">Production</div>
-                    <div class="who">OrgCS.264.1 GA</div>
-                </div>
-                <div class="ms">
-                    <div class="date">Parallel · Aug–Sep</div>
-                    <div class="name">CSDP content indexing</div>
-                    <div class="who">Helen / CSDP · shared pool AF/DC/FINS</div>
-                </div>
-                <div class="ms">
-                    <div class="date">Parallel · Aug–Sep</div>
-                    <div class="name">Eligibility / Datagraph (FINS Adoption)</div>
-                    <div class="who">Balaji / Amritha · filters already filled for FINS</div>
-                </div>
-            </div>
-        </div>
-
-        <div class="section">
-            <h2>4 · Parallel workstreams (not on eval critical path, still required)</h2>
+            <h2>This week · owner checklist</h2>
             <table>
                 <thead>
-                    <tr>
-                        <th>Workstream</th>
-                        <th>Owner</th>
-                        <th>Sept need</th>
-                        <th>Status / note</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td><strong>Shared retriever content</strong> (AF + DC + FINS)</td>
-                        <td>Helen / CSDP · Sam</td>
-                        <td>Indexed for QA / UAT</td>
-                        <td><span class="chip build">In progress</span> FINS articles: expected for QA <strong>next week</strong>; Sam — answer quality impact, <em>not</em> a development blocker</td>
-                    </tr>
-                    <tr>
-                        <td><strong>FINS Adoption eligibility + CSS signals</strong></td>
-                        <td>Balaji / Amritha · Sam</td>
-                        <td>Datagraph UAT green · signals live</td>
-                        <td><span class="chip live">Filters filled</span> · <span class="chip live">Signals confirmed</span> (Weekly Connect — goal mapping working for Sept Finance Cloud)</td>
-                    </tr>
-                    <tr>
-                        <td><strong>Onboarding AF/DC Phase 4 experience</strong></td>
-                        <td>Francis / eng</td>
-                        <td>Checklist + payload ready</td>
-                        <td><span class="chip live">Titles locked</span></td>
-                    </tr>
-                    <tr>
-                        <td><strong>Program / workback plan with eval + env dates</strong></td>
-                        <td>Ali Salehifar · Cody Rodgers (+ Kavita) · Stephanie</td>
-                        <td>QA6 / env-build dates explicit · eval timelines in plan</td>
-                        <td><span class="chip next">Aligned Aug 17</span> Ali + Cody finalize plan incl. evaluations; Cody syncing Kavita on env builds</td>
-                    </tr>
-                    <tr>
-                        <td><strong>Adoption AF/DC experience</strong></td>
-                        <td>CSS / eligibility</td>
-                        <td><em>Not Sept</em></td>
-                        <td><span class="chip blocked">Oct target</span> content only in Sept</td>
-                    </tr>
-                    <tr>
-                        <td><strong>Shared-pool leakage watch</strong></td>
-                        <td>Stephanie / Allyson</td>
-                        <td>Go/no-go item</td>
-                        <td><span class="chip todo">Watch — not automatic blocker</span></td>
-                    </tr>
-                    <tr>
-                        <td><strong>Agent V2 traffic / language contingency</strong></td>
-                        <td>Balaji · Roxanne · Sam · Mena (surface)</td>
-                        <td>Mitigate CTA → V1 mismatch if traffic &lt;100%</td>
-                        <td><span class="chip next">Watch</span> Currently ~5% V2; contingency + surface-logic align called out in Weekly Connect</td>
-                    </tr>
-                </tbody>
-            </table>
-        </div>
-
-        <div class="section">
-            <h2>5 · Owner checklist (this week)</h2>
-            <table>
-                <thead>
-                    <tr>
-                        <th>#</th>
-                        <th>Action</th>
-                        <th>Owner</th>
-                        <th>By</th>
-                    </tr>
+                    <tr><th>#</th><th>Action</th><th>Owner</th><th>By</th></tr>
                 </thead>
                 <tbody>
                     <tr>
                         <td>1</td>
-                        <td>Complete Balaji review of 38 utterances (esp. 14 FSC Adoption)</td>
+                        <td>Complete Balaji review of 38 utterances (esp. 14 FSC)</td>
                         <td>Balaji · Stephanie</td>
                         <td><strong>This week</strong></td>
                     </tr>
                     <tr>
                         <td>2</td>
-                        <td>Confirm Jelena suite ingest path + ATA start date after Balaji sign-off</td>
+                        <td>Confirm Jelena suite ingest + ATA start after Balaji sign-off</td>
                         <td>Stephanie · Jelena</td>
                         <td>Right after #1</td>
                     </tr>
                     <tr>
                         <td>3</td>
-                        <td>Get QA6 / lower-env build dates so utterance testing can start (feeds Jelena ATA)</td>
+                        <td>Get QA6 / lower-env build dates for utterance testing</td>
                         <td>Cody · Ali · Stephanie</td>
                         <td>This week</td>
                     </tr>
                     <tr>
                         <td>4</td>
-                        <td>Finalize Sept project / workback plan with evaluation timelines (Weekly Connect ask)</td>
+                        <td>Finalize Sept plan with evaluation timelines</td>
                         <td>Ali · Cody · Stephanie</td>
                         <td>This week</td>
                     </tr>
                     <tr>
                         <td>5</td>
-                        <td>Confirm FINS articles landed for QA (Sam: next week, non-blocking for eng)</td>
+                        <td>Confirm FINS articles landed for QA (non-blocking for eng)</td>
                         <td>Sam / CSDP · Balaji</td>
                         <td>Week of Aug 24</td>
                     </tr>
                     <tr>
                         <td>6</td>
-                        <td>Lock formal eval assessment date (planning: by Sep 3)</td>
+                        <td>Lock formal eval assessment date (planning: by ~Sep 3)</td>
                         <td>Stephanie · Jelena</td>
                         <td>By Aug 22</td>
                     </tr>
@@ -499,23 +522,46 @@
         </div>
 
         <div class="section">
-            <h2>6 · Track separately (not on Sept 264.1 critical path)</h2>
-            <ul style="padding-left:18px;color:var(--sf-gray-600);font-size:0.9rem;">
-                <li style="margin:6px 0;"><strong>KYC → Data Graph source switch</strong> — Sam / Ben pros-cons + Tzlil mock/test-tenant support (Weekly Connect).</li>
-                <li style="margin:6px 0;"><strong>MCP / Knowledge Graph hybrid PoC</strong> — demo next week; full implementation + regression eval window <strong>Oct 1–12</strong> · go-live Oct 23 (October workback later).</li>
-                <li style="margin:6px 0;"><strong>Near-term UAT defects</strong> — embedded video repeatability; adoption CTA → third-pass guidance bug (Sam filed). Track in current UAT, not as Sept expansion scope.</li>
-                <li style="margin:6px 0;"><strong>GitHub worldwide outage</strong> (Aug 17) delayed today’s UAT deploy / non-English tester invites — watch for knock-on if it slips lower-env schedules.</li>
-            </ul>
+            <h2>Parallel + watch items</h2>
+            <table>
+                <thead>
+                    <tr><th>Item</th><th>Owner</th><th>Status</th></tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>FINS CSS signals / goal mapping</td>
+                        <td>Sam · Balaji</td>
+                        <td><span class="chip live">Confirmed</span> Weekly Connect</td>
+                    </tr>
+                    <tr>
+                        <td>Agent V2 traffic / language contingency (~5% today)</td>
+                        <td>Balaji · Roxanne · Sam · Mena</td>
+                        <td><span class="chip next">Watch</span></td>
+                    </tr>
+                    <tr>
+                        <td>Shared-pool leakage</td>
+                        <td>Stephanie · Allyson</td>
+                        <td><span class="chip todo">Sept go/no-go watch</span></td>
+                    </tr>
+                    <tr>
+                        <td>KYC → Data Graph · MCP PoC · Oct 1–12 eval</td>
+                        <td>Sam / Ben / Ali</td>
+                        <td><span class="chip blocked">Track separately</span> (not Sept 264.1 critical path)</td>
+                    </tr>
+                </tbody>
+            </table>
         </div>
 
         <footer>
             <p><strong>Sr. Product Manager:</strong> Stephanie Stancombe · Lifecycle Success Lead</p>
-            <p><strong>Sources:</strong> Sept golden-dataset next steps (Aug 10–11) · Francis Phase 4 confirm ·
-                September Golden Dataset Utterances Review (Aug 17 · Jelena + Balaji) ·
-                <a class="deep" href="https://docs.google.com/document/d/1DYIxG6_OJe5CQ8uJbNai3lrSwIpKogdHhuxhRdd9iIc/edit?tab=t.36abydyxjufe" target="_blank" rel="noopener">Adoption Guidance Weekly Connect notes (Aug 17)</a> ·
-                Cloud Expansion Checklist · Roadmap OrgCS.264.1 cards</p>
-            <p><strong>Note:</strong> Mid-August → early-September eval dates are planning targets — tighten once Balaji signs off, QA6 dates land, and Jelena confirms ATA capacity.</p>
-            <p><a class="deep" href="roadmap.html#september-2026">Return to September on Product Roadmap</a></p>
+            <p><strong>Sources:</strong> Sept golden-dataset next steps · Francis Phase 4 confirm ·
+                Utterances Review (Jelena + Balaji) ·
+                <a class="deep" href="https://docs.google.com/document/d/1DYIxG6_OJe5CQ8uJbNai3lrSwIpKogdHhuxhRdd9iIc/edit?tab=t.36abydyxjufe" target="_blank" rel="noopener">Weekly Connect Aug 17</a> ·
+                Roadmap OrgCS.264.1</p>
+            <p>
+                <a class="deep" href="roadmap.html#september-2026">Return to September on Product Roadmap</a> ·
+                <a class="deep" href="adoption-eligibility.html#h2-readiness">H2 readiness checklist</a>
+            </p>
         </footer>
     </div>
 </body>

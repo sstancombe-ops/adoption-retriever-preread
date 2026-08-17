@@ -29,6 +29,8 @@
             --eval: #7526C2;
             --gate: #2E844A;
             --ms: #DD7A01;
+            --cp: #B54708;
+            --cp-glow: #F79009;
             --radius-lg: 16px;
             --shadow-sm: 0 1px 3px rgba(3, 45, 96, 0.08);
             --label-w: 210px;
@@ -127,14 +129,52 @@
         .d-gate { background: var(--gate); }
         .d-ms { background: var(--ms); }
         .d-done { background: #94A3B8; }
+        .d-cp {
+            width: auto;
+            height: auto;
+            background: none;
+            border-radius: 0;
+            color: var(--cp);
+            font-size: 0.95rem;
+            line-height: 1;
+        }
 
         .gantt-wrap { overflow-x: auto; margin: 0 -4px; padding: 0 4px; }
         .gantt {
+            position: relative;
             min-width: 920px;
             border: 1px solid var(--sf-gray-100);
             border-radius: 12px;
             background: #FAFCFF;
             padding: 14px 14px 10px;
+        }
+        .cp-overlay {
+            position: absolute;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 4;
+            overflow: visible;
+        }
+        .cp-overlay path {
+            fill: none;
+            stroke: var(--cp-glow);
+            stroke-width: 2.5;
+            stroke-linecap: round;
+            stroke-linejoin: round;
+            stroke-dasharray: 5 4;
+            filter: drop-shadow(0 0 3px rgba(247, 144, 9, 0.55));
+        }
+        .cp-overlay .cp-node {
+            fill: #fff;
+            stroke: var(--cp);
+            stroke-width: 1.75;
+        }
+        .cp-overlay .cp-spark {
+            fill: var(--cp-glow);
+            stroke: var(--cp);
+            stroke-width: 0.6;
         }
         .months {
             display: grid;
@@ -164,6 +204,11 @@
             align-items: center;
             min-height: 42px;
         }
+        .row.cp {
+            background: linear-gradient(90deg, rgba(247, 144, 9, 0.08) 0%, rgba(247, 144, 9, 0.02) var(--label-w), transparent calc(var(--label-w) + 8px));
+            border-radius: 8px;
+            margin: 1px 0;
+        }
         .row .label {
             font-size: 0.8rem;
             color: var(--sf-navy);
@@ -171,6 +216,24 @@
             padding-right: 10px;
             line-height: 1.25;
         }
+        .row.cp .label {
+            display: flex;
+            flex-direction: column;
+            gap: 0;
+            padding-left: 2px;
+        }
+        .row.cp .label .cp-title {
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+        }
+        .spark {
+            display: inline-flex;
+            color: var(--cp-glow);
+            flex-shrink: 0;
+            filter: drop-shadow(0 0 2px rgba(247, 144, 9, 0.45));
+        }
+        .spark svg { width: 12px; height: 12px; display: block; }
         .row .label small {
             display: block;
             color: var(--sf-gray-600);
@@ -215,6 +278,25 @@
             background: var(--sf-error);
             box-shadow: 0 0 0 2px #fff, 0 0 0 3px var(--sf-error);
         }
+        .bar.cp {
+            box-shadow:
+                0 0 0 2px #fff,
+                0 0 0 3.5px var(--cp-glow),
+                0 1px 2px rgba(3,45,96,0.12);
+            z-index: 5;
+        }
+        .bar.cp.now {
+            box-shadow:
+                0 0 0 2px #fff,
+                0 0 0 3.5px var(--cp-glow),
+                0 0 0 5px var(--sf-error);
+        }
+        .bar.cp .spark {
+            margin-right: 4px;
+            color: #fff;
+            filter: drop-shadow(0 0 2px rgba(255,255,255,0.35));
+        }
+        .bar.cp .spark svg { width: 10px; height: 10px; }
         .marker {
             position: absolute;
             top: 0;
@@ -343,6 +425,7 @@
         <div class="section">
             <h2>Gantt · Aug 17 → Sep 25</h2>
             <div class="legend">
+                <span><i class="dot d-cp" aria-hidden="true">✦</i> Critical path</span>
                 <span><i class="dot d-eval"></i> Eval / golden set</span>
                 <span><i class="dot d-build"></i> Build / content / env</span>
                 <span><i class="dot d-gate"></i> Release gate</span>
@@ -351,7 +434,8 @@
             </div>
 
             <div class="gantt-wrap">
-                <div class="gantt">
+                <div class="gantt" id="sept-gantt">
+                    <svg class="cp-overlay" id="cp-overlay" aria-hidden="true"></svg>
                     <!-- 7 weeks: Aug 17, 24, 31, Sep 7, 14, 21, 28 — each ≈14.286% -->
                     <div class="months">
                         <div class="corner">Workstream</div>
@@ -372,17 +456,23 @@
                         </div>
                     </div>
 
-                    <div class="row">
-                        <div class="label">Balaji utterance review<small>FSC Adoption seeds · NOW</small></div>
+                    <div class="row cp">
+                        <div class="label">
+                            <span class="cp-title"><span class="spark" aria-hidden="true"><svg viewBox="0 0 16 16"><path fill="currentColor" d="M8 0l1.2 5.2L14.5 6.5l-4.1 3.2L11.5 16 8 12.8 4.5 16l1.1-6.3L1.5 6.5l5.3-1.3L8 0z"/></svg></span>Balaji utterance review</span>
+                            <small>FSC Adoption seeds · NOW</small>
+                        </div>
                         <div class="track">
-                            <div class="bar now" style="left:0%;width:10%;">Review</div>
+                            <div class="bar now cp" data-cp="1" style="left:0%;width:10%;"><span class="spark" aria-hidden="true"><svg viewBox="0 0 16 16"><path fill="currentColor" d="M8 0l1.2 5.2L14.5 6.5l-4.1 3.2L11.5 16 8 12.8 4.5 16l1.1-6.3L1.5 6.5l5.3-1.3L8 0z"/></svg></span>Review</div>
                         </div>
                     </div>
 
-                    <div class="row">
-                        <div class="label">Jelena suite ingest + ATA<small>38 utterances · after Balaji</small></div>
+                    <div class="row cp">
+                        <div class="label">
+                            <span class="cp-title"><span class="spark" aria-hidden="true"><svg viewBox="0 0 16 16"><path fill="currentColor" d="M8 0l1.2 5.2L14.5 6.5l-4.1 3.2L11.5 16 8 12.8 4.5 16l1.1-6.3L1.5 6.5l5.3-1.3L8 0z"/></svg></span>Jelena suite ingest + ATA</span>
+                            <small>38 utterances · after Balaji</small>
+                        </div>
                         <div class="track">
-                            <div class="bar eval" style="left:8%;width:28%;">ATA window</div>
+                            <div class="bar eval cp" data-cp="2" style="left:8%;width:28%;"><span class="spark" aria-hidden="true"><svg viewBox="0 0 16 16"><path fill="currentColor" d="M8 0l1.2 5.2L14.5 6.5l-4.1 3.2L11.5 16 8 12.8 4.5 16l1.1-6.3L1.5 6.5l5.3-1.3L8 0z"/></svg></span>ATA window</div>
                         </div>
                     </div>
 
@@ -393,17 +483,23 @@
                         </div>
                     </div>
 
-                    <div class="row">
-                        <div class="label">SME validation<small>AF/DC · FSC SMEs</small></div>
+                    <div class="row cp">
+                        <div class="label">
+                            <span class="cp-title"><span class="spark" aria-hidden="true"><svg viewBox="0 0 16 16"><path fill="currentColor" d="M8 0l1.2 5.2L14.5 6.5l-4.1 3.2L11.5 16 8 12.8 4.5 16l1.1-6.3L1.5 6.5l5.3-1.3L8 0z"/></svg></span>SME validation</span>
+                            <small>AF/DC · FSC SMEs</small>
+                        </div>
                         <div class="track">
-                            <div class="bar eval" style="left:22%;width:20%;">SME</div>
+                            <div class="bar eval cp" data-cp="3" style="left:22%;width:20%;"><span class="spark" aria-hidden="true"><svg viewBox="0 0 16 16"><path fill="currentColor" d="M8 0l1.2 5.2L14.5 6.5l-4.1 3.2L11.5 16 8 12.8 4.5 16l1.1-6.3L1.5 6.5l5.3-1.3L8 0z"/></svg></span>SME</div>
                         </div>
                     </div>
 
-                    <div class="row">
-                        <div class="label">Formal eval assessment<small>Gate before UAT</small></div>
+                    <div class="row cp">
+                        <div class="label">
+                            <span class="cp-title"><span class="spark" aria-hidden="true"><svg viewBox="0 0 16 16"><path fill="currentColor" d="M8 0l1.2 5.2L14.5 6.5l-4.1 3.2L11.5 16 8 12.8 4.5 16l1.1-6.3L1.5 6.5l5.3-1.3L8 0z"/></svg></span>Formal eval assessment</span>
+                            <small>Gate before UAT</small>
+                        </div>
                         <div class="track">
-                            <div class="bar gate" style="left:28%;width:14%;">Assessment</div>
+                            <div class="bar gate cp" data-cp="4" style="left:28%;width:14%;"><span class="spark" aria-hidden="true"><svg viewBox="0 0 16 16"><path fill="currentColor" d="M8 0l1.2 5.2L14.5 6.5l-4.1 3.2L11.5 16 8 12.8 4.5 16l1.1-6.3L1.5 6.5l5.3-1.3L8 0z"/></svg></span>Assessment</div>
                         </div>
                     </div>
 
@@ -428,10 +524,13 @@
                         </div>
                     </div>
 
-                    <div class="row">
-                        <div class="label">Release readiness<small>UAT → run-list → Prod</small></div>
+                    <div class="row cp">
+                        <div class="label">
+                            <span class="cp-title"><span class="spark" aria-hidden="true"><svg viewBox="0 0 16 16"><path fill="currentColor" d="M8 0l1.2 5.2L14.5 6.5l-4.1 3.2L11.5 16 8 12.8 4.5 16l1.1-6.3L1.5 6.5l5.3-1.3L8 0z"/></svg></span>Release readiness</span>
+                            <small>UAT → run-list → Prod</small>
+                        </div>
                         <div class="track">
-                            <div class="bar gate" style="left:48%;width:30%;">UAT → GA</div>
+                            <div class="bar gate cp" data-cp="5" style="left:48%;width:30%;"><span class="spark" aria-hidden="true"><svg viewBox="0 0 16 16"><path fill="currentColor" d="M8 0l1.2 5.2L14.5 6.5l-4.1 3.2L11.5 16 8 12.8 4.5 16l1.1-6.3L1.5 6.5l5.3-1.3L8 0z"/></svg></span>UAT → GA</div>
                             <div class="marker uat" style="left:48%;"><span>Sep 10 UAT</span></div>
                             <div class="marker" style="left:78%;"><span>Run-list ~23–24</span></div>
                             <div class="marker prod" style="left:86%;"><span>Sep 25 Prod</span></div>
@@ -563,5 +662,100 @@
             </p>
         </footer>
     </div>
+    <script>
+        (function () {
+            var NS = 'http://www.w3.org/2000/svg';
+            var gantt = document.getElementById('sept-gantt');
+            var svg = document.getElementById('cp-overlay');
+            if (!gantt || !svg) return;
+
+            function sparkPath(cx, cy, r) {
+                var pts = [];
+                for (var i = 0; i < 8; i++) {
+                    var a = (Math.PI / 4) * i - Math.PI / 2;
+                    var rad = i % 2 === 0 ? r : r * 0.42;
+                    pts.push((cx + Math.cos(a) * rad).toFixed(1) + ',' + (cy + Math.sin(a) * rad).toFixed(1));
+                }
+                return pts.join(' ');
+            }
+
+            function draw() {
+                var bars = Array.prototype.slice.call(gantt.querySelectorAll('.bar.cp'))
+                    .sort(function (a, b) {
+                        return Number(a.getAttribute('data-cp')) - Number(b.getAttribute('data-cp'));
+                    });
+                if (bars.length < 2) return;
+
+                var gRect = gantt.getBoundingClientRect();
+                var w = gantt.clientWidth;
+                var h = gantt.clientHeight;
+                svg.setAttribute('viewBox', '0 0 ' + w + ' ' + h);
+                svg.setAttribute('width', w);
+                svg.setAttribute('height', h);
+                while (svg.firstChild) svg.removeChild(svg.firstChild);
+
+                var nodes = bars.map(function (bar) {
+                    var r = bar.getBoundingClientRect();
+                    return {
+                        x1: r.left - gRect.left,
+                        x2: r.right - gRect.left,
+                        y: r.bottom - gRect.top + 5,
+                        ym: r.top - gRect.top + r.height / 2,
+                        xm: r.left - gRect.left + r.width / 2
+                    };
+                });
+
+                var d = '';
+                for (var i = 0; i < nodes.length; i++) {
+                    var n = nodes[i];
+                    if (i === 0) {
+                        d += 'M ' + n.x1.toFixed(1) + ' ' + n.y.toFixed(1);
+                        d += ' L ' + n.x2.toFixed(1) + ' ' + n.y.toFixed(1);
+                    } else {
+                        var prev = nodes[i - 1];
+                        var joinX = Math.max(prev.x2 + 6, (prev.x2 + n.x1) / 2);
+                        if (n.x1 > prev.x2) {
+                            joinX = (prev.x2 + n.x1) / 2;
+                        } else {
+                            joinX = Math.max(prev.x2, n.x2) + 8;
+                        }
+                        d += ' L ' + joinX.toFixed(1) + ' ' + prev.y.toFixed(1);
+                        d += ' L ' + joinX.toFixed(1) + ' ' + n.y.toFixed(1);
+                        d += ' L ' + n.x1.toFixed(1) + ' ' + n.y.toFixed(1);
+                        d += ' L ' + n.x2.toFixed(1) + ' ' + n.y.toFixed(1);
+                    }
+                }
+
+                var path = document.createElementNS(NS, 'path');
+                path.setAttribute('d', d);
+                svg.appendChild(path);
+
+                nodes.forEach(function (n, idx) {
+                    var cx = idx === nodes.length - 1 ? n.x2 : n.x2;
+                    if (idx === 0) cx = n.x1;
+                    else if (idx === nodes.length - 1) cx = n.x2;
+                    else cx = n.xm;
+
+                    var circle = document.createElementNS(NS, 'circle');
+                    circle.setAttribute('class', 'cp-node');
+                    circle.setAttribute('cx', cx.toFixed(1));
+                    circle.setAttribute('cy', n.y.toFixed(1));
+                    circle.setAttribute('r', '5');
+                    svg.appendChild(circle);
+
+                    var spark = document.createElementNS(NS, 'polygon');
+                    spark.setAttribute('class', 'cp-spark');
+                    spark.setAttribute('points', sparkPath(cx, n.y, 3.4));
+                    svg.appendChild(spark);
+                });
+            }
+
+            draw();
+            window.addEventListener('resize', draw);
+            if (document.fonts && document.fonts.ready) {
+                document.fonts.ready.then(draw).catch(function () {});
+            }
+        })();
+    </script>
 </body>
 </html>

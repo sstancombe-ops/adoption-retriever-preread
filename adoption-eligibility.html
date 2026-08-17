@@ -203,6 +203,84 @@
             color: var(--sf-gray-600);
         }
         .filters span b { color: var(--sf-navy); }
+        .ready-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 12px;
+            margin-top: 10px;
+        }
+        @media (max-width: 800px) { .ready-grid { grid-template-columns: 1fr; } }
+        .ready-card {
+            border: 1px solid var(--sf-gray-100);
+            border-radius: 12px;
+            padding: 14px 16px;
+            background: var(--sf-gray-50);
+        }
+        .ready-card.content-bar { border-top: 3px solid #7526C2; }
+        .ready-card.exp-bar { border-top: 3px solid var(--sf-electric-blue); }
+        .ready-card h3 { font-size: 0.95rem; color: var(--sf-navy); margin-bottom: 6px; }
+        .ready-card p { font-size: 0.84rem; color: var(--sf-gray-600); margin-bottom: 10px; }
+        .gate-list { list-style: none; padding: 0; margin: 12px 0 0; }
+        .gate-list li {
+            display: grid;
+            grid-template-columns: 28px 1fr auto;
+            gap: 10px;
+            align-items: start;
+            padding: 10px 12px;
+            border: 1px solid var(--sf-gray-100);
+            border-radius: 10px;
+            background: #FAFCFF;
+            margin-bottom: 8px;
+            font-size: 0.88rem;
+        }
+        .gate-list .num {
+            width: 24px; height: 24px; border-radius: 50%;
+            background: var(--sf-electric-blue); color: #fff;
+            font-size: 0.72rem; font-weight: 700;
+            display: flex; align-items: center; justify-content: center;
+            margin-top: 1px;
+        }
+        .gate-list .gate-body b { display: block; color: var(--sf-navy); margin-bottom: 2px; }
+        .gate-list .gate-body span { color: var(--sf-gray-600); font-size: 0.8rem; }
+        .gate-tags { display: flex; flex-wrap: wrap; gap: 4px; justify-content: flex-end; max-width: 140px; }
+        .mini {
+            display: inline-block;
+            font-size: 0.65rem;
+            font-weight: 700;
+            border-radius: 999px;
+            padding: 2px 7px;
+            white-space: nowrap;
+        }
+        .mini.content { background: #F0E6FB; color: #7526C2; }
+        .mini.exp { background: var(--sf-cloud-blue-light); color: var(--sf-electric-blue); }
+        .mini.both { background: var(--sf-success-light); color: var(--sf-success); }
+        .h2-strip {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 10px;
+            margin-top: 14px;
+        }
+        @media (max-width: 900px) { .h2-strip { grid-template-columns: 1fr 1fr; } }
+        @media (max-width: 560px) { .h2-strip { grid-template-columns: 1fr; } }
+        .h2-tile {
+            border: 1px solid var(--sf-gray-100);
+            border-radius: 12px;
+            padding: 12px 14px;
+            background: #fff;
+        }
+        .h2-tile .cloud { font-weight: 700; color: var(--sf-navy); font-size: 0.9rem; margin-bottom: 6px; }
+        .h2-tile .line { font-size: 0.78rem; color: var(--sf-gray-600); margin: 3px 0; }
+        .jump {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            margin-top: 12px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            color: var(--sf-electric-blue);
+            text-decoration: none;
+        }
+        .jump:hover { text-decoration: underline; }
     </style>
 </head>
 <body>
@@ -233,6 +311,130 @@
                 <strong>Sept split (aligned Aug 11):</strong> Shared retriever content can include AF + DC + FINS.
                 <strong>Adoption experience / topic</strong> expands to <strong>FINS only</strong> in September.
                 AF/DC Adoption experience waits on CSS / eligibility fill-out (sheet targets Oct).
+            </div>
+            <a class="jump" href="#h2-readiness">↓ H2 readiness checklist — prerequisites before a new cloud</a>
+        </div>
+
+        <div class="section" id="h2-readiness">
+            <h2>H2 · Readiness checklist — before we extend Adoption Retriever to a new cloud</h2>
+            <p style="color:var(--sf-gray-600);font-size:0.92rem;margin-bottom:4px;">
+                Stakeholder one-pager: what must be true before we expand. Drawn from the
+                <strong>Cloud Expansion Checklist · Eligibility Criteria</strong> tab (plus the content / CSS gates that sit outside that tab).
+                <strong>Content</strong> and <strong>experience</strong> are different bars — Sept AF/DC is the living example.
+            </p>
+
+            <div class="ready-grid">
+                <div class="ready-card content-bar">
+                    <h3>Bar A · Shared retriever <em>content</em></h3>
+                    <p>Index cloud content into the shared Adoption/Onboarding pool so answers can cite it. Does <strong>not</strong> by itself turn on the Adoption topic for that cloud.</p>
+                    <span class="chip content">Lighter gate</span>
+                    <span class="chip sept" style="margin-left:4px;">Sept example: AF + DC + FINS content</span>
+                </div>
+                <div class="ready-card exp-bar">
+                    <h3>Bar B · Adoption <em>experience / topic</em></h3>
+                    <p>Show Discover / Adoption journey for that cloud — needs filled eligibility filters, Datagraph UAT green, and CSS unused-feature signals.</p>
+                    <span class="chip sept">Sept example: FINS only</span>
+                    <span class="chip empty" style="margin-left:4px;">AF/DC experience → Oct (filters blank)</span>
+                </div>
+            </div>
+
+            <ol class="gate-list" style="counter-reset:none;">
+                <li>
+                    <div class="num">1</div>
+                    <div class="gate-body">
+                        <b>Cloud row + target dates on the Checklist</b>
+                        <span>Cloud named on Eligibility Criteria with Target UAT and Target Production dates. Without dates, it is backlog — not a release commitment.</span>
+                    </div>
+                    <div class="gate-tags"><span class="mini both">Content + Experience</span></div>
+                </li>
+                <li>
+                    <div class="num">2</div>
+                    <div class="gate-body">
+                        <b>Adoption eligibility filters filled</b>
+                        <span>Contract Status, Order status, Available Qty, L1–L3 (and L4/SKU when needed), Order start date (&gt;90d + renewal carve-outs), Reduction Order, Contract type, Product name exclusions. <strong>Blank Adoption column = experience not ready</strong> (AF &amp; DC today).</span>
+                    </div>
+                    <div class="gate-tags"><span class="mini exp">Experience required</span></div>
+                </li>
+                <li>
+                    <div class="num">3</div>
+                    <div class="gate-body">
+                        <b>SKU include / exclude locked (when the cloud needs it)</b>
+                        <span>FINS Adoption uses an explicit SKU include-list on the sheet. Sales/Service lean on product taxonomy. Do not invent SKUs on the roadmap — SoT stays in the Checklist.</span>
+                    </div>
+                    <div class="gate-tags"><span class="mini exp">Experience</span></div>
+                </li>
+                <li>
+                    <div class="num">4</div>
+                    <div class="gate-body">
+                        <b>Retriever <code>id=</code> param assigned</b>
+                        <span>Sheet bottom row: Sales <code>id=sales</code> · Service <code>id=service</code> · FINS <code>id=ind.fsc</code> · AF/DC <code>id=ai</code> + <code>id=data.c360</code> · MC Next <code>id=mktg</code>. Needed so CSDP can index the right docs.</span>
+                    </div>
+                    <div class="gate-tags"><span class="mini both">Content + Experience</span></div>
+                </li>
+                <li>
+                    <div class="num">5</div>
+                    <div class="gate-body">
+                        <b>Datagraph filters implemented · UAT green</b>
+                        <span>Balaji / Amritha enable filters in Datagraph. Gate: do not flip Adoption eligibility for a new cloud until lower-env UAT is green against the Checklist values.</span>
+                    </div>
+                    <div class="gate-tags"><span class="mini exp">Experience required</span></div>
+                </li>
+                <li>
+                    <div class="num">6</div>
+                    <div class="gate-body">
+                        <b>Content sources locked + CSDP indexed</b>
+                        <span>Knowledge taxonomy / Product Docs / Trailhead PFT for that cloud, English + FIGSPJA, CSDP intake complete. Shared pool means Onboarding may need the same content earlier than Adoption experience (Sept AF/DC pattern).</span>
+                    </div>
+                    <div class="gate-tags"><span class="mini content">Content required</span></div>
+                </li>
+                <li>
+                    <div class="num">7</div>
+                    <div class="gate-body">
+                        <b>CSS unused-feature signals / avenues ready</b>
+                        <span>Eligibility gets the customer into Adoption; CSS picks the avenue / checklist step. Incomplete CSS for a cloud blocks <em>experience</em>, not necessarily shared <em>content</em>.</span>
+                    </div>
+                    <div class="gate-tags"><span class="mini exp">Experience required</span></div>
+                </li>
+                <li>
+                    <div class="num">8</div>
+                    <div class="gate-body">
+                        <b>Release go / no-go (quality + leakage)</b>
+                        <span>Shared retriever has no product filter today — cross-topic leakage is a Sept watch item, not an automatic blocker. Confirm AQ / golden coverage for clouds that ship experience.</span>
+                    </div>
+                    <div class="gate-tags"><span class="mini both">Content + Experience</span></div>
+                </li>
+            </ol>
+
+            <h3 style="margin:18px 0 6px;font-size:0.95rem;color:var(--sf-navy);">H2 cloud strip (Adoption side — from Checklist)</h3>
+            <div class="h2-strip">
+                <div class="h2-tile">
+                    <div class="cloud">FINS</div>
+                    <div class="line"><span class="chip sept">Filters filled</span></div>
+                    <div class="line">UAT 9/10 · Prod 9/25</div>
+                    <div class="line"><strong>Sept:</strong> content + Adoption experience</div>
+                </div>
+                <div class="h2-tile">
+                    <div class="cloud">Agentforce &amp; Data Cloud</div>
+                    <div class="line"><span class="chip empty">Adoption filters blank</span></div>
+                    <div class="line">Experience targets UAT 10/8 · Prod 10/23</div>
+                    <div class="line"><strong>Sept:</strong> shared content only · experience waits on #2 + #5 + #7</div>
+                </div>
+                <div class="h2-tile">
+                    <div class="cloud">Marketing Cloud Next</div>
+                    <div class="line"><span class="chip empty">Partial / blank</span></div>
+                    <div class="line">UAT 10/8 · Prod 10/23</div>
+                    <div class="line"><strong>Next wave:</strong> finish filters + CSS before experience</div>
+                </div>
+                <div class="h2-tile">
+                    <div class="cloud">MCAE · Commerce · Revenue · Tableau · Field Service</div>
+                    <div class="line"><span class="chip empty">Not filled</span></div>
+                    <div class="line">Late Oct – Dec targets</div>
+                    <div class="line"><strong>Backlog:</strong> start at gate #1 when prioritized</div>
+                </div>
+            </div>
+
+            <div class="callout info" style="margin-top:14px;">
+                <strong>Rule of thumb for stakeholders:</strong> if the Adoption column on the Checklist is blank, we can still index content for Onboarding / shared pool — we should <em>not</em> claim Adoption SubAgent go-live for that cloud.
             </div>
         </div>
 
@@ -383,9 +585,9 @@
         <div class="section">
             <h2>5 · How to use this with the roadmap</h2>
             <ul style="padding-left:18px;color:var(--sf-gray-600);font-size:0.92rem;">
-                <li style="margin:6px 0;"><strong>Expansion cards</strong> link here under Business readiness — not a dump of SKUs.</li>
+                <li style="margin:6px 0;"><strong>Expansion cards</strong> link here under Business readiness — send stakeholders to the <a class="deep" href="#h2-readiness">H2 readiness checklist</a> first, not a dump of SKUs.</li>
                 <li style="margin:6px 0;"><strong>Data Graph / Balaji</strong> continue owning filter enablement timing (gate on green UAT before flipping eligibility for new clouds).</li>
-                <li style="margin:6px 0;"><strong>When the sheet changes</strong> (AF/DC Adoption filters fill in), update the matrix row and card status chips — keep this page as the visual layer.</li>
+                <li style="margin:6px 0;"><strong>When the sheet changes</strong> (AF/DC Adoption filters fill in), update the matrix row, H2 cloud strip, and card status chips — keep this page as the visual layer.</li>
             </ul>
         </div>
 

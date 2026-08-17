@@ -1674,16 +1674,27 @@
                             <span class="card-phase">September Release</span>
                         </div>
                         <h3 class="card-title">Adoption SubAgent &mdash; Agentforce & Data Cloud <span class="verified-badge" title="CSDP Intake Request Workflow Completed">&#x2713;</span></h3>
-                        <p class="card-description">Extend the Adoption SubAgent retriever to Agentforce and Data Cloud in the same September cut as Onboarding. Ships with the shared content pool &mdash; adoption-specific guidance paths for existing customers alongside onboarding Phase 4 enablement.</p>
+                        <p class="card-description">Expand <strong>shared retriever content</strong> for Agentforce and Data Cloud in the September cut. <strong>Adoption topic / experience</strong> for AF&amp;DC is not Sept go-live &mdash; eligibility filters in the Cloud Expansion Checklist are still blank on the Adoption side (sheet targets Oct). Onboarding carries AF&amp;DC experience via Phase 4.</p>
                         <div class="card-pills">
                             <span class="pill product">Agentforce</span>
                             <span class="pill product">Data Cloud</span>
                             <span class="pill dependency">Adoption</span>
-                            <span class="pill target">UAT 9/10 &middot; Prod 9/25</span>
-                            <span class="pill metric">Pulled forward from Oct</span>
+                            <span class="pill target">Content: UAT 9/10 &middot; Prod 9/25</span>
+                            <span class="pill metric">Experience: Oct (eligibility TBD)</span>
                         </div>
                         <span class="expand-indicator">&#x25BC;</span>
                         <div class="expanded-content">
+                            <div class="detail-section-title">Business readiness / eligibility</div>
+                            <ul class="workflow-links">
+                                <li><a href="adoption-eligibility.html">Adoption SubAgent eligibility logic (visual)</a></li>
+                                <li><a href="https://docs.google.com/spreadsheets/d/1uRThrzmpWKkBVL_iUtTz5JH5gQIruKCNY4GFYet-gRY/edit?usp=sharing" target="_blank" rel="noopener">Cloud Expansion Checklist (SoT)</a></li>
+                            </ul>
+                            <ul class="dependency-list">
+                                <li><strong>Adoption filters:</strong> AF&amp;DC column still blank in Eligibility Criteria tab</li>
+                                <li><strong>Sheet targets:</strong> Adoption AF&amp;DC UAT 10/8 · Prod 10/23 (experience)</li>
+                                <li><strong>Retriever ids:</strong> <code>id=ai</code> · <code>id=data.c360</code></li>
+                                <li><strong>Sept meaning:</strong> content in shared pool; do not enable Adoption eligibility for AF&amp;DC until experience is ready</li>
+                            </ul>
                             <div class="detail-section-title">CSDP Workflow Submission</div>
                             <ul class="workflow-links">
                                 <li><a href="https://salesforce.enterprise.slack.com/archives/C0B7NENH9QF/p1785776121866359" target="_blank" rel="noopener">Expand Adoption Retriever-Adoption SubAgent &mdash; Agentforce &amp; Data Cloud</a></li>
@@ -1693,24 +1704,23 @@
                             <div class="detail-kpi-grid">
                                 <div class="detail-kpi-item">
                                     <span class="detail-kpi-label">Content Coverage</span>
-                                    <span class="detail-kpi-value">DC + AF Adoption Paths</span>
+                                    <span class="detail-kpi-value">DC + AF in shared pool</span>
                                 </div>
                                 <div class="detail-kpi-item">
-                                    <span class="detail-kpi-label">Feature Expansion</span>
-                                    <span class="detail-kpi-value">Guided &rarr; Activated</span>
+                                    <span class="detail-kpi-label">Experience Gate</span>
+                                    <span class="detail-kpi-value">Eligibility + CSS</span>
                                 </div>
                                 <div class="detail-kpi-item">
                                     <span class="detail-kpi-label">Release Target</span>
-                                    <span class="detail-kpi-value">September 2026</span>
+                                    <span class="detail-kpi-value">Content Sept · Experience Oct</span>
                                 </div>
                             </div>
                             <div class="detail-section-title">Hard Dependencies</div>
                             <ul class="dependency-list">
-                                <li><strong>Decision:</strong> Roxanne approved unified Sept expansion (Aug 6) &mdash; no longer Oct-only for Adoption AF/DC</li>
-                                <li><strong>Signals:</strong> AF/DC CSS readiness may be incomplete; plan degraded-signal / alternate triggers with business + AQ partners</li>
+                                <li><strong>Decision:</strong> Roxanne Aug 11 &mdash; expand Adoption <em>retriever</em> for AF/DC/FINS; do not expand Adoption <em>topic/experience</em> to AF/DC in Sept</li>
+                                <li><strong>Signals:</strong> AF/DC CSS / Adoption eligibility still incomplete on checklist</li>
                                 <li><strong>CSDP:</strong> Adoption retriever indexing workflow (standard intake)</li>
-                                <li><strong>Content:</strong> Adoption-specific feature paths for Agentforce and Data Cloud use cases</li>
-                                <li><strong>Architecture:</strong> Shared pool with Onboarding &mdash; content enablement is one wave for both SubAgents</li>
+                                <li><strong>Architecture:</strong> Shared pool with Onboarding &mdash; content enablement is one wave; experience gating is separate</li>
                             </ul>
                         </div>
                     </div>
@@ -1768,7 +1778,7 @@
                             <span class="card-phase">September Release</span>
                         </div>
                         <h3 class="card-title">Adoption SubAgent &mdash; Industry Cloud (FINS) <span class="verified-badge" title="CSDP workflow submitted">&#x2713;</span></h3>
-                        <p class="card-description">Expand the Adoption SubAgent retriever to Industry Cloud (FINS) product documentation, Trailhead modules, and Knowledge Articles. Ships with Onboarding FINS in the same September wave.</p>
+                        <p class="card-description">September Adoption <strong>experience</strong> expansion: Financial Services Cloud. Eligibility filters are filled in the Cloud Expansion Checklist (UAT 9/10 · Prod 9/25). Shared retriever also indexes FINS content for both SubAgents.</p>
                         <div class="card-pills">
                             <span class="pill product">Industry Cloud (FINS)</span>
                             <span class="pill product">I-2952</span>
@@ -1778,6 +1788,17 @@
                         </div>
                         <span class="expand-indicator">&#x25BC;</span>
                         <div class="expanded-content">
+                            <div class="detail-section-title">Business readiness / eligibility</div>
+                            <ul class="workflow-links">
+                                <li><a href="adoption-eligibility.html">Adoption SubAgent eligibility logic (visual)</a></li>
+                                <li><a href="https://docs.google.com/spreadsheets/d/1uRThrzmpWKkBVL_iUtTz5JH5gQIruKCNY4GFYet-gRY/edit?usp=sharing" target="_blank" rel="noopener">Cloud Expansion Checklist (SoT)</a></li>
+                            </ul>
+                            <ul class="dependency-list">
+                                <li><strong>Adoption filters:</strong> FINS column filled (contract / order / L1–L3 / SKUs / tenure)</li>
+                                <li><strong>Sheet targets:</strong> Adoption FINS UAT 9/10 · Prod 9/25</li>
+                                <li><strong>Retriever id:</strong> <code>id=ind.fsc</code></li>
+                                <li><strong>CSS:</strong> unused-feature signals pick avenues after eligibility admits the customer</li>
+                            </ul>
                             <div class="detail-section-title">CSDP Workflow Submission</div>
                             <ul class="workflow-links">
                                 <li><a href="https://salesforce.enterprise.slack.com/archives/C0B7NENH9QF/p1784909385272319" target="_blank" rel="noopener">Expand Adoption Retriever to Financial Services (Adoption SubAgent)</a></li>
@@ -1804,7 +1825,7 @@
                             </div>
                             <div class="detail-section-title">Hard Dependencies</div>
                             <ul class="dependency-list">
-                                <li><strong>Business Readiness:</strong> Revenue/eligibility criteria for FINS adoption guidance confirmed; FINS CSS landing for Sept</li>
+                                <li><strong>Business Readiness:</strong> FINS Adoption eligibility filled in checklist; FINS CSS landing for Sept</li>
                                 <li><strong>CSDP:</strong> Retriever indexing workflow submitted for FSC (standard intake)</li>
                                 <li><strong>Content Sources:</strong> Trailhead PFT (aLVEE00000016GH4AY), Knowledge taxonomy "Industry-Financial Services", Product Docs (id=ind.fsc)</li>
                                 <li><strong>C360 Identity Layer:</strong> <em>SHIPPED 7/23</em> &mdash; DG_User_Personalization live in prod</li>
@@ -2902,7 +2923,7 @@
             <p><strong>Sr. Product Manager:</strong> Stephanie Stancombe (sstancombe@salesforce.com)</p>
             <p><strong>V2MOM Alignment:</strong> M1. Improve Help Agent Answer Quality | Digital Success Method 2</p>
             <p><strong>CSDP Program:</strong> AI Engineering & Agentic Systems | FY27</p>
-            <p><strong>Last Updated:</strong> July 2026</p>
+            <p><strong>Last Updated:</strong> August 17, 2026</p>
         </footer>
     </div>
 

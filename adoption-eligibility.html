@@ -1,0 +1,399 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="color-scheme" content="light">
+    <title>Adoption SubAgent — Eligibility Logic (Cloud Expansion)</title>
+    <style>
+        :root {
+            color-scheme: light;
+            --sf-navy: #032D60;
+            --sf-electric-blue: #0176D3;
+            --sf-cloud-blue: #00A1E0;
+            --sf-cloud-blue-light: #E5F5FC;
+            --sf-white: #FFFFFF;
+            --sf-gray-50: #F3F3F3;
+            --sf-gray-100: #E5E5E5;
+            --sf-gray-600: #5C5C5C;
+            --sf-gray-900: #181818;
+            --sf-success: #2E844A;
+            --sf-success-light: #EBF7E6;
+            --sf-warning: #DD7A01;
+            --sf-warning-light: #FEF1E1;
+            --sf-error: #C23934;
+            --sf-error-light: #FEDAD8;
+            --radius-md: 10px;
+            --radius-lg: 16px;
+            --shadow-sm: 0 1px 3px rgba(3, 45, 96, 0.08);
+            --shadow-md: 0 4px 12px rgba(3, 45, 96, 0.1);
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Salesforce Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: var(--sf-gray-50);
+            color: var(--sf-gray-900);
+            line-height: 1.5;
+        }
+        .top-bar {
+            background: var(--sf-navy);
+            padding: 16px 40px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 16px;
+            flex-wrap: wrap;
+            box-shadow: 0 2px 8px rgba(3, 45, 96, 0.3);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        .top-bar-text { display: flex; align-items: center; gap: 14px; color: #fff; flex-wrap: wrap; }
+        .top-bar-title { font-weight: 700; font-size: 1.05rem; }
+        .top-bar-sep { opacity: 0.45; }
+        .top-bar-subtitle { opacity: 0.9; font-size: 0.95rem; }
+        .top-bar a.back {
+            color: #fff;
+            text-decoration: none;
+            font-size: 0.85rem;
+            font-weight: 600;
+            border: 1px solid rgba(255,255,255,0.35);
+            border-radius: 999px;
+            padding: 6px 14px;
+        }
+        .top-bar a.back:hover { background: rgba(255,255,255,0.1); }
+        .wrap { max-width: 1100px; margin: 0 auto; padding: 28px 24px 64px; }
+        .hero {
+            background: linear-gradient(135deg, #EAF5FE 0%, #fff 55%);
+            border: 1px solid var(--sf-gray-100);
+            border-radius: var(--radius-lg);
+            padding: 24px 28px;
+            box-shadow: var(--shadow-sm);
+            margin-bottom: 20px;
+        }
+        .hero h1 { font-size: 1.55rem; color: var(--sf-navy); margin-bottom: 8px; letter-spacing: -0.01em; }
+        .hero p { color: var(--sf-gray-600); max-width: 820px; }
+        .facts { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 16px; }
+        .fact {
+            background: var(--sf-white);
+            border: 1px solid var(--sf-gray-100);
+            border-radius: 8px;
+            padding: 8px 12px;
+            font-size: 12.5px;
+        }
+        .fact b { display: block; color: var(--sf-gray-600); font-size: 10.5px; text-transform: uppercase; letter-spacing: 0.05em; }
+        .section {
+            background: var(--sf-white);
+            border: 1px solid var(--sf-gray-100);
+            border-radius: var(--radius-lg);
+            padding: 22px 24px;
+            margin-bottom: 16px;
+            box-shadow: var(--shadow-sm);
+        }
+        .section h2 {
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 0.06em;
+            color: var(--sf-gray-600);
+            margin-bottom: 14px;
+        }
+        .section h3 { font-size: 1.05rem; color: var(--sf-navy); margin: 0 0 8px; }
+        .callout {
+            border-radius: 10px;
+            padding: 12px 15px;
+            font-size: 0.92rem;
+            margin-top: 12px;
+        }
+        .callout.warn { background: var(--sf-warning-light); border: 1px dashed var(--sf-warning); }
+        .callout.ok { background: var(--sf-success-light); border: 1px solid var(--sf-success); }
+        .callout.info { background: var(--sf-cloud-blue-light); border: 1px solid #B0D5F0; }
+        .flow {
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            gap: 10px;
+            margin-top: 8px;
+        }
+        @media (max-width: 900px) { .flow { grid-template-columns: 1fr 1fr; } }
+        @media (max-width: 560px) { .flow { grid-template-columns: 1fr; } }
+        .stp {
+            border: 1px solid var(--sf-gray-100);
+            border-radius: 12px;
+            padding: 12px 14px;
+            background: var(--sf-gray-50);
+            border-top: 3px solid var(--sf-electric-blue);
+        }
+        .stp.onb { border-top-color: #7526C2; }
+        .stp .n {
+            font-size: 11px; font-weight: 700; color: var(--sf-electric-blue);
+            text-transform: uppercase; letter-spacing: 0.04em; margin-bottom: 4px;
+        }
+        .stp.onb .n { color: #7526C2; }
+        .stp b { display: block; font-size: 0.95rem; color: var(--sf-navy); margin-bottom: 4px; }
+        .stp span { font-size: 0.8rem; color: var(--sf-gray-600); }
+        .split {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 14px;
+            margin-top: 8px;
+        }
+        @media (max-width: 800px) { .split { grid-template-columns: 1fr; } }
+        .pane {
+            border: 1px solid var(--sf-gray-100);
+            border-radius: 12px;
+            padding: 14px 16px;
+            background: #FAFCFF;
+        }
+        .pane.adoption { border-top: 3px solid var(--sf-electric-blue); }
+        .pane.onboarding { border-top: 3px solid #7526C2; }
+        .pane h3 { font-size: 0.95rem; margin-bottom: 8px; }
+        .pane ul { margin: 0; padding-left: 18px; font-size: 0.88rem; color: var(--sf-gray-600); }
+        .pane li { margin: 5px 0; }
+        table { width: 100%; border-collapse: collapse; font-size: 0.82rem; margin-top: 6px; }
+        th, td { border: 1px solid var(--sf-gray-100); padding: 8px 10px; text-align: left; vertical-align: top; }
+        th {
+            background: var(--sf-gray-50);
+            font-size: 0.7rem;
+            text-transform: uppercase;
+            letter-spacing: 0.04em;
+            color: var(--sf-gray-600);
+        }
+        .chip {
+            display: inline-block;
+            font-size: 0.7rem;
+            font-weight: 700;
+            border-radius: 999px;
+            padding: 2px 8px;
+            letter-spacing: 0.02em;
+        }
+        .chip.live { background: var(--sf-success-light); color: var(--sf-success); }
+        .chip.sept { background: var(--sf-cloud-blue-light); color: var(--sf-electric-blue); }
+        .chip.oct { background: var(--sf-warning-light); color: var(--sf-warning); }
+        .chip.empty { background: var(--sf-error-light); color: var(--sf-error); }
+        .chip.content { background: #F0E6FB; color: #7526C2; }
+        code {
+            font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+            font-size: 0.78rem;
+            background: var(--sf-gray-50);
+            border: 1px solid var(--sf-gray-100);
+            border-radius: 4px;
+            padding: 1px 5px;
+        }
+        a.deep {
+            color: var(--sf-electric-blue);
+            font-weight: 600;
+            text-decoration: none;
+        }
+        a.deep:hover { text-decoration: underline; }
+        footer {
+            margin-top: 20px;
+            font-size: 0.8rem;
+            color: var(--sf-gray-600);
+            border-top: 1px solid var(--sf-gray-100);
+            padding-top: 14px;
+        }
+        .filters {
+            display: flex; flex-wrap: wrap; gap: 8px; margin: 10px 0 4px;
+        }
+        .filters span {
+            background: var(--sf-white);
+            border: 1px solid var(--sf-gray-100);
+            border-radius: 8px;
+            padding: 6px 10px;
+            font-size: 0.78rem;
+            color: var(--sf-gray-600);
+        }
+        .filters span b { color: var(--sf-navy); }
+    </style>
+</head>
+<body>
+    <div class="top-bar">
+        <div class="top-bar-text">
+            <span class="top-bar-title">Lifecycle Success</span>
+            <span class="top-bar-sep">|</span>
+            <span class="top-bar-subtitle">Adoption SubAgent · Eligibility Logic</span>
+        </div>
+        <a class="back" href="roadmap.html">← Back to Roadmap</a>
+    </div>
+
+    <div class="wrap">
+        <div class="hero">
+            <h1>How Adoption SubAgent eligibility works</h1>
+            <p>
+                Visual summary of the <strong>Adoption Guidance — Cloud Expansion Checklist</strong> (Eligibility Criteria tab).
+                Spreadsheet remains source of truth for Datagraph filters, SKUs, and CSS metadata.
+                Roadmap cards link here so stakeholders see the logic without reading SKU rows.
+            </p>
+            <div class="facts">
+                <div class="fact"><b>SoT sheet</b><span><a class="deep" href="https://docs.google.com/spreadsheets/d/1uRThrzmpWKkBVL_iUtTz5JH5gQIruKCNY4GFYet-gRY/edit?usp=sharing" target="_blank" rel="noopener">Cloud Expansion Checklist</a></span></div>
+                <div class="fact"><b>Local extract</b><span><a class="deep" href="adoption-eligibility-criteria.csv">Eligibility Criteria.csv</a></span></div>
+                <div class="fact"><b>Owner context</b><span>Balaji / Amritha · Datagraph + CSS</span></div>
+                <div class="fact"><b>Last refreshed</b><span>Aug 17, 2026</span></div>
+            </div>
+            <div class="callout warn">
+                <strong>Sept split (Roxanne Aug 11):</strong> Shared retriever content can include AF + DC + FINS.
+                <strong>Adoption experience / topic</strong> expands to <strong>FINS only</strong> in September.
+                AF/DC Adoption experience waits on CSS / eligibility fill-out (sheet targets Oct).
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>1 · Decision layers</h2>
+            <p style="color:var(--sf-gray-600);font-size:0.92rem;margin-bottom:10px;">
+                Same filter family for Adoption and Onboarding — different values (especially order age) and different cloud readiness.
+            </p>
+            <div class="flow">
+                <div class="stp">
+                    <div class="n">Layer 1</div>
+                    <b>Cloud / product</b>
+                    <span>Sales · Service · FINS · AF &amp; DC · later clouds</span>
+                </div>
+                <div class="stp">
+                    <div class="n">Layer 2</div>
+                    <b>Contract &amp; order</b>
+                    <span>Activated · provisioned · qty &gt; 0 · not courtesy/reseller/OEM</span>
+                </div>
+                <div class="stp">
+                    <div class="n">Layer 3</div>
+                    <b>Product taxonomy</b>
+                    <span>L1–L4 business / product line / family (+ SKU include/exclude)</span>
+                </div>
+                <div class="stp">
+                    <div class="n">Layer 4</div>
+                    <b>Tenure gate</b>
+                    <span>Adoption: typically &gt;90 days (renewals carve-out). Onboarding: ≤90 days.</span>
+                </div>
+                <div class="stp">
+                    <div class="n">Layer 5</div>
+                    <b>Guidance path</b>
+                    <span>CSS unused-feature signals → avenue / checklist step · retriever <code>id=</code></span>
+                </div>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>2 · Adoption vs Onboarding (side by side)</h2>
+            <div class="split">
+                <div class="pane adoption">
+                    <h3>Adoption eligibility</h3>
+                    <ul>
+                        <li><strong>Intent:</strong> existing customers with unused features</li>
+                        <li><strong>Order start date:</strong> &gt;90 days <em>or</em> ≤90 with renewal/add-type carve-outs</li>
+                        <li><strong>Sept experience:</strong> <strong>FINS</strong> (filters filled; UAT 9/10 · Prod 9/25)</li>
+                        <li><strong>AF &amp; DC:</strong> eligibility columns still blank → experience not ready; content may still index</li>
+                        <li><strong>Retriever ids (sheet):</strong> FINS <code>id=ind.fsc</code> · AF/DC <code>id=ai</code> + <code>id=data.c360</code></li>
+                    </ul>
+                </div>
+                <div class="pane onboarding">
+                    <h3>Onboarding eligibility</h3>
+                    <ul>
+                        <li><strong>Intent:</strong> new / recently purchased customers</li>
+                        <li><strong>Order start date:</strong> ≤90 days</li>
+                        <li><strong>Sept experience:</strong> <strong>Agentforce &amp; Data Cloud</strong> nested in Sales/Service Phase 4 (UAT 9/10 · Prod 9/25)</li>
+                        <li><strong>FINS onboarding:</strong> sheet targets Oct (not Sept experience)</li>
+                        <li><strong>SKU nuance:</strong> use-case entitlements (Coworker / Pipeline / Account Mgmt / Service Assistant) + Data 360 prerequisite</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="callout info" style="margin-top:14px;">
+                Shared fields when filled: Contract Status = Activated · Order status = Activated/Provisioned · Available Qty &gt; 0 · Reduction Order = False · exclude Courtesy / Reseller / OEM (and related product-name exclusions).
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>3 · Cloud readiness matrix (from Eligibility Criteria tab)</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Cloud</th>
+                        <th>Adoption filters</th>
+                        <th>Adoption targets</th>
+                        <th>Onboarding filters</th>
+                        <th>Onboarding targets</th>
+                        <th>Roadmap read</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>Sales / Service / S+S</strong></td>
+                        <td><span class="chip live">Filled</span></td>
+                        <td>UAT May 26 · Prod Jun 9</td>
+                        <td><span class="chip live">Filled</span></td>
+                        <td>UAT May 26 · Prod Jun 9</td>
+                        <td>Live baseline</td>
+                    </tr>
+                    <tr>
+                        <td><strong>FINS</strong></td>
+                        <td><span class="chip sept">Filled</span></td>
+                        <td><strong>UAT 9/10 · Prod 9/25</strong></td>
+                        <td><span class="chip oct">Later</span></td>
+                        <td>UAT 10/8 · Prod 10/23</td>
+                        <td><strong>Sept Adoption experience</strong></td>
+                    </tr>
+                    <tr>
+                        <td><strong>Agentforce &amp; Data Cloud</strong></td>
+                        <td><span class="chip empty">Blank</span></td>
+                        <td>UAT 10/8 · Prod 10/23</td>
+                        <td><span class="chip sept">Filled (use cases)</span></td>
+                        <td><strong>UAT 9/10 · Prod 9/25</strong></td>
+                        <td>Sept = Onboarding Phase 4 + shared <em>content</em>; Adoption <em>experience</em> later</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Marketing Cloud Next</strong></td>
+                        <td><span class="chip empty">Partial / blank</span></td>
+                        <td>UAT 10/8 · Prod 10/23</td>
+                        <td><span class="chip empty">Partial / blank</span></td>
+                        <td>UAT 10/8 · Prod 10/23</td>
+                        <td>Next wave after Sept</td>
+                    </tr>
+                    <tr>
+                        <td><strong>MC Account Engagement · Commerce · Revenue · Tableau · Field Service</strong></td>
+                        <td><span class="chip empty">Not filled</span></td>
+                        <td>Late Oct – Dec</td>
+                        <td><span class="chip empty">Not filled</span></td>
+                        <td>Late Oct – Dec</td>
+                        <td>Backlog / later expansion</td>
+                    </tr>
+                </tbody>
+            </table>
+            <div class="callout ok" style="margin-top:14px;">
+                <strong>For Sept roadmap cards:</strong> treat <strong>Adoption · FINS</strong> as experience-ready.
+                Treat <strong>Adoption · AF &amp; DC</strong> as content/retriever enablement with eligibility still open — do not imply Adoption topic go-live for AF/DC on 9/25.
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>4 · Adoption filter checklist (what “filled” means)</h2>
+            <p style="color:var(--sf-gray-600);font-size:0.9rem;margin-bottom:8px;">
+                Condensed from the Adoption columns for Sales / Service / FINS. Full SKU lists stay in the sheet.
+            </p>
+            <div class="filters">
+                <span><b>Contract</b> Activated</span>
+                <span><b>Order</b> Activated / Provisioned</span>
+                <span><b>Qty</b> &gt; 0</span>
+                <span><b>L1–L3</b> cloud-specific product lines / families</span>
+                <span><b>Tenure</b> &gt;90d (+ renewal carve-outs)</span>
+                <span><b>Exclusions</b> courtesy, reseller, OEM, reduction orders</span>
+                <span><b>FINS SKUs</b> include-list in sheet (do not duplicate here)</span>
+            </div>
+            <p style="margin-top:12px;font-size:0.88rem;color:var(--sf-gray-600);">
+                CSS unused-feature signals (12-mo avg = 0, etc.) live in other checklist tabs / OrgCS SoT — eligibility gets the customer into Adoption; CSS picks the avenue.
+            </p>
+        </div>
+
+        <div class="section">
+            <h2>5 · How to use this with the roadmap</h2>
+            <ul style="padding-left:18px;color:var(--sf-gray-600);font-size:0.92rem;">
+                <li style="margin:6px 0;"><strong>Expansion cards</strong> link here under Business readiness — not a dump of SKUs.</li>
+                <li style="margin:6px 0;"><strong>Data Graph / Balaji</strong> continue owning filter enablement timing (gate on green UAT before flipping eligibility for new clouds).</li>
+                <li style="margin:6px 0;"><strong>When the sheet changes</strong> (AF/DC Adoption filters fill in), update the matrix row and card status chips — keep this page as the visual layer.</li>
+            </ul>
+        </div>
+
+        <footer>
+            <p><strong>Sr. Product Manager:</strong> Stephanie Stancombe · Lifecycle Success Lead</p>
+            <p><strong>Source:</strong> Adoption Guidance — Cloud Expansion Checklist · Eligibility Criteria tab · extract <code>adoption-eligibility-criteria.csv</code></p>
+            <p><a class="deep" href="roadmap.html">Return to Product Roadmap FY27</a></p>
+        </footer>
+    </div>
+</body>
+</html>

@@ -1,0 +1,62 @@
+,Eligibility criteria filters for Onboarding & Adoption Topics ,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,
+,"NOTE: We've migrated Datagrpah eligibility table from Lucid (now deprecated — reference only) to this spreadsheet, which is now the source of truth going forward.",,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,
+,Adoption Eligibility filters,,,,,,,,,,,,Onboarding Eligibility filters,,,,,,,,,,
+"Cloud ->
+v Field / Attribute v",Sales,Service,Sales and Service,FINS,Agentforce & DataCloud,Marketing Cloud Next,Marketing Cloud Account Engagement,Commerce,Revenue Cloud,Tableau,Field Service,,Sales,Service,Sales and Service,Agentforce & DataCloud,FINS,Marketing Cloud Next,Marketing Cloud Account Engagement,Commerce,Revenue Cloud,Tableau,Field Service
+Contract Status,= Activated,= Activated,= Activated,= Activated,,,,,,,,,= Activated,= Activated,= Activated,,,,,,,,
+Order status,"= Activated , Provisioned","= Activated , Provisioned","= Activated , Provisioned","= Activated , Provisioned",,,,,,,,,"= Activated, Provisioned","= Activated, Provisioned","= Activated , Provisioned",,,,,,,,
+Available Qty,>0,>0,>0,>0,,,,,,,,,>0,>0,>0,,,,,,,,
+Cloud,= Sales,-,,,,,,,,,,,= Sales,—,-,,,,,,,,
+L1 (Business Line),"Business Line '= Sales, Cross Cloud Allocations",Business Line '= Service,Cross Cloud Allocations,"=Cross Cloud Allocations, Sales, Service",,=Marketing,=Marketing,,,,,,"= Sales, Cross Cloud Allocations",= Service,=Cross Cloud Allocations,,,,,,,,
+L2 (Product Line),Prod Line '= Sales Cloud,Prod Line '= Service Cloud,Sales & Service Cloud,"=Einstein 1 Edition, Financial Services Cloud, Revenue Intelligence, Sales Cloud,Service Cloud",,=Marketing on Core,=Account Engagement,,,,,,= Sales Cloud,= Service Cloud,=Sales & Service Cloud,,,,,,,,
+L3 Prod Family,Prod Family '= Sales Cloud,"Prod Family ≠ Desk, Govt Case Connect",Sales & Service Cloud,"=Financial Services Cloud, Financial Services Cloud - Bank Teller
+,Financial Services Cloud - Embedded Starter
+,Financial Services Cloud - Sales
+,Financial Services Cloud - Sales & Service
+,Financial Services Cloud - Sales - Einstein 1 Edition
+,Financial Services Cloud - Service
+,Financial Services Cloud - Service - Einstein 1 Edition
+,Financial Services Cloud - Starter
+,Revenue Intelligence
+,Revenue Intelligence + Tableau",,=Marketing on Core - Editions,= Account Engagement - Editions,,,,,,= Sales Cloud,"≠ Desk, Govt Case Connect",=Sales & Service Cloud,,,,,,,,
+L4,,,,,,"=Marketing on Core - Advanced, Marketing on Core - Growth","=Account Engagement - Advanced, Account Engagement - Growth, Account Engagement - Plus, Account Engagement - Premium",,,,,,,,,,,,,,,,
+Order start date,">90 OR (Order Start Date <'= 90 days AND Order Type '= Add, Courtesy, Courtesy Renew, Renew, Auto Renew, Renewal, Auto Renewal)",">90 OR (Order Start Date <'= 90 days AND Order Type '= Add, Courtesy, Courtesy Renew, Renew, Auto Renew, Renewal, Auto Renewal)",">90 OR (Order Start Date <'= 90 days AND Order Type '= Add, Courtesy, Courtesy Renew, Renew, Auto Renew, Renewal, Auto Renewal)",">90 OR (Order Start Date <'= 90 days AND Order Type '= Add, Courtesy, Courtesy Renew, Renew, Auto Renew, Renewal, Auto Renewal)",,,,,,,,,<=90,<=90,<=90,,,,,,,,
+Order type,"~~≠ Add, Courtesy, Courtesy Renew, Renew, Auto Renew, Renewal, Auto Renewal~~","~~≠ Add, Courtesy, Courtesy Renew, Renew, Auto Renew, Renewal, Auto Renewal~~","~~≠ Add, Courtesy, Courtesy Renew, Renew, Auto Renew, Renewal, Auto Renewal~~","~~≠ Add, Courtesy, Courtesy Renew, Renew, Auto Renew, Renewal, Auto Renewal~~",,,,,,,,,"≠ Add, Courtesy, Courtesy Renew, Renew, Auto Renew, Renewal, Auto Renewal","≠ Add, Courtesy, Courtesy Renew, Renew, Auto Renew, Renewal, Auto Renewal","≠ Add, Courtesy, Courtesy Renew, Renew, Auto Renew, Renewal, Auto Renewal",,,,,,,,
+Product Line,"≠ Finance, health",,?,"=Analytics, Financial Services, Sales Force Automation,Service & Support",,=Marketing,=Pardot,,,,,," ≠ Finance, health",,?,,,,,,,,
+SKU,-,"= 200012637, 200012640, 200012643, 200004741",?,"=100005733, 100005734, 100005735, 100006851, 100006852, 100006853, 200001288, 200001289, 200001290, 200001291, 200001292, 200002850, 200002851, 200002852, 200002902, 200002903, 200002904, 200003810, 200003811, 200003998, 200004727, 200004728, 200004729, 200004730, 200004731, 200004733, 200004734, 200004736, 200004737, 200004744, 200004745, 200005893, 200005895, 200005896, 200005897, 200005958, 200005959, 200005960, 200005961, 200005973, 200005974, 200005979, 200005980, 200007781, 200007782, 200013720, 200013721, 200013722, 200013723, 211102278, 211102279, 211102280, 211102281, 211102283, 211102284, 211102293, 211102294, 211102297, 211102298",,"= 200004312, 200004313, 200004314, 200004902, 200004903, 200004904, 200008755, 200008756, 200008757, 100004978, 200004315, 200004317, 200004905, 200004907, 200008683, 200008684, 200008685
+
+AND ≠ 200000469, 200002572, 200002587, 200012894, 200013075, 200000467, 200002570, 200002585, 200013073, 200000983, 100006260, 200000468, 200002571, 200002586, 200012893, 200013074, 200006018, 200006019, 200006067, 200000960, 200001650, 200001655, 200006088, 200006699, 200000042, 200000962, 200001322, 200001652, 200001657, 200001659, 200001661, 200000049, 200000964, 200001654, 200006143, 200000047, 200000963, 200001323, 200001653, 200001660, 200001662, 200006017, 200006819, 200001506, 200001510, 200000961, 200001651, 200001656, 200001658, 200006089, 200006700, 200004127, 200004128, 200004129, 200004303, 200004304, 200004305, 200004893, 200004894, 200004895, 200007124, 200007131, 200004130, 200004131, 200004133, 200004134, 200004306, 200004307, 200004309, 200004310, 200004311, 200004896, 200004897, 200004899, 200004900, 200004901, 200007125, 200007126, 200007133, 200007135, 200004124, 200004125, 200004300, 200004301, 200004890, 200004891, 200007123, 200007129","200000469, 200002572, 200002587, 200012894, 200013075, 200000467, 200002570, 200002585, 200013073, 200000983, 100006260, 200000468, 200002571, 200002586, 200012893, 200013074",,,,,,,"= 200012637, 200012640, 200012643, 200004741",?,"Sales:
+Coworker:  
+- A4S, A1E, AELA OR Foundations + Flex Credits; Data Cloud must be activated
+Pipeline Management:  
+- A4S, A1E, AELA; Data Cloud must be activated
+Account Management:  
+- A4S, A1E, AELA; Data Cloud must be activated
+
+Service:
+Coworker: 
+- Enterprise, Unlimited, or Agentforce 1 (Professional excluded). 
+- On Agentforce 1, Agentforce is bundled and unmetered. 
+- On Enterprise/Unlimited: pilot free via Salesforce Foundations (starter Flex Credits, one-time grant), then for ongoing use either the Agentforce add-on (unmetered employee agents) or pay-as-you-go Flex Credits. 
+- Requires Data 360 (consumes Data 360 credits). 
+Service Assistant
+- Enterprise, Unlimited, or Agentforce 1 (Professional excluded). 
+- On Agentforce 1, bundled and unmetered. 
+- On Enterprise/Unlimited: pilot free via Salesforce Foundations, then either the Agentforce add-on (unmetered employee agents) or pay-as-you-go Flex Credits for ongoing use. 
+- Data 360 needed only if you add optional Knowledge grounding.
+",,,,,,,
+AOV Band,"~~$1-10K, $10-50K, $50-100K, $100-200K, $200-600K, $600K-1M, $1M-5M, $5M-10M, $10M-25M, $25M+~~","~~$1-10K, $10-50K, $50-100K, $100-200K, $200-600K, $600K-1M, $1M-5M, $5M-10M, $10M-25M, $25M+~~","~~$1-10K, $10-50K, $50-100K, $100-200K, $200-600K, $600K-1M, $1M-5M, $5M-10M, $10M-25M, $25M+~~","~~$1-10K, $10-50K, $50-100K, $100-200K, $200-600K, $600K-1M, $1M-5M, $5M-10M, $10M-25M, $25M+~~",,,,,,,,,"$1-10K, $10-50K, $50-100K, $100-200K, $200-600K, $600K-1M, $1M-5M, $5M-10M, $10M-25M, $25M+","$1-10K, $10-50K, $50-100K, $100-200K, $200-600K, $600K-1M, $1M-5M, $5M-10M, $10M-25M, $25M+","~~$1-10K, $10-50K, $50-100K, $100-200K, $200-600K, $600K-1M, $1M-5M, $5M-10M, $10M-25M, $25M+~~",,,,,,,,
+Reduction Order,= False,= False,= False,= False,,,,,,,,,= False,= False,= False,,,,,,,,
+Contract type,"≠ Courtesy Contract, Re-seller","≠ Courtesy Contract, Re-seller","≠ Courtesy Contract, Re-seller","≠ Courtesy Contract, Re-seller",,,,,,,,,"≠ Courtesy Contract, Re-seller","≠ Courtesy Contract, Re-seller","≠ Courtesy Contract, Re-seller",,,,,,,,
+Product name,≠ OEM,≠ OEM,"≠ Microsoft, OEM",,,,,,,,,,≠ OEM,≠ OEM,"≠ Microsoft, OEM",,,,,,,,
+Active Product,,,= True,,,,,,,,,,,,= True,,,,,,,,
+Product Status,-,-,-,-,,-,-,-,-,-,-,,"≠ Phase Out, Phase Out Add Renew","≠ Phase Out, Phase Out Add Renew","≠ Phase Out, Phase Out Add Renew",,,-,-,-,-,-,-
+,,,,,,,,,,,,,,,,,,,,,,,
+Target UAT Date,26-May-2026,26-May-2026,26-May-2026,10-Sep-2026,08-Oct-2026,08-Oct-2026,29-Oct-2026,29-Oct-2026,29-Oct-2026,26-Nov-2026,26-Nov-2026,,26-May-2026,26-May-2026,26-May-2026,10-Sep-2026,08-Oct-2026,08-Oct-2026,29-Oct-2026,29-Oct-2026,29-Oct-2026,26-Nov-2026,26-Nov-2026
+Target Production Date,09-Jun-2026,09-Jun-2026,09-Jun-2026,25-Sep-2026,23-Oct-2026,23-Oct-2026,13-Nov-2026,13-Nov-2026,13-Nov-2026,11-Dec-2026,11-Dec-2026,,09-Jun-2026,09-Jun-2026,09-Jun-2026,25-Sep-2026,23-Oct-2026,23-Oct-2026,13-Nov-2026,13-Nov-2026,13-Nov-2026,11-Dec-2026,11-Dec-2026
+,,,,,,,,,,,,,,,,,,,,,,,
+,Adoption Retriever Id param,,,,,,,,,,,,,,,,,,,,,,
+Id param,id=sales,id=service,-,id=ind.fsc,"id=ai
+id=data.c360",id=mktg,id=mktg,,,,,,,,,,,,,,,,

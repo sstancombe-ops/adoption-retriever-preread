@@ -1311,10 +1311,10 @@
             background: #F7F5FC;
             border: 1px solid #D9D0F5;
             border-radius: 10px;
-            padding: 14px 14px;
+            padding: 12px 12px;
             position: relative;
             margin-top: 40px;
-            min-height: 170px;
+            min-height: 0;
         }
 
         /* Vertical feed: plus sign into the AQ spine */
@@ -3753,32 +3753,32 @@
                         <div class="aq-spine" aria-hidden="true"></div>
 
 
-                        <div class="aq-lane-label bottom">Dependencies feeding in</div>
+                        <div class="aq-lane-label bottom">Inputs that unlock the spine</div>
                         <div class="aq-lane-deps">
                             <div class="aq-dep">
-                                <div class="feed">Feeds Step 1 &middot; Product + Business Partners</div>
-                                <h5>Joint scoping</h5>
-                                <p>Align clouds, content sources, SubAgent(s), utterance counts, and in- vs. out-of-scope. Pathways prioritization stays with Business Partners.</p>
+                                <div class="feed">Unlocks Step 1</div>
+                                <h5>Pathway + cloud priorities</h5>
+                                <p>Business Partners name which pathways and clouds are in. That sets utterance budget and in/out-of-scope before drafting starts.</p>
                             </div>
                             <div class="aq-dep">
-                                <div class="feed">Feeds Step 2 &middot; Product orchestrates &middot; Evals tooling</div>
-                                <h5>Co-create the baseline suite</h5>
-                                <p>Product drafts utterances + draft expected answers / Best Content Sources (BCS) from approved sources. Evals shapes suite fit, AC attributes, and runnability. Expected-answer <em>lock</em> waits on Step 3 SMEs.</p>
+                                <div class="feed">Unlocks Step 2</div>
+                                <h5>Approved sources + BCS</h5>
+                                <p>Densified Best Content Sources so draft expected answers cite approved content, not AgF/ATA echoes. Evals confirms the suite can run.</p>
                             </div>
                             <div class="aq-dep">
-                                <div class="feed">Feeds Step 3 &middot; Business Partners / SMEs</div>
-                                <h5>SME validate expected answers</h5>
-                                <p>Book the right cloud SMEs early. They validate and lock expected answers / sources &mdash; Offers-side answer-quality validation. Scarce SME time is a schedule risk, not paperwork.</p>
+                                <div class="feed">Unlocks Step 3</div>
+                                <h5>SME bench booked</h5>
+                                <p>Right-cloud experts on the calendar early. Expected-answer lock cannot land without them; scarce SME time is the schedule risk.</p>
                             </div>
                             <div class="aq-dep env-callout">
-                                <div class="feed">Must land before Step 4 &middot; Eng / CSDP</div>
-                                <h5>Env readiness for Qual</h5>
-                                <p><strong>Prefer STG</strong> for official ATA. Agent + Retriever + signals together (DEV &rarr; STG for evals). STG is <em>not</em> path to prod &mdash; see env strip below.</p>
+                                <div class="feed">Must land before Step 4</div>
+                                <h5>STG Agent + Retriever + signals</h5>
+                                <p>Official Qual needs all three together on STG. Eng/CSDP gate. Not the path to production.</p>
                             </div>
                             <div class="aq-dep">
-                                <div class="feed">Feeds Step 5 &middot; Product leads</div>
-                                <h5>Shared readout</h5>
-                                <p>One Qual story for eng + business partners so EM threads and partner threads do not fork the bar. Product frames go/no-go.</p>
+                                <div class="feed">Unlocks Step 5</div>
+                                <h5>One Qual story</h5>
+                                <p>Pass/fail + leakage negatives in a single readout for eng and partners so EM and partner threads do not fork the bar.</p>
                             </div>
                         </div>
                     </div>

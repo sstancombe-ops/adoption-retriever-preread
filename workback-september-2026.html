@@ -151,7 +151,7 @@
             border: 1px solid var(--sf-gray-100);
             border-radius: 12px;
             background: #FAFCFF;
-            padding: 14px 88px 16px 14px;
+            padding: 14px 18px 16px 14px;
             overflow: visible;
         }
         .cp-overlay {
@@ -303,8 +303,9 @@
             filter: drop-shadow(0 0 2px rgba(255,255,255,0.35));
         }
         .bar.cp .spark svg { width: 10px; height: 10px; }
+        /* Vertical milestone lines only — labels live in .ms-strip below */
         .row.has-markers .track {
-            height: 92px;
+            height: 42px;
         }
         .row.has-markers .bar {
             top: 50%;
@@ -317,78 +318,69 @@
             bottom: 0;
             width: 0;
             border-left: 2px dashed var(--ms);
-            z-index: 6;
+            z-index: 5;
             pointer-events: none;
         }
         .marker.uat { border-left-color: var(--build); }
-        .marker.prod { border-left-color: var(--gate); border-left-style: solid; }
+        .marker.prod { border-left-color: var(--gate); border-left-style: solid; border-left-width: 2px; }
         .marker.signoff {
             border-left-color: var(--sf-navy);
             border-left-style: solid;
-            border-left-width: 3px;
+            border-left-width: 2px;
         }
-        .marker span {
-            position: absolute;
-            top: 2px;
-            left: 5px;
-            font-size: 0.62rem;
-            font-weight: 800;
-            color: var(--ms);
+        .marker.suite {
+            border-left-color: var(--sf-navy);
+            border-left-style: solid;
+            border-left-width: 2px;
+        }
+        .ms-strip {
+            display: grid;
+            grid-template-columns: var(--label-w) 1fr;
+            align-items: start;
+            gap: 0;
+            margin-top: 12px;
+            padding-top: 12px;
+            border-top: 1px dashed var(--sf-gray-100);
+        }
+        .ms-strip .ms-label {
+            font-size: 0.72rem;
+            font-weight: 700;
+            color: var(--sf-gray-600);
+            text-transform: uppercase;
+            letter-spacing: 0.04em;
+            padding-right: 10px;
+            padding-top: 4px;
+        }
+        .ms-strip .ms-chips {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            align-items: center;
+        }
+        .ms-chip {
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+            font-size: 0.72rem;
+            font-weight: 700;
             white-space: nowrap;
             background: #fff;
             border: 1px solid var(--sf-gray-100);
-            padding: 2px 6px;
-            border-radius: 4px;
-            box-shadow: 0 1px 2px rgba(3,45,96,0.08);
-            z-index: 7;
-            display: inline-flex;
-            align-items: center;
-            gap: 4px;
-            max-width: none;
-        }
-        .marker.uat span {
-            color: var(--build);
-            border-color: #B0D5F0;
-            top: 4px;
-            left: 5px;
-        }
-        .marker.signoff span {
+            border-radius: 999px;
+            padding: 5px 10px;
+            box-shadow: var(--shadow-sm);
             color: var(--sf-navy);
-            border-color: #032D60;
-            background: #EAF5FE;
-            top: auto;
-            bottom: 6px;
-            left: 5px;
-            right: auto;
         }
-        .marker.prod span {
-            color: var(--gate);
-            border-color: #B5E0C0;
-            top: 4px;
-            left: auto;
-            right: 0;
-            transform: translateX(0);
-        }
-        /* Keep rightmost release labels inside the padded chart */
-        .row.cp.has-markers .marker.prod span {
-            right: auto;
-            left: 5px;
-            transform: translateX(-100%);
-            margin-left: -4px;
-        }
-        .marker.signoff .so-icon {
-            display: inline-flex;
-            width: 12px;
-            height: 12px;
+        .ms-chip.suite { border-color: #032D60; background: #EAF5FE; color: var(--sf-navy); }
+        .ms-chip.uat { border-color: #B0D5F0; color: var(--build); }
+        .ms-chip.signoff { border-color: #032D60; background: #EEF4FF; color: var(--sf-navy); }
+        .ms-chip.prod { border-color: #B5E0C0; background: var(--sf-success-light); color: var(--gate); }
+        .ms-chip .dot {
+            width: 8px;
+            height: 8px;
             border-radius: 50%;
-            background: var(--sf-navy);
-            color: #fff;
-            align-items: center;
-            justify-content: center;
+            background: currentColor;
             flex-shrink: 0;
-            font-size: 8px;
-            line-height: 1;
-            font-weight: 900;
         }
         .today {
             position: absolute;
@@ -603,7 +595,7 @@
                         </div>
                         <div class="track">
                             <div class="bar eval cp" data-cp="3" style="left:57%;width:22%;"><span class="spark" aria-hidden="true"><svg viewBox="0 0 16 16"><path fill="currentColor" d="M8 0l1.2 5.2L14.5 6.5l-4.1 3.2L11.5 16 8 12.8 4.5 16l1.1-6.3L1.5 6.5l5.3-1.3L8 0z"/></svg></span>ATA iterations</div>
-                            <div class="marker signoff" style="left:57%;"><span><span class="so-icon" aria-hidden="true">✦</span> Suite ready · Sep 14</span></div>
+                            <div class="marker suite" style="left:57%;" title="Suite ready Sep 14"></div>
                         </div>
                     </div>
 
@@ -662,9 +654,19 @@
                         </div>
                         <div class="track">
                             <div class="bar gate cp" data-cp="6" style="left:57%;width:23%;"><span class="spark" aria-hidden="true"><svg viewBox="0 0 16 16"><path fill="currentColor" d="M8 0l1.2 5.2L14.5 6.5l-4.1 3.2L11.5 16 8 12.8 4.5 16l1.1-6.3L1.5 6.5l5.3-1.3L8 0z"/></svg></span>UAT → GA</div>
-                            <div class="marker uat" style="left:75%;"><span>Retriever UAT · Sep 23</span></div>
-                            <div class="marker signoff" style="left:82%;"><span><span class="so-icon" aria-hidden="true">✓</span> Sign-off · Sep 24</span></div>
-                            <div class="marker prod" style="left:90%;"><span>Prod · Sep 25</span></div>
+                            <div class="marker uat" style="left:75%;" title="Retriever UAT Sep 23"></div>
+                            <div class="marker signoff" style="left:82%;" title="Product sign-off Sep 24"></div>
+                            <div class="marker prod" style="left:90%;" title="Prod Sep 25"></div>
+                        </div>
+                    </div>
+
+                    <div class="ms-strip">
+                        <div class="ms-label">Fixed milestones</div>
+                        <div class="ms-chips">
+                            <span class="ms-chip suite"><i class="dot" aria-hidden="true"></i>Suite ready · Sep 14</span>
+                            <span class="ms-chip uat"><i class="dot" aria-hidden="true"></i>Retriever UAT · Sep 23</span>
+                            <span class="ms-chip signoff"><i class="dot" aria-hidden="true"></i>Sign-off · Sep 24</span>
+                            <span class="ms-chip prod"><i class="dot" aria-hidden="true"></i>Prod · Sep 25</span>
                         </div>
                     </div>
                 </div>

@@ -939,6 +939,665 @@
             color: var(--sf-purple);
         }
 
+
+        /* ===== AQ Operating Model Tab ===== */
+        .aq-banner {
+            background: linear-gradient(135deg, #EEF4FF 0%, #E5F5FC 55%, #F5EEFF 100%);
+            border: 1px solid var(--sf-gray-100);
+            border-left: 4px solid var(--sf-electric-blue);
+            border-radius: var(--radius-md);
+            padding: 20px 22px;
+            margin-bottom: 24px;
+        }
+
+        .aq-banner .eyebrow {
+            font-size: 0.7rem;
+            font-weight: 700;
+            letter-spacing: 0.06em;
+            text-transform: uppercase;
+            color: var(--sf-electric-blue);
+            margin-bottom: 6px;
+        }
+
+        .aq-banner h3 {
+            font-size: 1.15rem;
+            color: var(--sf-navy);
+            margin-bottom: 8px;
+        }
+
+        .aq-banner p {
+            font-size: 0.88rem;
+            color: var(--sf-gray-800);
+            max-width: 920px;
+            margin: 0;
+        }
+
+        .aq-why-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 14px;
+            margin-bottom: 28px;
+        }
+
+        .aq-why-card {
+            background: var(--sf-white);
+            border: 1px solid var(--sf-gray-100);
+            border-radius: var(--radius-md);
+            padding: 16px;
+            box-shadow: var(--shadow-sm);
+        }
+
+        .aq-why-card .n {
+            font-size: 0.68rem;
+            font-weight: 700;
+            color: var(--sf-electric-blue);
+            letter-spacing: 0.04em;
+            text-transform: uppercase;
+            margin-bottom: 6px;
+        }
+
+        .aq-why-card h4 {
+            font-size: 0.92rem;
+            color: var(--sf-navy);
+            margin-bottom: 6px;
+        }
+
+        .aq-why-card p {
+            font-size: 0.78rem;
+            color: var(--sf-gray-600);
+            margin: 0;
+            line-height: 1.45;
+        }
+
+        /* Journey-map Qual spine (AQ as hard line; deps feed in) */
+        .aq-journey {
+            background: var(--sf-white);
+            border: 1px solid var(--sf-gray-100);
+            border-radius: var(--radius-md);
+            padding: 28px 26px 22px;
+            box-shadow: var(--shadow-sm);
+            margin-bottom: 8px;
+            overflow-x: auto;
+            min-height: 640px;
+        }
+
+        .aq-journey-top {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            gap: 20px;
+            margin-bottom: 22px;
+        }
+
+        .aq-journey-title {
+            font-size: 0.95rem;
+            font-weight: 700;
+            color: var(--sf-navy);
+            letter-spacing: 0.02em;
+        }
+
+        .aq-journey-title span {
+            display: block;
+            font-size: 0.82rem;
+            font-weight: 500;
+            color: var(--sf-gray-600);
+            margin-top: 4px;
+        }
+
+        .aq-desired {
+            background: #FFF3CD;
+            border: 1px solid #F0D78C;
+            border-radius: 8px;
+            padding: 12px 16px;
+            max-width: 380px;
+            flex-shrink: 0;
+        }
+
+        .aq-desired .lbl {
+            font-size: 0.7rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            color: #8A4B00;
+            margin-bottom: 4px;
+        }
+
+        .aq-desired p {
+            font-size: 0.84rem;
+            color: var(--sf-navy);
+            margin: 0;
+            line-height: 1.4;
+            font-weight: 600;
+        }
+
+        .aq-map {
+            display: grid;
+            grid-template-columns: 110px 1fr;
+            grid-template-rows: minmax(200px, auto) 22px minmax(200px, auto);
+            min-width: 1100px;
+            gap: 0 14px;
+            min-height: 460px;
+        }
+
+        .aq-lane-label.top { grid-row: 1; grid-column: 1; }
+        .aq-lane-main { grid-row: 1; grid-column: 2; }
+        .aq-spine { grid-row: 2; grid-column: 2; }
+        .aq-lane-label.bottom { grid-row: 3; grid-column: 1; }
+        .aq-lane-deps { grid-row: 3; grid-column: 2; }
+
+        .aq-lane-label {
+            writing-mode: vertical-rl;
+            transform: rotate(180deg);
+            background: #5B3CC4;
+            color: #fff;
+            font-size: 0.82rem;
+            font-weight: 700;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            text-align: center;
+            border-radius: 8px;
+            padding: 14px 6px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            line-height: 1.25;
+            min-height: 200px;
+        }
+
+        .aq-lane-label.bottom {
+            background: #2E2A47;
+        }
+
+        .aq-lane-main {
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            gap: 14px;
+            align-items: stretch;
+            padding-bottom: 10px;
+            min-height: 200px;
+        }
+
+        .aq-node {
+            background: var(--sf-white);
+            border: 1.5px solid #5B3CC4;
+            border-radius: 10px;
+            padding: 16px 15px;
+            position: relative;
+            box-shadow: 0 1px 2px rgba(91, 60, 196, 0.08);
+            min-height: 190px;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .aq-node::after {
+            content: '';
+            position: absolute;
+            right: -16px;
+            top: 50%;
+            width: 14px;
+            height: 3px;
+            background: #5B3CC4;
+            transform: translateY(-50%);
+        }
+
+        .aq-node:last-child::after { display: none; }
+
+        .aq-node .step-n {
+            font-size: 0.72rem;
+            font-weight: 700;
+            color: #5B3CC4;
+            letter-spacing: 0.04em;
+            margin-bottom: 6px;
+        }
+
+        .aq-node h4 {
+            font-size: 0.95rem;
+            color: var(--sf-navy);
+            margin: 0 0 8px;
+            line-height: 1.3;
+        }
+
+        .aq-node p {
+            font-size: 0.8rem;
+            color: var(--sf-gray-600);
+            margin: 0;
+            line-height: 1.45;
+            flex: 1;
+        }
+
+        .aq-node .owners {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 5px;
+            margin-top: 12px;
+        }
+
+        .aq-chip {
+            font-size: 0.66rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.03em;
+            padding: 3px 8px;
+            border-radius: 999px;
+        }
+
+        .aq-chip.product { background: #EEF4FF; color: var(--sf-electric-blue); }
+        .aq-chip.biz { background: var(--sf-warning-light); color: #8A4B00; }
+        .aq-chip.evals { background: var(--sf-purple-light); color: var(--sf-purple); }
+        .aq-chip.eng { background: var(--sf-success-light); color: var(--sf-success); }
+        .aq-chip.gate { background: var(--sf-navy); color: #fff; }
+
+        .aq-spine {
+            height: 16px;
+            background: linear-gradient(90deg, #5B3CC4 0%, #7B5FE8 50%, #5B3CC4 100%);
+            border-radius: 999px;
+            position: relative;
+            margin: 4px 0;
+            box-shadow: 0 0 0 4px rgba(91, 60, 196, 0.14);
+        }
+
+        .aq-spine::before {
+            content: 'ANSWER QUALITY \2014 main work line';
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+            background: #5B3CC4;
+            color: #fff;
+            font-size: 0.7rem;
+            font-weight: 700;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            padding: 4px 14px;
+            border-radius: 999px;
+            white-space: nowrap;
+            z-index: 1;
+        }
+
+        .aq-lane-deps {
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            gap: 14px;
+            padding-top: 8px;
+            align-items: stretch;
+            min-height: 200px;
+        }
+
+        .aq-dep {
+            background: #F7F5FC;
+            border: 1px solid #D9D0F5;
+            border-radius: 10px;
+            padding: 14px 14px;
+            position: relative;
+            margin-top: 26px;
+            min-height: 170px;
+        }
+
+        .aq-dep::before {
+            content: '';
+            position: absolute;
+            left: 50%;
+            top: -26px;
+            width: 3px;
+            height: 24px;
+            background: #5B3CC4;
+            transform: translateX(-50%);
+        }
+
+        .aq-dep::after {
+            content: '';
+            position: absolute;
+            left: 50%;
+            top: -8px;
+            width: 0;
+            height: 0;
+            border-left: 6px solid transparent;
+            border-right: 6px solid transparent;
+            border-bottom: 8px solid #5B3CC4;
+            transform: translateX(-50%);
+        }
+
+        .aq-dep .feed {
+            font-size: 0.68rem;
+            font-weight: 700;
+            color: #5B3CC4;
+            text-transform: uppercase;
+            letter-spacing: 0.04em;
+            margin-bottom: 6px;
+        }
+
+        .aq-dep h5 {
+            font-size: 0.88rem;
+            color: var(--sf-navy);
+            margin: 0 0 6px;
+            line-height: 1.3;
+        }
+
+        .aq-dep p {
+            font-size: 0.78rem;
+            color: var(--sf-gray-600);
+            margin: 0;
+            line-height: 1.45;
+        }
+
+        .aq-dep.env-callout {
+            background: #E8F5E9;
+            border-color: #A5D6A7;
+            grid-column: span 1;
+        }
+
+        .aq-dep.env-callout .feed { color: var(--sf-success); }
+        .aq-dep.env-callout::before { background: var(--sf-success); }
+        .aq-dep.env-callout::after {
+            border-bottom-color: var(--sf-success);
+        }
+
+        .aq-foundation {
+            margin-top: 22px;
+            background: linear-gradient(90deg, #2E2A47 0%, #5B3CC4 100%);
+            color: #fff;
+            border-radius: 10px;
+            padding: 16px 18px;
+            display: flex;
+            align-items: center;
+            gap: 16px;
+        }
+
+        .aq-foundation .base {
+            font-size: 0.78rem;
+            font-weight: 700;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            white-space: nowrap;
+            opacity: 0.9;
+        }
+
+        .aq-foundation p {
+            font-size: 0.88rem;
+            margin: 0;
+            line-height: 1.45;
+            opacity: 0.95;
+        }
+
+        .aq-roles {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 14px;
+            margin: 24px 0;
+        }
+
+        .aq-role {
+            border: 1px solid var(--sf-gray-100);
+            border-radius: var(--radius-md);
+            padding: 16px;
+            background: var(--sf-white);
+            box-shadow: var(--shadow-sm);
+        }
+
+        .aq-role h4 {
+            font-size: 0.88rem;
+            color: var(--sf-navy);
+            margin-bottom: 4px;
+        }
+
+        .aq-role .role-lane {
+            font-size: 0.68rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.04em;
+            margin-bottom: 10px;
+        }
+
+        .aq-role.product .role-lane { color: var(--sf-electric-blue); }
+        .aq-role.evals .role-lane { color: var(--sf-purple); }
+        .aq-role.offers .role-lane { color: #8A4B00; }
+        .aq-role.eng .role-lane { color: var(--sf-success); }
+
+        .aq-role ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .aq-role li {
+            font-size: 0.74rem;
+            color: var(--sf-gray-800);
+            padding: 5px 0 5px 14px;
+            position: relative;
+            line-height: 1.4;
+            border-top: 1px solid var(--sf-gray-50);
+        }
+
+        .aq-role li:first-child { border-top: none; }
+
+        .aq-role li::before {
+            content: '\2022';
+            position: absolute;
+            left: 0;
+            color: var(--sf-electric-blue);
+            font-weight: 700;
+        }
+
+        .aq-role.evals li::before { color: var(--sf-purple); }
+        .aq-role.offers li::before { color: var(--sf-warning); }
+        .aq-role.eng li::before { color: var(--sf-success); }
+
+        .aq-env-strip {
+            display: grid;
+            grid-template-columns: 1.2fr 1fr 1fr 1fr;
+            gap: 12px;
+            margin: 8px 0 10px;
+        }
+
+        .aq-env-card {
+            border-radius: var(--radius-md);
+            padding: 14px;
+            border: 1px solid var(--sf-gray-100);
+            background: var(--sf-white);
+            box-shadow: var(--shadow-sm);
+        }
+
+        .aq-env-card.preferred {
+            border: 2px solid var(--sf-success);
+            background: #E8F5E9;
+        }
+
+        .aq-env-card.not-prod {
+            border: 2px solid #5B3CC4;
+            background: #F7F5FC;
+        }
+
+        .aq-env-card .tag {
+            display: inline-block;
+            font-size: 0.6rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            padding: 2px 8px;
+            border-radius: 999px;
+            margin-bottom: 8px;
+        }
+
+        .aq-env-card.preferred .tag {
+            background: var(--sf-success);
+            color: var(--sf-white);
+        }
+
+        .aq-env-card.not-prod .tag {
+            background: #5B3CC4;
+            color: var(--sf-white);
+        }
+
+        .aq-env-card.early .tag {
+            background: #EEF4FF;
+            color: var(--sf-electric-blue);
+        }
+
+        .aq-env-card.e2e .tag {
+            background: var(--sf-warning-light);
+            color: #8A4B00;
+        }
+
+        .aq-env-card h4 {
+            font-size: 0.9rem;
+            color: var(--sf-navy);
+            margin-bottom: 6px;
+        }
+
+        .aq-env-card p {
+            font-size: 0.72rem;
+            color: var(--sf-gray-600);
+            margin: 0;
+            line-height: 1.4;
+        }
+
+        .aq-env-order {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            gap: 8px;
+            background: var(--sf-gray-50);
+            border: 1px dashed var(--sf-gray-200);
+            border-radius: 8px;
+            padding: 12px 14px;
+            margin-bottom: 8px;
+            font-size: 0.74rem;
+            color: var(--sf-gray-800);
+        }
+
+        .aq-env-order strong { color: var(--sf-navy); }
+
+        .aq-env-pill {
+            display: inline-flex;
+            align-items: center;
+            gap: 4px;
+            background: var(--sf-white);
+            border: 1px solid var(--sf-gray-100);
+            border-radius: 999px;
+            padding: 3px 10px;
+            font-size: 0.7rem;
+            font-weight: 600;
+            color: var(--sf-navy);
+        }
+
+        .aq-env-pill.hot {
+            border-color: var(--sf-success);
+            background: #E8F5E9;
+            color: var(--sf-success);
+        }
+
+        .aq-env-arrow {
+            color: var(--sf-gray-200);
+            font-weight: 300;
+        }
+
+        .aq-complexity {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 14px;
+            margin-top: 8px;
+        }
+
+        .aq-complexity-card {
+            border: 1px solid var(--sf-gray-100);
+            border-radius: var(--radius-md);
+            padding: 16px 18px;
+            background: var(--sf-white);
+            box-shadow: var(--shadow-sm);
+        }
+
+        .aq-complexity-card h4 {
+            font-size: 0.88rem;
+            color: var(--sf-navy);
+            margin-bottom: 8px;
+        }
+
+        .aq-complexity-card ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .aq-complexity-card li {
+            font-size: 0.76rem;
+            color: var(--sf-gray-800);
+            padding: 5px 0 5px 16px;
+            position: relative;
+            line-height: 1.45;
+        }
+
+        .aq-complexity-card li::before {
+            content: '\2192';
+            position: absolute;
+            left: 0;
+            color: var(--sf-electric-blue);
+            font-weight: 700;
+        }
+
+        .aq-legend {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 14px;
+            margin: 0 0 12px;
+            font-size: 0.72rem;
+            color: var(--sf-gray-600);
+        }
+
+        .aq-legend span {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .aq-legend i {
+            width: 10px;
+            height: 10px;
+            border-radius: 2px;
+            display: inline-block;
+        }
+
+        .aq-legend .l-product { background: var(--sf-electric-blue); }
+        .aq-legend .l-offers { background: var(--sf-warning); }
+        .aq-legend .l-evals { background: var(--sf-purple); }
+        .aq-legend .l-eng { background: var(--sf-success); }
+        .aq-legend .l-gate { background: var(--sf-navy); }
+        .aq-legend .l-spine { background: #5B3CC4; }
+
+        .aq-pov-note {
+            font-size: 0.78rem;
+            color: var(--sf-gray-600);
+            font-style: italic;
+            margin: 0 0 20px;
+        }
+
+        @media (max-width: 980px) {
+            .aq-why-grid,
+            .aq-roles,
+            .aq-env-strip,
+            .aq-complexity {
+                grid-template-columns: 1fr;
+            }
+            .aq-map {
+                min-width: 0;
+                grid-template-columns: 1fr;
+            }
+            .aq-lane-label {
+                writing-mode: horizontal-tb;
+                transform: none;
+                padding: 8px 10px;
+                margin-bottom: 8px;
+            }
+            .aq-lane-main,
+            .aq-lane-deps {
+                grid-template-columns: 1fr;
+            }
+            .aq-node::after { display: none; }
+            .aq-spine::before { font-size: 0.52rem; }
+            .aq-dep { margin-top: 10px; }
+        }
+
+
+
         /* Journey Flow (Tab 3) */
         .journey-flow {
             display: flex;
@@ -1499,6 +2158,7 @@
         <nav class="tab-nav">
             <button class="tab-btn active" data-tab="strategy">Strategy & Vision</button>
             <button class="tab-btn" data-tab="roadmap">Roadmap</button>
+            <button class="tab-btn" data-tab="aq-model">AQ Operating Model</button>
             <button class="tab-btn" data-tab="journey">Journey & Progression</button>
         </nav>
 
@@ -2747,7 +3407,271 @@
             </div>
         </div>
 
-        <!-- ===== TAB 3: Journey & Progression ===== -->
+
+        <!-- ===== TAB 3: AQ Operating Model ===== -->
+        <div class="tab-content" id="tab-aq-model">
+            <div class="aq-banner">
+                <div class="eyebrow">Product point of view &mdash; Lifecycle Success</div>
+                <h3>Answer Quality operating model for Adoption Retriever expansion</h3>
+                <p>From the Product seat, Qual answer-quality is not a side checklist &mdash; it is the critical path when we roll a new cloud or content source into the shared Adoption Retriever. This view shows <strong>who does what</strong>, <strong>what Product owns end-to-end</strong>, and <strong>how environment readiness feeds Qual</strong> (STG for official ATA &mdash; not the path to production) &mdash; so eng and business partners see one story, and the complexity of each expansion is visible before we commit a date.</p>
+            </div>
+
+            <p class="aq-pov-note">Framed for stakeholder clarity: Answer Quality is the spine. Product and Business Partners own scoping and SME validation; Product and Evals co-own utterances &amp; expected answers; Engineering feeds environment readiness into Qual. STG is where we prefer to grade &mdash; it is not the production path.</p>
+
+            <div class="section-card">
+                <h2>Why lock this now</h2>
+                <p class="section-subtitle">H2 is expansion after expansion &mdash; the process has to outlast any one release or person</p>
+                <div class="aq-why-grid">
+                    <div class="aq-why-card">
+                        <div class="n">01 &mdash; Repeatable through December</div>
+                        <h4>Cloud / content expansion loop</h4>
+                        <p>Sept is the first of several H2 expansions. Without a locked Qual path, every new cloud reinvents utterances, SME review, env, and go/no-go &mdash; burning calendar we do not have.</p>
+                    </div>
+                    <div class="aq-why-card">
+                        <div class="n">02 &mdash; Durable through org change</div>
+                        <h4>Quality stays in the process</h4>
+                        <p>Evals-side org changes are in flight. The bar and handoffs need to remain clear regardless of who runs ATA or Product day-to-day.</p>
+                    </div>
+                    <div class="aq-why-card">
+                        <div class="n">03 &mdash; One locked Qual story</div>
+                        <h4>Shared story for eng + business partners</h4>
+                        <p>Official ATA env (prefer STG) and who owns each handoff must be lockable and shareable &mdash; not reopened in every EM or business thread. Env for Qual is separate from path to production.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="section-card">
+                <h2>Qual path &mdash; Answer Quality spine</h2>
+                <p class="section-subtitle">Hard purple line = the main AQ work moving left to right. Arrows below = dependencies that feed into that line at the moment they are needed. Environment readiness powers Qual; it is not the path to production.</p>
+                <div class="aq-legend">
+                    <span><i class="l-spine"></i> Answer Quality (main work line)</span>
+                    <span><i class="l-product"></i> Product (Lifecycle Success)</span>
+                    <span><i class="l-offers"></i> Business Partners</span>
+                    <span><i class="l-evals"></i> ATA / Evals tooling</span>
+                    <span><i class="l-eng"></i> Engineering / CSDP</span>
+                    <span><i class="l-gate"></i> Go / no-go</span>
+                </div>
+
+                <div class="aq-journey">
+                    <div class="aq-journey-top">
+                        <div class="aq-journey-title">
+                            High-level Qual journey map
+                            <span>Every new cloud or content source re-runs this spine</span>
+                        </div>
+                        <div class="aq-desired">
+                            <div class="lbl">Desired outcome</div>
+                            <p>One locked LS Qual process stakeholders can reuse &mdash; clear owners, clear env for grading, visible complexity before we commit a date.</p>
+                        </div>
+                    </div>
+
+                    <div class="aq-map">
+                        <div class="aq-lane-label top">Answer Quality work</div>
+                        <div class="aq-lane-main">
+                            <div class="aq-node">
+                                <div class="step-n">STEP 1</div>
+                                <h4>Scope the expansion</h4>
+                                <p>Cloud / content source, sub-agent, utterance counts, in/out of scope. Lock Qual (not Quant) for the release bag.</p>
+                                <div class="owners">
+                                    <span class="aq-chip product">Product</span>
+                                    <span class="aq-chip biz">Business Partners</span>
+                                </div>
+                            </div>
+                            <div class="aq-node">
+                                <div class="step-n">STEP 2</div>
+                                <h4>Utterances &amp; expected answers</h4>
+                                <p>Independently derived from approved sources &mdash; not AgF / ATA echo. BCS densified. Product + Evals co-own the artifact.</p>
+                                <div class="owners">
+                                    <span class="aq-chip product">Product</span>
+                                    <span class="aq-chip evals">Evals</span>
+                                </div>
+                            </div>
+                            <div class="aq-node">
+                                <div class="step-n">STEP 3</div>
+                                <h4>SME validate</h4>
+                                <p>Business Partners prioritize pathways; SMEs confirm best content sources + factual expected answers; later pass/fail agent output with Product.</p>
+                                <div class="owners">
+                                    <span class="aq-chip biz">Business Partners</span>
+                                </div>
+                            </div>
+                            <div class="aq-node">
+                                <div class="step-n">STEP 4</div>
+                                <h4>Official Qual ATA</h4>
+                                <p>Suite + AC (relevant / correct / complete). Prefer STG for official grading. Human validation + analysis. UAT = courtesy / E2E fallback only.</p>
+                                <div class="owners">
+                                    <span class="aq-chip evals">ATA / Evals</span>
+                                    <span class="aq-chip product">Product</span>
+                                </div>
+                            </div>
+                            <div class="aq-node">
+                                <div class="step-n">STEP 5</div>
+                                <h4>Go / no-go</h4>
+                                <p>Pass rate + fails + leakage negatives inform the release decision. Same spine resets for the next cloud or content source.</p>
+                                <div class="owners">
+                                    <span class="aq-chip gate">Product + stakeholders</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="aq-spine" aria-hidden="true"></div>
+
+                        <div class="aq-lane-label bottom">Dependencies feeding in</div>
+                        <div class="aq-lane-deps">
+                            <div class="aq-dep">
+                                <div class="feed">Feeds Step 1</div>
+                                <h5>Joint scoping</h5>
+                                <p>Product + Business Partners align what expands, which pathways matter, and what stays out of the Qual bag.</p>
+                            </div>
+                            <div class="aq-dep">
+                                <div class="feed">Feeds Step 2</div>
+                                <h5>Co-create the gold set</h5>
+                                <p>Product drafts utterances / expected answers; Evals tooling shapes suite fit, AC, and runnability.</p>
+                            </div>
+                            <div class="aq-dep">
+                                <div class="feed">Feeds Step 3</div>
+                                <h5>SME bench + capacity</h5>
+                                <p>Business Partners book the right cloud SMEs early &mdash; scarce time is a schedule risk, not a paperwork step.</p>
+                            </div>
+                            <div class="aq-dep env-callout">
+                                <div class="feed">Must land before Step 4</div>
+                                <h5>Env readiness for Qual</h5>
+                                <p><strong>Prefer STG</strong> for official ATA. Agent + Retriever + signals together. STG is <em>not</em> path to prod &mdash; see env strip below.</p>
+                            </div>
+                            <div class="aq-dep">
+                                <div class="feed">Feeds Step 5</div>
+                                <h5>Shared readout</h5>
+                                <p>One Qual story for eng + business partners so EM threads and partner threads do not fork the bar.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="aq-foundation">
+                        <div class="base">Foundation</div>
+                        <p><strong>Answer Quality</strong> is the base of the structure &mdash; not a side checklist. Content ingest and env deploys only count when they make this Qual spine runnable and decision-ready.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="section-card">
+                <h2>Who owns what</h2>
+                <p class="section-subtitle">Roles across Product, ATA tooling, Business Partners, and engineering &mdash; each feeds the Answer Quality spine at a defined step</p>
+                <div class="aq-roles">
+                    <div class="aq-role product">
+                        <div class="role-lane">Product &mdash; Lifecycle Success</div>
+                        <h4>Owns the Qual critical path</h4>
+                        <ul>
+                            <li>Release bag + Qual vs Quant call</li>
+                            <li>Co-owns utterances / expected answers / BCS with Evals</li>
+                            <li>Joint scoping with Business Partners</li>
+                            <li>Stakeholder story (eng + partners)</li>
+                            <li>Go/no-go framing from Qual results</li>
+                        </ul>
+                    </div>
+                    <div class="aq-role evals">
+                        <div class="role-lane">ATA tooling / Evals</div>
+                        <h4>Co-owns gold set + runs Qual</h4>
+                        <ul>
+                            <li>Co-owns utterances &amp; expected answers with Product</li>
+                            <li>ATA suite + acceptance criteria</li>
+                            <li>Official Qual runs + human validation</li>
+                            <li>Insights / pass-fail analysis</li>
+                            <li>Separate from Quant / GDS track</li>
+                        </ul>
+                    </div>
+                    <div class="aq-role offers">
+                        <div class="role-lane">Business Partners</div>
+                        <h4>Scope + SME validate</h4>
+                        <ul>
+                            <li>Joint scoping of the expansion with Product</li>
+                            <li>Pathway / feature prioritization</li>
+                            <li>SME identification + capacity</li>
+                            <li>Validate expected answers / sources</li>
+                            <li>Pass/fail on agent output with Product</li>
+                        </ul>
+                    </div>
+                    <div class="aq-role eng">
+                        <div class="role-lane">Engineering / CSDP</div>
+                        <h4>Feeds env readiness into Qual</h4>
+                        <ul>
+                            <li>Retriever content for new clouds</li>
+                            <li>Agent prompts / sub-agent config on the Qual env</li>
+                            <li>DEV &rarr; STG propagation for evals (not prod path)</li>
+                            <li>Test-user signals for new pathways</li>
+                            <li>QA for early eng feedback; UAT for E2E</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="section-card">
+                <h2>Environment readiness &mdash; feeds Qual, not path to production</h2>
+                <p class="section-subtitle">From Product&rsquo;s AQ seat: STG is where we prefer to <em>grade</em>. Production cutover is a separate eng track. Do not conflate the two in stakeholder conversations.</p>
+
+                <div class="aq-env-order">
+                    <strong>Propagation for evals planning:</strong>
+                    <span class="aq-env-pill">DEV</span>
+                    <span class="aq-env-arrow">&rarr;</span>
+                    <span class="aq-env-pill hot">STG (AQ primary)</span>
+                    <span class="aq-env-arrow">&nbsp;&nbsp;|&nbsp;&nbsp;</span>
+                    <span class="aq-env-pill">QA &mdash; eng early feedback</span>
+                    <span class="aq-env-arrow">&nbsp;&nbsp;|&nbsp;&nbsp;</span>
+                    <span class="aq-env-pill">UAT &mdash; E2E product track</span>
+                </div>
+
+                <div class="aq-env-strip">
+                    <div class="aq-env-card preferred">
+                        <span class="tag">Preferred &mdash; official Qual</span>
+                        <h4>STG (Stage)</h4>
+                        <p>Primary env for answer-quality / ATA. Closest prod parity for grading. Requires Agent <em>and</em> Retriever + signals together. Agent build (prompts / config) must track STG too &mdash; not retriever-only.</p>
+                    </div>
+                    <div class="aq-env-card not-prod">
+                        <span class="tag">Critical distinction</span>
+                        <h4>Not path to production</h4>
+                        <p>STG is <strong>not</strong> on the pipeline to prod. Qual on STG is a grading dependency so we can make a go/no-go call &mdash; it does not substitute for the production promotion path eng owns.</p>
+                    </div>
+                    <div class="aq-env-card early">
+                        <span class="tag">Eng early feedback</span>
+                        <h4>QA</h4>
+                        <p>Where eng connects agent + product for early feedback. Useful for development velocity &mdash; not where official Qual ATA runs.</p>
+                    </div>
+                    <div class="aq-env-card e2e">
+                        <span class="tag">Separate E2E track</span>
+                        <h4>UAT</h4>
+                        <p>E2E product / experience validation and courtesy ATA readouts. Official Qual only if STG cannot be made AQ-ready in time &mdash; document the exception; do not make it the quiet default.</p>
+                    </div>
+                </div>
+                <p class="aq-pov-note" style="margin-top:8px;">Stakeholder line: &ldquo;DEV &rarr; STG is what we care about most for evals; UAT is a separate E2E track, not where we run official AQ.&rdquo; Coordinated Help Agent deploy still required when STG needs Agent + Retriever together (same pattern as July AgentScript).</p>
+            </div>
+
+            <div class="section-card">
+                <h2>What multiplies when we add a cloud or content source</h2>
+                <p class="section-subtitle">This is the complexity stakeholders need to see &mdash; every expansion re-runs the full Qual path, not just &ldquo;ingest content&rdquo;</p>
+                <div class="aq-complexity">
+                    <div class="aq-complexity-card">
+                        <h4>Per expansion, Product must re-complete</h4>
+                        <ul>
+                            <li>Utterance set sized to the new cloud / pathway</li>
+                            <li>Independently derived expected answers + BCS</li>
+                            <li>SME bench (right cloud experts) + review window</li>
+                            <li>Negative / leakage cases when shared retriever grows</li>
+                            <li>Workback tied to env readiness &mdash; not hope dates</li>
+                        </ul>
+                    </div>
+                    <div class="aq-complexity-card">
+                        <h4>Cross-team dependencies that move in parallel</h4>
+                        <ul>
+                            <li>CSDP: content in shared Adoption Retriever index</li>
+                            <li>DS eng: Agent build on the same env as Qual</li>
+                            <li>Evals: ATA suite + STG profile / signals</li>
+                            <li>Business Partners: SME time is scarce &mdash; book early</li>
+                            <li>Program: one AQ story so EM and business threads do not fork</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <!-- ===== TAB 4: Journey & Progression ===== -->
         <div class="tab-content" id="tab-journey">
             <!-- Journey Map -->
             <div class="section-card">
@@ -2989,7 +3913,7 @@
             <p><strong>Sr. Product Manager:</strong> Stephanie Stancombe (sstancombe@salesforce.com)</p>
             <p><strong>V2MOM Alignment:</strong> M1. Improve Help Agent Answer Quality | Digital Success Method 2</p>
             <p><strong>CSDP Program:</strong> AI Engineering & Agentic Systems | FY27</p>
-            <p><strong>Last Updated:</strong> August 17, 2026</p>
+            <p><strong>Last Updated:</strong> August 20, 2026</p>
         </footer>
     </div>
 

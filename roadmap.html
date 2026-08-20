@@ -1111,7 +1111,7 @@
         .aq-lane-main {
             display: grid;
             grid-template-columns: repeat(5, 1fr);
-            gap: 14px;
+            gap: 28px;
             align-items: stretch;
             padding-bottom: 10px;
             min-height: 200px;
@@ -1129,18 +1129,33 @@
             flex-direction: column;
         }
 
-        .aq-node::after {
+        /* Horizontal flow: shaft + chevron pushing work left → right */
+        .aq-node:not(:last-child)::before {
             content: '';
             position: absolute;
-            right: -16px;
+            right: -22px;
             top: 50%;
             width: 14px;
             height: 3px;
             background: #5B3CC4;
             transform: translateY(-50%);
+            z-index: 2;
         }
 
-        .aq-node:last-child::after { display: none; }
+        .aq-node:not(:last-child)::after {
+            content: '';
+            position: absolute;
+            right: -30px;
+            top: 50%;
+            width: 0;
+            height: 0;
+            border-top: 7px solid transparent;
+            border-bottom: 7px solid transparent;
+            border-left: 11px solid #5B3CC4;
+            transform: translateY(-50%);
+            z-index: 2;
+            background: none;
+        }
 
         .aq-node .step-n {
             font-size: 0.72rem;
@@ -1217,7 +1232,7 @@
         .aq-lane-deps {
             display: grid;
             grid-template-columns: repeat(5, 1fr);
-            gap: 14px;
+            gap: 28px;
             padding-top: 8px;
             align-items: stretch;
             min-height: 200px;
@@ -1229,32 +1244,35 @@
             border-radius: 10px;
             padding: 14px 14px;
             position: relative;
-            margin-top: 26px;
+            margin-top: 40px;
             min-height: 170px;
         }
 
+        /* Vertical feed: shaft + arrowhead pointing UP into the AQ spine */
         .aq-dep::before {
             content: '';
             position: absolute;
             left: 50%;
-            top: -26px;
+            top: -34px;
             width: 3px;
-            height: 24px;
+            height: 26px;
             background: #5B3CC4;
             transform: translateX(-50%);
+            z-index: 2;
         }
 
         .aq-dep::after {
             content: '';
             position: absolute;
             left: 50%;
-            top: -8px;
+            top: -42px;
             width: 0;
             height: 0;
-            border-left: 6px solid transparent;
-            border-right: 6px solid transparent;
-            border-bottom: 8px solid #5B3CC4;
+            border-left: 9px solid transparent;
+            border-right: 9px solid transparent;
+            border-bottom: 12px solid #5B3CC4;
             transform: translateX(-50%);
+            z-index: 2;
         }
 
         .aq-dep .feed {
@@ -1591,7 +1609,10 @@
             .aq-lane-deps {
                 grid-template-columns: 1fr;
             }
-            .aq-node::after { display: none; }
+            .aq-node:not(:last-child)::before,
+            .aq-node:not(:last-child)::after { display: none; }
+            .aq-dep::before,
+            .aq-dep::after { display: none; }
             .aq-spine::before { font-size: 0.52rem; }
             .aq-dep { margin-top: 10px; }
         }

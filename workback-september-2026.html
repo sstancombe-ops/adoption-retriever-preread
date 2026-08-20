@@ -139,14 +139,20 @@
             line-height: 1;
         }
 
-        .gantt-wrap { overflow-x: auto; margin: 0 -4px; padding: 0 4px; }
+        .gantt-wrap {
+            overflow-x: auto;
+            overflow-y: visible;
+            margin: 0 -4px;
+            padding: 0 4px 12px;
+        }
         .gantt {
             position: relative;
-            min-width: 920px;
+            min-width: 1040px;
             border: 1px solid var(--sf-gray-100);
             border-radius: 12px;
             background: #FAFCFF;
-            padding: 14px 14px 10px;
+            padding: 14px 88px 16px 14px;
+            overflow: visible;
         }
         .cp-overlay {
             position: absolute;
@@ -298,7 +304,7 @@
         }
         .bar.cp .spark svg { width: 10px; height: 10px; }
         .row.has-markers .track {
-            height: 72px;
+            height: 92px;
         }
         .row.has-markers .bar {
             top: 50%;
@@ -331,29 +337,44 @@
             white-space: nowrap;
             background: #fff;
             border: 1px solid var(--sf-gray-100);
-            padding: 1px 5px;
+            padding: 2px 6px;
             border-radius: 4px;
             box-shadow: 0 1px 2px rgba(3,45,96,0.08);
             z-index: 7;
             display: inline-flex;
             align-items: center;
             gap: 4px;
+            max-width: none;
         }
-        .marker.uat span { color: var(--build); border-color: #B0D5F0; }
+        .marker.uat span {
+            color: var(--build);
+            border-color: #B0D5F0;
+            top: 4px;
+            left: 5px;
+        }
         .marker.signoff span {
             color: var(--sf-navy);
             border-color: #032D60;
             background: #EAF5FE;
-            left: auto;
-            right: 6px;
-            top: 2px;
+            top: auto;
+            bottom: 6px;
+            left: 5px;
+            right: auto;
         }
         .marker.prod span {
             color: var(--gate);
             border-color: #B5E0C0;
-            top: auto;
-            bottom: 4px;
+            top: 4px;
+            left: auto;
+            right: 0;
+            transform: translateX(0);
+        }
+        /* Keep rightmost release labels inside the padded chart */
+        .row.cp.has-markers .marker.prod span {
+            right: auto;
             left: 5px;
+            transform: translateX(-100%);
+            margin-left: -4px;
         }
         .marker.signoff .so-icon {
             display: inline-flex;
@@ -582,7 +603,7 @@
                         </div>
                         <div class="track">
                             <div class="bar eval cp" data-cp="3" style="left:57%;width:22%;"><span class="spark" aria-hidden="true"><svg viewBox="0 0 16 16"><path fill="currentColor" d="M8 0l1.2 5.2L14.5 6.5l-4.1 3.2L11.5 16 8 12.8 4.5 16l1.1-6.3L1.5 6.5l5.3-1.3L8 0z"/></svg></span>ATA iterations</div>
-                            <div class="marker signoff" style="left:57%;"><span><span class="so-icon" aria-hidden="true">✦</span> Sep 14 suite ready</span></div>
+                            <div class="marker signoff" style="left:57%;"><span><span class="so-icon" aria-hidden="true">✦</span> Suite ready · Sep 14</span></div>
                         </div>
                     </div>
 
@@ -641,9 +662,9 @@
                         </div>
                         <div class="track">
                             <div class="bar gate cp" data-cp="6" style="left:57%;width:23%;"><span class="spark" aria-hidden="true"><svg viewBox="0 0 16 16"><path fill="currentColor" d="M8 0l1.2 5.2L14.5 6.5l-4.1 3.2L11.5 16 8 12.8 4.5 16l1.1-6.3L1.5 6.5l5.3-1.3L8 0z"/></svg></span>UAT → GA</div>
-                            <div class="marker uat" style="left:75%;"><span>Sep 23 retriever UAT</span></div>
-                            <div class="marker signoff" style="left:80%;"><span><span class="so-icon" aria-hidden="true">✓</span> Product sign-off · Thu Sep 24</span></div>
-                            <div class="marker prod" style="left:88%;"><span>Fri Sep 25 Prod</span></div>
+                            <div class="marker uat" style="left:75%;"><span>Retriever UAT · Sep 23</span></div>
+                            <div class="marker signoff" style="left:82%;"><span><span class="so-icon" aria-hidden="true">✓</span> Sign-off · Sep 24</span></div>
+                            <div class="marker prod" style="left:90%;"><span>Prod · Sep 25</span></div>
                         </div>
                     </div>
                 </div>

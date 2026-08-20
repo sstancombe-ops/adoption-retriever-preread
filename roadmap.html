@@ -1470,44 +1470,158 @@
             line-height: 1.4;
         }
 
-        .aq-env-order {
+        .aq-tracks {
+            background: var(--sf-gray-50);
+            border: 1px solid var(--sf-gray-100);
+            border-radius: 10px;
+            padding: 16px 18px 14px;
+            margin-bottom: 14px;
+            overflow-x: auto;
+        }
+
+        .aq-tracks-key {
             display: flex;
             flex-wrap: wrap;
-            align-items: center;
-            gap: 8px;
-            background: var(--sf-gray-50);
-            border: 1px dashed var(--sf-gray-200);
-            border-radius: 8px;
-            padding: 12px 14px;
-            margin-bottom: 8px;
-            font-size: 0.74rem;
-            color: var(--sf-gray-800);
+            gap: 16px;
+            margin-bottom: 14px;
+            font-size: 0.72rem;
+            color: var(--sf-gray-600);
         }
 
-        .aq-env-order strong { color: var(--sf-navy); }
-
-        .aq-env-pill {
+        .aq-tracks-key span {
             display: inline-flex;
             align-items: center;
-            gap: 4px;
-            background: var(--sf-white);
-            border: 1px solid var(--sf-gray-100);
-            border-radius: 999px;
-            padding: 3px 10px;
-            font-size: 0.7rem;
+            gap: 6px;
             font-weight: 600;
+        }
+
+        .aq-tracks-key i {
+            width: 12px;
+            height: 4px;
+            border-radius: 2px;
+            display: inline-block;
+        }
+
+        .aq-tracks-key .k-prod { background: var(--sf-electric-blue); }
+        .aq-tracks-key .k-aq { background: var(--sf-success); }
+
+        .aq-tracks-grid {
+            display: grid;
+            grid-template-columns: 148px 88px 36px 120px 36px 100px 36px 118px;
+            grid-template-rows: auto auto;
+            align-items: center;
+            column-gap: 4px;
+            row-gap: 14px;
+            min-width: 720px;
+        }
+
+        .aq-track-lbl {
+            font-size: 0.68rem;
+            font-weight: 700;
+            letter-spacing: 0.04em;
+            text-transform: uppercase;
+            line-height: 1.25;
+        }
+
+        .aq-track-lbl.prod { color: var(--sf-electric-blue); grid-row: 1; grid-column: 1; }
+        .aq-track-lbl.aq { color: var(--sf-success); grid-row: 2; grid-column: 1; }
+
+        .aq-env-box {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            background: var(--sf-white);
+            border: 1.5px solid var(--sf-gray-200);
+            border-radius: 10px;
+            padding: 10px 8px;
+            min-height: 58px;
+            box-shadow: var(--shadow-sm);
+        }
+
+        .aq-env-box .name {
+            font-size: 0.82rem;
+            font-weight: 700;
             color: var(--sf-navy);
+            line-height: 1.2;
         }
 
-        .aq-env-pill.hot {
-            border-color: var(--sf-success);
+        .aq-env-box .sub {
+            font-size: 0.58rem;
+            font-weight: 600;
+            color: var(--sf-gray-600);
+            margin-top: 3px;
+            line-height: 1.2;
+            text-transform: uppercase;
+            letter-spacing: 0.03em;
+        }
+
+        .aq-env-box.dev {
+            grid-row: 1 / 3;
+            grid-column: 2;
+            border-color: var(--sf-navy);
+            background: #EEF1F6;
+            min-height: 120px;
+        }
+
+        .aq-env-box.uat {
+            grid-row: 1 / 3;
+            grid-column: 6;
+            border-color: #C47A00;
+            background: #FFF8E8;
+            min-height: 120px;
+        }
+
+        .aq-env-box.qa {
+            grid-row: 1;
+            grid-column: 4;
+            border-color: var(--sf-electric-blue);
+            background: #EEF4FF;
+        }
+
+        .aq-env-box.stg {
+            grid-row: 2;
+            grid-column: 4;
+            border: 2px solid var(--sf-success);
             background: #E8F5E9;
-            color: var(--sf-success);
         }
 
-        .aq-env-arrow {
-            color: var(--sf-gray-200);
-            font-weight: 300;
+        .aq-env-box.stg .name { color: var(--sf-success); }
+
+        .aq-env-box.production {
+            grid-row: 1;
+            grid-column: 8;
+            border-color: var(--sf-navy);
+            background: var(--sf-navy);
+        }
+
+        .aq-env-box.production .name,
+        .aq-env-box.production .sub { color: #fff; }
+
+        .aq-track-arr {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.35rem;
+            font-weight: 700;
+            line-height: 1;
+        }
+
+        .aq-track-arr.prod { color: var(--sf-electric-blue); }
+        .aq-track-arr.aq { color: var(--sf-success); }
+
+        .aq-arr-dev-qa { grid-row: 1; grid-column: 3; }
+        .aq-arr-qa-uat { grid-row: 1; grid-column: 5; }
+        .aq-arr-uat-prod { grid-row: 1; grid-column: 7; }
+        .aq-arr-dev-stg { grid-row: 2; grid-column: 3; }
+        .aq-arr-stg-uat { grid-row: 2; grid-column: 5; }
+
+        .aq-tracks-note {
+            margin-top: 12px;
+            font-size: 0.72rem;
+            color: var(--sf-gray-600);
+            line-height: 1.4;
         }
 
         .aq-complexity {
@@ -1595,6 +1709,26 @@
             .aq-env-strip,
             .aq-complexity {
                 grid-template-columns: 1fr;
+            }
+            .aq-tracks-grid {
+                grid-template-columns: 1fr;
+                min-width: 0;
+            }
+            .aq-env-box.dev,
+            .aq-env-box.uat,
+            .aq-env-box.qa,
+            .aq-env-box.stg,
+            .aq-env-box.production,
+            .aq-track-lbl.prod,
+            .aq-track-lbl.aq,
+            .aq-arr-dev-qa,
+            .aq-arr-qa-uat,
+            .aq-arr-uat-prod,
+            .aq-arr-dev-stg,
+            .aq-arr-stg-uat {
+                grid-row: auto;
+                grid-column: auto;
+                min-height: 0;
             }
             .aq-map {
                 min-width: 0;
@@ -3576,17 +3710,44 @@
 
             <div class="section-card">
                 <h2>Environment readiness &mdash; feeds Qual, not path to production</h2>
-                <p class="section-subtitle">From Product&rsquo;s AQ seat: STG is where we prefer to <em>grade</em>. Production cutover is a separate eng track. Do not conflate the two in stakeholder conversations.</p>
+                <p class="section-subtitle">STG is the preferred environment to grade AQ. Production cutover is a separate engineering track.</p>
 
-                <div class="aq-env-order">
-                    <strong>Propagation for evals planning:</strong>
-                    <span class="aq-env-pill">DEV</span>
-                    <span class="aq-env-arrow">&rarr;</span>
-                    <span class="aq-env-pill hot">STG (AQ primary)</span>
-                    <span class="aq-env-arrow">&nbsp;&nbsp;|&nbsp;&nbsp;</span>
-                    <span class="aq-env-pill">QA &mdash; eng early feedback</span>
-                    <span class="aq-env-arrow">&nbsp;&nbsp;|&nbsp;&nbsp;</span>
-                    <span class="aq-env-pill">UAT &mdash; E2E product track</span>
+                <div class="aq-tracks">
+                    <div class="aq-tracks-key">
+                        <span><i class="k-prod"></i> Path to Production</span>
+                        <span><i class="k-aq"></i> Path to Answer Quality</span>
+                    </div>
+                    <div class="aq-tracks-grid" role="img" aria-label="Two environment tracks diverge at DEV and converge at UAT">
+                        <div class="aq-track-lbl prod">Path to Production</div>
+                        <div class="aq-env-box dev">
+                            <span class="name">DEV</span>
+                            <span class="sub">Shared start</span>
+                        </div>
+                        <div class="aq-track-arr prod aq-arr-dev-qa" aria-hidden="true">&rarr;</div>
+                        <div class="aq-env-box qa">
+                            <span class="name">QA</span>
+                            <span class="sub">Eng early feedback</span>
+                        </div>
+                        <div class="aq-track-arr prod aq-arr-qa-uat" aria-hidden="true">&rarr;</div>
+                        <div class="aq-env-box uat">
+                            <span class="name">UAT</span>
+                            <span class="sub">Tracks converge</span>
+                        </div>
+                        <div class="aq-track-arr prod aq-arr-uat-prod" aria-hidden="true">&rarr;</div>
+                        <div class="aq-env-box production">
+                            <span class="name">Production</span>
+                            <span class="sub">Eng cutover</span>
+                        </div>
+
+                        <div class="aq-track-lbl aq">Path to Answer Quality</div>
+                        <div class="aq-track-arr aq aq-arr-dev-stg" aria-hidden="true">&rarr;</div>
+                        <div class="aq-env-box stg">
+                            <span class="name">STG</span>
+                            <span class="sub">AQ primary / official Qual</span>
+                        </div>
+                        <div class="aq-track-arr aq aq-arr-stg-uat" aria-hidden="true">&rarr;</div>
+                    </div>
+                    <p class="aq-tracks-note">Both tracks start in <strong>DEV</strong>, diverge (QA vs STG), then reconverge at <strong>UAT</strong>. Only the production path continues UAT &rarr; Production. Official AQ grading prefers <strong>STG</strong> &mdash; it is not on the path to production.</p>
                 </div>
 
                 <div class="aq-env-strip">
@@ -3611,7 +3772,7 @@
                         <p>E2E product / experience validation and courtesy ATA readouts. Official Qual only if STG cannot be made AQ-ready in time &mdash; document the exception; do not make it the quiet default.</p>
                     </div>
                 </div>
-                <p class="aq-pov-note" style="margin-top:8px;"><em>DEV &rarr; STG is crucial for AQ Evals; UAT is a separate E2E track, not where we run official AQ. Coordinated Help Agent deploy still required when STG needs Agent + Retriever together</em></p>
+                <p class="aq-pov-note" style="margin-top:8px;"><em>DEV &rarr; STG is crucial for AQ Evals; UAT is where the tracks reconverge for E2E &mdash; not where we run official AQ. Coordinated Help Agent deploy still required when STG needs Agent + Retriever together.</em></p>
             </div>
 
             <div class="section-card">

@@ -3462,8 +3462,8 @@
             </div>
 
             <div class="section-card">
-                <h2>Qual path &mdash; Answer Quality spine</h2>
-                <p class="section-subtitle">Hard purple line = the main AQ work moving left to right. Arrows below = dependencies that feed into that line at the moment they are needed. Environment readiness powers Qual; it is not the path to production.</p>
+                <h2>Qual path &amp; who owns what</h2>
+                <p class="section-subtitle">One view: Answer Quality work moves left to right on the purple spine. Owner chips = who owns that step. Arrows below = what feeds in (and from whom) before the next step can move. Env readiness powers Qual; it is not the path to production.</p>
                 <div class="aq-legend">
                     <span><i class="l-spine"></i> Answer Quality (main work line)</span>
                     <span><i class="l-product"></i> Product (Lifecycle Success)</span>
@@ -3476,8 +3476,8 @@
                 <div class="aq-journey">
                     <div class="aq-journey-top">
                         <div class="aq-journey-title">
-                            High-level Qual journey map
-                            <span>Every new cloud or content source re-runs this spine</span>
+                            Qual journey + ownership
+                            <span>Every new cloud or content source re-runs this spine with the same owners</span>
                         </div>
                         <div class="aq-desired">
                             <div class="lbl">Desired outcome</div>
@@ -3500,7 +3500,7 @@
                             <div class="aq-node">
                                 <div class="step-n">STEP 2</div>
                                 <h4>Utterances &amp; expected answers</h4>
-                                <p>Independently derived from approved sources &mdash; not AgF / ATA echo. BCS densified. Product + Evals co-own the artifact.</p>
+                                <p>Independently derived from approved sources &mdash; not AgF / ATA echo. BCS densified. Product + Evals co-own the baseline suite.</p>
                                 <div class="owners">
                                     <span class="aq-chip product">Product</span>
                                     <span class="aq-chip evals">Evals</span>
@@ -3517,7 +3517,7 @@
                             <div class="aq-node">
                                 <div class="step-n">STEP 4</div>
                                 <h4>Official Qual ATA</h4>
-                                <p>Suite + AC (relevant / correct / complete). Prefer STG for official grading. Human validation + analysis. UAT = courtesy / E2E fallback only.</p>
+                                <p>Suite + AC (relevant / correct / complete). Prefer STG for official grading. Evals runs + analyzes; Product co-owns the readout.</p>
                                 <div class="owners">
                                     <span class="aq-chip evals">ATA / Evals</span>
                                     <span class="aq-chip product">Product</span>
@@ -3538,87 +3538,36 @@
                         <div class="aq-lane-label bottom">Dependencies feeding in</div>
                         <div class="aq-lane-deps">
                             <div class="aq-dep">
-                                <div class="feed">Feeds Step 1</div>
+                                <div class="feed">Feeds Step 1 &middot; Product + Business Partners</div>
                                 <h5>Joint scoping</h5>
-                                <p>Product + Business Partners align what expands, which pathways matter, and what stays out of the Qual bag.</p>
+                                <p>Align what expands, which pathways matter, and what stays out of the Qual bag. Product holds the release bag; partners prioritize pathways.</p>
                             </div>
                             <div class="aq-dep">
-                                <div class="feed">Feeds Step 2</div>
-                                <h5>Co-create the gold set</h5>
-                                <p>Product drafts utterances / expected answers; Evals tooling shapes suite fit, AC, and runnability.</p>
+                                <div class="feed">Feeds Step 2 &middot; Product + Evals</div>
+                                <h5>Co-create the baseline suite</h5>
+                                <p>Product drafts utterances / expected answers / BCS; Evals shapes suite fit, AC, and runnability. Separate from Quant / GDS.</p>
                             </div>
                             <div class="aq-dep">
-                                <div class="feed">Feeds Step 3</div>
+                                <div class="feed">Feeds Step 3 &middot; Business Partners</div>
                                 <h5>SME bench + capacity</h5>
-                                <p>Business Partners book the right cloud SMEs early &mdash; scarce time is a schedule risk, not a paperwork step.</p>
+                                <p>Book the right cloud SMEs early; validate sources and expected answers. Scarce SME time is a schedule risk, not paperwork.</p>
                             </div>
                             <div class="aq-dep env-callout">
-                                <div class="feed">Must land before Step 4</div>
+                                <div class="feed">Must land before Step 4 &middot; Eng / CSDP</div>
                                 <h5>Env readiness for Qual</h5>
-                                <p><strong>Prefer STG</strong> for official ATA. Agent + Retriever + signals together. STG is <em>not</em> path to prod &mdash; see env strip below.</p>
+                                <p><strong>Prefer STG</strong> for official ATA. Agent + Retriever + signals together (DEV &rarr; STG for evals). STG is <em>not</em> path to prod &mdash; see env strip below.</p>
                             </div>
                             <div class="aq-dep">
-                                <div class="feed">Feeds Step 5</div>
+                                <div class="feed">Feeds Step 5 &middot; Product leads</div>
                                 <h5>Shared readout</h5>
-                                <p>One Qual story for eng + business partners so EM threads and partner threads do not fork the bar.</p>
+                                <p>One Qual story for eng + business partners so EM threads and partner threads do not fork the bar. Product frames go/no-go.</p>
                             </div>
                         </div>
                     </div>
 
                     <div class="aq-foundation">
                         <div class="base">Foundation</div>
-                        <p><strong>Answer Quality</strong> is the base of the structure &mdash; not a side checklist. Content ingest and env deploys only count when they make this Qual spine runnable and decision-ready.</p>
-                    </div>
-                </div>
-            </div>
-
-            <div class="section-card">
-                <h2>Who owns what</h2>
-                <p class="section-subtitle">Roles across Product, ATA tooling, Business Partners, and engineering &mdash; each feeds the Answer Quality spine at a defined step</p>
-                <div class="aq-roles">
-                    <div class="aq-role product">
-                        <div class="role-lane">Product &mdash; Lifecycle Success</div>
-                        <h4>Owns the Qual critical path</h4>
-                        <ul>
-                            <li>Release bag + Qual vs Quant call</li>
-                            <li>Co-owns utterances / expected answers / BCS with Evals</li>
-                            <li>Joint scoping with Business Partners</li>
-                            <li>Stakeholder story (eng + partners)</li>
-                            <li>Go/no-go framing from Qual results</li>
-                        </ul>
-                    </div>
-                    <div class="aq-role evals">
-                        <div class="role-lane">ATA tooling / Evals</div>
-                        <h4>Co-owns gold set + runs Qual</h4>
-                        <ul>
-                            <li>Co-owns utterances &amp; expected answers with Product</li>
-                            <li>ATA suite + acceptance criteria</li>
-                            <li>Official Qual runs + human validation</li>
-                            <li>Insights / pass-fail analysis</li>
-                            <li>Separate from Quant / GDS track</li>
-                        </ul>
-                    </div>
-                    <div class="aq-role offers">
-                        <div class="role-lane">Business Partners</div>
-                        <h4>Scope + SME validate</h4>
-                        <ul>
-                            <li>Joint scoping of the expansion with Product</li>
-                            <li>Pathway / feature prioritization</li>
-                            <li>SME identification + capacity</li>
-                            <li>Validate expected answers / sources</li>
-                            <li>Pass/fail on agent output with Product</li>
-                        </ul>
-                    </div>
-                    <div class="aq-role eng">
-                        <div class="role-lane">Engineering / CSDP</div>
-                        <h4>Feeds env readiness into Qual</h4>
-                        <ul>
-                            <li>Retriever content for new clouds</li>
-                            <li>Agent prompts / sub-agent config on the Qual env</li>
-                            <li>DEV &rarr; STG propagation for evals (not prod path)</li>
-                            <li>Test-user signals for new pathways</li>
-                            <li>QA for early eng feedback; UAT for E2E</li>
-                        </ul>
+                        <p><strong>Answer Quality</strong> is the base of the structure &mdash; not a side checklist. Owner chips on each step are the ownership model; content ingest and env deploys only count when they make this Qual spine runnable and decision-ready.</p>
                     </div>
                 </div>
             </div>

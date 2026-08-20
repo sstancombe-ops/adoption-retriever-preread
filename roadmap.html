@@ -1317,29 +1317,24 @@
             min-height: 170px;
         }
 
-        /* Vertical feed: shaft + arrowhead pointing UP into the AQ spine */
+        /* Vertical feed: plus sign into the AQ spine */
         .aq-dep::before {
-            content: '';
-            position: absolute;
-            left: 50%;
-            top: -34px;
-            width: 3px;
-            height: 26px;
-            background: #5B3CC4;
-            transform: translateX(-50%);
-            z-index: 2;
+            display: none;
         }
 
         .aq-dep::after {
-            content: '';
+            content: '+';
             position: absolute;
             left: 50%;
-            top: -42px;
-            width: 0;
-            height: 0;
-            border-left: 9px solid transparent;
-            border-right: 9px solid transparent;
-            border-bottom: 12px solid #5B3CC4;
+            top: -36px;
+            width: auto;
+            height: auto;
+            border: none;
+            background: transparent;
+            color: #5B3CC4;
+            font-size: 1.35rem;
+            font-weight: 700;
+            line-height: 1;
             transform: translateX(-50%);
             z-index: 2;
         }
@@ -1374,10 +1369,7 @@
         }
 
         .aq-dep.env-callout .feed { color: var(--sf-success); }
-        .aq-dep.env-callout::before { background: var(--sf-success); }
-        .aq-dep.env-callout::after {
-            border-bottom-color: var(--sf-success);
-        }
+        .aq-dep.env-callout::after { color: var(--sf-success); }
 
         .aq-foundation {
             margin-top: 22px;

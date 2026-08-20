@@ -428,9 +428,39 @@
         }
         .pane.onb { border-top: 3px solid var(--sf-purple); }
         .pane.adp { border-top: 3px solid var(--sf-electric-blue); }
+        .ships {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+        .pane.shared {
+            position: relative;
+            background: linear-gradient(90deg, #F7F5FC 0%, #EEF4FF 100%);
+            overflow: hidden;
+        }
+        .pane.shared::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0;
+            height: 3px;
+            background: linear-gradient(90deg, var(--sf-purple) 0%, var(--sf-electric-blue) 100%);
+        }
         .pane h3 { font-size: 0.95rem; color: var(--sf-navy); margin-bottom: 8px; }
         .pane ul { margin: 0; padding-left: 18px; font-size: 0.86rem; color: var(--sf-gray-600); }
         .pane li { margin: 5px 0; }
+        .pane.shared .shared-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 14px;
+        }
+        @media (max-width: 800px) {
+            .pane.shared .shared-row { grid-template-columns: 1fr; }
+        }
+        .pane.shared .shared-item {
+            font-size: 0.86rem;
+            color: var(--sf-gray-600);
+            line-height: 1.45;
+        }
         footer {
             margin-top: 20px;
             font-size: 0.8rem;
@@ -631,23 +661,29 @@
 
         <div class="section">
             <h2>What ships in September</h2>
-            <div class="split">
-                <div class="pane onb">
-                    <h3>Onboarding experience</h3>
-                    <ul>
-                        <li><strong>Agentforce + Data Cloud</strong> Phase 4 (Prod 9/25 · retriever UAT ~9/23)</li>
-                        <li>Data 360 = Step 1 prerequisite only</li>
-                        <li><strong>Shared content:</strong> AF + DC + FINS (Adoption AF/DC experience → Oct)</li>
-                    </ul>
+            <div class="ships">
+                <div class="split">
+                    <div class="pane onb">
+                        <h3>Onboarding experience</h3>
+                        <ul>
+                            <li><strong>Agentforce + Data Cloud</strong> Phase 4 (Prod 9/25 · retriever UAT ~9/23)</li>
+                            <li>Data 360 = Step 1 prerequisite only</li>
+                        </ul>
+                    </div>
+                    <div class="pane adp">
+                        <h3>Adoption experience</h3>
+                        <ul>
+                            <li><strong>Adoption experience:</strong> FINS only — <strong>10 features</strong> (locked Aug 20)</li>
+                            <li><strong>FINS 10</strong> (locked Aug 20) + Sales/Service 14 regression = <strong>24-feature suite</strong> when combined; expansion slice alone = 12+12+10 = <strong>34</strong></li>
+                        </ul>
+                    </div>
                 </div>
-                <div class="pane adp">
-                    <h3>Adoption experience</h3>
-                    <ul>
-                        <li><strong>Adoption experience:</strong> FINS only — <strong>10 features</strong> (locked Aug 20)</li>
-                        <li><strong>Shared content:</strong> AF + DC + FINS (Adoption AF/DC experience → Oct)</li>
-                        <li><strong>FINS 10</strong> (locked Aug 20) + Sales/Service 14 regression = <strong>24-feature suite</strong> when combined; expansion slice alone = 12+12+10 = <strong>34</strong></li>
-                        <li><strong>Negative suite:</strong> FSC × 10 leakage / OOS / wrong-cloud cases (Stephanie → Jelena secondary suite)</li>
-                    </ul>
+                <div class="pane shared">
+                    <h3>Across Onboarding + Adoption</h3>
+                    <div class="shared-row">
+                        <div class="shared-item"><strong>Shared content:</strong> AF + DC + FINS (Adoption AF/DC experience → Oct)</div>
+                        <div class="shared-item"><strong>Negative suite:</strong> FSC × 10 leakage / OOS / wrong-cloud cases (Stephanie → Jelena secondary suite)</div>
+                    </div>
                 </div>
             </div>
         </div>

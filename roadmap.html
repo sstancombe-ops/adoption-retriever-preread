@@ -1446,6 +1446,11 @@
             background: var(--sf-success);
             color: var(--sf-white);
         }
+        .aq-env-card .tag.preferred-tag {
+            background: var(--sf-success);
+            color: var(--sf-white);
+        }
+
 
         .aq-env-card.not-prod .tag {
             background: #5B3CC4;
@@ -1595,10 +1600,11 @@
         .aq-env-box.stg .name { color: var(--sf-success); }
 
         .aq-env-box.production {
-            grid-row: 1;
+            grid-row: 1 / 3;
             grid-column: 8;
             border-color: var(--sf-navy);
             background: var(--sf-navy);
+            min-height: 120px;
         }
 
         .aq-env-box.production .name,
@@ -3757,7 +3763,7 @@
 
                 <div class="aq-env-strip">
                     <div class="aq-env-card">
-                        <span class="tag">Preferred &mdash; official Qual</span>
+                        <span class="tag preferred-tag">Preferred &mdash; official Qual</span>
                         <h4>STG (Stage)</h4>
                         <p>Primary env for answer-quality / ATA. Closest prod parity for grading. Requires Agent <em>and</em> Retriever + signals together. Agent build (prompts / config) must track STG too &mdash; not retriever-only.</p>
                     </div>

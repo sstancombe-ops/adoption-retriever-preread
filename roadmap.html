@@ -3437,7 +3437,7 @@
                 <p>From the Product seat, Qual answer-quality is not a side checklist &mdash; it is the critical path when we roll a new cloud or content source into the shared Adoption Retriever. This view shows <strong>who does what</strong>, <strong>what Product owns end-to-end</strong>, and <strong>how environment readiness feeds Qual</strong> (STG for official ATA &mdash; not the path to production) &mdash; so eng and business partners see one story, and the complexity of each expansion is visible before we commit a date.</p>
             </div>
 
-            <p class="aq-pov-note">Framed for stakeholder clarity: Answer Quality is the spine. Product and Business Partners own scoping and SME validation; Product and Evals co-own utterances &amp; expected answers; Engineering feeds environment readiness into Qual. STG is where we prefer to grade &mdash; it is not the production path.</p>
+            <p class="aq-pov-note">Framed for stakeholder clarity: Answer Quality is the spine. Product and Business Partners own scoping. Product orchestrates the baseline suite (utterances + draft expected answers from approved sources); Evals owns tooling / suite fit / ATA run + insights &mdash; not expected-answer authorship. Business Partners / SMEs validate and lock expected answers. Engineering feeds environment readiness into Qual. STG is where we prefer to grade &mdash; it is not the production path.</p>
 
             <div class="section-card">
                 <h2>Why lock this now</h2>
@@ -3499,19 +3499,20 @@
                             </div>
                             <div class="aq-node">
                                 <div class="step-n">STEP 2</div>
-                                <h4>Utterances &amp; expected answers</h4>
-                                <p>Independently derived from approved sources &mdash; not AgF / ATA echo. BCS densified. Product + Evals co-own the baseline suite.</p>
+                                <h4>Baseline suite (utterances + draft expected answers)</h4>
+                                <p>Product orchestrates utterances and draft expected answers from approved sources &mdash; not AgF / ATA echo. BCS densified. Evals shapes suite fit, AC, and runnability (tooling) &mdash; does not author the expected-answer rubric.</p>
                                 <div class="owners">
-                                    <span class="aq-chip product">Product</span>
-                                    <span class="aq-chip evals">Evals</span>
+                                    <span class="aq-chip product">Product orchestrates</span>
+                                    <span class="aq-chip evals">Evals tooling</span>
                                 </div>
                             </div>
                             <div class="aq-node">
                                 <div class="step-n">STEP 3</div>
-                                <h4>SME validate</h4>
-                                <p>Business Partners prioritize pathways; SMEs confirm best content sources + factual expected answers; later pass/fail agent output with Product.</p>
+                                <h4>SME validate &amp; lock expected answers</h4>
+                                <p>Business Partners prioritize pathways and bring SMEs. SMEs validate and lock expected answers / best content sources from approved content. Later pass/fail agent output with Product. This is answer-quality validation &mdash; not Evals authorship.</p>
                                 <div class="owners">
-                                    <span class="aq-chip biz">Business Partners</span>
+                                    <span class="aq-chip biz">Business Partners / SMEs</span>
+                                    <span class="aq-chip product">Product</span>
                                 </div>
                             </div>
                             <div class="aq-node">
@@ -3543,14 +3544,14 @@
                                 <p>Align what expands, which pathways matter, and what stays out of the Qual bag. Product holds the release bag; partners prioritize pathways.</p>
                             </div>
                             <div class="aq-dep">
-                                <div class="feed">Feeds Step 2 &middot; Product + Evals</div>
+                                <div class="feed">Feeds Step 2 &middot; Product orchestrates &middot; Evals tooling</div>
                                 <h5>Co-create the baseline suite</h5>
-                                <p>Product drafts utterances / expected answers / BCS; Evals shapes suite fit, AC, and runnability. Separate from Quant / GDS.</p>
+                                <p>Product drafts utterances + draft expected answers / BCS from approved sources. Evals shapes suite fit, AC attributes, and runnability. Expected-answer <em>lock</em> waits on Step 3 SMEs.</p>
                             </div>
                             <div class="aq-dep">
-                                <div class="feed">Feeds Step 3 &middot; Business Partners</div>
-                                <h5>SME bench + capacity</h5>
-                                <p>Book the right cloud SMEs early; validate sources and expected answers. Scarce SME time is a schedule risk, not paperwork.</p>
+                                <div class="feed">Feeds Step 3 &middot; Business Partners / SMEs</div>
+                                <h5>SME validate expected answers</h5>
+                                <p>Book the right cloud SMEs early. They validate and lock expected answers / sources &mdash; Offers-side answer-quality validation. Scarce SME time is a schedule risk, not paperwork.</p>
                             </div>
                             <div class="aq-dep env-callout">
                                 <div class="feed">Must land before Step 4 &middot; Eng / CSDP</div>
@@ -3620,7 +3621,7 @@
                         <h4>Per expansion, Product must re-complete</h4>
                         <ul>
                             <li>Utterance set sized to the new cloud / pathway</li>
-                            <li>Independently derived expected answers + BCS</li>
+                            <li>SME-locked expected answers + BCS (Product-orchestrated drafts)</li>
                             <li>SME bench (right cloud experts) + review window</li>
                             <li>Negative / leakage cases when shared retriever grows</li>
                             <li>Workback tied to env readiness &mdash; not hope dates</li>

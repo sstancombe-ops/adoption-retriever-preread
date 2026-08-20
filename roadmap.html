@@ -1616,7 +1616,6 @@
         .aq-arr-qa-uat { grid-row: 1; grid-column: 4; }
         .aq-arr-uat-prod { grid-row: 1; grid-column: 6; }
         .aq-arr-dev-stg { grid-row: 2; grid-column: 2; }
-        .aq-arr-stg-uat { grid-row: 2; grid-column: 4; }
 
         .aq-tracks-note {
             margin-top: 12px;
@@ -1724,11 +1723,6 @@
             .aq-arr-qa-uat,
             .aq-arr-uat-prod,
             .aq-arr-dev-stg,
-            .aq-arr-stg-uat {
-                grid-row: auto;
-                grid-column: auto;
-                min-height: 0;
-            }
             .aq-map {
                 min-width: 0;
                 grid-template-columns: 1fr;
@@ -3716,7 +3710,7 @@
                         <span><i class="k-prod"></i> Path to Production</span>
                         <span><i class="k-aq"></i> Path to Answer Quality</span>
                     </div>
-                    <div class="aq-tracks-grid" role="img" aria-label="Two environment tracks diverge at DEV and converge at UAT">
+                    <div class="aq-tracks-grid" role="img" aria-label="Path to Production DEV to QA to UAT to Production; Path to Answer Quality DEV to STG">
                         <div class="aq-env-box dev">
                             <span class="name">DEV</span>
                             <span class="sub">Shared start</span>
@@ -3729,7 +3723,7 @@
                         <div class="aq-track-arr prod aq-arr-qa-uat" aria-hidden="true">&rarr;</div>
                         <div class="aq-env-box uat">
                             <span class="name">UAT</span>
-                            <span class="sub">Tracks converge</span>
+                            <span class="sub">E2E product track</span>
                         </div>
                         <div class="aq-track-arr prod aq-arr-uat-prod" aria-hidden="true">&rarr;</div>
                         <div class="aq-env-box production">
@@ -3742,7 +3736,6 @@
                             <span class="name">STG</span>
                             <span class="sub">AQ primary / official Qual</span>
                         </div>
-                        <div class="aq-track-arr aq aq-arr-stg-uat" aria-hidden="true">&rarr;</div>
                     </div>
                 </div>
 

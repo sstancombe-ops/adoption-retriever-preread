@@ -1403,7 +1403,7 @@
 
         .aq-env-strip {
             display: grid;
-            grid-template-columns: 1.2fr 1fr 1fr 1fr;
+            grid-template-columns: repeat(3, 1fr);
             gap: 12px;
             margin: 8px 0 10px;
         }
@@ -1435,6 +1435,11 @@
             padding: 2px 8px;
             border-radius: 999px;
             margin-bottom: 8px;
+        }
+
+        .aq-env-card > .tag {
+            background: var(--sf-gray-50);
+            color: var(--sf-navy);
         }
 
         .aq-env-card.preferred .tag {
@@ -3751,15 +3756,10 @@
                 </div>
 
                 <div class="aq-env-strip">
-                    <div class="aq-env-card preferred">
+                    <div class="aq-env-card">
                         <span class="tag">Preferred &mdash; official Qual</span>
                         <h4>STG (Stage)</h4>
                         <p>Primary env for answer-quality / ATA. Closest prod parity for grading. Requires Agent <em>and</em> Retriever + signals together. Agent build (prompts / config) must track STG too &mdash; not retriever-only.</p>
-                    </div>
-                    <div class="aq-env-card not-prod">
-                        <span class="tag">Critical distinction</span>
-                        <h4>Not path to production</h4>
-                        <p>STG is <strong>not</strong> on the pipeline to prod. Qual on STG is a grading dependency so we can make a go/no-go call &mdash; it does not substitute for the production promotion path eng owns.</p>
                     </div>
                     <div class="aq-env-card early">
                         <span class="tag">Eng early feedback</span>

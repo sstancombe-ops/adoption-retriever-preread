@@ -1070,7 +1070,90 @@
             font-weight: 600;
         }
 
+        .aq-program-gates {
+            background: #F4F6F9;
+            border: 1.5px dashed var(--sf-navy);
+            border-radius: 10px;
+            padding: 14px 16px 16px;
+            margin-bottom: 18px;
+            position: relative;
+        }
+
+        .aq-program-gates::after {
+            content: '';
+            position: absolute;
+            left: 72px;
+            bottom: -14px;
+            width: 3px;
+            height: 12px;
+            background: var(--sf-navy);
+        }
+
+        .aq-program-gates .pg-head {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: baseline;
+            gap: 8px 14px;
+            margin-bottom: 10px;
+        }
+
+        .aq-program-gates .pg-lbl {
+            font-size: 0.68rem;
+            font-weight: 700;
+            letter-spacing: 0.06em;
+            text-transform: uppercase;
+            color: var(--sf-navy);
+        }
+
+        .aq-program-gates .pg-note {
+            font-size: 0.72rem;
+            color: var(--sf-gray-600);
+        }
+
+        .aq-program-gates .pg-chips {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .aq-pg-chip {
+            background: var(--sf-white);
+            border: 1px solid var(--sf-navy);
+            border-left: 4px solid var(--sf-navy);
+            border-radius: 8px;
+            padding: 10px 12px;
+            min-width: 180px;
+            flex: 1 1 200px;
+            max-width: 320px;
+        }
+
+        .aq-pg-chip .pg-status {
+            font-size: 0.58rem;
+            font-weight: 700;
+            letter-spacing: 0.05em;
+            text-transform: uppercase;
+            color: var(--sf-success);
+            margin-bottom: 4px;
+        }
+
+        .aq-pg-chip h5 {
+            font-size: 0.8rem;
+            color: var(--sf-navy);
+            margin: 0 0 4px;
+            line-height: 1.25;
+        }
+
+        .aq-pg-chip p {
+            font-size: 0.68rem;
+            color: var(--sf-gray-600);
+            margin: 0;
+            line-height: 1.35;
+        }
+
+        .aq-legend .l-program { background: var(--sf-navy); }
+
         .aq-map {
+
             display: grid;
             grid-template-columns: 110px 1fr;
             grid-template-rows: minmax(200px, auto) 22px minmax(200px, auto);
@@ -3463,8 +3546,9 @@
 
             <div class="section-card">
                 <h2>Qual path &amp; who owns what</h2>
-                <p class="section-subtitle">One view: Answer Quality work moves left to right on the purple spine. Owner chips = who owns that step. Arrows below = what feeds in (and from whom) before the next step can move. Env readiness powers Qual; it is not the path to production.</p>
+                <p class="section-subtitle">One view: Answer Quality work moves left to right on the purple spine. Dashed strip above = program gates set outside this spine (once per release / program). Owner chips = who owns each step. Arrows below = what feeds in before the next step can move.</p>
                 <div class="aq-legend">
+                    <span><i class="l-program"></i> Program gates (outside spine)</span>
                     <span><i class="l-spine"></i> Answer Quality (main work line)</span>
                     <span><i class="l-product"></i> Product (Lifecycle Success)</span>
                     <span><i class="l-offers"></i> Business Partners</span>
@@ -3485,13 +3569,37 @@
                         </div>
                     </div>
 
+                    <div class="aq-program-gates">
+                        <div class="pg-head">
+                            <span class="pg-lbl">Program gates &mdash; outside this spine</span>
+                            <span class="pg-note">Set once per release / program with leadership (Maya / Roxanne / Evals). Not re-decided inside each cloud expansion run.</span>
+                        </div>
+                        <div class="pg-chips">
+                            <div class="aq-pg-chip">
+                                <div class="pg-status">Locked for Sept</div>
+                                <h5>Qual track (not Quant)</h5>
+                                <p>Cloud / content expansion AQ runs Qual with Jelena / ATA. Quant / GDS stays a separate track when needed.</p>
+                            </div>
+                            <div class="aq-pg-chip">
+                                <div class="pg-status">Preferred default</div>
+                                <h5>Official AQ env = STG</h5>
+                                <p>Grade on Stage when ready. UAT is E2E / fallback &mdash; not the quiet default for official Qual.</p>
+                            </div>
+                            <div class="aq-pg-chip">
+                                <div class="pg-status">Align Monday</div>
+                                <h5>LS Qual operating model</h5>
+                                <p>Owners + handoffs below endorsed so eng and business partners share one story through H2.</p>
+                            </div>
+                        </div>
+                    </div>
+
                     <div class="aq-map">
                         <div class="aq-lane-label top">Answer Quality work</div>
                         <div class="aq-lane-main">
                             <div class="aq-node">
                                 <div class="step-n">STEP 1</div>
                                 <h4>Scope the expansion</h4>
-                                <p>Cloud / content source, sub-agent, utterance counts, in/out of scope. Lock Qual (not Quant) for the release bag.</p>
+                                <p>Scope clouds to expand to, identify content sources and SubAgent(s), lock in utterance counts per cloud, align overall in- vs. out-of-scope.</p>
                                 <div class="owners">
                                     <span class="aq-chip product">Product</span>
                                     <span class="aq-chip biz">Business Partners</span>
@@ -3541,7 +3649,7 @@
                             <div class="aq-dep">
                                 <div class="feed">Feeds Step 1 &middot; Product + Business Partners</div>
                                 <h5>Joint scoping</h5>
-                                <p>Align what expands, which pathways matter, and what stays out of the Qual bag. Product holds the release bag; partners prioritize pathways.</p>
+                                <p>Align clouds, content sources, SubAgent(s), utterance counts, and in- vs. out-of-scope. Pathways prioritization stays with Business Partners.</p>
                             </div>
                             <div class="aq-dep">
                                 <div class="feed">Feeds Step 2 &middot; Product orchestrates &middot; Evals tooling</div>

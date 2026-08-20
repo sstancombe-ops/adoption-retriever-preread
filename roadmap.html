@@ -1075,7 +1075,7 @@
 
             display: grid;
             grid-template-columns: 110px 1fr;
-            grid-template-rows: minmax(200px, auto) 22px minmax(200px, auto);
+            grid-template-rows: minmax(200px, auto) 22px auto minmax(200px, auto);
             min-width: 1100px;
             gap: 0 14px;
             min-height: 460px;
@@ -1084,8 +1084,75 @@
         .aq-lane-label.top { grid-row: 1; grid-column: 1; }
         .aq-lane-main { grid-row: 1; grid-column: 2; }
         .aq-spine { grid-row: 2; grid-column: 2; }
-        .aq-lane-label.bottom { grid-row: 3; grid-column: 1; }
-        .aq-lane-deps { grid-row: 3; grid-column: 2; }
+        .aq-craft { grid-row: 3; grid-column: 2; }
+        .aq-lane-label.bottom { grid-row: 4; grid-column: 1; }
+        .aq-lane-deps { grid-row: 4; grid-column: 2; }
+
+        .aq-craft {
+            margin: 10px 0 6px;
+            padding: 12px 14px;
+            background: linear-gradient(90deg, #F7F5FC 0%, #EEF4FF 100%);
+            border: 1px solid #D9D0F5;
+            border-radius: 10px;
+        }
+
+        .aq-craft-head {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: baseline;
+            gap: 8px 12px;
+            margin-bottom: 10px;
+        }
+
+        .aq-craft-head .lbl {
+            font-size: 0.68rem;
+            font-weight: 700;
+            letter-spacing: 0.06em;
+            text-transform: uppercase;
+            color: #5B3CC4;
+        }
+
+        .aq-craft-head .note {
+            font-size: 0.72rem;
+            color: var(--sf-gray-600);
+        }
+
+        .aq-craft-grid {
+            display: grid;
+            grid-template-columns: 1fr 2fr 1fr 1fr;
+            gap: 10px;
+            align-items: stretch;
+        }
+
+        .aq-craft-band {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 8px;
+        }
+
+        .aq-craft-chip {
+            background: var(--sf-white);
+            border: 1px solid #D9D0F5;
+            border-left: 3px solid #5B3CC4;
+            border-radius: 8px;
+            padding: 10px 11px;
+        }
+
+        .aq-craft-chip h5 {
+            font-size: 0.74rem;
+            color: var(--sf-navy);
+            margin: 0 0 4px;
+            line-height: 1.25;
+        }
+
+        .aq-craft-chip p {
+            font-size: 0.68rem;
+            color: var(--sf-gray-600);
+            margin: 0;
+            line-height: 1.35;
+        }
+
+        .aq-legend .l-craft { background: #5B3CC4; }
 
         .aq-lane-label {
             writing-mode: vertical-rl;
@@ -1738,6 +1805,9 @@
             .aq-lane-deps {
                 grid-template-columns: 1fr;
             }
+            .aq-craft { grid-row: auto; grid-column: auto; }
+            .aq-craft-grid { grid-template-columns: 1fr; }
+            .aq-craft-band { grid-template-columns: 1fr; }
             .aq-node:not(:last-child)::before,
             .aq-node:not(:last-child)::after { display: none; }
             .aq-dep::before,
@@ -3593,6 +3663,7 @@
                 <p class="section-subtitle">One View: Multiple Teams. Answer Quality work moves left-to-right along the spine. Ownership is assigned to each step. Dependencies feed into the spine and showcase program gates, before the next step can move. Environment readiness empowers Qual; although it is not the path to production. Every new cloud or content source re-runs this spine with the same owners.</p>
                 <div class="aq-legend">
                     <span><i class="l-spine"></i> Answer Quality (main work line)</span>
+                    <span><i class="l-craft"></i> Quality craft (Steps 2&ndash;3)</span>
                     <span><i class="l-product"></i> Product (Lifecycle Success)</span>
                     <span><i class="l-offers"></i> Business Partners</span>
                     <span><i class="l-evals"></i> ATA / Evals tooling</span>
@@ -3658,6 +3729,36 @@
                         </div>
 
                         <div class="aq-spine" aria-hidden="true"></div>
+
+                        <div class="aq-craft">
+                            <div class="aq-craft-head">
+                                <span class="lbl">Quality craft &mdash; built into Steps 2&ndash;3</span>
+                                <span class="note">How we keep the rubric objective &mdash; the art in this process</span>
+                            </div>
+                            <div class="aq-craft-grid">
+                                <div aria-hidden="true"></div>
+                                <div class="aq-craft-band">
+                                    <div class="aq-craft-chip">
+                                        <h5>Domain-aware seeds</h5>
+                                        <p>External prompts encode SubAgent jobs GPT doesn&rsquo;t know.</p>
+                                    </div>
+                                    <div class="aq-craft-chip">
+                                        <h5>External ideal</h5>
+                                        <p>Not AgF / ATA output &mdash; avoids an echo chamber in the rubric.</p>
+                                    </div>
+                                    <div class="aq-craft-chip">
+                                        <h5>Expert-crafted AC</h5>
+                                        <p>Independent ideal &rarr; SME lock &rarr; AC extract (esp. when not KA-extractable).</p>
+                                    </div>
+                                    <div class="aq-craft-chip">
+                                        <h5>Flexible range</h5>
+                                        <p>Qual grades a band of good answers &mdash; not one exact string.</p>
+                                    </div>
+                                </div>
+                                <div aria-hidden="true"></div>
+                                <div aria-hidden="true"></div>
+                            </div>
+                        </div>
 
                         <div class="aq-lane-label bottom">Dependencies feeding in</div>
                         <div class="aq-lane-deps">

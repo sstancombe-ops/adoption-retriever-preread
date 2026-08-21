@@ -1760,6 +1760,192 @@
         .aq-legend .l-gate { background: var(--sf-navy); }
         .aq-legend .l-spine { background: #5B3CC4; }
 
+
+        /* ===== Card feedback pins (Brie-style) ===== */
+        .aq-feedback-hint {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            gap: 8px 14px;
+            margin: 0 0 12px;
+            font-size: 0.72rem;
+            color: var(--sf-gray-600);
+        }
+        .aq-feedback-hint strong { color: var(--sf-navy); font-weight: 700; }
+
+        .aq-desired,
+        .aq-why-card,
+        .aq-craft-chip,
+        .aq-env-card {
+            position: relative;
+        }
+
+        .fb-pin {
+            position: absolute;
+            top: 8px;
+            right: 8px;
+            width: 26px;
+            height: 26px;
+            border-radius: 50%;
+            border: 1.5px solid var(--sf-gray-100);
+            background: #fff;
+            cursor: pointer;
+            font-size: 13px;
+            display: none;
+            align-items: center;
+            justify-content: center;
+            line-height: 1;
+            z-index: 5;
+            padding: 0;
+            box-shadow: 0 1px 2px rgba(3,45,96,0.08);
+            transition: background 0.15s, border-color 0.15s, transform 0.15s;
+        }
+        .aq-node:hover > .fb-pin,
+        .aq-dep:hover > .fb-pin,
+        .aq-desired:hover > .fb-pin,
+        .aq-why-card:hover > .fb-pin,
+        .aq-craft-chip:hover > .fb-pin,
+        .aq-env-card:hover > .fb-pin,
+        .fb-pin:focus {
+            display: flex;
+        }
+        .fb-pin:hover,
+        .fb-pin:focus {
+            background: var(--sf-electric-blue);
+            border-color: var(--sf-electric-blue);
+            transform: scale(1.06);
+        }
+
+        .fb-modal-overlay {
+            position: fixed;
+            inset: 0;
+            background: rgba(3, 45, 96, 0.45);
+            z-index: 2000;
+            display: none;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+            backdrop-filter: blur(2px);
+        }
+        .fb-modal-overlay.open { display: flex; }
+        .fb-modal {
+            background: #fff;
+            border-radius: 14px;
+            width: 100%;
+            max-width: 520px;
+            box-shadow: 0 20px 60px rgba(3,45,96,0.22);
+            overflow: hidden;
+            color-scheme: light;
+        }
+        .fb-modal-header {
+            background: var(--sf-navy);
+            color: #fff;
+            padding: 18px 22px;
+        }
+        .fb-modal-header h3 {
+            margin: 0 0 4px;
+            font-size: 1rem;
+            font-weight: 700;
+        }
+        .fb-modal-header p {
+            margin: 0;
+            font-size: 0.75rem;
+            opacity: 0.8;
+        }
+        .fb-modal-body { padding: 20px 22px; }
+        .fb-context {
+            background: #EEF4FF;
+            border: 1px solid #B0D5F0;
+            border-radius: 8px;
+            padding: 10px 12px;
+            font-size: 0.78rem;
+            color: var(--sf-navy);
+            margin-bottom: 14px;
+            line-height: 1.4;
+        }
+        .fb-field { margin-bottom: 14px; }
+        .fb-field label {
+            display: block;
+            font-size: 0.68rem;
+            font-weight: 700;
+            letter-spacing: 0.04em;
+            text-transform: uppercase;
+            color: var(--sf-gray-600);
+            margin-bottom: 6px;
+        }
+        .fb-field input,
+        .fb-field select,
+        .fb-field textarea {
+            width: 100%;
+            border: 1.5px solid var(--sf-gray-100);
+            border-radius: 8px;
+            padding: 10px 12px;
+            font-size: 0.88rem;
+            font-family: inherit;
+            color: var(--sf-navy);
+            background: #fff;
+            outline: none;
+            box-sizing: border-box;
+        }
+        .fb-field textarea { min-height: 96px; resize: vertical; }
+        .fb-field input:focus,
+        .fb-field select:focus,
+        .fb-field textarea:focus {
+            border-color: var(--sf-electric-blue);
+            box-shadow: 0 0 0 3px rgba(1,118,211,0.12);
+        }
+        .fb-modal-footer {
+            padding: 14px 22px;
+            border-top: 1px solid var(--sf-gray-100);
+            display: flex;
+            justify-content: flex-end;
+            gap: 10px;
+        }
+        .fb-btn {
+            padding: 9px 16px;
+            border-radius: 6px;
+            font-size: 0.82rem;
+            font-weight: 600;
+            cursor: pointer;
+            font-family: inherit;
+        }
+        .fb-btn-cancel {
+            border: 1.5px solid var(--sf-gray-100);
+            background: #fff;
+            color: var(--sf-navy);
+        }
+        .fb-btn-submit {
+            border: none;
+            background: var(--sf-electric-blue);
+            color: #fff;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+        }
+        .fb-btn-submit:hover { filter: brightness(0.95); }
+        .fb-toast {
+            position: fixed;
+            bottom: 24px;
+            left: 50%;
+            transform: translateX(-50%) translateY(20px);
+            background: var(--sf-navy);
+            color: #fff;
+            padding: 10px 16px;
+            border-radius: 8px;
+            font-size: 0.82rem;
+            font-weight: 600;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.2s, transform 0.2s;
+            z-index: 2100;
+            max-width: 90vw;
+            text-align: center;
+        }
+        .fb-toast.show {
+            opacity: 1;
+            transform: translateX(-50%) translateY(0);
+        }
+
         .aq-pov-note {
             font-size: 0.78rem;
             color: var(--sf-gray-600);
@@ -3666,6 +3852,9 @@
                     <span><i class="l-evals"></i> ATA / Evals tooling</span>
                     <span><i class="l-eng"></i> Engineering / CSDP</span>
                 </div>
+                <div class="aq-feedback-hint">
+                    <strong>Feedback:</strong> Hover any card and click the pin to leave a note on that exact spot. Responses go to Stephanie via Google Form.
+                </div>
 
                 <div class="aq-journey">
                     <div class="aq-journey-top">
@@ -4123,6 +4312,42 @@
         </footer>
     </div>
 
+
+    <div class="fb-modal-overlay" id="fbModal" role="dialog" aria-modal="true" aria-labelledby="fbModalTitle">
+        <div class="fb-modal">
+            <div class="fb-modal-header">
+                <h3 id="fbModalTitle">Leave feedback on this card</h3>
+                <p>Pinned to the LS AQ Eval Process view</p>
+            </div>
+            <div class="fb-modal-body">
+                <div class="fb-context" id="fbContext">Card context</div>
+                <div class="fb-field">
+                    <label for="fbName">Your name (optional)</label>
+                    <input type="text" id="fbName" placeholder="e.g. Roxanne" autocomplete="name">
+                </div>
+                <div class="fb-field">
+                    <label for="fbType">Type of feedback</label>
+                    <select id="fbType">
+                        <option value="Clarify — wording or ownership is unclear">Clarify — wording or ownership is unclear</option>
+                        <option value="Change — I want this to say or do something different">Change — I want this to say or do something different</option>
+                        <option value="Missing — something should be here that isn't">Missing — something should be here that isn't</option>
+                        <option value="Question — need to discuss">Question — need to discuss</option>
+                        <option value="Agree — this looks right">Agree — this looks right</option>
+                    </select>
+                </div>
+                <div class="fb-field">
+                    <label for="fbText">Your feedback</label>
+                    <textarea id="fbText" placeholder="What should change on this card, and why?"></textarea>
+                </div>
+            </div>
+            <div class="fb-modal-footer">
+                <button type="button" class="fb-btn fb-btn-cancel" id="fbCancel">Cancel</button>
+                <a class="fb-btn fb-btn-submit" id="fbSubmit" href="#" target="_blank" rel="noopener">Open form to submit →</a>
+            </div>
+        </div>
+    </div>
+    <div class="fb-toast" id="fbToast" role="status"></div>
+
     <script>
         document.addEventListener('DOMContentLoaded', function() {
             // Tab navigation
@@ -4152,6 +4377,124 @@
                     document.getElementById('view-' + targetView).classList.add('active');
                 });
             });
+
+
+            // Card pin feedback (Brie-style → Google Form)
+            (function initCardFeedback() {
+                const FORM_BASE = 'https://docs.google.com/forms/d/e/1FAIpQLSddrSF8EaFLjilcXKkBLu5JblrCNVtwV344xeRcHz0QdECoQg/viewform?usp=pp_url';
+                // Prefill entry IDs = Forms API questionId hex → decimal
+                const ENTRY = {
+                    name: '1112375100',
+                    context: '645645681',
+                    type: '1151192451',
+                    feedback: '130544775'
+                };
+
+                const modal = document.getElementById('fbModal');
+                const ctxEl = document.getElementById('fbContext');
+                const nameEl = document.getElementById('fbName');
+                const typeEl = document.getElementById('fbType');
+                const textEl = document.getElementById('fbText');
+                const submitEl = document.getElementById('fbSubmit');
+                const toastEl = document.getElementById('fbToast');
+                let pendingContext = '';
+
+                function showToast(msg) {
+                    toastEl.textContent = msg;
+                    toastEl.classList.add('show');
+                    setTimeout(() => toastEl.classList.remove('show'), 3200);
+                }
+
+                function buildFormUrl() {
+                    const params = new URLSearchParams();
+                    const name = nameEl.value.trim();
+                    const type = typeEl.value;
+                    const text = textEl.value.trim();
+                    if (name) params.set('entry.' + ENTRY.name, name);
+                    params.set('entry.' + ENTRY.context, pendingContext);
+                    params.set('entry.' + ENTRY.type, type);
+                    if (text) params.set('entry.' + ENTRY.feedback, text);
+                    return FORM_BASE + '&' + params.toString();
+                }
+
+                function refreshSubmit() {
+                    submitEl.href = buildFormUrl();
+                }
+
+                function openModal(context) {
+                    pendingContext = context;
+                    ctxEl.textContent = '📍 ' + context;
+                    nameEl.value = '';
+                    textEl.value = '';
+                    typeEl.selectedIndex = 0;
+                    refreshSubmit();
+                    modal.classList.add('open');
+                    textEl.focus();
+                }
+
+                function closeModal() {
+                    modal.classList.remove('open');
+                    pendingContext = '';
+                }
+
+                function cardLabel(el) {
+                    const lane = el.closest('.aq-lane-main') ? 'Spine'
+                        : el.closest('.aq-lane-deps') ? 'Input unlock'
+                        : el.closest('.aq-craft') ? 'Quality craft'
+                        : el.closest('.aq-env-strip') ? 'Environment'
+                        : el.closest('.aq-why-grid') ? 'Why lock this now'
+                        : 'LS AQ Eval';
+                    const title = (el.querySelector('h4, h5, .lbl') || {}).textContent || 'Card';
+                    const step = (el.querySelector('.step-n, .feed') || {}).textContent || '';
+                    return [lane, step, title.trim()].filter(Boolean).join(' · ').replace(/\s+/g, ' ');
+                }
+
+                const selectors = [
+                    '#tab-aq-model .aq-node',
+                    '#tab-aq-model .aq-dep',
+                    '#tab-aq-model .aq-desired',
+                    '#tab-aq-model .aq-why-card',
+                    '#tab-aq-model .aq-craft-chip',
+                    '#tab-aq-model .aq-env-card'
+                ].join(',');
+
+                document.querySelectorAll(selectors).forEach(card => {
+                    if (card.querySelector(':scope > .fb-pin')) return;
+                    const btn = document.createElement('button');
+                    btn.type = 'button';
+                    btn.className = 'fb-pin';
+                    btn.title = 'Leave feedback on this card';
+                    btn.setAttribute('aria-label', 'Leave feedback on this card');
+                    btn.textContent = '📌';
+                    btn.addEventListener('click', (e) => {
+                        e.preventDefault();
+                        e.stopPropagation();
+                        openModal(cardLabel(card));
+                    });
+                    card.appendChild(btn);
+                });
+
+                document.getElementById('fbCancel').addEventListener('click', closeModal);
+                modal.addEventListener('click', (e) => { if (e.target === modal) closeModal(); });
+                document.addEventListener('keydown', (e) => {
+                    if (e.key === 'Escape' && modal.classList.contains('open')) closeModal();
+                });
+                [nameEl, typeEl, textEl].forEach(el => el.addEventListener('input', refreshSubmit));
+                typeEl.addEventListener('change', refreshSubmit);
+
+                submitEl.addEventListener('click', () => {
+                    refreshSubmit();
+                    try {
+                        navigator.clipboard.writeText(
+                            'Card / context:\n' + pendingContext +
+                            '\n\nType:\n' + typeEl.value +
+                            '\n\nFeedback:\n' + (textEl.value.trim() || '')
+                        );
+                    } catch (err) { /* ignore */ }
+                    showToast('Opening form — card context copied if fields need a paste');
+                    setTimeout(closeModal, 150);
+                });
+            })();
 
             // Card expand/collapse (ignore clicks on links so workflow URLs work)
             const cards = document.querySelectorAll('.initiative-card');

@@ -973,6 +973,33 @@
             margin: 0;
         }
 
+        .aq-lock-strip {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            gap: 8px 14px;
+            margin: -8px 0 24px;
+            padding: 10px 14px;
+            background: #E8F5E9;
+            border: 1px solid #B7DFB9;
+            border-left: 4px solid var(--sf-success);
+            border-radius: var(--radius-md);
+            font-size: 0.82rem;
+            color: var(--sf-gray-800);
+            line-height: 1.4;
+        }
+
+        .aq-lock-strip strong {
+            color: var(--sf-navy);
+        }
+
+        .aq-lock-strip a {
+            color: var(--sf-electric-blue);
+            font-weight: 600;
+            text-decoration: underline;
+            text-underline-offset: 2px;
+        }
+
         .aq-why-grid {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
@@ -1517,9 +1544,14 @@
             color: var(--sf-white);
         }
 
-        .aq-env-card.early .tag {
+        .aq-env-card.early {
+            border: 2px solid var(--sf-electric-blue);
             background: #EEF4FF;
-            color: var(--sf-electric-blue);
+        }
+
+        .aq-env-card.early .tag {
+            background: var(--sf-electric-blue);
+            color: var(--sf-white);
         }
 
         .aq-env-card.e2e .tag {
@@ -1576,17 +1608,19 @@
             display: inline-block;
         }
 
-        .aq-tracks-key .k-prod { background: var(--sf-electric-blue); }
-        .aq-tracks-key .k-aq { background: var(--sf-success); }
+        .aq-tracks-key .k-shared { background: var(--sf-electric-blue); }
+        .aq-tracks-key .k-quant { background: #5B3CC4; }
 
         .aq-tracks-grid {
             display: grid;
-            grid-template-columns: 88px 36px 120px 36px 100px 36px 118px;
-            grid-template-rows: auto auto;
+            grid-template-columns: 88px 36px 120px 36px 130px 36px 118px;
+            grid-template-rows: auto 22px auto;
             align-items: center;
+            justify-items: center;
             column-gap: 4px;
-            row-gap: 14px;
-            min-width: 560px;
+            row-gap: 4px;
+            min-width: 580px;
+            position: relative;
         }
 
 
@@ -1602,6 +1636,8 @@
             padding: 10px 8px;
             min-height: 58px;
             box-shadow: var(--shadow-sm);
+            width: 100%;
+            box-sizing: border-box;
         }
 
         .aq-env-box .name {
@@ -1621,21 +1657,35 @@
             letter-spacing: 0.03em;
         }
 
+        .aq-env-box .aq-pill-qual {
+            display: inline-block;
+            font-size: 0.55rem;
+            font-weight: 700;
+            letter-spacing: 0.04em;
+            text-transform: uppercase;
+            color: var(--sf-white);
+            background: var(--sf-success);
+            border-radius: 999px;
+            padding: 2px 7px;
+            margin-bottom: 4px;
+            line-height: 1.2;
+        }
+
         .aq-env-box.dev {
-            grid-row: 1 / 3;
+            grid-row: 1;
             grid-column: 1;
             border-color: var(--sf-navy);
             background: #EEF1F6;
-            min-height: 120px;
         }
 
         .aq-env-box.uat {
-            grid-row: 1 / 3;
+            grid-row: 1;
             grid-column: 5;
-            border-color: #C47A00;
-            background: #FFF8E8;
-            min-height: 120px;
+            border: 2px solid var(--sf-success);
+            background: #E8F5E9;
         }
+
+        .aq-env-box.uat .name { color: var(--sf-success); }
 
         .aq-env-box.qa {
             grid-row: 1;
@@ -1645,20 +1695,20 @@
         }
 
         .aq-env-box.stg {
-            grid-row: 2;
+            grid-row: 3;
             grid-column: 3;
-            border: 2px solid var(--sf-success);
-            background: #E8F5E9;
+            border: 1.5px dashed #A89BC4;
+            background: #F7F5FC;
+            opacity: 0.95;
         }
 
-        .aq-env-box.stg .name { color: var(--sf-success); }
+        .aq-env-box.stg .name { color: #5B3CC4; }
 
         .aq-env-box.production {
-            grid-row: 1 / 3;
+            grid-row: 1;
             grid-column: 7;
             border-color: var(--sf-navy);
             background: var(--sf-navy);
-            min-height: 120px;
         }
 
         .aq-env-box.production .name,
@@ -1673,13 +1723,58 @@
             line-height: 1;
         }
 
-        .aq-track-arr.prod { color: var(--sf-electric-blue); }
-        .aq-track-arr.aq { color: var(--sf-success); }
+        .aq-track-arr.shared { color: var(--sf-electric-blue); }
+        .aq-track-arr.exception {
+            color: #5B3CC4;
+            font-size: 1.05rem;
+            font-weight: 700;
+            letter-spacing: 0;
+            line-height: 1;
+        }
 
         .aq-arr-dev-qa { grid-row: 1; grid-column: 2; }
         .aq-arr-qa-uat { grid-row: 1; grid-column: 4; }
         .aq-arr-uat-prod { grid-row: 1; grid-column: 6; }
-        .aq-arr-dev-stg { grid-row: 2; grid-column: 2; }
+        .aq-arr-qa-stg { grid-row: 2; grid-column: 3; }
+        /* Solid L: STG → right → up into UAT (same open chevron weight as blue →) */
+        .aq-arr-stg-uat {
+            grid-row: 2 / 4;
+            grid-column: 4 / 6;
+            position: relative;
+            justify-self: stretch;
+            align-self: stretch;
+            width: 100%;
+            height: 100%;
+            min-height: 80px;
+            pointer-events: none;
+        }
+        .aq-arr-stg-uat .aq-quant-elbow {
+            position: absolute;
+            left: 0;
+            right: 28%;
+            /* stop short of UAT so tip sits in the gap, not on the border */
+            top: 14px;
+            bottom: 28%;
+            border-right: 2.5px solid #5B3CC4;
+            border-bottom: 2.5px solid #5B3CC4;
+            box-sizing: border-box;
+        }
+        /* Open chevron via rotated borders — same 2.5px stroke as the elbow */
+        .aq-arr-stg-uat .aq-quant-head {
+            position: absolute;
+            right: 28%;
+            top: 5px;
+            width: 9px;
+            height: 9px;
+            margin: 0;
+            padding: 0;
+            border-left: 2.5px solid #5B3CC4;
+            border-top: 2.5px solid #5B3CC4;
+            background: transparent;
+            box-sizing: border-box;
+            transform: translateX(50%) rotate(45deg);
+            transform-origin: center center;
+        }
 
         .aq-tracks-note {
             margin-top: 12px;
@@ -1972,7 +2067,8 @@
             .aq-arr-dev-qa,
             .aq-arr-qa-uat,
             .aq-arr-uat-prod,
-            .aq-arr-dev-stg,
+            .aq-arr-qa-stg,
+            .aq-arr-stg-uat,
             .aq-map {
                 min-width: 0;
                 grid-template-columns: 1fr;
@@ -3821,6 +3917,12 @@
                 <p>Answer-quality is not a side checklist, especially in regards to cloud expansion efforts &mdash; it is the critical path when we roll a new cloud or content source into the shared Adoption Retriever. This view shows <strong>who does what</strong>, <strong>what Product owns end-to-end</strong>, and <strong>how environment readiness drives the Answer Quality enablement</strong>.</p>
             </div>
 
+            <div class="aq-lock-strip">
+                <strong>Locked Aug 24</strong>
+                <span>Process endorsed &middot; Sept official Qual = UAT (trial)</span>
+                <a href="https://docs.google.com/document/d/1pzjEzd02hEK0a23k8LD7u0v_lb0SLR_U_xXsKs53YwI/edit?tab=t.aexd5q69i0bm" target="_blank" rel="noopener">Call notes</a>
+            </div>
+
             <div class="section-card">
                 <h2>Why lock this now</h2>
                 <p class="section-subtitle">H2 is expansion-after-expansion &mdash; the process has to be repeatable and sustainable across all teams involved.</p>
@@ -3838,7 +3940,7 @@
                     <div class="aq-why-card">
                         <div class="n">03 &mdash; One locked Qual story</div>
                         <h4>Shared story for eng + business partners</h4>
-                        <p>Official ATA env (prefer STG) and who owns each handoff must be lockable and shareable &mdash; not reopened in every EM or business thread. Env for Qual is separate from path to production.</p>
+                        <p>Official ATA env locked per wave (Sept = UAT trial; change-type aware) and who owns each handoff must be lockable and shareable &mdash; not reopened in every EM or business thread. Env for Qual is separate from path to production.</p>
                     </div>
                 </div>
             </div>
@@ -3923,7 +4025,7 @@
                             <div class="aq-node">
                                 <div class="step-n">STEP 4</div>
                                 <h4>Official Qual ATA</h4>
-                                <p>Suite + AC (relevant / correct / complete). Prefer STG for official grading. Evals runs + analyzes; Product co-owns the readout.</p>
+                                <p>Suite + AC (relevant / correct / complete). Sept: UAT &middot; Product + Evals co-own readout &middot; env follows change type for later waves.</p>
                                 <div class="owners">
                                     <span class="aq-chip evals">ATA / Evals</span>
                                     <span class="aq-chip product">Product</span>
@@ -3961,8 +4063,8 @@
                             </div>
                             <div class="aq-dep env-callout">
                                 <div class="feed">Must land before Step 4</div>
-                                <h5>STG Agent + Retriever + signals</h5>
-                                <p>Official Qual needs all three together on STG. Eng/CSDP gate. Not the path to production.</p>
+                                <h5>Agreed Qual env: Agent + Retriever + signals</h5>
+                                <p>Official Qual needs all three together on the agreed env (Sept = UAT; Sam: personas exist). Eng/CSDP gate. Not the path to production.</p>
                             </div>
                             <div class="aq-dep">
                                 <div class="feed">Unlocks Step 5</div>
@@ -3981,60 +4083,64 @@
 
             <div class="section-card">
                 <h2>Environment readiness &mdash; feeds Qual, not path to production</h2>
-                <p class="section-subtitle">STG is the preferred environment to grade AQ. Production cutover is a separate engineering track.</p>
+                <p class="section-subtitle">For Sept expansion to new clouds, LS Adoption Qual Evals official grading runs in UAT (as a trial). Engineering path to production remains unchanged. Env choice is change-type aware for later AQ waves.</p>
 
                 <div class="aq-tracks">
                     <div class="aq-tracks-key">
-                        <span><i class="k-prod"></i> Path to Production</span>
-                        <span><i class="k-aq"></i> Path to Answer Quality</span>
+                        <span><i class="k-shared"></i> Eng + Qual Path to Prod</span>
+                        <span><i class="k-quant"></i> Quant Path to Prod</span>
                     </div>
-                    <div class="aq-tracks-grid" role="img" aria-label="Path to Production DEV to QA to UAT to Production; Path to Answer Quality DEV to STG">
+                    <div class="aq-tracks-grid" role="img" aria-label="Eng and Qual path DEV to QA to UAT to Production; Quant path branches to STG then rejoins at UAT">
                         <div class="aq-env-box dev">
                             <span class="name">DEV</span>
                             <span class="sub">Shared start</span>
                         </div>
-                        <div class="aq-track-arr prod aq-arr-dev-qa" aria-hidden="true">&rarr;</div>
+                        <div class="aq-track-arr shared aq-arr-dev-qa" aria-hidden="true">&rarr;</div>
                         <div class="aq-env-box qa">
                             <span class="name">QA</span>
                             <span class="sub">Eng early feedback</span>
                         </div>
-                        <div class="aq-track-arr prod aq-arr-qa-uat" aria-hidden="true">&rarr;</div>
+                        <div class="aq-track-arr shared aq-arr-qa-uat" aria-hidden="true">&rarr;</div>
                         <div class="aq-env-box uat">
                             <span class="name">UAT</span>
-                            <span class="sub">E2E product track</span>
+                            <span class="sub">E2E Product Track / Official Qual Evals</span>
                         </div>
-                        <div class="aq-track-arr prod aq-arr-uat-prod" aria-hidden="true">&rarr;</div>
+                        <div class="aq-track-arr shared aq-arr-uat-prod" aria-hidden="true">&rarr;</div>
                         <div class="aq-env-box production">
                             <span class="name">Production</span>
                             <span class="sub">Eng cutover</span>
                         </div>
 
-                        <div class="aq-track-arr aq aq-arr-dev-stg" aria-hidden="true">&rarr;</div>
+                        <div class="aq-track-arr exception aq-arr-qa-stg" aria-hidden="true">&darr;</div>
                         <div class="aq-env-box stg">
                             <span class="name">STG</span>
-                            <span class="sub">AQ primary / official Qual</span>
+                            <span class="sub">Official Quant Evals</span>
+                        </div>
+                        <div class="aq-arr-stg-uat" aria-hidden="true">
+                            <span class="aq-quant-elbow"></span>
+                            <span class="aq-quant-head"></span>
                         </div>
                     </div>
                 </div>
 
                 <div class="aq-env-strip">
-                    <div class="aq-env-card">
-                        <span class="tag preferred-tag">Preferred &mdash; official Qual</span>
-                        <h4>STG (Stage)</h4>
-                        <p>Primary env for answer-quality / ATA. Closest prod parity for grading. Requires Agent <em>and</em> Retriever + signals together. Agent build (prompts / config) must track STG too &mdash; not retriever-only.</p>
-                    </div>
                     <div class="aq-env-card early">
                         <span class="tag">Eng early feedback</span>
                         <h4>QA</h4>
                         <p>Where eng connects agent + product for early feedback. Useful for development velocity &mdash; not where official Qual ATA runs.</p>
                     </div>
-                    <div class="aq-env-card e2e">
-                        <span class="tag">Separate E2E track</span>
+                    <div class="aq-env-card not-prod">
+                        <span class="tag">Help Agent Quant standard</span>
+                        <h4>STG</h4>
+                        <p>Standard for Help Agent Quant evals. Remains an option when the change is retriever-only. STG is <em>not</em> on the eng path to production &mdash; coordinated STG deploys stay exceptional.</p>
+                    </div>
+                    <div class="aq-env-card preferred">
+                        <span class="tag preferred-tag">Help Agent Qual standard (new)</span>
                         <h4>UAT</h4>
-                        <p>E2E product / experience validation and courtesy ATA readouts. Official Qual only if STG cannot be made AQ-ready in time &mdash; document the exception; do not make it the quiet default.</p>
+                        <p>Locked env for September LS Adoption Qual ATA. Closest to what customers see for personalized, authenticated, multi-turn guidance on the eng path (QA &rarr; UAT &rarr; Prod). Agent + Retriever + signals must land together. Product + Evals co-own the readout.</p>
                     </div>
                 </div>
-                <p class="aq-pov-note" style="margin-top:8px;"><em>DEV &rarr; STG is crucial for AQ Evals; UAT is a separate E2E track, not where we run official AQ. Coordinated Help Agent deploy still required when STG needs Agent + Retriever together.</em></p>
+                <p class="aq-pov-note" style="margin-top:8px;"><em>Engineering path to production stays DEV &rarr; QA &rarr; UAT &rarr; Prod. For Sept expansion to new clouds, LS Adoption Qual Evals official grading runs in UAT (as a trial). STG remains the Quant standard and a change-type option &mdash; not the only AQ destination. Later waves pick env by change type post-Sept retro.</em></p>
             </div>
 
             <div class="section-card">

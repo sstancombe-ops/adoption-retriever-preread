@@ -406,6 +406,46 @@ html, body {
   color: var(--text);
 }
 
+.impact-block.is-story {
+  flex: 1.6 1 0;
+  overflow: auto;
+}
+
+.impact-why {
+  margin-top: 12px;
+  padding-top: 10px;
+  border-top: 1px solid var(--border);
+}
+
+.impact-why-title {
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--blue-dark);
+  margin-bottom: 8px;
+}
+
+.impact-why-list {
+  margin: 0;
+  padding-left: 18px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.impact-why-list li {
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 1.35;
+  color: var(--text-2);
+}
+
+.impact-why-list li strong {
+  font-weight: 700;
+  color: var(--text);
+}
+
 .impact-caveat {
   flex-shrink: 0;
   font-size: 12.5px;
@@ -1023,9 +1063,16 @@ html, body {
           </div>
 
           <div class="impact-blocks">
-            <div class="impact-block">
+            <div class="impact-block is-story">
               <div class="impact-block-title">What improved</div>
               <div class="impact-block-body"><strong>Practical Steps</strong> shifted from UI click-lists to job-order guidance (Generate → Qualify → Assign…). Clearest on <strong>Onboarding</strong> — intent opens a fixed checklist path, so TH rewrites land immediately. <strong>Adoption</strong> is eligibility-gated and goal→feature routed, so the same content lift shows once a feature is chosen. Qual/Quant held the bar (no regression).</div>
+              <div class="impact-why">
+                <div class="impact-why-title">Why Onboarding showed it more</div>
+                <ul class="impact-why-list">
+                  <li><strong>Onboarding</strong> = intent → fixed/prescriptive checklist path. Trailhead’s job-order Practical Steps drop straight into that scaffold, so reviewers feel the rewrite immediately.</li>
+                  <li><strong>Adoption</strong> = eligibility-gated + goal/problem → feature routing (FAT). TH improves the answer after a feature is chosen; the harder path into the right feature is upstream of the content lift — so the same rewrite reads softer in review.</li>
+                </ul>
+              </div>
             </div>
             <div class="impact-block">
               <div class="impact-block-title">What “better” looks like</div>

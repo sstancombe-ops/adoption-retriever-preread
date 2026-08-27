@@ -1,0 +1,1682 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Product Council — Shipped + What's Next — 2026-09-09</title>
+<meta name="description" content="DS Product Council 9/9: Trailhead shipped impact + H2 next / blockers">
+<meta name="theme-color" content="#066afe">
+<meta name="color-scheme" content="light">
+<style>
+@font-face {
+  font-family: 'Salesforce Sans';
+  src: local('Salesforce Sans Thin'), local('SalesforceSans-Thin'),
+       url('/Library/Fonts/SalesforceSans-Thin.ttf') format('truetype');
+  font-weight: 100;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Salesforce Sans';
+  src: local('Salesforce Sans Light'), local('SalesforceSans-Light'),
+       url('/Library/Fonts/SalesforceSans-Light.ttf') format('truetype');
+  font-weight: 300;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Salesforce Sans';
+  src: local('Salesforce Sans Regular'), local('Salesforce Sans'), local('SalesforceSans-Regular'),
+       url('/Library/Fonts/SalesforceSans-Regular.ttf') format('truetype');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Salesforce Sans';
+  src: local('Salesforce Sans Bold'), local('SalesforceSans-Bold'),
+       url('/Library/Fonts/SalesforceSans-Bold.ttf') format('truetype');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+:root {
+  color-scheme: light;
+  --font: 'Salesforce Sans', Arial, Helvetica, sans-serif;
+  --bg: #f7fbff;
+  --surface: #ffffff;
+  --border: rgba(0,30,91,0.16);
+  --text: #001e5b;
+  --text-2: #16325c;
+  --text-3: #2b4e88;
+  --blue: #066afe;
+  --blue-dark: #022ac0;
+  --blue-bright: #1b96ff;
+  --blue-light: rgba(6,106,254,0.12);
+  --amber: #946202;
+  --amber-light: rgba(252,192,3,0.20);
+  --emerald: #06a59a;
+  --emerald-ink: #023434;
+  --emerald-light: rgba(6,165,154,0.14);
+  --rose: #ba0517;
+  --rose-light: rgba(186,5,23,0.12);
+  --radius: 16px;
+  --shadow: 0 2px 4px rgba(0,30,91,0.08), 0 8px 24px rgba(0,30,91,0.08);
+  --shadow-md: 0 12px 40px rgba(0,30,91,0.14);
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+html, body {
+  height: 100%;
+  overflow: hidden;
+  font-family: var(--font);
+  font-weight: 400;
+  background: #cfe4f8;
+  color: var(--text-2);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.deck {
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #cfe4f8;
+}
+
+.slide-viewport {
+  width: 1920px;
+  height: 1080px;
+  position: relative;
+  flex-shrink: 0;
+  transform-origin: center center;
+  box-shadow: var(--shadow-md);
+  border-radius: 8px;
+  overflow: hidden;
+  background: var(--bg);
+}
+
+.slide {
+  position: absolute;
+  inset: 0;
+  width: 1920px;
+  height: 1080px;
+  display: none;
+  flex-direction: column;
+  background: var(--bg);
+  padding: 40px 64px 28px;
+}
+.slide.active { display: flex; }
+
+.brand-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 20px;
+  flex-shrink: 0;
+}
+
+.brand-left {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.brand-left svg { width: 40px; height: 28px; }
+
+.brand-name {
+  font-size: 22px;
+  font-weight: 700;
+  color: var(--text);
+}
+
+.brand-name span { color: var(--blue); }
+
+.brand-meta {
+  font-size: 16px;
+  font-weight: 400;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--text-3);
+}
+
+.kicker {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 15px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--blue-dark);
+  background: var(--blue-light);
+  padding: 8px 16px;
+  border-radius: 8px;
+  margin-bottom: 14px;
+  width: fit-content;
+  flex-shrink: 0;
+}
+
+.kicker::before {
+  content: '';
+  width: 18px;
+  height: 3px;
+  background: var(--blue);
+  border-radius: 1px;
+}
+
+.headline {
+  font-size: 40px;
+  font-weight: 300;
+  line-height: 1.2;
+  letter-spacing: -0.01em;
+  color: var(--text);
+  margin-bottom: 18px;
+  flex-shrink: 0;
+}
+
+.headline em {
+  font-style: normal;
+  font-weight: 700;
+  color: var(--blue);
+}
+
+/* Subheader — not a card; sits under the headline */
+.subhead {
+  font-size: 22px;
+  font-weight: 400;
+  line-height: 1.45;
+  color: var(--text-2);
+  margin-bottom: 24px;
+  max-width: 1680px;
+  flex-shrink: 0;
+}
+
+.subhead strong {
+  font-weight: 700;
+  color: var(--text);
+}
+
+.main {
+  display: grid;
+  grid-template-columns: 1.05fr 1fr;
+  gap: 24px;
+  flex: 1;
+  min-height: 0;
+  align-items: stretch;
+}
+
+.card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 28px 32px;
+  box-shadow: var(--shadow);
+  display: flex;
+  flex-direction: column;
+  min-height: 0;
+}
+
+.card-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  margin-bottom: 20px;
+  padding-bottom: 14px;
+  border-bottom: 1px solid var(--border);
+  flex-shrink: 0;
+}
+
+.card-title {
+  font-size: 24px;
+  font-weight: 700;
+  color: var(--text);
+}
+
+.badge {
+  display: inline-flex;
+  align-items: center;
+  font-size: 13px;
+  font-weight: 700;
+  padding: 6px 12px;
+  border-radius: 8px;
+  letter-spacing: 0.02em;
+}
+
+.badge-amber {
+  color: var(--amber);
+  background: var(--amber-light);
+}
+
+.badge-blue {
+  color: var(--blue-dark);
+  background: var(--blue-light);
+}
+
+/* Left column — impact strip (SteerCo) */
+.impact {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  align-self: center;
+  height: fit-content;
+  max-height: 100%;
+  min-height: 0;
+  overflow: hidden;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  padding: 22px 24px;
+}
+
+.impact-shipped {
+  font-size: 15px;
+  font-weight: 400;
+  line-height: 1.4;
+  color: var(--text-2);
+  padding-bottom: 14px;
+  border-bottom: 1px solid var(--border);
+  flex-shrink: 0;
+}
+
+.impact-shipped strong {
+  font-weight: 700;
+  color: var(--text);
+}
+
+.impact-metric {
+  flex: 0 0 auto;
+  min-width: 0;
+}
+
+.impact-metric-label {
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--blue-dark);
+  margin-bottom: 10px;
+}
+
+.impact-metric-row {
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  gap: 12px;
+  align-items: stretch;
+}
+
+.impact-stat {
+  min-width: 0;
+  background: #f7fbff;
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 16px 18px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+}
+
+.impact-stat.is-after {
+  background: linear-gradient(180deg, #ffffff 0%, #eef6ff 100%);
+  border-color: rgba(6,106,254,0.35);
+  box-shadow: 0 4px 14px rgba(6,106,254,0.10);
+}
+
+.impact-stat-kicker {
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  margin-bottom: 8px;
+}
+
+.impact-stat-kicker.before { color: var(--amber); }
+.impact-stat-kicker.after { color: var(--blue-dark); }
+
+.impact-stat-value {
+  font-size: 36px;
+  font-weight: 300;
+  line-height: 1;
+  letter-spacing: -0.02em;
+  color: var(--text);
+}
+
+.impact-stat-value.is-pending {
+  font-size: 36px;
+  color: var(--text-3);
+}
+
+.impact-stat-sub {
+  margin-top: 6px;
+  font-size: 13px;
+  font-weight: 400;
+  color: var(--text-3);
+  line-height: 1.3;
+}
+
+.impact-arrow {
+  font-size: 28px;
+  font-weight: 300;
+  color: var(--blue);
+  align-self: center;
+}
+
+.impact-metric-note {
+  margin-top: 12px;
+  font-size: 13px;
+  font-weight: 400;
+  color: var(--text-3);
+  line-height: 1.35;
+}
+
+.impact-metric-note strong {
+  font-weight: 700;
+  color: var(--text-2);
+}
+
+.impact-blocks {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  flex: 0 0 auto;
+  min-height: 0;
+}
+
+.impact-block {
+  background: #f7fbff;
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 14px 16px;
+  flex: 0 0 auto;
+  min-height: 0;
+}
+
+.impact-block-title {
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--blue-dark);
+  margin-bottom: 8px;
+}
+
+.impact-block-body {
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 1.42;
+  color: var(--text-2);
+}
+
+.impact-block-body strong {
+  font-weight: 700;
+  color: var(--text);
+}
+
+.impact-block.is-story {
+  flex: 0 0 auto;
+  overflow: visible;
+  border-left: 4px solid var(--blue);
+}
+
+.impact-why {
+  margin-top: 12px;
+  padding-top: 10px;
+  border-top: 1px solid var(--border);
+}
+
+.impact-why-title {
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--blue-dark);
+  margin-bottom: 8px;
+}
+
+.impact-why-list {
+  margin: 0;
+  padding-left: 18px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.impact-why-list li {
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 1.35;
+  color: var(--text-2);
+}
+
+.impact-why-list li strong {
+  font-weight: 700;
+  color: var(--text);
+}
+
+.impact-caveat {
+  flex-shrink: 0;
+  font-size: 12.5px;
+  font-weight: 400;
+  line-height: 1.35;
+  color: var(--text-3);
+  padding-top: 10px;
+  border-top: 1px solid var(--border);
+}
+
+/* Example Response — Agentforce UI demo */
+.demo-card {
+  padding: 0;
+  overflow: hidden;
+  background: transparent;
+  border: none;
+  box-shadow: none;
+}
+
+.demo-toolbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 12px;
+  flex-shrink: 0;
+}
+
+.demo-title {
+  font-size: 22px;
+  font-weight: 700;
+  color: var(--text);
+}
+
+.demo-toggle {
+  display: inline-flex;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 4px;
+  box-shadow: var(--shadow);
+}
+
+.demo-toggle button {
+  appearance: none;
+  border: none;
+  background: transparent;
+  font-family: var(--font);
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--text-3);
+  padding: 8px 14px;
+  border-radius: 8px;
+  cursor: pointer;
+  letter-spacing: 0.02em;
+}
+
+.demo-toggle button.active {
+  background: var(--blue);
+  color: #fff;
+}
+
+.demo-toggle button:focus-visible {
+  outline: 2px solid var(--blue);
+  outline-offset: 2px;
+}
+
+.ha-panel {
+  flex: 1;
+  min-height: 0;
+  display: flex;
+  flex-direction: column;
+  background: #fff;
+  border: 1px solid #dddbda;
+  border-radius: 12px;
+  box-shadow: var(--shadow-md);
+  overflow: hidden;
+}
+
+.ha-prompt {
+  display: none;
+}
+
+.ha-user {
+  align-self: flex-end;
+  max-width: 92%;
+  margin: 14px 16px 0;
+  background: #066afe;
+  color: #fff;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 1.4;
+  padding: 12px 16px;
+  border-radius: 16px 16px 4px 16px;
+  box-shadow: 0 4px 12px rgba(6,106,254,0.22);
+  flex-shrink: 0;
+}
+
+.ha-thread {
+  flex: 1;
+  min-height: 0;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  overflow: hidden;
+}
+
+.ha-view {
+  display: none;
+  flex: 1;
+  min-height: 0;
+  overflow: hidden;
+  padding: 14px 16px 8px;
+  flex-direction: column;
+}
+
+.ha-panel[data-mode="before"]:not([data-thinking="true"]) .ha-view.before,
+.ha-panel[data-mode="after"]:not([data-thinking="true"]) .ha-view.after {
+  display: flex;
+}
+
+/* Thinking / loading stencil */
+.ha-thinking {
+  display: none;
+  flex: 1;
+  min-height: 0;
+  padding: 16px 18px 8px;
+  align-items: flex-start;
+  gap: 12px;
+}
+
+.ha-panel[data-thinking="true"] .ha-thinking {
+  display: flex;
+}
+
+.af-stencil {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding-top: 6px;
+  max-width: 520px;
+}
+
+.af-stencil-bar {
+  height: 14px;
+  border-radius: 999px;
+  background: #c9b8f0;
+  animation: afStencilPulse 1.2s ease-in-out infinite;
+}
+
+.af-stencil-bar:nth-child(1) { width: 100%; animation-delay: 0s; }
+.af-stencil-bar:nth-child(2) { width: 100%; animation-delay: 0.15s; }
+.af-stencil-bar:nth-child(3) { width: 62%; animation-delay: 0.3s; }
+
+@keyframes afStencilPulse {
+  0%, 100% { opacity: 0.55; }
+  50% { opacity: 1; }
+}
+
+.af-row {
+  display: flex;
+  gap: 12px;
+  align-items: flex-start;
+  flex: 1;
+  min-height: 0;
+  overflow: hidden;
+}
+
+/* Agentforce Astro avatar — light blue circle, white character */
+.af-astro {
+  width: 32px;
+  height: 32px;
+  flex-shrink: 0;
+  margin-top: 0;
+  overflow: visible;
+  background: url('data:image/png;base64,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') center / contain no-repeat;
+}
+
+
+.af-main {
+  flex: 1;
+  min-width: 0;
+  min-height: 0;
+  align-self: stretch; /* keep full height for scroll when row is flex-start */
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  color: #181818;
+  padding-top: 6px; /* optical middle-align Overview with 32px icon */
+}
+
+.af-scroll {
+  flex: 1 1 auto;
+  min-height: 0;
+  overflow-y: scroll;
+  overflow-x: hidden;
+  overscroll-behavior: contain;
+  -webkit-overflow-scrolling: touch;
+  padding-right: 10px;
+  scrollbar-gutter: stable;
+  scrollbar-width: thin;
+  scrollbar-color: #706e6b #ecebea;
+}
+
+.af-scroll::-webkit-scrollbar { width: 8px; }
+.af-scroll::-webkit-scrollbar-track {
+  background: #ecebea;
+  border-radius: 999px;
+}
+.af-scroll::-webkit-scrollbar-thumb {
+  background: #706e6b;
+  border-radius: 999px;
+}
+
+
+.af-block { margin-bottom: 12px; }
+.af-block:last-child { margin-bottom: 4px; }
+
+.af-section {
+  font-size: 13px;
+  font-weight: 700;
+  color: #181818;
+  margin-bottom: 6px;
+  line-height: 1.3;
+}
+
+.af-p {
+  font-size: 12.5px;
+  font-weight: 400;
+  line-height: 1.4;
+  color: #181818;
+  margin: 0 0 6px;
+}
+
+.af-steps {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.af-steps li {
+  font-size: 12.5px;
+  font-weight: 400;
+  line-height: 1.35;
+  color: #181818;
+  padding-left: 18px;
+  position: relative;
+}
+
+.af-steps li::before {
+  content: attr(data-n);
+  position: absolute;
+  left: 0;
+  top: 0;
+  font-size: 12.5px;
+  font-weight: 400;
+  color: #181818;
+}
+
+.af-steps li strong { font-weight: 700; }
+
+.af-bullets {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+
+.af-bullets li {
+  font-size: 12.5px;
+  font-weight: 400;
+  line-height: 1.35;
+  color: #181818;
+  padding-left: 14px;
+  position: relative;
+}
+
+.af-bullets li::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0.55em;
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: #181818;
+}
+
+.af-link-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.af-link-list a {
+  font-size: 12.5px;
+  font-weight: 400;
+  color: #0176d3;
+  text-decoration: underline;
+  line-height: 1.35;
+}
+
+.af-cta {
+  font-size: 12.5px;
+  margin: 6px 0 0;
+  color: #181818;
+}
+
+.af-cta a {
+  color: #0176d3;
+  text-decoration: underline;
+}
+
+.af-cite {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 14px;
+  height: 14px;
+  margin-left: 3px;
+  border-radius: 50%;
+  background: #e5e5e5;
+  color: #444;
+  font-size: 9px;
+  font-weight: 700;
+  vertical-align: middle;
+  line-height: 1;
+  position: relative;
+  top: -1px;
+}
+
+/* Sources pinned under scroll — always visible at end of response */
+.af-sources {
+  flex-shrink: 0;
+  margin-top: 4px;
+  padding-top: 8px;
+  border-top: 1px solid #dddbda;
+  background: #fff;
+}
+
+.af-sources-title {
+  font-size: 12px;
+  font-weight: 700;
+  color: #181818;
+  margin-bottom: 6px;
+}
+
+.af-source-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px;
+}
+
+.af-source-grid.cols-3 {
+  grid-template-columns: 1fr 1fr 1fr;
+}
+
+.af-source {
+  border: 1px solid #dddbda;
+  border-radius: 8px;
+  padding: 8px 10px;
+  background: #fff;
+  position: relative;
+  min-height: 52px;
+}
+
+.af-source-domain {
+  font-size: 10px;
+  font-weight: 400;
+  color: #706e6b;
+  margin-bottom: 3px;
+  line-height: 1.2;
+  padding-right: 14px;
+}
+
+.af-source-title {
+  font-size: 11.5px;
+  font-weight: 700;
+  color: #0176d3;
+  line-height: 1.25;
+  text-decoration: none;
+  display: block;
+  padding-right: 12px;
+}
+
+.af-source-icon {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  width: 11px;
+  height: 11px;
+  color: #0176d3;
+}
+
+.af-meta {
+  margin-top: 6px;
+  font-size: 11px;
+  font-weight: 400;
+  color: #706e6b;
+  flex-shrink: 0;
+}
+
+/* Composer / input bar — always show placeholder + sparkles (Agentforce product UI) */
+.ha-composer {
+  flex-shrink: 0;
+  margin: 8px 14px 14px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  min-height: 48px;
+  height: 48px;
+  padding: 0 18px 0 20px;
+  border: 1.5px solid #0176d3;
+  border-radius: 999px;
+  background: #fff;
+  box-sizing: border-box;
+  position: relative;
+  z-index: 2;
+}
+
+.ha-composer-placeholder {
+  flex: 1;
+  min-width: 0;
+  font-size: 15px;
+  font-weight: 400;
+  color: #706e6b;
+  line-height: 1;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.ha-composer-caret {
+  width: 1.5px;
+  height: 16px;
+  background: #0176d3;
+  flex-shrink: 0;
+  animation: afCaret 1s steps(1) infinite;
+}
+
+@keyframes afCaret {
+  0%, 49% { opacity: 1; }
+  50%, 100% { opacity: 0; }
+}
+
+.ha-sparkles {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 7px;
+  flex-shrink: 0;
+  opacity: 1;
+}
+
+.ha-sparkle {
+  display: block;
+  color: #0176d3;
+  flex-shrink: 0;
+}
+
+.ha-sparkle:nth-child(1) { width: 9px; height: 9px; }
+.ha-sparkle:nth-child(2) { width: 14px; height: 14px; }
+.ha-sparkle:nth-child(3) { width: 8px; height: 8px; }
+
+.ha-panel[data-thinking="true"] .ha-sparkle {
+  animation: afSparkle 1s ease-in-out infinite;
+}
+
+.ha-panel[data-thinking="true"] .ha-sparkle:nth-child(1) { animation-delay: 0s; }
+.ha-panel[data-thinking="true"] .ha-sparkle:nth-child(2) { animation-delay: 0.18s; }
+.ha-panel[data-thinking="true"] .ha-sparkle:nth-child(3) { animation-delay: 0.36s; }
+
+@keyframes afSparkle {
+  0%, 100% { opacity: 0.4; transform: scale(0.85); }
+  50% { opacity: 1; transform: scale(1.15); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .slide-viewport { transition: none !important; }
+  .af-stencil-bar,
+  .ha-sparkle,
+  .ha-composer-caret {
+    animation: none !important;
+  }
+  .ha-sparkles { opacity: 1; }
+}
+
+.slide-footer {
+  margin-top: 18px;
+  padding-top: 14px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 15px;
+  font-weight: 400;
+  color: var(--text-3);
+  letter-spacing: 0.02em;
+  flex-shrink: 0;
+  border-top: 1px solid var(--border);
+}
+
+.controls {
+  position: fixed;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  padding: 10px 18px;
+  font-family: var(--font);
+  font-size: 14px;
+  font-weight: 400;
+  color: var(--text-3);
+  box-shadow: var(--shadow);
+  z-index: 100;
+}
+
+.controls button {
+  background: var(--blue);
+  border: none;
+  color: #fff;
+  border-radius: 8px;
+  padding: 8px 16px;
+  cursor: pointer;
+  font: inherit;
+  font-weight: 700;
+}
+
+.controls button:hover { background: var(--blue-dark); }
+
+.progress {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  height: 4px;
+  background: rgba(0,30,91,0.08);
+  z-index: 100;
+}
+
+.progress-bar {
+  height: 100%;
+  width: 100%;
+  background: linear-gradient(90deg, var(--blue), var(--blue-bright));
+}
+
+:focus-visible { outline: 2px solid var(--blue); outline-offset: 2px; }
+
+@media print {
+  html, body { overflow: visible; height: auto; background: #fff; }
+  .deck { display: block; width: auto; height: auto; background: #fff; }
+  .slide-viewport {
+    width: 1920px !important;
+    height: 1080px !important;
+    transform: none !important;
+    box-shadow: none;
+    border-radius: 0;
+  }
+  .controls, .progress { display: none !important; }
+}
+
+/* —— Slide 2: What's next + blockers —— */
+.roadmap-intro {
+  font-size: 20px;
+  font-weight: 400;
+  color: var(--text-2);
+  margin-bottom: 22px;
+  max-width: 1600px;
+  line-height: 1.4;
+  flex-shrink: 0;
+}
+.roadmap-intro strong { font-weight: 700; color: var(--text); }
+
+.roadmap-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+  flex: 1;
+  min-height: 0;
+  align-content: stretch;
+  margin-bottom: 18px;
+}
+
+.road-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 28px 28px 32px;
+  box-shadow: var(--shadow);
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  min-height: 0;
+  border-top: 5px solid var(--blue);
+}
+.road-card.is-green { border-top-color: var(--emerald); }
+.road-card.is-amber { border-top-color: var(--amber); }
+.road-card.is-rose { border-top-color: var(--rose); }
+.road-card.is-blue { border-top-color: var(--blue); }
+
+.road-status {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  padding: 6px 12px;
+  border-radius: 8px;
+  width: fit-content;
+}
+.road-status.green { color: var(--emerald-ink); background: var(--emerald-light); }
+.road-status.amber { color: var(--amber); background: var(--amber-light); }
+.road-status.rose { color: var(--rose); background: var(--rose-light); }
+.road-status.blue { color: var(--blue-dark); background: var(--blue-light); }
+.road-status::before {
+  content: '';
+  width: 8px; height: 8px; border-radius: 50%;
+  background: currentColor;
+}
+
+.road-card h3 {
+  font-size: 26px;
+  font-weight: 700;
+  color: var(--text);
+  line-height: 1.25;
+}
+.road-card .road-body {
+  font-size: 17px;
+  font-weight: 400;
+  color: var(--text-2);
+  line-height: 1.45;
+}
+.road-card .road-body strong { font-weight: 700; color: var(--text); }
+
+.road-months {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  flex: 1;
+  min-height: 0;
+  justify-content: center;
+}
+.road-months li {
+  display: grid;
+  grid-template-columns: 58px 1fr;
+  gap: 12px;
+  align-items: start;
+  font-size: 16.5px;
+  line-height: 1.4;
+  color: var(--text-2);
+}
+.road-months .m {
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--emerald-ink);
+  background: var(--emerald-light);
+  border-radius: 6px;
+  padding: 5px 6px;
+  text-align: center;
+  line-height: 1.25;
+}
+.road-months .m.is-next {
+  color: var(--text-3);
+  background: rgba(3,45,96,0.06);
+}
+.road-months .m.is-amber {
+  color: var(--amber);
+  background: var(--amber-light);
+}
+.road-months .m.is-rose {
+  color: var(--rose);
+  background: var(--rose-light);
+}
+.road-months .m.is-blue {
+  color: var(--blue-dark);
+  background: var(--blue-light);
+}
+.road-months strong {
+  font-weight: 700;
+  color: var(--text);
+}
+.road-months .sub {
+  display: block;
+  font-size: 14px;
+  color: var(--text-3);
+  margin-top: 3px;
+}
+
+.road-blocker {
+  margin-top: auto;
+  padding-top: 14px;
+  border-top: 1px solid var(--border);
+  font-size: 15px;
+  color: var(--text-3);
+  line-height: 1.4;
+}
+.road-blocker strong {
+  display: block;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--text-3);
+  margin-bottom: 6px;
+}
+
+.roadmap-foot {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 16px 22px;
+  box-shadow: var(--shadow);
+  font-size: 16px;
+  color: var(--text-2);
+  line-height: 1.4;
+  flex-shrink: 0;
+}
+.roadmap-foot strong { font-weight: 700; color: var(--text); }
+
+</style>
+</head>
+<body>
+
+<div class="progress"><div class="progress-bar"></div></div>
+
+<div class="deck">
+  <div class="slide-viewport" id="slideViewport">
+    <section class="slide active" data-slide="1">
+
+      <div class="brand-bar">
+        <div class="brand-left">
+          <svg viewBox="0 0 60 40" aria-label="Salesforce" fill="#00A1E0">
+            <path d="M23.6 9.4c1.4-1.5 3.4-2.4 5.6-2.4 1.7 0 3.3.6 4.5 1.5 1.5-2.5 4.2-4.1 7.3-4.1 4.6 0 8.4 3.7 8.4 8.4 0 .3 0 .6-.1.9 2.4.8 4.1 3 4.1 5.7 0 3.3-2.7 6-6 6H13.2c-4 0-7.2-3.2-7.2-7.2 0-3.4 2.4-6.3 5.6-7.1.5-2.5 2.7-4.4 5.4-4.4 1.3 0 2.5.5 3.5 1.2l3.1 2.5z"/>
+          </svg>
+          <div class="brand-name">Salesforce <span>Digital Success</span></div>
+        </div>
+        <div class="brand-meta">Adoption Retriever · Product Council · 09.09.26</div>
+      </div>
+
+      <div class="kicker">What We Shipped · Q2 / H1</div>
+      <h1 class="headline"><em>Trailhead</em> grounding — HITL said answers got more actionable</h1>
+
+      <div class="main">
+        <!-- Left: impact strip — HITL / best practices lead; Qual flat supports -->
+        <div class="impact">
+          <div class="impact-shipped">
+            <strong>What shipped:</strong> Trailhead Sales / Service / Platform into the Adoption Retriever — powers Adoption + Onboarding SubAgents.
+          </div>
+
+          <div class="impact-blocks">
+            <div class="impact-block is-story">
+              <div class="impact-block-title">Human-in-the-loop validation (the real signal)</div>
+              <div class="impact-block-body">Subject matter experts and UAT reviewers confirmed <strong>Practical Steps and answers became more actionable</strong> — job-order guidance (Generate → Qualify → Assign…) instead of UI click-lists. Automated Qual stayed flat; <strong>HITL is what told us quality improved for customers.</strong></div>
+            </div>
+            <div class="impact-block is-story">
+              <div class="impact-block-title">Trailhead best practices &amp; use cases</div>
+              <div class="impact-block-body">Beyond the in-chat rewrite: Trailhead is <strong>superior content for best practices and use cases</strong> when customers click through sources — deeper learning paths Help + Product Docs alone don’t carry.</div>
+            </div>
+          </div>
+
+          <div class="impact-metric">
+            <div class="impact-metric-label">Adoption Qual · bar held (not the headline win)</div>
+            <div class="impact-metric-row">
+              <div class="impact-stat">
+                <div class="impact-stat-kicker before">Before · Baseline</div>
+                <div class="impact-stat-value" id="statBefore">83%</div>
+              </div>
+              <div class="impact-arrow" aria-hidden="true">→</div>
+              <div class="impact-stat is-after">
+                <div class="impact-stat-kicker after">After · +Trailhead</div>
+                <div class="impact-stat-value" id="statAfter">82%</div>
+              </div>
+            </div>
+            <p class="impact-metric-note"><strong>Flat post-hydration</strong> (−1pp, n=48; runs 79–85%). No Qual regression; Evaluations signed off at GO. <strong>Story for Council = HITL actionability + Trailhead best-practice value</strong> — not a Qual % lift.</p>
+          </div>
+
+        </div>
+
+        <!-- Right: Agentforce response demo -->
+        <div class="card demo-card">
+          <div class="demo-toolbar">
+            <div class="demo-title">Example Response · Lead Management</div>
+            <div class="demo-toggle" role="group" aria-label="Toggle before and after">
+              <button type="button" id="btnBefore" class="active" data-mode="before">Before</button>
+              <button type="button" id="btnAfter" data-mode="after">After</button>
+            </div>
+          </div>
+
+          <div class="ha-panel" id="haPanel" data-mode="before">
+            <div class="ha-user">How do I use Lead Management to grow the number of customers?</div>
+
+            <div class="ha-thread">
+              <!-- Thinking stencil (shown briefly on toggle) -->
+              <div class="ha-thinking" id="haThinking" aria-hidden="true">
+                <div class="af-astro" aria-hidden="true"></div>
+                <div class="af-stencil">
+                  <div class="af-stencil-bar"></div>
+                  <div class="af-stencil-bar"></div>
+                  <div class="af-stencil-bar"></div>
+                </div>
+              </div>
+
+              <!-- BEFORE: Help + Product Docs grounded answer -->
+              <div class="ha-view before">
+                <div class="af-row">
+                  <div class="af-astro" aria-hidden="true"></div>
+                  <div class="af-main">
+                  <div class="af-scroll">
+                    <div class="af-block">
+                      <div class="af-section">Overview:</div>
+                      <p class="af-p">Lead Management in Salesforce helps your sales team track prospects and build a strong pipeline of opportunities. It allows your team to work and qualify leads effectively, turning them into opportunities.<span class="af-cite">1</span></p>
+                    </div>
+
+                    <div class="af-block">
+                      <div class="af-section">Steps to Enable Lead Management:</div>
+                      <ol class="af-steps">
+                        <li data-n="1.">From Setup, enter “Lead Settings” in the Quick Find box, then select <strong>Lead Settings</strong>.</li>
+                        <li data-n="2.">Turn on <strong>Lead Intelligence View</strong> and add the button to lead page layouts.</li>
+                        <li data-n="3.">Enable <strong>Einstein Activity Capture</strong> for enhanced lead insights.</li>
+                        <li data-n="4.">Create and map custom lead fields to account, contact, and opportunity.</li>
+                        <li data-n="5.">Edit the <strong>Lead Status</strong> picklist and set up lead assignment rules.</li>
+                        <li data-n="6.">Optionally enable <strong>Web-to-Lead</strong> and connect LinkedIn Lead Gen ads.</li>
+                      </ol>
+                    </div>
+
+                    <div class="af-block">
+                      <div class="af-section">Practical Steps to Use Lead Management:</div>
+                      <ol class="af-steps">
+                        <li data-n="1.">Navigate to the <strong>Leads</strong> tab in Salesforce.</li>
+                        <li data-n="2.">Use the <strong>Lead Intelligence View</strong> to analyze and prioritize leads.</li>
+                        <li data-n="3.">Assign leads to team members using assignment rules.</li>
+                        <li data-n="4.">Track lead sources and analyze marketing ROI.</li>
+                        <li data-n="5.">Convert qualified leads into opportunities.<span class="af-cite">1</span></li>
+                        <li data-n="6.">Use custom lead fields to capture specific information.</li>
+                      </ol>
+                    </div>
+
+                    <div class="af-block">
+                      <div class="af-section">Value to Your Organization:</div>
+                      <ul class="af-bullets">
+                        <li>Streamlines the lead qualification process, ensuring no leads are dropped.</li>
+                        <li>Enhances collaboration between sales and marketing teams.</li>
+                        <li>Provides insights into lead sources and marketing effectiveness.</li>
+                        <li>Automates lead assignment and follow-up, saving time and effort.</li>
+                        <li>Improves data accuracy and consistency during lead conversion.<span class="af-cite">1</span></li>
+                      </ul>
+                    </div>
+
+                    <div class="af-block">
+                      <div class="af-section">Additional Resources:</div>
+                      <ul class="af-link-list">
+                        <li><a href="#">Configure Lead Management</a></li>
+                        <li><a href="#">Define Default Settings for Lead Creation</a></li>
+                        <li><a href="#">Set Up Leads</a></li>
+                      </ul>
+                    </div>
+                  </div>
+                  <div class="af-sources">
+                      <div class="af-sources-title">Sources (2)</div>
+                      <div class="af-source-grid">
+                        <div class="af-source">
+                          <div class="af-source-domain">1. Help.salesforce.com</div>
+                          <a class="af-source-title" href="#">Configure Lead Management</a>
+                          <svg class="af-source-icon" viewBox="0 0 12 12" fill="none" aria-hidden="true"><path d="M4.5 2H10v5.5M10 2L3 9" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/></svg>
+                        </div>
+                        <div class="af-source">
+                          <div class="af-source-domain">2. Product Docs</div>
+                          <a class="af-source-title" href="#">Set Up Leads</a>
+                          <svg class="af-source-icon" viewBox="0 0 12 12" fill="none" aria-hidden="true"><path d="M4.5 2H10v5.5M10 2L3 9" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/></svg>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="af-meta">Agentforce · Help + Product Docs</div>
+                </div>
+                </div>
+              </div>
+
+              <!-- AFTER: full +Trailhead-grounded answer -->
+              <div class="ha-view after">
+                <div class="af-row">
+                  <div class="af-astro" aria-hidden="true"></div>
+                  <div class="af-main">
+                  <div class="af-scroll">
+                    <div class="af-block">
+                      <div class="af-section">Overview:</div>
+                      <p class="af-p">Lead Management in Salesforce helps businesses efficiently track, qualify, and convert leads into opportunities. It bridges the gap between marketing and sales by providing tools to manage the entire lead lifecycle, from initial contact to conversion.</p>
+                    </div>
+
+                    <div class="af-block">
+                      <div class="af-section">Steps to Enable Lead Management:</div>
+                      <ol class="af-steps">
+                        <li data-n="1.">Navigate to <strong>Setup</strong> in Salesforce.</li>
+                        <li data-n="2.">Search for <strong>Lead Settings</strong> in the Quick Find box.</li>
+                        <li data-n="3.">Configure default lead settings, including assignment rules and lead status picklists.</li>
+                        <li data-n="4.">Enable <strong>Lead Intelligence View</strong> for enhanced insights.</li>
+                        <li data-n="5.">Set up <strong>Web-to-Lead</strong> to capture leads from your website.</li>
+                        <li data-n="6.">If using LinkedIn Lead Gen ads, connect them for automatic lead creation.<span class="af-cite">2</span></li>
+                      </ol>
+                      <p class="af-cta"><a href="#">Ready to enable Lead Management for your team?</a></p>
+                    </div>
+
+                    <div class="af-block">
+                      <div class="af-section">Practical Steps to Use Lead Management:</div>
+                      <ol class="af-steps">
+                        <li data-n="1."><strong>Generate Leads</strong>: Use Web-to-Lead or LinkedIn Lead Gen ads to capture leads.<span class="af-cite">1</span></li>
+                        <li data-n="2."><strong>Qualify Leads</strong>: Use custom lead fields to track specific information and qualify leads.</li>
+                        <li data-n="3."><strong>Assign Leads</strong>: Set up lead assignment rules to route leads to the right sales reps.<span class="af-cite">2</span></li>
+                        <li data-n="4."><strong>Nurture Leads</strong>: Engage leads with personalized communication to build trust.</li>
+                        <li data-n="5."><strong>Convert Leads</strong>: Map custom lead fields to account, contact, and opportunity fields.</li>
+                      </ol>
+                    </div>
+
+                    <div class="af-block">
+                      <div class="af-section">Value to Your Organization:</div>
+                      <ul class="af-bullets">
+                        <li>Streamlines the lead lifecycle, ensuring no lead is overlooked.</li>
+                        <li>Enhances collaboration between marketing and sales teams.</li>
+                        <li>Provides actionable insights to improve marketing strategies.</li>
+                        <li>Increases efficiency with automated lead routing and assignment.</li>
+                        <li>Boosts ROI by focusing on high-quality leads.</li>
+                      </ul>
+                    </div>
+
+                    <div class="af-block">
+                      <div class="af-section">Additional Resources:</div>
+                      <ul class="af-link-list">
+                        <li><a href="#">Grow Your Business with Agentforce Sales</a></li>
+                        <li><a href="#">Explore Strategies for Effective Lead Generation, Qualification, and Conversion</a></li>
+                        <li><a href="#">Set Up Leads</a></li>
+                      </ul>
+                    </div>
+                  </div>
+                  <div class="af-sources">
+                      <div class="af-sources-title">Sources (3)</div>
+                      <div class="af-source-grid cols-3">
+                        <div class="af-source">
+                          <div class="af-source-domain">1. Trailhead.salesforce.com</div>
+                          <a class="af-source-title" href="#">Grow Your Business with Agentforce Sales</a>
+                          <svg class="af-source-icon" viewBox="0 0 12 12" fill="none" aria-hidden="true"><path d="M4.5 2H10v5.5M10 2L3 9" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/></svg>
+                        </div>
+                        <div class="af-source">
+                          <div class="af-source-domain">2. Trailhead.salesforce.com</div>
+                          <a class="af-source-title" href="#">Lead Generation, Qualification &amp; Conversion</a>
+                          <svg class="af-source-icon" viewBox="0 0 12 12" fill="none" aria-hidden="true"><path d="M4.5 2H10v5.5M10 2L3 9" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/></svg>
+                        </div>
+                        <div class="af-source">
+                          <div class="af-source-domain">3. Help.salesforce.com</div>
+                          <a class="af-source-title" href="#">Configure Lead Management</a>
+                          <svg class="af-source-icon" viewBox="0 0 12 12" fill="none" aria-hidden="true"><path d="M4.5 2H10v5.5M10 2L3 9" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/></svg>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="af-meta">Agentforce · +Trailhead-grounded</div>
+                </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="ha-composer">
+              <div class="ha-composer-placeholder">
+                <span class="ha-composer-caret" aria-hidden="true"></span>
+                <span>Type your message...</span>
+              </div>
+              <div class="ha-sparkles" aria-hidden="true">
+                <svg class="ha-sparkle" viewBox="0 0 16 16" fill="currentColor"><path d="M8 0c.35 3.2 1.6 4.45 4.8 4.8C9.6 5.15 8.35 6.4 8 9.6 7.65 6.4 6.4 5.15 3.2 4.8 6.4 4.45 7.65 3.2 8 0z"/></svg>
+                <svg class="ha-sparkle" viewBox="0 0 16 16" fill="currentColor"><path d="M8 0c.35 3.2 1.6 4.45 4.8 4.8C9.6 5.15 8.35 6.4 8 9.6 7.65 6.4 6.4 5.15 3.2 4.8 6.4 4.45 7.65 3.2 8 0z"/></svg>
+                <svg class="ha-sparkle" viewBox="0 0 16 16" fill="currentColor"><path d="M8 0c.35 3.2 1.6 4.45 4.8 4.8C9.6 5.15 8.35 6.4 8 9.6 7.65 6.4 6.4 5.15 3.2 4.8 6.4 4.45 7.65 3.2 8 0z"/></svg>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="slide-footer">
+        <span>Salesforce Digital Success · Product Council · What we shipped</span>
+        <span>1 / 2</span>
+      </div>
+    </section>
+
+    <!-- ===== SLIDE 2: What's next — Expansion + Experimentation ===== -->
+    <!-- Presenter: 5 min — Expansion by cloud · Expansion by content (Vidyard / TBC / Expert Coaching) · Experimentation. Chunking/Hit@5 = explore. -->
+    <section class="slide" data-layout="roadmap" data-slide="2">
+      <div class="brand-bar">
+        <div class="brand-left">
+          <svg viewBox="0 0 60 40" aria-label="Salesforce" fill="#00A1E0">
+            <path d="M23.6 9.4c1.4-1.5 3.4-2.4 5.6-2.4 1.7 0 3.3.6 4.5 1.5 1.5-2.5 4.2-4.1 7.3-4.1 4.6 0 8.4 3.7 8.4 8.4 0 .3 0 .6-.1.9 2.4.8 4.1 3 4.1 5.7 0 3.3-2.7 6-6 6H13.2c-4 0-7.2-3.2-7.2-7.2 0-3.4 2.4-6.3 5.6-7.1.5-2.5 2.7-4.4 5.4-4.4 1.3 0 2.5.5 3.5 1.2l3.1 2.5z"/>
+          </svg>
+          <div class="brand-name">Salesforce <span>Digital Success</span></div>
+        </div>
+        <div class="brand-meta">Adoption Retriever · Product Council · 09.09.26</div>
+      </div>
+
+      <div class="kicker">What's Next · H2 Focus</div>
+      <h1 class="headline">Two expansion tracks + <em>experimentation</em></h1>
+      <p class="roadmap-intro"><strong>Expansion</strong> extends the Adoption Retriever — by <strong>cloud</strong> (which products we cover) and by <strong>content</strong> (what kinds of sources we ground on). <strong>Experimentation</strong> is net-new capability work evaluated on platform / data-architecture fit — not the standard intake path.</p>
+
+      <div class="roadmap-grid">
+        <div class="road-card is-green">
+          <div class="road-status green">Expansion · by cloud</div>
+          <h3>More products<br>in the shared pool</h3>
+          <p class="road-body"><strong>Same shared Adoption Retriever</strong> — enable new cloud content by month for Onboarding + Adoption.</p>
+          <ul class="road-months">
+            <li>
+              <span class="m">Sept</span>
+              <span><strong>AF / DC + FINS</strong>
+                <span class="sub">Onboarding = AF/DC · Adoption = FINS</span>
+              </span>
+            </li>
+            <li>
+              <span class="m is-next">Oct</span>
+              <span><strong>Marketing Cloud Next</strong>
+                <span class="sub">Marketing App taxonomy · both experiences</span>
+              </span>
+            </li>
+            <li>
+              <span class="m is-next">Nov</span>
+              <span><strong>Commerce · Revenue · MCAE</strong>
+                <span class="sub">Account Engagement (fka Pardot)</span>
+              </span>
+            </li>
+            <li>
+              <span class="m is-next">Dec</span>
+              <span><strong>Tableau / CRMA · Field Service</strong></span>
+            </li>
+          </ul>
+          <div class="road-blocker">
+            <strong>Watch</strong>
+            Agent + Retriever together on UAT <strong>9/14</strong> (Qual gate). Retriever lands earlier (QA 9/1 · UAT 9/2).
+          </div>
+        </div>
+
+        <div class="road-card is-amber">
+          <div class="road-status amber">Expansion · by content</div>
+          <h3>Richer sources<br>in the retriever</h3>
+          <p class="road-body">New <strong>content types</strong> beyond Help + Product Docs + Trailhead text — standard intake / Wave path.</p>
+          <ul class="road-months">
+            <li>
+              <span class="m is-amber">Vid</span>
+              <span><strong>Vidyard videos + transcripts</strong>
+                <span class="sub">CX Go catalog · A stop-gap / B durable · UIP whitelist blocks B</span>
+              </span>
+            </li>
+            <li>
+              <span class="m is-rose">TBC</span>
+              <span><strong>Trailblazer Community Q&amp;A</strong>
+                <span class="sub">Peer Best Answers · PIA + scrub before surface · Oct target</span>
+              </span>
+            </li>
+            <li>
+              <span class="m is-next">ECS</span>
+              <span><strong>Expert Coaching Sessions</strong>
+                <span class="sub">Overall better content for best practices &amp; use cases</span>
+              </span>
+            </li>
+          </ul>
+          <div class="road-blocker">
+            <strong>Blockers</strong>
+            Vidyard: secure folder-token path (not Drive-as-library). TBC: PIA + ingest scrub. Expert Coaching: C360 identity.
+          </div>
+        </div>
+
+        <div class="road-card is-blue">
+          <div class="road-status blue">Experimentation</div>
+          <h3>Net-new agent<br>capabilities</h3>
+          <p class="road-body">Explored against <strong>platform strategy + data architecture</strong> — not the standard intake workflow. No fixed ship date until fit is clear.</p>
+          <ul class="road-months">
+            <li>
+              <span class="m is-blue">Img</span>
+              <span><strong>Trailhead image rendering</strong>
+                <span class="sub">Inline visuals in Agent chat UI</span>
+              </span>
+            </li>
+            <li>
+              <span class="m is-blue">A/B</span>
+              <span><strong>Homepage Journey Cards</strong>
+                <span class="sub">Optimizely A/B on Help Home Success entry</span>
+              </span>
+            </li>
+            <li>
+              <span class="m is-next">Br</span>
+              <span><strong>Onboarding → Adoption Bridge</strong>
+                <span class="sub">Feature usage signals · paused until Journey Cards A/B</span>
+              </span>
+            </li>
+          </ul>
+          <div class="road-blocker">
+            <strong>How it differs</strong>
+            Partners decide on platform / data-arch fit first — then build. Expansion waves stay on the intake path.
+          </div>
+        </div>
+      </div>
+
+      <div class="roadmap-foot"><strong>Retriever quality (explore, not blocking Sept):</strong> Section-aware chunking + Hit@5 retrieval metric — opportunities identified with Knowledge Retriever peers; exploring with eng after cloud-expansion content is secure.</div>
+
+      <div class="slide-footer">
+        <span>Salesforce Digital Success · Product Council · What's next</span>
+        <span>2 / 2</span>
+      </div>
+    </section>
+  </div>
+</div>
+
+<div class="controls">
+  <span id="slideCounter">1 / 2</span>
+  <button type="button" id="prevBtn" aria-label="Previous">←</button>
+  <button type="button" id="nextBtn" aria-label="Next">→</button>
+  <button type="button" id="fsBtn" aria-label="Fullscreen">Fullscreen</button>
+</div>
+
+<script>
+(function () {
+  var viewport = document.getElementById('slideViewport');
+  var slides = Array.prototype.slice.call(document.querySelectorAll('.slide'));
+  var counter = document.getElementById('slideCounter');
+  var idx = 0;
+  var W = 1920;
+  var H = 1080;
+
+  function fit() {
+    var scale = Math.min(window.innerWidth / W, window.innerHeight / H) * 0.98;
+    viewport.style.transform = 'scale(' + scale + ')';
+  }
+
+  function show(i) {
+    if (i < 0 || i >= slides.length) return;
+    slides[idx].classList.remove('active');
+    idx = i;
+    slides[idx].classList.add('active');
+    if (counter) counter.textContent = (idx + 1) + ' / ' + slides.length;
+  }
+
+  fit();
+  window.addEventListener('resize', fit);
+  document.addEventListener('fullscreenchange', fit);
+
+  document.getElementById('fsBtn').addEventListener('click', function () {
+    var el = document.documentElement;
+    if (!document.fullscreenElement) el.requestFullscreen().catch(function () {});
+    else document.exitFullscreen();
+  });
+  document.getElementById('prevBtn').addEventListener('click', function () { show(idx - 1); });
+  document.getElementById('nextBtn').addEventListener('click', function () { show(idx + 1); });
+
+  var panel = document.getElementById('haPanel');
+  var btnBefore = document.getElementById('btnBefore');
+  var btnAfter = document.getElementById('btnAfter');
+  var thinkTimer = null;
+  var reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  function revealMode(mode) {
+    panel.setAttribute('data-thinking', 'false');
+    panel.setAttribute('data-mode', mode);
+    btnBefore.classList.toggle('active', mode === 'before');
+    btnAfter.classList.toggle('active', mode === 'after');
+    var sc = panel.querySelector('.ha-view.' + mode + ' .af-scroll');
+    if (sc) sc.scrollTop = 0;
+  }
+
+  function setMode(mode) {
+    if (panel.getAttribute('data-mode') === mode && panel.getAttribute('data-thinking') !== 'true') {
+      return;
+    }
+    btnBefore.classList.toggle('active', mode === 'before');
+    btnAfter.classList.toggle('active', mode === 'after');
+    if (thinkTimer) clearTimeout(thinkTimer);
+
+    if (reduceMotion) {
+      revealMode(mode);
+      return;
+    }
+
+    panel.setAttribute('data-thinking', 'true');
+    thinkTimer = setTimeout(function () {
+      revealMode(mode);
+    }, 1100);
+  }
+
+  panel.addEventListener('wheel', function (e) {
+    var sc = e.target.closest ? e.target.closest('.af-scroll') : null;
+    if (!sc || !panel.contains(sc)) return;
+    e.preventDefault();
+    sc.scrollTop += e.deltaY;
+  }, { passive: false });
+
+  btnBefore.addEventListener('click', function () { setMode('before'); });
+  btnAfter.addEventListener('click', function () { setMode('after'); });
+
+  document.addEventListener('keydown', function (e) {
+    if (e.key === 'f' || e.key === 'F') document.getElementById('fsBtn').click();
+    if (e.key === 'ArrowLeft' || e.key === 'PageUp') { e.preventDefault(); show(idx - 1); }
+    if (e.key === 'ArrowRight' || e.key === 'PageDown' || e.key === ' ') { e.preventDefault(); show(idx + 1); }
+    if (idx === 0 && (e.key === 'b' || e.key === 'B')) setMode('before');
+    if (idx === 0 && (e.key === 'a' || e.key === 'A')) setMode('after');
+    if (e.key === '1') show(0);
+    if (e.key === '2') show(1);
+  });
+
+  // Ensure first slide active
+  slides.forEach(function (s, i) { s.classList.toggle('active', i === 0); });
+})();
+</script>
+</body>
+</html>

@@ -1,0 +1,1018 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>O&amp;A Multi-Cloud Customer Journey Map</title>
+  <style>
+    :root {
+      color-scheme: light;
+      --ink: #181818;
+      --muted: #706e6b;
+      --line: #c9c7c5;
+      --bg: #f3f3f3;
+      --card: #fff;
+      --blue: #0176d3;
+      --blue-dark: #032d60;
+      --cloud: #00a1e0;
+      --green: #2e844a;
+      --green-bg: #eaf5ee;
+      --green-b: #91c4a0;
+      --amber: #dd7a01;
+      --amber-bg: #fff4e5;
+      --amber-b: #f0b87a;
+      --red: #ba0517;
+      --red-bg: #fddde3;
+      --red-b: #f0a8b2;
+      --purple: #7526e3;
+      --purple-bg: #f3eefc;
+      --purple-b: #c9b3f0;
+      --teal: #0b827c;
+      --teal-bg: #e5f4f3;
+      --fe: #eef4ff;
+      --fe-b: #9ec3ea;
+      --sys: #fff8e8;
+      --sys-b: #e0c98a;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: "Salesforce Sans", "Segoe UI", system-ui, sans-serif;
+      background: var(--bg);
+      color: var(--ink);
+      font-size: 13px;
+      line-height: 1.4;
+    }
+
+    /* header */
+    .hdr {
+      background: #fff;
+      border-bottom: 1px solid var(--line);
+      padding: 14px 24px 12px;
+      position: sticky; top: 0; z-index: 40;
+    }
+    .hdr-top { display: flex; justify-content: space-between; gap: 16px; align-items: flex-start; }
+    .brand { font-weight: 700; color: var(--blue-dark); font-size: 12px; }
+    .brand span { font-weight: 400; color: var(--muted); }
+    h1 { margin: 2px 0 0; font-size: 20px; color: var(--blue-dark); }
+    h1 em { font-style: normal; color: var(--blue); }
+    .sub { margin: 4px 0 0; color: var(--muted); font-size: 12px; max-width: 640px; }
+    .hint-bar {
+      margin-top: 10px;
+      display: flex; flex-wrap: wrap; gap: 8px; align-items: center;
+      font-size: 12px; color: var(--muted);
+    }
+    .hint-bar .ico-demo {
+      width: 18px; height: 18px; border-radius: 50%;
+      background: var(--blue); color: #fff;
+      display: inline-flex; align-items: center; justify-content: center;
+      font-size: 11px; font-weight: 700; vertical-align: middle;
+    }
+    .toolbar { display: flex; gap: 8px; flex-wrap: wrap; }
+    .btn {
+      border: 1px solid var(--line); background: #fff; color: var(--blue-dark);
+      border-radius: 8px; padding: 6px 12px; font-size: 12px; font-weight: 600;
+      cursor: pointer; font-family: inherit;
+    }
+    .btn:hover { border-color: var(--blue); color: var(--blue); }
+    .btn.primary { background: var(--blue); color: #fff; border-color: var(--blue); }
+    .btn.primary:hover { background: var(--blue-dark); border-color: var(--blue-dark); }
+
+    .wrap {
+      padding: 20px clamp(16px, 3vw, 32px) 48px;
+      max-width: none;
+      width: 100%;
+    }
+
+    /* product chips — clickable */
+    .prod-key {
+      display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 18px; align-items: center;
+    }
+    .prod-key .label { font-size: 11px; font-weight: 700; color: var(--muted); text-transform: uppercase; letter-spacing: .04em; margin-right: 4px; }
+    .pk {
+      position: relative;
+      font-size: 12px; font-weight: 700; padding: 7px 28px 7px 12px; border-radius: 8px;
+      border: 1.5px solid; cursor: pointer; background: #fff;
+      font-family: inherit; transition: box-shadow .15s, transform .1s;
+    }
+    .pk:hover, .pk.open { box-shadow: 0 2px 8px rgba(3,45,96,.12); }
+    .pk.sales { border-color: #9ec3ea; color: var(--blue); }
+    .pk.service { border-color: #a5d6a7; color: #2e7d32; }
+    .pk.fins { border-color: #ffcc80; color: #ef6c00; }
+    .pk.afdc { border-color: var(--purple-b); color: var(--purple); }
+    .pk.mc { border-color: #7dcdc8; color: var(--teal); }
+    .pk .cta-ico {
+      position: absolute; top: 50%; right: 6px; transform: translateY(-50%);
+      width: 16px; height: 16px; border-radius: 50%;
+      background: var(--blue); color: #fff;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 9px; line-height: 1;
+    }
+
+    /* happy path section */
+    .path-label {
+      font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: .05em;
+      color: var(--green); margin: 0 0 10px;
+    }
+
+    /* full-width journey canvas */
+    .journey-stage {
+      width: 100%;
+      background: #fff;
+      border: 1px solid var(--line);
+      border-radius: 16px;
+      box-shadow: 0 2px 8px rgba(3,45,96,.06);
+      padding: 8px 0 4px;
+    }
+
+    .rail-scroll {
+      overflow-x: auto;
+      padding: 24px clamp(12px, 2vw, 28px) 28px;
+      -webkit-overflow-scrolling: touch;
+    }
+
+    .rail {
+      display: flex;
+      align-items: center;
+      gap: 0;
+      width: max-content;
+      min-width: 100%;
+      min-height: 184px;
+      padding: 6px 0;
+    }
+
+    /* slots prevent rotated diamonds + corner icons from clipping */
+    .node-slot,
+    .dec-slot {
+      position: relative;
+      flex-shrink: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .node-slot {
+      padding: 14px 12px 6px 6px;
+    }
+    .dec-slot {
+      width: 180px;
+      height: 180px;
+      padding: 16px;
+    }
+
+    .node {
+      position: relative;
+      flex-shrink: 0;
+      width: 132px;
+      min-height: 88px;
+      background: var(--card);
+      border: 2px solid var(--green-b);
+      border-radius: 12px;
+      padding: 12px 10px 10px;
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+      box-shadow: 0 1px 3px rgba(3,45,96,.06);
+      transition: border-color .15s, box-shadow .15s, background .15s;
+    }
+    .node.start { border-color: var(--cloud); }
+    .node.end { border-color: var(--green); background: var(--green-bg); }
+    .node.sys { border-color: var(--sys-b); background: var(--sys); }
+    .node-slot .node { width: 100%; }
+    .node.dec {
+      width: 100px; height: 100px; min-height: 0;
+      border-radius: 0; border-color: var(--amber-b); background: #fffaf3;
+      transform: rotate(45deg);
+      padding: 0;
+      align-items: center; justify-content: center;
+      margin: 0;
+    }
+    .node.dec .inner {
+      transform: rotate(-45deg);
+      text-align: center;
+      width: 86px;
+      padding: 4px;
+    }
+    .node.has-detail { cursor: default; }
+    .node.has-detail:hover,
+    .node.has-detail.open {
+      border-color: inherit;
+      box-shadow: 0 1px 3px rgba(3,45,96,.06);
+    }
+    .node.dec.has-detail:hover,
+    .node.dec.has-detail.open {
+      border-color: var(--amber-b);
+      box-shadow: none;
+    }
+
+    .n {
+      width: 22px; height: 22px; border-radius: 50%;
+      background: var(--blue); color: #fff;
+      font-size: 11px; font-weight: 700;
+      display: flex; align-items: center; justify-content: center;
+      flex-shrink: 0;
+    }
+    .node.start .n { background: var(--cloud); }
+    .node.end .n { background: var(--green); }
+    .node.sys .n { background: #8a6a1a; }
+    .node.dec .n { background: var(--amber); margin: 0 auto 4px; }
+
+    .node h3 {
+      margin: 0; font-size: 12.5px; color: var(--blue-dark); line-height: 1.25; font-weight: 700;
+    }
+    .node.dec h3 { font-size: 11px; }
+    .node .one-liner {
+      margin: 0; font-size: 11px; color: var(--muted); line-height: 1.3;
+    }
+    .node.dec .one-liner { display: none; }
+
+    /* corner CTA icon — expand / branch (on slot, not clipped) */
+    .node-slot .cta-ico,
+    .dec-slot .cta-ico {
+      position: absolute;
+      top: 2px;
+      right: 2px;
+      width: 22px;
+      height: 22px;
+      border-radius: 50%;
+      background: var(--blue);
+      color: #fff;
+      border: 2px solid #fff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 12px;
+      font-weight: 700;
+      box-shadow: 0 1px 4px rgba(3,45,96,.25);
+      z-index: 3;
+      pointer-events: none;
+      line-height: 1;
+    }
+    .dec-slot .cta-ico {
+      background: var(--amber);
+    }
+    .node-slot.has-detail,
+    .dec-slot.has-detail {
+      cursor: pointer;
+    }
+    .node-slot.has-detail:hover .node,
+    .node-slot.has-detail.open .node,
+    .dec-slot.has-detail:hover .node,
+    .dec-slot.has-detail.open .node {
+      border-color: var(--blue);
+      box-shadow: 0 4px 14px rgba(1,118,211,.18);
+    }
+    .dec-slot.has-detail:hover .node,
+    .dec-slot.has-detail.open .node {
+      border-color: var(--amber);
+      box-shadow: 0 4px 14px rgba(221,122,1,.22);
+    }
+    .node-slot.open .cta-ico,
+    .dec-slot.open .cta-ico,
+    .pk.open .cta-ico {
+      background: var(--blue-dark);
+    }
+    .node.open .cta-ico::after,
+    .cta-ico.x::after { content: none; }
+
+    .arr {
+      flex: 0 0 28px;
+      width: 28px;
+      min-width: 12px;
+      height: 3px;
+      align-self: center;
+      background: var(--green); opacity: .45;
+      position: relative;
+    }
+    .arr::after {
+      content: ""; position: absolute; right: -1px; top: 50%;
+      transform: translateY(-50%);
+      border-top: 5px solid transparent; border-bottom: 5px solid transparent;
+      border-left: 7px solid var(--green); opacity: .9;
+    }
+    .arr.after-dec { background: var(--amber); opacity: .55; }
+    .arr.after-dec::after { border-left-color: var(--amber); }
+
+    /* detail panel under rail */
+    .detail-host {
+      margin-top: 16px;
+      min-height: 0;
+    }
+    .panel {
+      display: none;
+      background: #fff;
+      border: 2px solid var(--blue);
+      border-radius: 14px;
+      padding: 16px 18px;
+      box-shadow: 0 6px 20px rgba(3,45,96,.1);
+      animation: rise .18s ease-out;
+      max-width: min(1100px, 100%);
+      width: 100%;
+    }
+    .panel.show { display: block; }
+    .panel.fork { border-color: var(--amber); }
+    .panel.oos { border-color: var(--red); }
+    .panel.prod.sales { border-color: #9ec3ea; }
+    .panel.prod.service { border-color: #a5d6a7; }
+    .panel.prod.fins { border-color: #ffcc80; }
+    .panel.prod.afdc { border-color: var(--purple-b); }
+    .panel.prod.mc { border-color: #7dcdc8; }
+
+    @keyframes rise {
+      from { opacity: 0; transform: translateY(-6px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .panel-head {
+      display: flex; justify-content: space-between; align-items: flex-start; gap: 12px;
+      margin-bottom: 12px; padding-bottom: 10px; border-bottom: 1px solid var(--line);
+    }
+    .panel-head h2 { margin: 0; font-size: 16px; color: var(--blue-dark); }
+    .panel-head .meta { margin: 3px 0 0; font-size: 12px; color: var(--muted); }
+    .close {
+      border: none; background: #f3f3f3; width: 28px; height: 28px; border-radius: 8px;
+      cursor: pointer; font-size: 16px; color: var(--muted); line-height: 1;
+      flex-shrink: 0;
+    }
+    .close:hover { background: #e5e5e5; color: var(--ink); }
+
+    .grid2 {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 10px;
+    }
+    @media (max-width: 720px) { .grid2 { grid-template-columns: 1fr; } }
+
+    .block {
+      border: 1px solid var(--line); border-radius: 10px; padding: 10px 12px; background: #fafaf9;
+    }
+    .block h3 {
+      margin: 0 0 6px; font-size: 10px; text-transform: uppercase; letter-spacing: .05em; color: var(--muted);
+    }
+    .block p, .block li { margin: 0; font-size: 13px; color: var(--ink); }
+    .block ul { margin: 0; padding-left: 18px; }
+    .block li + li { margin-top: 4px; }
+    .block.fe { background: var(--fe); border-color: var(--fe-b); }
+    .block.be { background: var(--purple-bg); border-color: var(--purple-b); }
+    .block.sys { background: var(--sys); border-color: var(--sys-b); }
+    .block.hp { background: var(--green-bg); border-color: var(--green-b); }
+    .block.fork { background: var(--amber-bg); border-color: var(--amber-b); }
+    .block.oos { background: var(--red-bg); border-color: var(--red-b); }
+
+    .fork-list { display: flex; flex-direction: column; gap: 8px; margin-top: 10px; }
+    .fork-row {
+      display: grid; grid-template-columns: 140px 1fr; gap: 10px; align-items: start;
+      border-left: 3px solid var(--amber); padding: 8px 10px; background: var(--amber-bg); border-radius: 0 8px 8px 0;
+    }
+    .fork-row.oos { border-left-color: var(--red); background: var(--red-bg); }
+    .fork-row .when { font-weight: 700; font-size: 12px; color: var(--blue-dark); }
+    .fork-row .then { font-size: 12.5px; }
+
+    .matrix-mini {
+      display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; margin-top: 8px;
+    }
+    @media (max-width: 720px) { .matrix-mini { grid-template-columns: 1fr; } }
+    .mcell {
+      border-radius: 10px; padding: 10px; border: 1.5px solid var(--line); font-size: 12.5px;
+    }
+    .mcell strong { display: block; font-size: 12px; color: var(--blue-dark); margin-bottom: 4px; }
+    .mcell.one { background: var(--green-bg); border-color: var(--green-b); }
+    .mcell.two { background: var(--fe); border-color: var(--fe-b); }
+    .mcell.many { background: var(--purple-bg); border-color: var(--purple-b); }
+    .mcell .agent { margin-top: 6px; padding-top: 6px; border-top: 1px dashed var(--line); color: var(--blue-dark); font-size: 12px; }
+
+    .systems-row {
+      display: flex; flex-wrap: wrap; gap: 6px; margin-top: 4px;
+    }
+    .sys-pill {
+      font-size: 11px; font-weight: 600; padding: 4px 9px; border-radius: 6px;
+      background: var(--sys); border: 1px solid var(--sys-b); color: #6b5420;
+    }
+
+    .empty-hint {
+      margin-top: 16px; padding: 14px 16px; border: 1.5px dashed var(--line);
+      border-radius: 12px; color: var(--muted); font-size: 13px; max-width: 640px;
+      background: #fff;
+    }
+    .empty-hint.hide { display: none; }
+
+    .footer {
+      margin-top: 28px; font-size: 12px; color: var(--muted); max-width: 800px;
+    }
+    .footer a { color: var(--blue); }
+
+    /* desktop: stretch happy path across viewport width */
+    @media (min-width: 1100px) {
+      .rail-scroll { overflow-x: visible; }
+      .rail {
+        width: 100%;
+        justify-content: space-between;
+        min-height: 180px;
+        padding: 8px 0;
+      }
+      .arr {
+        flex: 1 1 auto;
+        width: auto;
+        max-width: 56px;
+      }
+      .node-slot {
+        flex: 1 1 0;
+        min-width: 108px;
+        max-width: 148px;
+        padding: 14px 10px 6px 4px;
+      }
+      .node-slot .node {
+        width: 100%;
+        max-width: 140px;
+      }
+      .node.start,
+      .node.end {
+        width: 100%;
+        max-width: 128px;
+      }
+      .dec-slot {
+        flex: 0 0 180px;
+        width: 180px;
+      }
+      .detail-host .panel { max-width: 100%; }
+      .empty-hint { max-width: 100%; }
+    }
+
+    @media (min-width: 1440px) {
+      .node h3 { font-size: 13px; }
+      .node .one-liner { font-size: 11.5px; }
+      .arr { max-width: 72px; }
+      .node-slot { max-width: 160px; }
+      .node-slot .node { max-width: 152px; }
+    }
+  </style>
+</head>
+<body>
+  <div class="hdr">
+    <div class="hdr-top">
+      <div>
+        <div class="brand">Salesforce <span>Digital Success</span></div>
+        <h1>Onboarding &amp; Adoption · <em>multi-cloud</em> journey</h1>
+        <p class="sub">Happy path only on the board. Click a corner icon to open divergences, systems, and Agent behavior for that step or product.</p>
+      </div>
+      <div class="toolbar">
+        <button type="button" class="btn" id="btn-collapse">Collapse all</button>
+      </div>
+    </div>
+    <div class="hint-bar">
+      <span><span class="ico-demo">+</span> = click to expand</span>
+      <span>· Diamonds = decision forks</span>
+      <span>· Product chips below also expand</span>
+    </div>
+  </div>
+
+  <div class="wrap">
+    <div class="prod-key" aria-label="Eligible products">
+      <span class="label">Products</span>
+      <button type="button" class="pk sales has-detail" data-panel="prod-sales">Sales<span class="cta-ico" aria-hidden="true">+</span></button>
+      <button type="button" class="pk service has-detail" data-panel="prod-service">Service<span class="cta-ico" aria-hidden="true">+</span></button>
+      <button type="button" class="pk fins has-detail" data-panel="prod-fins">Financial Services<span class="cta-ico" aria-hidden="true">+</span></button>
+      <button type="button" class="pk afdc has-detail" data-panel="prod-afdc">Agentforce + Data Cloud<span class="cta-ico" aria-hidden="true">+</span></button>
+      <button type="button" class="pk mc has-detail" data-panel="prod-mc">Marketing Cloud Next<span class="cta-ico" aria-hidden="true">+</span></button>
+    </div>
+
+    <p class="path-label">Happy path · authenticated · O&amp;A eligible · single product</p>
+
+    <div class="journey-stage">
+    <div class="rail-scroll">
+      <div class="rail" role="list">
+
+        <div class="node-slot has-detail" role="listitem" tabindex="0" data-panel="step-1" aria-expanded="false">
+          <span class="cta-ico" aria-hidden="true">+</span>
+          <div class="node start">
+            <div class="n">1</div>
+            <h3>Arrive Help Home</h3>
+            <p class="one-liner">Help MFE</p>
+          </div>
+        </div>
+
+        <div class="arr after-dec" aria-hidden="true"></div>
+
+        <div class="dec-slot has-detail" role="listitem" tabindex="0" data-panel="step-2" aria-expanded="false">
+          <span class="cta-ico" aria-hidden="true">+</span>
+          <div class="node dec">
+            <div class="inner">
+              <div class="n">2</div>
+              <h3>Authenticated?</h3>
+            </div>
+          </div>
+        </div>
+
+        <div class="arr after-dec" aria-hidden="true"></div>
+
+        <div class="node-slot has-detail" role="listitem" tabindex="0" data-panel="step-3" aria-expanded="false">
+          <span class="cta-ico" aria-hidden="true">+</span>
+          <div class="node sys">
+            <div class="n">3</div>
+            <h3>Resolve eligibility</h3>
+            <p class="one-liner">Graph · CSS · OSD</p>
+          </div>
+        </div>
+
+        <div class="arr after-dec" aria-hidden="true"></div>
+
+        <div class="dec-slot has-detail" role="listitem" tabindex="0" data-panel="step-4" aria-expanded="false">
+          <span class="cta-ico" aria-hidden="true">+</span>
+          <div class="node dec">
+            <div class="inner">
+              <div class="n">4</div>
+              <h3>Any O&amp;A eligible?</h3>
+            </div>
+          </div>
+        </div>
+
+        <div class="arr after-dec" aria-hidden="true"></div>
+
+        <div class="dec-slot has-detail" role="listitem" tabindex="0" data-panel="step-5" aria-expanded="false">
+          <span class="cta-ico" aria-hidden="true">+</span>
+          <div class="node dec">
+            <div class="inner">
+              <div class="n">5</div>
+              <h3>Onb or Adp?</h3>
+            </div>
+          </div>
+        </div>
+
+        <div class="arr after-dec" aria-hidden="true"></div>
+
+        <div class="dec-slot has-detail" role="listitem" tabindex="0" data-panel="step-6" aria-expanded="false">
+          <span class="cta-ico" aria-hidden="true">+</span>
+          <div class="node dec">
+            <div class="inner">
+              <div class="n">6</div>
+              <h3># of products?</h3>
+            </div>
+          </div>
+        </div>
+
+        <div class="arr" aria-hidden="true"></div>
+
+        <div class="node-slot has-detail" role="listitem" tabindex="0" data-panel="step-7" aria-expanded="false">
+          <span class="cta-ico" aria-hidden="true">+</span>
+          <div class="node">
+            <div class="n">7</div>
+            <h3>Surface CTAs</h3>
+            <p class="one-liner">Card engine</p>
+          </div>
+        </div>
+
+        <div class="arr" aria-hidden="true"></div>
+
+        <div class="node-slot has-detail" role="listitem" tabindex="0" data-panel="step-8" aria-expanded="false">
+          <span class="cta-ico" aria-hidden="true">+</span>
+          <div class="node">
+            <div class="n">8</div>
+            <h3>Customer picks</h3>
+            <p class="one-liner">CTA or free-text</p>
+          </div>
+        </div>
+
+        <div class="arr after-dec" aria-hidden="true"></div>
+
+        <div class="dec-slot has-detail" role="listitem" tabindex="0" data-panel="step-9" aria-expanded="false">
+          <span class="cta-ico" aria-hidden="true">+</span>
+          <div class="node dec">
+            <div class="inner">
+              <div class="n">9</div>
+              <h3>In scope?</h3>
+            </div>
+          </div>
+        </div>
+
+        <div class="arr" aria-hidden="true"></div>
+
+        <div class="node-slot has-detail" role="listitem" tabindex="0" data-panel="step-10" aria-expanded="false">
+          <span class="cta-ico" aria-hidden="true">+</span>
+          <div class="node sys">
+            <div class="n">10</div>
+            <h3>Route + retrieve</h3>
+            <p class="one-liner">Topic · Retriever</p>
+          </div>
+        </div>
+
+        <div class="arr" aria-hidden="true"></div>
+
+        <div class="node-slot has-detail" role="listitem" tabindex="0" data-panel="step-11" aria-expanded="false">
+          <span class="cta-ico" aria-hidden="true">+</span>
+          <div class="node">
+            <div class="n">11</div>
+            <h3>Answer</h3>
+            <p class="one-liner">Product-grounded</p>
+          </div>
+        </div>
+
+        <div class="arr" aria-hidden="true"></div>
+
+        <div class="node-slot has-detail" role="listitem" tabindex="0" data-panel="step-12" aria-expanded="false">
+          <span class="cta-ico" aria-hidden="true">+</span>
+          <div class="node end">
+            <div class="n">12</div>
+            <h3>Act · return</h3>
+            <p class="one-liner">CSS / checklist refresh</p>
+          </div>
+        </div>
+      </div>
+    </div>
+    </div>
+
+    <div class="empty-hint" id="empty-hint">
+      Click any <strong>+</strong> on the happy path (or a product chip) to open systems called, divergences, and how the Agent replies.
+    </div>
+
+    <div class="detail-host" id="detail-host" aria-live="polite">
+
+      <!-- STEP PANELS -->
+      <div class="panel" id="step-1" data-kind="step">
+        <div class="panel-head">
+          <div>
+            <h2>1 · Arrive Help Home</h2>
+            <p class="meta">Happy path entry — no fork yet</p>
+          </div>
+          <button type="button" class="close" aria-label="Close">×</button>
+        </div>
+        <div class="grid2">
+          <div class="block fe"><h3>Front-end</h3><p>Customer opens Help / Success Guidance on Home.</p></div>
+          <div class="block sys"><h3>Systems</h3><div class="systems-row"><span class="sys-pill">Help MFE</span></div></div>
+        </div>
+      </div>
+
+      <div class="panel fork" id="step-2" data-kind="step">
+        <div class="panel-head">
+          <div>
+            <h2>2 · Authenticated?</h2>
+            <p class="meta">Decision · happy path = Yes</p>
+          </div>
+          <button type="button" class="close" aria-label="Close">×</button>
+        </div>
+        <div class="grid2">
+          <div class="block hp"><h3>Happy path (Yes)</h3><p>Session / TBID present → continue to eligibility.</p></div>
+          <div class="block sys"><h3>Systems</h3><div class="systems-row"><span class="sys-pill">Auth / TBID</span><span class="sys-pill">Help MFE</span></div></div>
+        </div>
+        <div class="fork-list">
+          <div class="fork-row oos">
+            <div class="when">No · unauth</div>
+            <div class="then"><strong>Diverge:</strong> GPG Welcome only — login for unused features / setup / best practices. Non-EN drops unused-features option. No Journey Cards · no Graph/CSS personalization.</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="panel" id="step-3" data-kind="step">
+        <div class="panel-head">
+          <div>
+            <h2>3 · Resolve eligibility</h2>
+            <p class="meta">System call · builds eligible product set</p>
+          </div>
+          <button type="button" class="close" aria-label="Close">×</button>
+        </div>
+        <div class="grid2">
+          <div class="block fe"><h3>Front-end</h3><p>Cards appear (or GPG if empty set).</p></div>
+          <div class="block be"><h3>Agent / back-end</h3><p>Build eligible set for Onboarding + Adoption across Sales, Service, FINS, AF+DC (nested), MC Next.</p></div>
+          <div class="block sys" style="grid-column:1/-1"><h3>Systems</h3>
+            <div class="systems-row">
+              <span class="sys-pill">Data Graph — SKU · OSD · In Progress</span>
+              <span class="sys-pill">CSS (± PDP) — features = 0</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="panel fork" id="step-4" data-kind="step">
+        <div class="panel-head">
+          <div>
+            <h2>4 · Any O&amp;A eligible?</h2>
+            <p class="meta">Decision · happy path = Yes</p>
+          </div>
+          <button type="button" class="close" aria-label="Close">×</button>
+        </div>
+        <div class="block hp"><h3>Happy path (Yes)</h3><p>At least one Onboarding or Adoption gate passes → continue to phase.</p></div>
+        <div class="fork-list">
+          <div class="fork-row oos">
+            <div class="when">No · empty set</div>
+            <div class="then"><strong>Diverge:</strong> Auth but fails all gates · no In Progress → GPG / Success Guidance fallback. Home not blank. No Discover / Get Started.</div>
+          </div>
+          <div class="fork-row">
+            <div class="when">Progress only</div>
+            <div class="then"><strong>Diverge:</strong> Ineligible for net-new but In Progress exists → Continue-only for that product. No new Get started.</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="panel fork" id="step-5" data-kind="step">
+        <div class="panel-head">
+          <div>
+            <h2>5 · Phase: Onboarding or Adoption?</h2>
+            <p class="meta">Decision · OSD / Agent_Led_Experience</p>
+          </div>
+          <button type="button" class="close" aria-label="Close">×</button>
+        </div>
+        <div class="grid2">
+          <div class="block hp"><h3>Happy path</h3><p>Single phase wins for the primary product → one card type (Get Started/Continue or Discover).</p></div>
+          <div class="block sys"><h3>Systems</h3><div class="systems-row"><span class="sys-pill">Data Graph OSD</span><span class="sys-pill">Agent_Led_Experience</span></div></div>
+        </div>
+        <div class="fork-list">
+          <div class="fork-row">
+            <div class="when">OSD bifurcate</div>
+            <div class="then"><strong>~&lt;90d</strong> → Onboarding checklist topic. <strong>≥~90d</strong> → Adoption unused-feature topic. Null OSD → Onboarding fallback. Dual-card possible if stalled Onboarding + Adoption CSS-eligible.</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="panel fork" id="step-6" data-kind="step">
+        <div class="panel-head">
+          <div>
+            <h2>6 · # of products?</h2>
+            <p class="meta">Decision · happy path on rail = 1 product. Expand for multi-product card + Agent rules.</p>
+          </div>
+          <button type="button" class="close" aria-label="Close">×</button>
+        </div>
+        <p style="margin:0 0 8px;font-size:12px;color:var(--muted)">Adoption priority: <strong>Sales &gt; Service &gt; Financial Services &gt; Marketing Cloud Next</strong>. Onboarding card products: Sales / Service / MC Next (AF+DC nests — not separate tiles).</p>
+        <div class="matrix-mini">
+          <div class="mcell one">
+            <strong>1 eligible</strong>
+            One CTA · Get Started / Continue or Discover for that product
+            <div class="agent">Agent: skip ask — enter that product’s topic.</div>
+          </div>
+          <div class="mcell two">
+            <strong>Exactly 2</strong>
+            Primary + secondary both on card
+            <div class="agent">Agent: honor clicked CTA. Free-text ambiguous → ask which product before retrieve.</div>
+          </div>
+          <div class="mcell many">
+            <strong>&gt;2 eligible</strong>
+            Primary + View more
+            <div class="agent">Agent: list eligible products → customer picks → retrieve for that product only.</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="panel" id="step-7" data-kind="step">
+        <div class="panel-head">
+          <div>
+            <h2>7 · Surface card CTAs</h2>
+            <p class="meta">Happy path · card engine shapes utterances</p>
+          </div>
+          <button type="button" class="close" aria-label="Close">×</button>
+        </div>
+        <div class="grid2">
+          <div class="block fe"><h3>Front-end</h3><p>Get Started / Continue · Discover Capabilities · View more (if multi-product).</p></div>
+          <div class="block be"><h3>Agent</h3><p>Utterances carry &lt;Product&gt; from eligibility — not hardcoded Sales/Service strings.</p></div>
+          <div class="block sys" style="grid-column:1/-1"><h3>Systems</h3>
+            <div class="systems-row"><span class="sys-pill">Card engine</span><span class="sys-pill">Priority sort</span><span class="sys-pill">Prompt initiators</span></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="panel" id="step-8" data-kind="step">
+        <div class="panel-head">
+          <div>
+            <h2>8 · Customer picks path</h2>
+            <p class="meta">Happy path · one clear CTA click</p>
+          </div>
+          <button type="button" class="close" aria-label="Close">×</button>
+        </div>
+        <div class="grid2">
+          <div class="block fe"><h3>Front-end</h3><p>Clicks product CTA, View more, or types free-text.</p></div>
+          <div class="block be"><h3>Agent</h3><p>If View more → disambiguation turn first (see step 6). Else bind product context on session.</p></div>
+        </div>
+        <div class="fork-list">
+          <div class="fork-row">
+            <div class="when">Multi-product pick</div>
+            <div class="then">Never assume Sales when they named MC Next / Service / FINS. One product context on session before retrieve.</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="panel fork oos" id="step-9" data-kind="step">
+        <div class="panel-head">
+          <div>
+            <h2>9 · Product in scope for topic?</h2>
+            <p class="meta">Decision · happy path = Yes</p>
+          </div>
+          <button type="button" class="close" aria-label="Close">×</button>
+        </div>
+        <div class="block hp"><h3>Happy path (Yes)</h3><p>Named / selected product is in Success O&amp;A set → route to Onboarding or Adoption topic.</p></div>
+        <div class="fork-list">
+          <div class="fork-row oos">
+            <div class="when">No · OOS product</div>
+            <div class="then"><strong>Diverge:</strong> Commerce, Experience, MCAE, standalone AF door, etc. → Topic router to Knowledge. Citations only · no fake unused-feature path · login invite only if real unlock.</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="panel" id="step-10" data-kind="step">
+        <div class="panel-head">
+          <div>
+            <h2>10 · Route + retrieve</h2>
+            <p class="meta">System call · shared retriever + product filter</p>
+          </div>
+          <button type="button" class="close" aria-label="Close">×</button>
+        </div>
+        <div class="grid2">
+          <div class="block fe"><h3>Front-end</h3><p>Thinking state while Agent works.</p></div>
+          <div class="block be"><h3>Agent</h3><p>Onboarding or Adoption topic · product context on session · product-aware chunk filter.</p></div>
+          <div class="block sys" style="grid-column:1/-1"><h3>Systems</h3>
+            <div class="systems-row">
+              <span class="sys-pill">Topic router</span>
+              <span class="sys-pill">Shared Adoption Retriever</span>
+              <span class="sys-pill">Product-aware chunk filter</span>
+            </div>
+          </div>
+        </div>
+        <div class="fork-list">
+          <div class="fork-row">
+            <div class="when">No hard product filter</div>
+            <div class="then">Soft Topic only → leakage risk across Sales / Service / FINS / AF / MC. Ideal state = chunk metadata filter per selected product (Helen redesign).</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="panel" id="step-11" data-kind="step">
+        <div class="panel-head">
+          <div>
+            <h2>11 · Answer for that product</h2>
+            <p class="meta">Happy path · grounded reply</p>
+          </div>
+          <button type="button" class="close" aria-label="Close">×</button>
+        </div>
+        <div class="grid2">
+          <div class="block fe"><h3>Front-end</h3><p>Nested steps · Sources / Additional Resources.</p></div>
+          <div class="block be"><h3>Agent</h3><p>Ground in product chunks. Adoption: CSS avenues for zeros. Onboarding: checklist phases (AF Phase 4 nested when entitled).</p></div>
+        </div>
+      </div>
+
+      <div class="panel fork" id="step-12" data-kind="step">
+        <div class="panel-head">
+          <div>
+            <h2>12 · Act · return</h2>
+            <p class="meta">Happy path end · then refresh gates</p>
+          </div>
+          <button type="button" class="close" aria-label="Close">×</button>
+        </div>
+        <div class="grid2">
+          <div class="block fe"><h3>Front-end</h3><p>Customer does the step · returns to Help.</p></div>
+          <div class="block sys"><h3>Systems</h3>
+            <div class="systems-row"><span class="sys-pill">Checklist progress</span><span class="sys-pill">CSS refresh</span><span class="sys-pill">OSD</span></div>
+          </div>
+        </div>
+        <div class="fork-list">
+          <div class="fork-row">
+            <div class="when">Gates flip</div>
+            <div class="then">CSS all &gt; 0 → drop Discover. OSD flip → phase may change. Checklist done → next avenue or Knowledge. Honest end — no silent script.</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- PRODUCT PANELS -->
+      <div class="panel prod sales" id="prod-sales" data-kind="prod">
+        <div class="panel-head">
+          <div>
+            <h2>Sales</h2>
+            <p class="meta">Onboarding + Adoption · highest Adoption multi-product priority</p>
+          </div>
+          <button type="button" class="close" aria-label="Close">×</button>
+        </div>
+        <div class="grid2">
+          <div class="block fe"><h3>Entry / CTA</h3><p>Get started with Sales · Continue my Sales setup · Discover unused Sales features</p></div>
+          <div class="block sys"><h3>Systems + signals</h3><p>Sales SKU · OSD · Sales CSS = 0 · checklist progress · AF nested if AF SKU</p></div>
+          <div class="block be"><h3>Agent does</h3><p>Onboarding: Phases 1–3 (+ Phase 4 AF/DC if entitled). Adoption: Sales CSS avenues. Retriever filter = Sales (+ AF only on nested ask).</p></div>
+          <div class="block fork"><h3>If they name another cloud</h3><p>Disambiguate — don’t hyper-focus Sales CSS when they said Service / MC Next / FINS.</p></div>
+        </div>
+      </div>
+
+      <div class="panel prod service" id="prod-service" data-kind="prod">
+        <div class="panel-head">
+          <div>
+            <h2>Service</h2>
+            <p class="meta">Onboarding + Adoption · #2 Adoption priority after Sales</p>
+          </div>
+          <button type="button" class="close" aria-label="Close">×</button>
+        </div>
+        <div class="grid2">
+          <div class="block fe"><h3>Entry / CTA</h3><p>Get started with Service · Continue my Service setup · Discover unused Service features</p></div>
+          <div class="block sys"><h3>Systems + signals</h3><p>Service SKU · OSD · Service CSS = 0 · progress · AF Service use cases nested if entitled</p></div>
+          <div class="block be"><h3>Agent does</h3><p>Same pattern as Sales for Service checklist / avenues. Product-aware retrieve for Service (+ nested AF when relevant).</p></div>
+          <div class="block fork"><h3>If they name another cloud</h3><p>Clarify product before retrieve. Don’t open FINS Discover from a Service Continue.</p></div>
+        </div>
+      </div>
+
+      <div class="panel prod fins" id="prod-fins" data-kind="prod">
+        <div class="panel-head">
+          <div>
+            <h2>Financial Services</h2>
+            <p class="meta">Adoption first · Onboarding gated / later · #3 Adoption (Industry)</p>
+          </div>
+          <button type="button" class="close" aria-label="Close">×</button>
+        </div>
+        <div class="grid2">
+          <div class="block fe"><h3>Entry / CTA</h3><p>Discover Capabilities · <em>Set up my unused Financial Services features</em></p></div>
+          <div class="block sys"><h3>Systems + signals</h3><p>FINS entitlement · CSS foundational FINS IDs · display label “Financial Services” (not “Industry”)</p></div>
+          <div class="block be"><h3>Agent does</h3><p>Adoption topic for FINS avenues only. Retriever filter = FINS. Do not start Sales Onboarding from a FINS Discover click.</p></div>
+          <div class="block oos"><h3>OOS / limits</h3><p>If FINS Onboarding still gated — no Get Started FINS card; Knowledge or wait for unlock.</p></div>
+        </div>
+      </div>
+
+      <div class="panel prod afdc" id="prod-afdc" data-kind="prod">
+        <div class="panel-head">
+          <div>
+            <h2>Agentforce + Data Cloud</h2>
+            <p class="meta">Onboarding = nested under Sales/Service · Adoption when CSS experience live</p>
+          </div>
+          <button type="button" class="close" aria-label="Close">×</button>
+        </div>
+        <div class="grid2">
+          <div class="block fe"><h3>Entry / CTA</h3><p>No standalone Get Started AF/DC card. Enters via Sales/Service Get started / Continue → Phase 4. Standalone “start Agentforce” free-text → clarify use case / parent cloud.</p></div>
+          <div class="block sys"><h3>Systems + signals</h3><p>AF/DC SKUs on Graph · nested in Sales/Service checklist · Adoption AF/DC CSS when unlocked · shared retriever already has AF/DC content</p></div>
+          <div class="block be"><h3>Agent does</h3><p>Onboarding: Phase 4 AF use cases + DC enablement inside parent journey. Adoption (if live): AF/DC avenues from CSS — else do not open AF/DC Adoption topic.</p></div>
+          <div class="block oos"><h3>OOS / limits</h3><p>Unauth “onboard me to Agentforce” → Knowledge / login — not a Success AF door. Don’t promise unused AF features until Adoption AF/DC CSS-ready.</p></div>
+        </div>
+      </div>
+
+      <div class="panel prod mc" id="prod-mc" data-kind="prod">
+        <div class="panel-head">
+          <div>
+            <h2>Marketing Cloud Next</h2>
+            <p class="meta">Onboarding + Adoption · Marketing App only · after Sales/Service in multi-product sort</p>
+          </div>
+          <button type="button" class="close" aria-label="Close">×</button>
+        </div>
+        <div class="grid2">
+          <div class="block fe"><h3>Entry / CTA</h3><p>Get started / Continue Marketing Cloud Next · Discover unused MC Next features</p></div>
+          <div class="block sys"><h3>Systems + signals</h3><p>Marketing App SKU only · OSD · MC Next CSS IDs · retriever filter Marketing App (not MCAE / Engagement / Intelligence)</p></div>
+          <div class="block be"><h3>Agent does</h3><p>Onboarding: data → segments → first campaign. Adoption: CSS = 0 MC Next avenues. Retrieve Marketing App chunks only.</p></div>
+          <div class="block oos"><h3>OOS / limits</h3><p>Pardot / MCAE / Engagement asks → boundary messaging + Knowledge / later wave — never treat as Marketing App Success personalization.</p></div>
+        </div>
+      </div>
+    </div>
+
+    <p class="footer">
+      Multi-cloud O&amp;A journey (ideal / target). Detail companion:
+      <a href="journey_mc-next-ideal-state-post-expansion.md">markdown appendix</a>
+      · Today Lucid:
+      <a href="https://lucid.app/lucidchart/b0f4816a-51b0-4f5f-a32f-d4e466909559/edit?invitationId=inv_3adb9b4a-ab0e-4f81-ae62-13d54b86d0f4&page=KSRMOsAN2i%7Eo#">Adoption experience today</a>
+      · Oct MC Next BRD:
+      <a href="https://docs.google.com/document/d/1eM8qN8QYb00EzzzC6kqzJu2o64yw4g-9MPPBNNrMtHo/edit">scope doc</a>
+    </p>
+  </div>
+
+  <script>
+    (function () {
+      var host = document.getElementById("detail-host");
+      var hint = document.getElementById("empty-hint");
+      var triggers = document.querySelectorAll("[data-panel]");
+      var panels = host.querySelectorAll(".panel");
+
+      function setIcon(el, open) {
+        var ico = el.querySelector(".cta-ico");
+        if (ico) ico.textContent = open ? "−" : "+";
+      }
+
+      function closeAll() {
+        panels.forEach(function (p) { p.classList.remove("show"); });
+        triggers.forEach(function (t) {
+          t.classList.remove("open");
+          t.setAttribute("aria-expanded", "false");
+          setIcon(t, false);
+        });
+        hint.classList.remove("hide");
+      }
+
+      function openPanel(id, trigger) {
+        var panel = document.getElementById(id);
+        if (!panel) return;
+        var already = panel.classList.contains("show") && trigger.classList.contains("open");
+        closeAll();
+        if (already) return;
+        panel.classList.add("show");
+        trigger.classList.add("open");
+        trigger.setAttribute("aria-expanded", "true");
+        setIcon(trigger, true);
+        hint.classList.add("hide");
+        panel.scrollIntoView({ behavior: "smooth", block: "nearest" });
+      }
+
+      triggers.forEach(function (t) {
+        t.addEventListener("click", function (e) {
+          e.preventDefault();
+          openPanel(t.getAttribute("data-panel"), t);
+        });
+        t.addEventListener("keydown", function (e) {
+          if (e.key === "Enter" || e.key === " ") {
+            e.preventDefault();
+            openPanel(t.getAttribute("data-panel"), t);
+          }
+        });
+      });
+
+      host.querySelectorAll(".close").forEach(function (btn) {
+        btn.addEventListener("click", function () {
+          closeAll();
+        });
+      });
+
+      document.getElementById("btn-collapse").addEventListener("click", closeAll);
+    })();
+  </script>
+</body>
+</html>

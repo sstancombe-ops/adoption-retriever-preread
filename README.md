@@ -14,6 +14,7 @@ Working artifacts for the alignment call on extending the **golden-set operating
 | [`utterance-effort-matrix.html`](./utterance-effort-matrix.html) | Utterance-effort scoping matrix — straw-man counts to correct live with Maya's team. |
 | [`trailhead_before_after.html`](./trailhead_before_after.html) | **WIP** Trailhead Wave 1A before/after — Practical Steps rewrite (Help-only → Trailhead + Help). Interactive toggle. |
 | [`journey-cards-walkthrough.html`](./journey-cards-walkthrough.html) | **Auth Help Home** interactive prototype — Get Started / Discover New Capabilities: on-card product CTAs (1–2) vs View more → agent asks (&gt;2). |
+| [`journey_oa-multi-cloud-ideal-state.html`](./journey_oa-multi-cloud-ideal-state.html) | **Multi-cloud O&amp;A journey map** — interactive happy path (Sales · Service · FINS · AF+DC · MC Next). Click **+** on any step for divergences, systems, and Agent behavior. |
 
 ## Viewing
 

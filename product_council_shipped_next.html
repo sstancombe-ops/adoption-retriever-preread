@@ -700,10 +700,10 @@ html, body {
   padding: 0;
   display: flex;
   flex-direction: column;
-  gap: 4px;
+  gap: 6px;
 }
 
-.af-steps li {
+.af-steps > li {
   font-size: 12.5px;
   font-weight: 400;
   line-height: 1.35;
@@ -712,7 +712,7 @@ html, body {
   position: relative;
 }
 
-.af-steps li::before {
+.af-steps > li::before {
   content: attr(data-n);
   position: absolute;
   left: 0;
@@ -722,7 +722,11 @@ html, body {
   color: #181818;
 }
 
-.af-steps li strong { font-weight: 700; }
+.af-steps > li > strong { font-weight: 700; }
+
+.af-steps .af-bullets {
+  margin-top: 3px;
+}
 
 .af-bullets {
   list-style: none;
@@ -1258,7 +1262,7 @@ html, body {
         <!-- Right: Agentforce response demo -->
         <div class="card demo-card">
           <div class="demo-toolbar">
-            <div class="demo-title">Example Response · Lead Management</div>
+            <div class="demo-title">Example Response · Activate &amp; Use Leads</div>
             <div class="demo-toggle" role="group" aria-label="Toggle before and after">
               <button type="button" id="btnBefore" class="active" data-mode="before">Before</button>
               <button type="button" id="btnAfter" data-mode="after">After</button>
@@ -1266,7 +1270,7 @@ html, body {
           </div>
 
           <div class="ha-panel" id="haPanel" data-mode="before">
-            <div class="ha-user">How do I use Lead Management to grow the number of customers?</div>
+            <div class="ha-user">How do I activate and use leads in Sales Cloud?</div>
 
             <div class="ha-thread">
               <!-- Thinking stencil (shown briefly on toggle) -->
@@ -1354,77 +1358,113 @@ html, body {
                 </div>
               </div>
 
-              <!-- AFTER: full +Trailhead-grounded answer -->
+              <!-- AFTER: Roxanne UAT example — TH-powered Onboarding answer (actionability + click paths) -->
               <div class="ha-view after">
                 <div class="af-row">
                   <div class="af-astro" aria-hidden="true"></div>
                   <div class="af-main">
                   <div class="af-scroll">
                     <div class="af-block">
-                      <div class="af-section">Overview:</div>
-                      <p class="af-p">Lead Management in Salesforce helps businesses efficiently track, qualify, and convert leads into opportunities. It bridges the gap between marketing and sales by providing tools to manage the entire lead lifecycle, from initial contact to conversion.</p>
+                      <p class="af-p">To activate and use leads in Sales Cloud, follow these steps:</p>
                     </div>
 
                     <div class="af-block">
-                      <div class="af-section">Steps to Enable Lead Management:</div>
+                      <div class="af-section">Activating Leads:</div>
                       <ol class="af-steps">
-                        <li data-n="1.">Navigate to <strong>Setup</strong> in Salesforce.</li>
-                        <li data-n="2.">Search for <strong>Lead Settings</strong> in the Quick Find box.</li>
-                        <li data-n="3.">Configure default lead settings, including assignment rules and lead status picklists.</li>
-                        <li data-n="4.">Enable <strong>Lead Intelligence View</strong> for enhanced insights.</li>
-                        <li data-n="5.">Set up <strong>Web-to-Lead</strong> to capture leads from your website.</li>
-                        <li data-n="6.">If using LinkedIn Lead Gen ads, connect them for automatic lead creation.<span class="af-cite">2</span></li>
+                        <li data-n="1.">
+                          <strong>Enable Lead Settings:</strong>
+                          <ul class="af-bullets">
+                            <li>Go to <strong>Setup</strong> in Salesforce.</li>
+                            <li>Search for <strong>Lead Settings</strong> in the Quick Find box.</li>
+                            <li>Click <strong>Edit</strong> and enable the required lead settings, such as “Require Validation for Converted Leads” if applicable.</li>
+                            <li>Save your changes.<span class="af-cite">2</span></li>
+                          </ul>
+                        </li>
+                        <li data-n="2.">
+                          <strong>Set Up Lead Assignment Rules:</strong>
+                          <ul class="af-bullets">
+                            <li>Navigate to <strong>Setup</strong> &gt; <strong>Lead Assignment Rules</strong>.</li>
+                            <li>Create rules to automatically assign leads to specific users or queues based on criteria like region or lead source.</li>
+                          </ul>
+                        </li>
+                        <li data-n="3.">
+                          <strong>Configure Lead Status Values:</strong>
+                          <ul class="af-bullets">
+                            <li>Go to <strong>Setup</strong> &gt; <strong>Object Manager</strong> &gt; <strong>Lead</strong> &gt; <strong>Fields &amp; Relationships</strong>.</li>
+                            <li>Click on <strong>Lead Status</strong> and define the stages (e.g., New, Contacted, Qualified).</li>
+                          </ul>
+                        </li>
+                        <li data-n="4.">
+                          <strong>Create Lead Record Types (if needed):</strong>
+                          <ul class="af-bullets">
+                            <li>In <strong>Object Manager</strong>, select <strong>Lead</strong> &gt; <strong>Record Types</strong>.</li>
+                            <li>Create different record types for various lead categories.</li>
+                          </ul>
+                        </li>
+                        <li data-n="5.">
+                          <strong>Set Up Web-to-Lead:</strong>
+                          <ul class="af-bullets">
+                            <li>Navigate to <strong>Setup</strong> &gt; <strong>Web-to-Lead</strong>.</li>
+                            <li>Configure forms to capture leads directly from your website.</li>
+                          </ul>
+                        </li>
                       </ol>
-                      <p class="af-cta"><a href="#">Ready to enable Lead Management for your team?</a></p>
                     </div>
 
                     <div class="af-block">
-                      <div class="af-section">Practical Steps to Use Lead Management:</div>
+                      <div class="af-section">Using Leads:</div>
                       <ol class="af-steps">
-                        <li data-n="1."><strong>Generate Leads</strong>: Use Web-to-Lead or LinkedIn Lead Gen ads to capture leads.<span class="af-cite">1</span></li>
-                        <li data-n="2."><strong>Qualify Leads</strong>: Use custom lead fields to track specific information and qualify leads.</li>
-                        <li data-n="3."><strong>Assign Leads</strong>: Set up lead assignment rules to route leads to the right sales reps.<span class="af-cite">2</span></li>
-                        <li data-n="4."><strong>Nurture Leads</strong>: Engage leads with personalized communication to build trust.</li>
-                        <li data-n="5."><strong>Convert Leads</strong>: Map custom lead fields to account, contact, and opportunity fields.</li>
+                        <li data-n="1.">
+                          <strong>Capture Leads:</strong>
+                          <ul class="af-bullets">
+                            <li>Use Web-to-Lead forms, import leads, or manually create them in the <strong>Leads</strong> tab.</li>
+                          </ul>
+                        </li>
+                        <li data-n="2.">
+                          <strong>Manage Leads:</strong>
+                          <ul class="af-bullets">
+                            <li>Use the <strong>Leads</strong> tab to view and update lead records.</li>
+                            <li>Assign leads to sales reps or queues using assignment rules.</li>
+                          </ul>
+                        </li>
+                        <li data-n="3.">
+                          <strong>Convert Leads:</strong>
+                          <ul class="af-bullets">
+                            <li>Once a lead is qualified, click <strong>Convert</strong> to create an Account, Contact, and Opportunity.</li>
+                          </ul>
+                        </li>
+                        <li data-n="4.">
+                          <strong>Track and Report:</strong>
+                          <ul class="af-bullets">
+                            <li>Use dashboards and reports to monitor lead performance and conversion rates.</li>
+                          </ul>
+                        </li>
                       </ol>
-                    </div>
-
-                    <div class="af-block">
-                      <div class="af-section">Value to Your Organization:</div>
-                      <ul class="af-bullets">
-                        <li>Streamlines the lead lifecycle, ensuring no lead is overlooked.</li>
-                        <li>Enhances collaboration between marketing and sales teams.</li>
-                        <li>Provides actionable insights to improve marketing strategies.</li>
-                        <li>Increases efficiency with automated lead routing and assignment.</li>
-                        <li>Boosts ROI by focusing on high-quality leads.</li>
-                      </ul>
                     </div>
 
                     <div class="af-block">
                       <div class="af-section">Additional Resources:</div>
                       <ul class="af-link-list">
-                        <li><a href="#">Grow Your Business with Agentforce Sales</a></li>
-                        <li><a href="#">Explore Strategies for Effective Lead Generation, Qualification, and Conversion</a></li>
-                        <li><a href="#">Set Up Leads</a></li>
+                        <li><a href="https://trailhead.salesforce.com/content/learn/modules/prospect-tracking-with-salesforce-leads-quick-look/track-prospects-with-salesforce-leads">Track Prospects with Salesforce Leads</a></li>
+                        <li><a href="#">Resolve and Prevent Duplicate Data in Salesforce</a></li>
                       </ul>
+                    </div>
+
+                    <div class="af-block">
+                      <p class="af-p">Would you like additional resources to explore? As a Signature customer, would you like to reach out to an Onboarding Specialist?</p>
                     </div>
                   </div>
                   <div class="af-sources">
-                      <div class="af-sources-title">Sources (3)</div>
-                      <div class="af-source-grid cols-3">
+                      <div class="af-sources-title">Sources (2)</div>
+                      <div class="af-source-grid">
                         <div class="af-source">
                           <div class="af-source-domain">1. Trailhead.salesforce.com</div>
-                          <a class="af-source-title" href="#">Grow Your Business with Agentforce Sales</a>
+                          <a class="af-source-title" href="https://trailhead.salesforce.com/content/learn/modules/prospect-tracking-with-salesforce-leads-quick-look/track-prospects-with-salesforce-leads">Track Prospects with Salesforce Leads</a>
                           <svg class="af-source-icon" viewBox="0 0 12 12" fill="none" aria-hidden="true"><path d="M4.5 2H10v5.5M10 2L3 9" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/></svg>
                         </div>
                         <div class="af-source">
-                          <div class="af-source-domain">2. Trailhead.salesforce.com</div>
-                          <a class="af-source-title" href="#">Lead Generation, Qualification &amp; Conversion</a>
-                          <svg class="af-source-icon" viewBox="0 0 12 12" fill="none" aria-hidden="true"><path d="M4.5 2H10v5.5M10 2L3 9" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/></svg>
-                        </div>
-                        <div class="af-source">
-                          <div class="af-source-domain">3. Help.salesforce.com</div>
-                          <a class="af-source-title" href="#">Configure Lead Management</a>
+                          <div class="af-source-domain">2. Help.salesforce.com</div>
+                          <a class="af-source-title" href="#">Sales: Enable Use Apex Lead Convert for Validation Rules on Lead Conversion</a>
                           <svg class="af-source-icon" viewBox="0 0 12 12" fill="none" aria-hidden="true"><path d="M4.5 2H10v5.5M10 2L3 9" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/></svg>
                         </div>
                       </div>

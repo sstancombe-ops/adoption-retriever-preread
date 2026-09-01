@@ -386,6 +386,67 @@
       background: var(--sys); border: 1px solid var(--sys-b); color: #6b5420;
     }
 
+    /* Success Guidance / GPG entry path */
+    .entry-key {
+      display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 14px; align-items: center;
+    }
+    .entry-key .label { font-size: 11px; font-weight: 700; color: var(--muted); text-transform: uppercase; letter-spacing: .04em; margin-right: 4px; }
+    .pk.gpg {
+      border-color: var(--amber-b); color: #a15c00; background: var(--amber-bg);
+    }
+    .pk.gpg .cta-ico { background: var(--amber); }
+    .panel.entry-gpg { border-color: var(--amber); max-width: 100%; }
+    .gpg-flow {
+      display: flex; flex-wrap: wrap; align-items: center; gap: 8px;
+      margin: 0 0 14px; padding: 10px 12px; border-radius: 10px;
+      background: var(--amber-bg); border: 1px solid var(--amber-b);
+      font-size: 12.5px; color: var(--blue-dark);
+    }
+    .gpg-flow .pill {
+      font-weight: 700; padding: 4px 10px; border-radius: 6px;
+      background: #fff; border: 1px solid var(--amber-b); font-size: 11.5px;
+    }
+    .gpg-flow .arrow { color: var(--amber); font-weight: 700; }
+    .gpg-opts {
+      display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; margin-top: 4px;
+    }
+    @media (max-width: 900px) { .gpg-opts { grid-template-columns: 1fr; } }
+    .gpg-opt {
+      border: 1.5px solid var(--line); border-radius: 12px; padding: 12px 12px 10px;
+      background: #fafaf9; display: flex; flex-direction: column; gap: 8px;
+    }
+    .gpg-opt.o1 { border-color: var(--green-b); background: var(--green-bg); }
+    .gpg-opt.o2 { border-color: var(--fe-b); background: var(--fe); }
+    .gpg-opt.o3 { border-color: var(--purple-b); background: var(--purple-bg); }
+    .gpg-opt .num {
+      width: 22px; height: 22px; border-radius: 50%;
+      background: var(--blue); color: #fff; font-size: 11px; font-weight: 700;
+      display: inline-flex; align-items: center; justify-content: center;
+    }
+    .gpg-opt.o1 .num { background: var(--green); }
+    .gpg-opt.o2 .num { background: var(--blue); }
+    .gpg-opt.o3 .num { background: var(--purple); }
+    .gpg-opt h3 {
+      margin: 0; font-size: 13px; color: var(--blue-dark); line-height: 1.3; font-weight: 700;
+      display: flex; gap: 8px; align-items: flex-start;
+    }
+    .gpg-opt .label-user {
+      font-size: 12px; color: var(--ink); line-height: 1.35; font-weight: 600;
+    }
+    .gpg-opt dl {
+      margin: 0; display: grid; gap: 6px; font-size: 12px;
+    }
+    .gpg-opt dt {
+      font-size: 10px; text-transform: uppercase; letter-spacing: .04em;
+      color: var(--muted); font-weight: 700; margin: 0;
+    }
+    .gpg-opt dd { margin: 0; color: var(--ink); line-height: 1.35; }
+    .gpg-opt .tag {
+      display: inline-block; font-size: 10.5px; font-weight: 700;
+      padding: 2px 7px; border-radius: 4px; margin-right: 4px; margin-bottom: 2px;
+      background: #fff; border: 1px solid var(--line); color: var(--blue-dark);
+    }
+
     .empty-hint {
       margin-top: 16px; padding: 14px 16px; border: 1.5px dashed var(--line);
       border-radius: 12px; color: var(--muted); font-size: 13px; max-width: 640px;
@@ -460,10 +521,16 @@
       <span><span class="ico-demo">+</span> = click to expand</span>
       <span>· Diamonds = decision forks</span>
       <span>· Product chips below also expand</span>
+      <span>· Amber chip = Success Guidance / GPG divergence</span>
     </div>
   </div>
 
   <div class="wrap">
+    <div class="entry-key" aria-label="Entry path divergences">
+      <span class="label">Entry</span>
+      <button type="button" class="pk gpg has-detail" data-panel="entry-gpg">Get Product Guidance · Success Entry<span class="cta-ico" aria-hidden="true">+</span></button>
+    </div>
+
     <div class="prod-key" aria-label="Eligible products">
       <span class="label">Products</span>
       <button type="button" class="pk sales has-detail" data-panel="prod-sales">Sales<span class="cta-ico" aria-hidden="true">+</span></button>
@@ -618,7 +685,7 @@
     </div>
 
     <div class="empty-hint" id="empty-hint">
-      Click any <strong>+</strong> on the happy path (or a product chip) to open systems called, divergences, and how the Agent replies.
+      Click any <strong>+</strong> on the happy path, a product chip, or the amber <strong>Get Product Guidance</strong> entry chip to open systems, divergences, and how the Agent replies.
     </div>
 
     <div class="detail-host" id="detail-host" aria-live="polite">
@@ -628,13 +695,22 @@
         <div class="panel-head">
           <div>
             <h2>1 · Arrive Help Home</h2>
-            <p class="meta">Happy path entry — no fork yet</p>
+            <p class="meta">Which Success door appears depends on auth + eligibility</p>
           </div>
           <button type="button" class="close" aria-label="Close">×</button>
         </div>
         <div class="grid2">
-          <div class="block fe"><h3>Front-end</h3><p>Customer opens Help / Success Guidance on Home.</p></div>
-          <div class="block sys"><h3>Systems</h3><div class="systems-row"><span class="sys-pill">Help MFE</span></div></div>
+          <div class="block fe"><h3>Front-end</h3>
+            <ul>
+              <li><strong>Unauth</strong> → always-on card <em>Get Product Guidance</em> (no Onboarding / Discover Journey Cards).</li>
+              <li><strong>Auth + O&amp;A eligible</strong> → Journey Cards (happy path on this board).</li>
+              <li><strong>Auth + ineligible for both</strong> + no resumable In Progress → same GPG / Success Guidance door (Home not blank).</li>
+            </ul>
+          </div>
+          <div class="block sys"><h3>Systems</h3><div class="systems-row"><span class="sys-pill">Help MFE</span><span class="sys-pill">Homepage payload</span></div></div>
+          <div class="block fork" style="grid-column:1/-1"><h3>GPG CTA click</h3>
+            <p>Opens Help Agent <strong>full-screen</strong> → Success Welcome Message (three EN options / two non-EN). Does <em>not</em> auto-start Onboarding or Adoption. Expand the amber <strong>Get Product Guidance · Success Entry</strong> chip for the full post-selection contract.</p>
+          </div>
         </div>
       </div>
 
@@ -642,19 +718,27 @@
         <div class="panel-head">
           <div>
             <h2>2 · Authenticated?</h2>
-            <p class="meta">Decision · happy path = Yes</p>
+            <p class="meta">Decision · happy path = Yes · No = Success Guidance Entry</p>
           </div>
           <button type="button" class="close" aria-label="Close">×</button>
         </div>
         <div class="grid2">
-          <div class="block hp"><h3>Happy path (Yes)</h3><p>Session / TBID present → continue to eligibility.</p></div>
-          <div class="block sys"><h3>Systems</h3><div class="systems-row"><span class="sys-pill">Auth / TBID</span><span class="sys-pill">Help MFE</span></div></div>
+          <div class="block hp"><h3>Happy path (Yes)</h3><p>Session / TBID present → continue to eligibility (step 3).</p></div>
+          <div class="block sys"><h3>Systems</h3><div class="systems-row"><span class="sys-pill">Auth / TBID</span><span class="sys-pill">Help MFE</span><span class="sys-pill">Agent V2 (100%)</span></div></div>
         </div>
         <div class="fork-list">
           <div class="fork-row oos">
             <div class="when">No · unauth</div>
-            <div class="then"><strong>Diverge:</strong> GPG Welcome only — login for unused features / setup / best practices. Non-EN drops unused-features option. No Journey Cards · no Graph/CSS personalization.</div>
+            <div class="then"><strong>Diverge → Success Guidance Entry.</strong> No Journey Cards · no Graph/CSS personalization · no Adoption Retriever. Agent shows Success Welcome, then routes by option (see amber chip). Non-EN Welcome omits unused-features (option 1).</div>
           </div>
+        </div>
+        <div class="block fe" style="margin-top:10px"><h3>Success Welcome (deterministic)</h3>
+          <p>Immediately after GPG CTA: present journey choices + auth hook (“sign in for org-specific unused features and a saved checklist”). User may continue unauthenticated. Prod labels (locked Aug 17):</p>
+          <ol style="margin:8px 0 0;padding-left:18px">
+            <li>Sign in to learn what Sales or Service features I'm not using</li>
+            <li>Get help with Salesforce configuration</li>
+            <li>Learn best practices for configuring and using Salesforce</li>
+          </ol>
         </div>
       </div>
 
@@ -690,7 +774,7 @@
         <div class="fork-list">
           <div class="fork-row oos">
             <div class="when">No · empty set</div>
-            <div class="then"><strong>Diverge:</strong> Auth but fails all gates · no In Progress → GPG / Success Guidance fallback. Home not blank. No Discover / Get Started.</div>
+            <div class="then"><strong>Diverge:</strong> Auth but fails all gates · no In Progress → same <em>Get Product Guidance</em> / Success Guidance fallback as unauth (Welcome → options 2/3; option 1 only if they sign in again for Adoption eligibility). Home not blank. No Discover / Get Started. See amber chip for post-selection routing.</div>
           </div>
           <div class="fork-row">
             <div class="when">Progress only</div>
@@ -864,6 +948,116 @@
         </div>
       </div>
 
+      <!-- SUCCESS GUIDANCE / GPG ENTRY -->
+      <div class="panel entry-gpg fork" id="entry-gpg" data-kind="entry">
+        <div class="panel-head">
+          <div>
+            <h2>Success Guidance Entry · Get Product Guidance</h2>
+            <p class="meta">Unauth (always) · Auth ineligible fallback · Prod contract Aug 31 · Agent V2 100%</p>
+          </div>
+          <button type="button" class="close" aria-label="Close">×</button>
+        </div>
+
+        <div class="gpg-flow" aria-label="GPG flow">
+          <span class="pill">Home · Get Product Guidance</span>
+          <span class="arrow">→</span>
+          <span class="pill">Full-screen Agent · Success Welcome</span>
+          <span class="arrow">→</span>
+          <span class="pill">User picks 1 · 2 · or 3</span>
+          <span class="arrow">→</span>
+          <span class="pill">Topic + retriever below</span>
+        </div>
+
+        <div class="grid2" style="margin-bottom:12px">
+          <div class="block fe"><h3>When this door shows</h3>
+            <ul>
+              <li>Unauthenticated on Help Home (always-on GPG card).</li>
+              <li>Authenticated but <strong>not</strong> Onboarding- or Adoption-eligible and no resumable In Progress.</li>
+            </ul>
+          </div>
+          <div class="block oos"><h3>Hard constraints</h3>
+            <ul>
+              <li><strong>Unauth never enters Adoption</strong> (needs auth + entitlement + CSS unused = 0).</li>
+              <li><strong>Adoption Retriever is auth-only</strong> — unauth best practices / OOS use <strong>Knowledge</strong>.</li>
+              <li>Onboarding Success door = <strong>Sales / Service</strong> only (AF/DC nested).</li>
+              <li>Non-EN Welcome: <strong>no option 1</strong> (setup + best practices only).</li>
+            </ul>
+          </div>
+        </div>
+
+        <h3 style="margin:4px 0 8px;font-size:12px;text-transform:uppercase;letter-spacing:.05em;color:var(--muted)">Post-selection · what happens</h3>
+        <div class="gpg-opts">
+
+          <article class="gpg-opt o1">
+            <h3><span class="num">1</span><span>Unused features (Adoption teaser)</span></h3>
+            <p class="label-user">“Sign in to learn what Sales or Service features I'm not using”</p>
+            <dl>
+              <dt>While still unauth</dt>
+              <dd>Trigger <strong>standard login</strong>. Do <em>not</em> start Adoption. Keep pre- and post-login turns in the same transcript.</dd>
+              <dt>After login</dt>
+              <dd>Run <strong>Adoption eligibility</strong> (entitlement + CSS unused-feature = 0) before any Adoption topic.</dd>
+              <dt>If eligible → topic</dt>
+              <dd><span class="tag">Adoption subagent</span> Sales / Service / FINS (Sept experience). AF/DC not an Adoption topic yet.</dd>
+              <dt>Retriever hit</dt>
+              <dd><span class="tag">Adoption Retriever</span> product-aware filter for the eligible cloud. Not Knowledge.</dd>
+              <dt>Deterministic experience</dt>
+              <dd>Unused-feature / Discover-style guidance for CSS = 0 avenues. Org-personalized after auth.</dd>
+              <dt>If not eligible after login</dt>
+              <dd><strong>No Adoption topic.</strong> Explicit fallback (“I only have insights on certain [product] capabilities…”) → offer options <strong>2</strong> and <strong>3</strong> / Knowledge. Do not silent-fail into a generic Adoption script.</dd>
+            </dl>
+          </article>
+
+          <article class="gpg-opt o2">
+            <h3><span class="num">2</span><span>Configuration help (Onboarding)</span></h3>
+            <p class="label-user">“Get help with Salesforce configuration”</p>
+            <dl>
+              <dt>Intended topic</dt>
+              <dd><span class="tag">Onboarding subagent</span> when product is <strong>Sales or Service</strong> (or setup intent without a named OOS cloud). Prod = <strong>Agent V2 100%</strong> — option 2 hands off to Onboarding.</dd>
+              <dt>Retriever hit</dt>
+              <dd><span class="tag">Adoption Retriever</span> (shared O&amp;A index) with Onboarding topic / checklist instructions — Sales or Service parent; AF/DC only as <em>nested</em> Phase 4 when entitled, not a standalone Success door.</dd>
+              <dt>Deterministic experience</dt>
+              <dd>Checklist phases → steps → actions. Progress <strong>not saved</strong> until login; Agent should say so. Stay in Onboarding until exit criteria (V2 stickiness).</dd>
+              <dt>If OOS product named</dt>
+              <dd>Do <em>not</em> start Onboarding or Adoption. Route to <span class="tag">Knowledge</span> with citations. Optional login invite only if it would unlock a real Success topic.</dd>
+              <dt>Mid-conversation OOS</dt>
+              <dd>Off-topic returns to primary router → <strong>Knowledge</strong>, not a forced Sales/Service checklist step that ignores the utterance.</dd>
+            </dl>
+          </article>
+
+          <article class="gpg-opt o3">
+            <h3><span class="num">3</span><span>Best practices (Knowledge)</span></h3>
+            <p class="label-user">“Learn best practices for configuring and using Salesforce”</p>
+            <dl>
+              <dt>Topic</dt>
+              <dd><span class="tag">Knowledge</span> (Help Agent Knowledge ensemble). Never Onboarding or Adoption.</dd>
+              <dt>Retriever hit</dt>
+              <dd><span class="tag">Knowledge Retriever</span> / Help ensemble — <strong>not</strong> the Adoption Retriever. Citations required.</dd>
+              <dt>Deterministic experience</dt>
+              <dd>Clarify product / role / goal first, then cited best-practice answer. No unused-feature / CSS personalization. No checklist progress.</dd>
+              <dt>Any product</dt>
+              <dd>Works for in-scope and OOS clouds. Do not promise “features you're not using” without login + eligibility.</dd>
+            </dl>
+          </article>
+
+        </div>
+
+        <div class="block sys" style="margin-top:12px"><h3>Systems on this path</h3>
+          <div class="systems-row">
+            <span class="sys-pill">Help MFE · GPG card</span>
+            <span class="sys-pill">Agent V2 · Success Welcome</span>
+            <span class="sys-pill">Login / TBID (option 1)</span>
+            <span class="sys-pill">Onboarding topic (option 2 · Sales/Service)</span>
+            <span class="sys-pill">Adoption topic + CSS (option 1 · post-auth eligible)</span>
+            <span class="sys-pill">Knowledge ensemble (option 3 · OOS · ineligible fallback)</span>
+            <span class="sys-pill">Adoption Retriever (auth O&amp;A only)</span>
+          </div>
+        </div>
+        <p style="margin:10px 0 0;font-size:12px;color:var(--muted)">Eng contract:
+          <a href="https://docs.google.com/document/d/1i24XXDsD3stXP0E7KDAswq9oF1oqLkXfp9xf7H6WV08/edit" style="color:var(--blue)">Success Guidance unauth entry (prod requirements)</a>
+          · Local: <code style="font-size:11px">projects/homepage-journey-cards/notes/req_success-guidance-unauth-entry_2026-08-31.md</code>
+        </p>
+      </div>
+
       <!-- PRODUCT PANELS -->
       <div class="panel prod sales" id="prod-sales" data-kind="prod">
         <div class="panel-head">
@@ -953,6 +1147,8 @@
       <a href="https://lucid.app/lucidchart/b0f4816a-51b0-4f5f-a32f-d4e466909559/edit?invitationId=inv_3adb9b4a-ab0e-4f81-ae62-13d54b86d0f4&page=KSRMOsAN2i%7Eo#">Adoption experience today</a>
       · Oct MC Next BRD:
       <a href="https://docs.google.com/document/d/1eM8qN8QYb00EzzzC6kqzJu2o64yw4g-9MPPBNNrMtHo/edit">scope doc</a>
+      · Success Guidance / GPG (prod):
+      <a href="https://docs.google.com/document/d/1i24XXDsD3stXP0E7KDAswq9oF1oqLkXfp9xf7H6WV08/edit">unauth entry contract</a>
     </p>
   </div>
 

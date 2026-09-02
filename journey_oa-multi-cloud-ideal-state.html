@@ -42,6 +42,8 @@
       color: var(--ink);
       font-size: 13px;
       line-height: 1.4;
+      overflow-x: hidden;
+      max-width: 100%;
     }
 
     /* header */
@@ -80,8 +82,9 @@
 
     .wrap {
       padding: 20px clamp(16px, 3vw, 32px) 48px;
-      max-width: none;
+      max-width: 100%;
       width: 100%;
+      overflow-x: hidden;
     }
 
     /* product chips — clickable */
@@ -115,9 +118,10 @@
       color: var(--green); margin: 0 0 10px;
     }
 
-    /* full-width journey canvas */
+    /* full-width journey canvas — rail scales to this box, never paints outside it */
     .journey-stage {
       width: 100%;
+      overflow: hidden;
       background: #fff;
       border: 1px solid var(--line);
       border-radius: 16px;
@@ -127,8 +131,21 @@
 
     .rail-scroll {
       overflow-x: auto;
+      overflow-y: hidden;
+      width: 100%;
       padding: 24px clamp(12px, 2vw, 28px) 28px;
       -webkit-overflow-scrolling: touch;
+    }
+
+    .rail-fit {
+      display: block;
+      width: max-content;
+      max-width: 100%;
+      overflow: hidden;
+    }
+
+    .rail-scaler {
+      transform-origin: top left;
     }
 
     .rail {
@@ -139,6 +156,35 @@
       min-width: 100%;
       min-height: 184px;
       padding: 6px 0;
+    }
+
+    /* extra viewport width: grow arrows/nodes instead of leaving empty card */
+    .rail.is-fitted {
+      width: 100%;
+      justify-content: space-between;
+    }
+    .rail.is-fitted .arr {
+      flex: 1 1 auto;
+      width: auto;
+      max-width: 72px;
+    }
+    .rail.is-fitted .node-slot {
+      flex: 1 1 0;
+      min-width: 100px;
+      max-width: 160px;
+    }
+    .rail.is-fitted .node-slot .node {
+      width: 100%;
+      max-width: 152px;
+    }
+    .rail.is-fitted .node.start,
+    .rail.is-fitted .node.end {
+      width: 100%;
+      max-width: 128px;
+    }
+    .rail.is-fitted .dec-slot {
+      flex: 0 0 180px;
+      width: 180px;
     }
 
     /* slots prevent rotated diamonds + corner icons from clipping */
@@ -459,38 +505,14 @@
     }
     .footer a { color: var(--blue); }
 
-    /* desktop: stretch happy path across viewport width */
+    /* desktop type/spacing only — width fit is handled by JS scale, not overflow-x: visible */
     @media (min-width: 1100px) {
-      .rail-scroll { overflow-x: visible; }
       .rail {
-        width: 100%;
-        justify-content: space-between;
         min-height: 180px;
         padding: 8px 0;
       }
-      .arr {
-        flex: 1 1 auto;
-        width: auto;
-        max-width: 56px;
-      }
       .node-slot {
-        flex: 1 1 0;
-        min-width: 108px;
-        max-width: 148px;
         padding: 14px 10px 6px 4px;
-      }
-      .node-slot .node {
-        width: 100%;
-        max-width: 140px;
-      }
-      .node.start,
-      .node.end {
-        width: 100%;
-        max-width: 128px;
-      }
-      .dec-slot {
-        flex: 0 0 180px;
-        width: 180px;
       }
       .detail-host .panel { max-width: 100%; }
       .empty-hint { max-width: 100%; }
@@ -499,9 +521,6 @@
     @media (min-width: 1440px) {
       .node h3 { font-size: 13px; }
       .node .one-liner { font-size: 11.5px; }
-      .arr { max-width: 72px; }
-      .node-slot { max-width: 160px; }
-      .node-slot .node { max-width: 152px; }
     }
   </style>
 </head>
@@ -544,6 +563,8 @@
 
     <div class="journey-stage">
     <div class="rail-scroll">
+      <div class="rail-fit">
+      <div class="rail-scaler">
       <div class="rail" role="list">
 
         <div class="node-slot has-detail" role="listitem" tabindex="0" data-panel="step-1" aria-expanded="false">
@@ -680,6 +701,8 @@
             <p class="one-liner">CSS / checklist refresh</p>
           </div>
         </div>
+      </div>
+      </div>
       </div>
     </div>
     </div>
@@ -1208,6 +1231,82 @@
       });
 
       document.getElementById("btn-collapse").addEventListener("click", closeAll);
+
+      var scroll = document.querySelector(".rail-scroll");
+      var fit = document.querySelector(".rail-fit");
+      var scaler = document.querySelector(".rail-scaler");
+      var rail = document.querySelector(".rail");
+      var MIN_SCALE = 0.28;
+      var fitRaf = 0;
+      var lastInnerW = -1;
+
+      function fitJourneyRail(force) {
+        if (!scroll || !fit || !scaler || !rail) return;
+
+        var cs = window.getComputedStyle(scroll);
+        var padX = (parseFloat(cs.paddingLeft) || 0) + (parseFloat(cs.paddingRight) || 0);
+        var innerW = Math.round(scroll.clientWidth - padX);
+        if (!force && innerW === lastInnerW && lastInnerW > 0) return;
+        lastInnerW = innerW;
+
+        scaler.style.transform = "none";
+        scaler.style.width = "";
+        scaler.style.height = "";
+        fit.style.width = "";
+        fit.style.height = "";
+        rail.classList.remove("is-fitted");
+        rail.style.width = "max-content";
+        scroll.style.overflowX = "auto";
+
+        void rail.offsetWidth;
+
+        var naturalW = rail.scrollWidth;
+        var naturalH = Math.max(rail.scrollHeight, rail.offsetHeight);
+        if (naturalW < 8 || innerW < 8) return;
+
+        var scale = innerW / naturalW;
+
+        if (scale >= 0.999) {
+          scaler.style.transform = "none";
+          fit.style.width = "100%";
+          fit.style.height = "auto";
+          rail.style.width = "100%";
+          rail.classList.add("is-fitted");
+          scroll.style.overflowX = "hidden";
+          return;
+        }
+
+        if (scale < MIN_SCALE) return;
+
+        scaler.style.transformOrigin = "top left";
+        scaler.style.transform = "scale(" + scale + ")";
+        scaler.style.width = naturalW + "px";
+        scaler.style.height = naturalH + "px";
+        fit.style.width = Math.round(naturalW * scale) + "px";
+        fit.style.height = Math.round(naturalH * scale) + "px";
+        scroll.style.overflowX = "hidden";
+      }
+
+      function scheduleFit(force) {
+        if (fitRaf) cancelAnimationFrame(fitRaf);
+        fitRaf = requestAnimationFrame(function () {
+          fitRaf = 0;
+          fitJourneyRail(!!force);
+        });
+      }
+
+      if (window.ResizeObserver) {
+        var stage = document.querySelector(".journey-stage");
+        if (stage) new ResizeObserver(function () { scheduleFit(false); }).observe(stage);
+      }
+      window.addEventListener("resize", function () { lastInnerW = -1; scheduleFit(false); });
+      window.addEventListener("orientationchange", function () { lastInnerW = -1; scheduleFit(true); });
+      if (window.visualViewport) {
+        window.visualViewport.addEventListener("resize", function () { lastInnerW = -1; scheduleFit(false); });
+      }
+      if (document.readyState === "complete") scheduleFit(true);
+      else window.addEventListener("load", function () { scheduleFit(true); });
+      if (document.fonts && document.fonts.ready) document.fonts.ready.then(function () { lastInnerW = -1; scheduleFit(true); });
     })();
   </script>
 </body>

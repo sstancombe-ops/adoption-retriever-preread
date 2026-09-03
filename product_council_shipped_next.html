@@ -1200,6 +1200,76 @@ html, body {
 }
 .roadmap-foot strong { font-weight: 700; color: var(--text); }
 
+/* —— Slide 3: derived field schema (agent consumption shape) —— */
+.schema-strip {
+  flex-shrink: 0;
+  margin-top: 18px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 14px 20px 16px;
+  box-shadow: var(--shadow);
+}
+.schema-strip-head {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 16px;
+  margin-bottom: 12px;
+}
+.schema-strip-title {
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--blue-dark);
+}
+.schema-strip-note {
+  font-size: 14px;
+  font-weight: 400;
+  color: var(--text-3);
+}
+.schema-strip-note strong { font-weight: 700; color: var(--text-2); }
+.schema-grid {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  gap: 10px;
+}
+.schema-field {
+  background: #f7fbff;
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 10px 12px 12px;
+  min-width: 0;
+}
+.schema-field.is-primary {
+  background: linear-gradient(180deg, #ffffff 0%, #eef6ff 100%);
+  border-color: rgba(6,106,254,0.35);
+}
+.schema-field-key {
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--blue-dark);
+  line-height: 1.3;
+  word-break: break-word;
+  margin-bottom: 6px;
+}
+.schema-field-val {
+  font-size: 18px;
+  font-weight: 700;
+  color: var(--text);
+  line-height: 1.25;
+}
+.schema-field-type {
+  margin-top: 4px;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--text-3);
+}
+
 </style>
 </head>
 <body>
@@ -1633,7 +1703,7 @@ html, body {
       <h1 class="headline">Bringing more <em>context</em> to AI awareness</h1>
       <p class="subhead">The agent currently treats every customer the same. A <strong>canonical role family</strong> derived from Trailhead certifications gives it a durable, portable signal — who this person is — before they ask a single question.</p>
 
-      <div class="main" style="grid-template-columns: 1fr 1fr 1fr; gap: 24px;">
+      <div class="main" style="grid-template-columns: 1fr 1fr 1fr; gap: 20px;">
 
         <!-- Card 1: The problem -->
         <div class="card">
@@ -1707,6 +1777,45 @@ html, body {
           </div>
         </div>
 
+      </div>
+
+      <div class="schema-strip">
+        <div class="schema-strip-head">
+          <div class="schema-strip-title">Derived field schema · agent consumption shape</div>
+          <div class="schema-strip-note">One person, one record on Data Graph. Agents read these fields — they do not recalculate role.</div>
+        </div>
+        <div class="schema-grid">
+          <div class="schema-field is-primary">
+            <div class="schema-field-key">canonical_role_family</div>
+            <div class="schema-field-val">Developer</div>
+            <div class="schema-field-type">string · primary</div>
+          </div>
+          <div class="schema-field">
+            <div class="schema-field-key">expertise_tier</div>
+            <div class="schema-field-val">Advanced</div>
+            <div class="schema-field-type">string</div>
+          </div>
+          <div class="schema-field">
+            <div class="schema-field-key">role_confidence</div>
+            <div class="schema-field-val">High</div>
+            <div class="schema-field-type">string</div>
+          </div>
+          <div class="schema-field">
+            <div class="schema-field-key">secondary_role_families</div>
+            <div class="schema-field-val">["Administrator"]</div>
+            <div class="schema-field-type">array</div>
+          </div>
+          <div class="schema-field">
+            <div class="schema-field-key">active_cert_count</div>
+            <div class="schema-field-val">3</div>
+            <div class="schema-field-type">number</div>
+          </div>
+          <div class="schema-field">
+            <div class="schema-field-key">has_retired_certs</div>
+            <div class="schema-field-val">true</div>
+            <div class="schema-field-type">boolean</div>
+          </div>
+        </div>
       </div>
 
       <div class="slide-footer">
@@ -1810,6 +1919,7 @@ html, body {
     if (idx === 0 && (e.key === 'a' || e.key === 'A')) setMode('after');
     if (e.key === '1') show(0);
     if (e.key === '2') show(1);
+    if (e.key === '3') show(2);
   });
 
   // Ensure first slide active and counter matches total slide count on load

@@ -1270,37 +1270,6 @@ html, body {
   color: var(--text-3);
 }
 
-.takeaway-row {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 16px;
-  margin-bottom: 20px;
-  flex-shrink: 0;
-}
-.takeaway {
-  background: var(--surface);
-  border: 1px solid var(--border);
-  border-radius: 12px;
-  padding: 16px 20px;
-  box-shadow: var(--shadow);
-  display: flex;
-  flex-direction: column;
-  gap: 6px;
-}
-.takeaway-label {
-  font-size: 12px;
-  font-weight: 700;
-  letter-spacing: 0.06em;
-  text-transform: uppercase;
-  color: var(--blue-dark);
-}
-.takeaway-body {
-  font-size: 22px;
-  font-weight: 700;
-  line-height: 1.25;
-  color: var(--text);
-}
-
 </style>
 </head>
 <body>
@@ -1732,35 +1701,80 @@ html, body {
 
       <div class="kicker">Personalization · What's Coming</div>
       <h1 class="headline">Bringing more <em>context</em> to AI awareness</h1>
-      <p class="subhead">Trailhead certs become a <strong>canonical role family</strong> on Data Graph — who this person is — before they ask a question.</p>
+      <p class="subhead">The agent currently treats every customer the same. A <strong>canonical role family</strong> derived from Trailhead certifications gives it a durable, portable signal — who this person is — before they ask a single question.</p>
 
-      <div class="takeaway-row">
-        <div class="takeaway">
-          <div class="takeaway-label">What changes for the customer</div>
-          <div class="takeaway-body">Response depth adjusts to who's asking</div>
-        </div>
-        <div class="takeaway">
-          <div class="takeaway-label">Beyond Lifecycle Success</div>
-          <div class="takeaway-body">Help Agent and In-App can reuse the same record</div>
-        </div>
-      </div>
+      <div class="main" style="grid-template-columns: 1fr 1fr 1fr; gap: 20px;">
 
-      <div class="main" style="grid-template-columns: 1fr 1fr; gap: 20px;">
-
+        <!-- Card 1: The problem -->
         <div class="card">
           <div class="card-header">
             <div class="card-title">The gap today</div>
             <span class="badge badge-amber">No role signal</span>
           </div>
-          <div class="impact-block-body">Same answer for every person. Each agent infers role on its own.</div>
+          <div style="display:flex;flex-direction:column;gap:14px;flex:1;min-height:0;justify-content:center;">
+            <div class="impact-block">
+              <div class="impact-block-title">Same answer, every person</div>
+              <div class="impact-block-body">An Architect getting onboarded on Sales Cloud sees the same activation steps as a first-time Admin. The agent has no durable signal about who is asking — only the current message.</div>
+            </div>
+            <div class="impact-block">
+              <div class="impact-block-title">Agent recalculates from scratch</div>
+              <div class="impact-block-body">Each agent experience that wants to personalize today has to infer role, expertise, and context on its own — no shared foundation, inconsistent results.</div>
+            </div>
+          </div>
         </div>
 
+        <!-- Card 2: The solution -->
         <div class="card">
           <div class="card-header">
             <div class="card-title">Canonical role family</div>
             <span class="badge badge-blue">In design · Data Graph</span>
           </div>
-          <div class="impact-block-body">Certs lock to one shared record. Agents read it. They do not recalculate role.</div>
+          <div style="display:flex;flex-direction:column;gap:14px;flex:1;min-height:0;justify-content:center;">
+            <div class="impact-block is-story">
+              <div class="impact-block-title">Derived from Trailhead certifications</div>
+              <div class="impact-block-body">Active and retired certs → <strong>primary role family</strong> (Admin / Developer / Architect / Marketer / Analyst) + <strong>expertise tier</strong> (Foundational / Intermediate / Advanced). Locks to Data Graph — not recalculated per session.</div>
+            </div>
+            <div class="impact-block">
+              <div class="impact-block-title">Built once, used everywhere</div>
+              <div class="impact-block-body">Lifecycle Success, Onboarding, Adoption, In-App — any agent experience can read the same derived fields. The calculation burden stays off the agent and on the graph.</div>
+            </div>
+            <div class="impact-block">
+              <div class="impact-block-title">Fallback path included</div>
+              <div class="impact-block-body">No certs? TBID self-role is the fallback, flagged with <strong>role_confidence = Low</strong> so agents know to stay general.</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Card 3: Impact / what changes -->
+        <div class="card">
+          <div class="card-header">
+            <div class="card-title">What changes for the customer</div>
+            <span class="badge badge-blue">Beyond Lifecycle Success</span>
+          </div>
+          <div style="display:flex;flex-direction:column;gap:16px;flex:1;min-height:0;justify-content:center;">
+            <div class="impact-metric">
+              <div class="impact-metric-label">Response depth adjusts to who's asking</div>
+              <div class="impact-metric-row">
+                <div class="impact-stat">
+                  <div class="impact-stat-kicker before">Foundational</div>
+                  <div class="impact-stat-value" style="font-size:22px;line-height:1.2;">Step-by-step<br>click paths</div>
+                </div>
+                <div class="impact-arrow" aria-hidden="true">→</div>
+                <div class="impact-stat is-after">
+                  <div class="impact-stat-kicker after">Advanced</div>
+                  <div class="impact-stat-value" style="font-size:22px;line-height:1.2;">Best practices<br>+ use cases</div>
+                </div>
+              </div>
+            </div>
+            <div class="impact-block">
+              <div class="impact-block-title">Teams that benefit immediately</div>
+              <div class="impact-block-body">Lifecycle Success (Onboarding + Adoption SubAgents) — then Help Agent, In-App (April / Don), and any future agent experience on Data Graph.</div>
+            </div>
+            <div class="impact-block">
+              <div class="impact-block-title">Status</div>
+              <div class="impact-block-body">Spec locked with Trailhead (Jessica), Credentials (Dana), and Data Graph (Tzlil). DRM object path confirmed. Snowflake join path in progress (Parita + Sivasai).</div>
+            </div>
+          </div>
         </div>
 
       </div>

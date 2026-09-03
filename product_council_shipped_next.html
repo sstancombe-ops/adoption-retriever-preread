@@ -1492,7 +1492,7 @@ html, body {
 
       <div class="slide-footer">
         <span>Salesforce Digital Success · Product Council · What we shipped</span>
-        <span>1 / 2</span>
+        <span>1 / 3</span>
       </div>
     </section>
 
@@ -1613,7 +1613,105 @@ html, body {
 
       <div class="slide-footer">
         <span>Salesforce Digital Success · Product Council · What's next</span>
-        <span>2 / 2</span>
+        <span>2 / 3</span>
+      </div>
+    </section>
+
+    <!-- ===== SLIDE 3: Personalization — canonical role family ===== -->
+    <section class="slide" data-layout="personalization" data-slide="3">
+      <div class="brand-bar">
+        <div class="brand-left">
+          <svg viewBox="0 0 60 40" aria-label="Salesforce" fill="#00A1E0">
+            <path d="M23.6 9.4c1.4-1.5 3.4-2.4 5.6-2.4 1.7 0 3.3.6 4.5 1.5 1.5-2.5 4.2-4.1 7.3-4.1 4.6 0 8.4 3.7 8.4 8.4 0 .3 0 .6-.1.9 2.4.8 4.1 3 4.1 5.7 0 3.3-2.7 6-6 6H13.2c-4 0-7.2-3.2-7.2-7.2 0-3.4 2.4-6.3 5.6-7.1.5-2.5 2.7-4.4 5.4-4.4 1.3 0 2.5.5 3.5 1.2l3.1 2.5z"/>
+          </svg>
+          <div class="brand-name">Salesforce <span>Digital Success</span></div>
+        </div>
+        <div class="brand-meta">Adoption Retriever · Product Council · 09.09.26</div>
+      </div>
+
+      <div class="kicker">Personalization · What's Coming</div>
+      <h1 class="headline">Bringing more <em>context</em> to AI awareness</h1>
+      <p class="subhead">The agent currently treats every customer the same. A <strong>canonical role family</strong> derived from Trailhead certifications gives it a durable, portable signal — who this person is — before they ask a single question.</p>
+
+      <div class="main" style="grid-template-columns: 1fr 1fr 1fr; gap: 24px;">
+
+        <!-- Card 1: The problem -->
+        <div class="card">
+          <div class="card-header">
+            <div class="card-title">The gap today</div>
+            <span class="badge badge-amber">No role signal</span>
+          </div>
+          <div style="display:flex;flex-direction:column;gap:14px;flex:1;min-height:0;justify-content:center;">
+            <div class="impact-block">
+              <div class="impact-block-title">Same answer, every person</div>
+              <div class="impact-block-body">An Architect getting onboarded on Sales Cloud sees the same activation steps as a first-time Admin. The agent has no durable signal about who is asking — only the current message.</div>
+            </div>
+            <div class="impact-block">
+              <div class="impact-block-title">Agent recalculates from scratch</div>
+              <div class="impact-block-body">Each agent experience that wants to personalize today has to infer role, expertise, and context on its own — no shared foundation, inconsistent results.</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Card 2: The solution -->
+        <div class="card">
+          <div class="card-header">
+            <div class="card-title">Canonical role family</div>
+            <span class="badge badge-blue">In design · Data Graph</span>
+          </div>
+          <div style="display:flex;flex-direction:column;gap:14px;flex:1;min-height:0;justify-content:center;">
+            <div class="impact-block is-story">
+              <div class="impact-block-title">Derived from Trailhead certifications</div>
+              <div class="impact-block-body">Active and retired certs → <strong>primary role family</strong> (Admin / Developer / Architect / Marketer / Analyst) + <strong>expertise tier</strong> (Foundational / Intermediate / Advanced). Locks to Data Graph — not recalculated per session.</div>
+            </div>
+            <div class="impact-block">
+              <div class="impact-block-title">Built once, used everywhere</div>
+              <div class="impact-block-body">Lifecycle Success, Onboarding, Adoption, In-App — any agent experience can read the same derived fields. The calculation burden stays off the agent and on the graph.</div>
+            </div>
+            <div class="impact-block">
+              <div class="impact-block-title">Fallback path included</div>
+              <div class="impact-block-body">No certs? TBID self-role is the fallback, flagged with <strong>role_confidence = Low</strong> so agents know to stay general.</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Card 3: Impact / what changes -->
+        <div class="card">
+          <div class="card-header">
+            <div class="card-title">What changes for the customer</div>
+            <span class="badge badge-blue">Beyond Lifecycle Success</span>
+          </div>
+          <div style="display:flex;flex-direction:column;gap:16px;flex:1;min-height:0;justify-content:center;">
+            <div class="impact-metric">
+              <div class="impact-metric-label">Response depth adjusts to who's asking</div>
+              <div class="impact-metric-row">
+                <div class="impact-stat">
+                  <div class="impact-stat-kicker before">Foundational</div>
+                  <div class="impact-stat-value" style="font-size:22px;line-height:1.2;">Step-by-step<br>click paths</div>
+                </div>
+                <div class="impact-arrow" aria-hidden="true">→</div>
+                <div class="impact-stat is-after">
+                  <div class="impact-stat-kicker after">Advanced</div>
+                  <div class="impact-stat-value" style="font-size:22px;line-height:1.2;">Best practices<br>+ use cases</div>
+                </div>
+              </div>
+            </div>
+            <div class="impact-block">
+              <div class="impact-block-title">Teams that benefit immediately</div>
+              <div class="impact-block-body">Lifecycle Success (Onboarding + Adoption SubAgents) — then Help Agent, In-App (April / Don), and any future agent experience on Data Graph.</div>
+            </div>
+            <div class="impact-block">
+              <div class="impact-block-title">Status</div>
+              <div class="impact-block-body">Spec locked with Trailhead (Jessica), Credentials (Dana), and Data Graph (Tzlil). DRM object path confirmed. Snowflake join path in progress (Parita + Sivasai).</div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      <div class="slide-footer">
+        <span>Salesforce Digital Success · Product Council · Personalization</span>
+        <span>3 / 3</span>
       </div>
     </section>
   </div>

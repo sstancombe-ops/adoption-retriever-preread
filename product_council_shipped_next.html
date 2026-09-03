@@ -1718,7 +1718,7 @@ html, body {
 </div>
 
 <div class="controls">
-  <span id="slideCounter">1 / 2</span>
+  <span id="slideCounter">1 / 3</span>
   <button type="button" id="prevBtn" aria-label="Previous">←</button>
   <button type="button" id="nextBtn" aria-label="Next">→</button>
   <button type="button" id="fsBtn" aria-label="Fullscreen">Fullscreen</button>
@@ -1812,8 +1812,9 @@ html, body {
     if (e.key === '2') show(1);
   });
 
-  // Ensure first slide active
+  // Ensure first slide active and counter matches total slide count on load
   slides.forEach(function (s, i) { s.classList.toggle('active', i === 0); });
+  if (counter) counter.textContent = '1 / ' + slides.length;
 })();
 </script>
 </body>

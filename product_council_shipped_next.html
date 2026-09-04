@@ -255,49 +255,10 @@ html, body {
   z-index: 3;
   pointer-events: none;
 }
-.deco-sparkle.s1 { width: 28px; height: 28px; left: -18px; top: 72px; }
-.deco-sparkle.s2 { width: 16px; height: 16px; left: -8px; top: 112px; }
-.deco-sparkle.s3 { width: 22px; height: 22px; right: -10px; top: 36px; }
-.deco-sparkle.s4 { width: 14px; height: 14px; right: 18px; bottom: 88px; }
-
-.af-sources-row {
-  display: grid;
-  grid-template-columns: 56px 1fr;
-  gap: 12px;
-  align-items: end;
-}
-.th-badge {
-  width: 56px;
-  height: 70px;
-  flex-shrink: 0;
-  display: none;
-}
-.ha-panel[data-mode="after"] .th-badge { display: block; }
-.ha-panel[data-mode="after"] .af-sources-row { display: grid; }
-.ha-panel[data-mode="before"] .af-sources-row {
-  display: block;
-}
-.th-grounded {
-  display: none;
-  margin-top: 8px;
-  width: fit-content;
-  font-size: 13px;
-  font-weight: 700;
-  color: #8a6d00;
-  background: rgba(252,192,3,0.28);
-  border: 1.5px dashed #c9a227;
-  border-radius: 8px;
-  padding: 6px 12px;
-  align-items: center;
-  gap: 8px;
-}
-.ha-panel[data-mode="after"] .th-grounded { display: inline-flex; }
-.th-grounded svg {
-  width: 12px;
-  height: 12px;
-  color: #0176d3;
-  flex-shrink: 0;
-}
+.deco-sparkle.s1 { width: 52px; height: 52px; left: -26px; top: 64px; }
+.deco-sparkle.s2 { width: 32px; height: 32px; left: -12px; top: 122px; }
+.deco-sparkle.s3 { width: 42px; height: 42px; right: -16px; top: 28px; }
+.deco-sparkle.s4 { width: 28px; height: 28px; right: 12px; bottom: 80px; }
 
 /* Subheader — not a card; sits under the headline */
 .subhead {
@@ -1707,17 +1668,7 @@ html, body {
                   </div>
                   <div class="af-sources">
                       <div class="af-sources-title">Sources (2)</div>
-                      <div class="af-sources-row">
-                        <svg class="th-badge" viewBox="0 0 80 96" aria-label="Trailhead" role="img">
-                          <path fill="#032D60" d="M40 2c1.2 0 18 5.2 26 8.2 2 .8 4 2.6 4 4.8V42c0 22-14 38-30 46C24 80 10 64 10 42V15c0-2.2 2-4 4-4.8C22 7.2 38.8 2 40 2z"/>
-                          <path fill="#7EC8F5" d="M40 8c12 3.8 22 7 22 7v26c0 18-10 31-22 38C28 72 18 59 18 41V15s10-3.2 22-7z"/>
-                          <path fill="#FFFFFF" opacity=".35" d="M24 20c3 0 5 2 8 2s4-2 7-2 5 2 8 2"/>
-                          <path fill="#2E844A" d="M18 50c8 2 14-2 22 2 8-6 16-2 22 1v13c0 8-8 16-22 22-14-6-22-14-22-22V50z"/>
-                          <path fill="#1B5E35" d="M40 44l18 22H22z"/>
-                          <path fill="none" stroke="#F4B942" stroke-width="2.6" stroke-linecap="round" d="M27 72c5-10 8-18 13-26 5 8 9 17 12 26"/>
-                          <circle cx="40" cy="44" r="3.2" fill="#F4B942"/>
-                        </svg>
-                        <div class="af-source-grid">
+                      <div class="af-source-grid">
                         <div class="af-source">
                           <div class="af-source-domain">1. Trailhead.salesforce.com</div>
                           <a class="af-source-title" href="https://trailhead.salesforce.com/content/learn/modules/prospect-tracking-with-salesforce-leads-quick-look/track-prospects-with-salesforce-leads">Track Prospects with Salesforce Leads</a>
@@ -1728,12 +1679,6 @@ html, body {
                           <a class="af-source-title" href="#">Sales: Enable Use Apex Lead Convert for Validation Rules on Lead Conversion</a>
                           <svg class="af-source-icon" viewBox="0 0 12 12" fill="none" aria-hidden="true"><path d="M4.5 2H10v5.5M10 2L3 9" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/></svg>
                         </div>
-                        </div>
-                      </div>
-                      <div class="th-grounded">
-                        <svg viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><path d="M8 0c.35 3.2 1.6 4.45 4.8 4.8C9.6 5.15 8.35 6.4 8 9.6 7.65 6.4 6.4 5.15 3.2 4.8 6.4 4.45 7.65 3.2 8 0z"/></svg>
-                        Agentforce + Trailhead grounded
-                        <svg viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><path d="M8 0c.35 3.2 1.6 4.45 4.8 4.8C9.6 5.15 8.35 6.4 8 9.6 7.65 6.4 6.4 5.15 3.2 4.8 6.4 4.45 7.65 3.2 8 0z"/></svg>
                       </div>
                     </div>
                     <div class="af-meta">Agentforce · +Trailhead-grounded</div>

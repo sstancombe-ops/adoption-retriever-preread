@@ -260,6 +260,19 @@ html, body {
 .deco-sparkle.s3 { width: 42px; height: 42px; right: -16px; top: 28px; }
 .deco-sparkle.s4 { width: 28px; height: 28px; right: 12px; bottom: 80px; }
 
+.th-overlay {
+  position: absolute;
+  left: -44px;
+  bottom: 70px;
+  width: 96px;
+  height: auto;
+  z-index: 6;
+  display: none;
+  pointer-events: none;
+  filter: drop-shadow(0 6px 14px rgba(3,45,96,0.18));
+}
+.demo-wrap:has(.ha-panel[data-mode="after"]) .th-overlay { display: block; }
+
 /* Subheader — not a card; sits under the headline */
 .subhead {
   font-size: 22px;
@@ -1468,6 +1481,7 @@ html, body {
 
         <!-- Right: Agentforce response demo -->
         <div class="demo-wrap">
+          <img class="th-overlay" src="assets/trailhead-2d-icon.png" alt="Trailhead">
           <svg class="deco-sparkle s1" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><path d="M8 0c.35 3.2 1.6 4.45 4.8 4.8C9.6 5.15 8.35 6.4 8 9.6 7.65 6.4 6.4 5.15 3.2 4.8 6.4 4.45 7.65 3.2 8 0z"/></svg>
           <svg class="deco-sparkle s2" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><path d="M8 0c.35 3.2 1.6 4.45 4.8 4.8C9.6 5.15 8.35 6.4 8 9.6 7.65 6.4 6.4 5.15 3.2 4.8 6.4 4.45 7.65 3.2 8 0z"/></svg>
           <svg class="deco-sparkle s3" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><path d="M8 0c.35 3.2 1.6 4.45 4.8 4.8C9.6 5.15 8.35 6.4 8 9.6 7.65 6.4 6.4 5.15 3.2 4.8 6.4 4.45 7.65 3.2 8 0z"/></svg>

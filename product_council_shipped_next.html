@@ -61,6 +61,15 @@
   --emerald-light: rgba(6,165,154,0.14);
   --rose: #ba0517;
   --rose-light: rgba(186,5,23,0.12);
+  --yellow: #8a6d00;
+  --yellow-light: rgba(252,192,3,0.28);
+  --orange: #c45c00;
+  --orange-ink: #8c4000;
+  --orange-light: rgba(255,138,43,0.22);
+  --purple: #5a1ea8;
+  --purple-light: rgba(117,71,229,0.16);
+  --grey-ink: #5c6b7f;
+  --grey-light: rgba(3,45,96,0.08);
   --radius: 16px;
   --shadow: 0 2px 4px rgba(0,30,91,0.08), 0 8px 24px rgba(0,30,91,0.08);
   --shadow-md: 0 12px 40px rgba(0,30,91,0.14);
@@ -1142,9 +1151,32 @@ html, body {
   text-align: center;
   line-height: 1.25;
 }
+/* Timeline legend: Green=Sept · Yellow=Oct · Orange=Nov · Red=Dec · Purple=Q2 · Grey=H2 (Q3 → Sept green) */
+.road-months .m.is-sept,
+.road-months .m.is-q3 {
+  color: var(--emerald-ink);
+  background: var(--emerald-light);
+}
+.road-months .m.is-oct {
+  color: var(--yellow);
+  background: var(--yellow-light);
+}
+.road-months .m.is-nov {
+  color: var(--orange-ink);
+  background: var(--orange-light);
+}
+.road-months .m.is-dec {
+  color: var(--rose);
+  background: var(--rose-light);
+}
+.road-months .m.is-q2 {
+  color: var(--purple);
+  background: var(--purple-light);
+}
+.road-months .m.is-h2,
 .road-months .m.is-next {
-  color: var(--text-3);
-  background: rgba(3,45,96,0.06);
+  color: var(--grey-ink);
+  background: var(--grey-light);
 }
 .road-months .m.is-amber {
   color: var(--amber);
@@ -1590,25 +1622,25 @@ html, body {
           <p class="road-body"><strong>Same shared Adoption Retriever</strong> — enable new cloud content by month for Onboarding + Adoption.</p>
           <ul class="road-months">
             <li>
-              <span class="m">Sept</span>
+              <span class="m is-sept">Sept</span>
               <span><strong>AF / DC + FINS</strong>
                 <span class="sub">Onboarding = AF/DC · Adoption = FINS</span>
               </span>
             </li>
             <li>
-              <span class="m is-next">Oct</span>
+              <span class="m is-oct">Oct</span>
               <span><strong>Marketing Cloud Next</strong>
                 <span class="sub">Marketing App taxonomy · both experiences</span>
               </span>
             </li>
             <li>
-              <span class="m is-next">Nov</span>
+              <span class="m is-nov">Nov</span>
               <span><strong>Commerce · Revenue · MCAE</strong>
                 <span class="sub">Account Engagement (fka Pardot)</span>
               </span>
             </li>
             <li>
-              <span class="m is-next">Dec</span>
+              <span class="m is-dec">Dec</span>
               <span><strong>Tableau / CRMA · Field Service</strong></span>
             </li>
           </ul>
@@ -1624,19 +1656,19 @@ html, body {
           <p class="road-body">New <strong>content types</strong> beyond Help + Product Docs + Trailhead text — standard intake / Wave path.</p>
           <ul class="road-months">
             <li>
-              <span class="m is-amber">Sept</span>
+              <span class="m is-sept">Sept</span>
               <span><strong>Vidyard videos + transcripts</strong>
                 <span class="sub">Tentative first content wave · CX Go catalog · A stop-gap / B durable · UIP whitelist blocks B</span>
               </span>
             </li>
             <li>
-              <span class="m is-rose">Oct</span>
+              <span class="m is-oct">Oct</span>
               <span><strong>Trailblazer Community Q&amp;A</strong>
                 <span class="sub">Peer Best Answers · PIA + scrub before surface · tentative Oct target</span>
               </span>
             </li>
             <li>
-              <span class="m is-next">Nov</span>
+              <span class="m is-nov">Nov</span>
               <span><strong>Expert Coaching Sessions</strong>
                 <span class="sub">Tentative next wave for best practices &amp; use cases</span>
               </span>
@@ -1654,25 +1686,25 @@ html, body {
           <p class="road-body">Explored against <strong>platform strategy + data architecture</strong> — not the standard intake workflow. No fixed ship date until fit is clear.</p>
           <ul class="road-months">
             <li>
-              <span class="m is-blue">Q3</span>
+              <span class="m is-q3">Q3</span>
               <span><strong>Canonical role family</strong>
                 <span class="sub">Cert-derived role + expertise tier on Data Graph — durable personalization signal</span>
               </span>
             </li>
             <li>
-              <span class="m is-blue">Q3</span>
+              <span class="m is-q3">Q3</span>
               <span><strong>Trailhead image rendering</strong>
                 <span class="sub">Inline visuals in Agent chat UI</span>
               </span>
             </li>
             <li>
-              <span class="m is-blue">Sept</span>
+              <span class="m is-sept">Sept</span>
               <span><strong>Homepage Journey Cards</strong>
                 <span class="sub">Optimizely A/B on Help Home Success entry</span>
               </span>
             </li>
             <li>
-              <span class="m is-blue">H2</span>
+              <span class="m is-h2">H2</span>
               <span><strong>Onboarding → Adoption continuity</strong>
                 <span class="sub">Same goal signals if they progress · Ben / Sam / Sahil · after Journey Cards A/B</span>
               </span>

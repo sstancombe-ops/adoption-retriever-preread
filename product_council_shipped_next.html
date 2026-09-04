@@ -1291,6 +1291,14 @@ html, body {
   margin-top: 2px;
 }
 
+.col-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  flex-shrink: 0;
+}
+
 .cx-rail {
   flex-shrink: 0;
   margin-top: 16px;
@@ -1823,25 +1831,23 @@ html, body {
           </div>
         </div>
 
-        <!-- Column 3: Canonical role family -->
-        <div class="card">
-          <div class="card-header">
+        <!-- Column 3: Canonical role family — header + pill + boxes, no white card -->
+        <div style="display:flex;flex-direction:column;gap:14px;min-height:0;justify-content:center;">
+          <div class="col-head">
             <div class="card-title">Canonical role family</div>
             <span class="badge badge-blue">In design · Data Graph</span>
           </div>
-          <div style="display:flex;flex-direction:column;gap:14px;flex:1;min-height:0;justify-content:center;">
-            <div class="impact-block is-story">
-              <div class="impact-block-title">Derived from Trailhead certifications</div>
-              <div class="impact-block-body">Active and retired certs → <strong>primary role family</strong> (Admin / Developer / Architect / Marketer / Analyst) + <strong>expertise tier</strong> (Foundational / Intermediate / Advanced). Locks to Data Graph — not recalculated per session.</div>
-            </div>
-            <div class="impact-block">
-              <div class="impact-block-title">Built once, used everywhere</div>
-              <div class="impact-block-body">Lifecycle Success, Onboarding, Adoption, In-App — any agent experience can read the same derived fields. The calculation burden stays off the agent and on the graph.</div>
-            </div>
-            <div class="impact-block">
-              <div class="impact-block-title">Fallback path included</div>
-              <div class="impact-block-body">No certs? TBID self-role is the fallback, flagged with <strong>role_confidence = Low</strong> so agents know to stay general.</div>
-            </div>
+          <div class="impact-block is-story">
+            <div class="impact-block-title">Derived from Trailhead certifications</div>
+            <div class="impact-block-body">Active and retired certs → <strong>primary role family</strong> (Admin / Developer / Architect / Marketer / Analyst) + <strong>expertise tier</strong> (Foundational / Intermediate / Advanced). Locks to Data Graph — not recalculated per session.</div>
+          </div>
+          <div class="impact-block">
+            <div class="impact-block-title">Built once, used everywhere</div>
+            <div class="impact-block-body">Lifecycle Success, Onboarding, Adoption, In-App — any agent experience can read the same derived fields. The calculation burden stays off the agent and on the graph.</div>
+          </div>
+          <div class="impact-block">
+            <div class="impact-block-title">Fallback path included</div>
+            <div class="impact-block-body">No certs? TBID self-role is the fallback, flagged with <strong>role_confidence = Low</strong> so agents know to stay general.</div>
           </div>
         </div>
 

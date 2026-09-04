@@ -262,7 +262,7 @@ html, body {
 
 .th-overlay {
   position: absolute;
-  left: -44px;
+  left: -40px;
   bottom: 70px;
   width: 96px;
   height: auto;
@@ -271,7 +271,7 @@ html, body {
   pointer-events: none;
   filter: drop-shadow(0 6px 14px rgba(3,45,96,0.18));
 }
-.demo-wrap:has(.ha-panel[data-mode="after"]) .th-overlay { display: block; }
+.demo-wrap:has(.ha-panel[data-mode="after"]:not([data-thinking="true"])) .th-overlay { display: block; }
 
 /* Subheader — not a card; sits under the headline */
 .subhead {

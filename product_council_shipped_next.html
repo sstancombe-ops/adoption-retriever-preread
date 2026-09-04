@@ -1219,74 +1219,77 @@ html, body {
   margin-bottom: 6px;
 }
 
-/* —— Slide 3: derived field schema (agent consumption shape) —— */
-.schema-strip {
-  flex-shrink: 0;
-  margin-top: 18px;
-  background: var(--surface);
-  border: 1px solid var(--border);
-  border-radius: 12px;
-  padding: 14px 20px 16px;
-  box-shadow: var(--shadow);
+/* —— Slide 3: derived field schema (center column) —— */
+.slide[data-layout="personalization"] .main {
+  grid-template-columns: 0.95fr 1.25fr 1fr;
+  gap: 20px;
 }
-.schema-strip-head {
+.schema-panel {
   display: flex;
-  align-items: baseline;
-  justify-content: space-between;
-  gap: 16px;
-  margin-bottom: 12px;
+  flex-direction: column;
+  gap: 12px;
+  min-height: 0;
+  justify-content: center;
 }
-.schema-strip-title {
-  font-size: 13px;
-  font-weight: 700;
-  letter-spacing: 0.06em;
-  text-transform: uppercase;
-  color: var(--blue-dark);
-}
-.schema-strip-note {
-  font-size: 14px;
+.schema-panel-note {
+  font-size: 15px;
   font-weight: 400;
   color: var(--text-3);
+  line-height: 1.35;
+  margin-top: -4px;
 }
-.schema-strip-note strong { font-weight: 700; color: var(--text-2); }
 .schema-grid {
-  display: grid;
-  grid-template-columns: repeat(6, 1fr);
+  display: flex;
+  flex-direction: column;
   gap: 10px;
+  flex: 1;
+  min-height: 0;
+  justify-content: center;
 }
 .schema-field {
-  background: #f7fbff;
+  background: var(--surface);
   border: 1px solid var(--border);
   border-radius: 10px;
-  padding: 10px 12px 12px;
+  padding: 12px 16px;
   min-width: 0;
+  display: grid;
+  grid-template-columns: 1fr auto;
+  grid-template-rows: auto auto;
+  column-gap: 16px;
+  align-items: baseline;
 }
 .schema-field.is-primary {
   background: linear-gradient(180deg, #ffffff 0%, #eef6ff 100%);
   border-color: rgba(6,106,254,0.35);
+  box-shadow: 0 4px 14px rgba(6,106,254,0.10);
 }
 .schema-field-key {
+  grid-column: 1;
   font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
-  font-size: 12px;
+  font-size: 15px;
   font-weight: 700;
   color: var(--blue-dark);
   line-height: 1.3;
   word-break: break-word;
-  margin-bottom: 6px;
 }
 .schema-field-val {
-  font-size: 18px;
+  grid-column: 2;
+  grid-row: 1 / span 2;
+  font-size: 22px;
   font-weight: 700;
   color: var(--text);
-  line-height: 1.25;
+  line-height: 1.2;
+  text-align: right;
+  align-self: center;
 }
 .schema-field-type {
-  margin-top: 4px;
-  font-size: 11px;
+  grid-column: 1;
+  font-size: 12px;
   font-weight: 700;
   letter-spacing: 0.04em;
   text-transform: uppercase;
   color: var(--text-3);
+  margin-top: 2px;
 }
 
 </style>
@@ -1726,7 +1729,7 @@ html, body {
       <h1 class="headline">Bringing more <em>context</em> to AI awareness</h1>
       <p class="subhead">The agent currently treats every customer the same. A <strong>canonical role family</strong> derived from Trailhead certifications gives it a durable, portable signal — who this person is — before they ask a single question.</p>
 
-      <div class="main" style="grid-template-columns: 1fr 1fr 1fr; gap: 20px;">
+      <div class="main">
 
         <!-- Column 1: The gap — header + two boxes, no white card -->
         <div style="display:flex;flex-direction:column;gap:14px;min-height:0;justify-content:center;">
@@ -1741,7 +1744,45 @@ html, body {
           </div>
         </div>
 
-        <!-- Card 2: The solution -->
+        <!-- Column 2: Schema shape — front and center -->
+        <div class="schema-panel">
+          <div class="card-title">Derived field schema · agent consumption shape</div>
+          <p class="schema-panel-note">One person, one record on Data Graph. Agents read these fields — they do not recalculate role.</p>
+          <div class="schema-grid">
+            <div class="schema-field is-primary">
+              <div class="schema-field-key">canonical_role_family</div>
+              <div class="schema-field-type">string · primary</div>
+              <div class="schema-field-val">Developer</div>
+            </div>
+            <div class="schema-field">
+              <div class="schema-field-key">expertise_tier</div>
+              <div class="schema-field-type">string</div>
+              <div class="schema-field-val">Advanced</div>
+            </div>
+            <div class="schema-field">
+              <div class="schema-field-key">role_confidence</div>
+              <div class="schema-field-type">string</div>
+              <div class="schema-field-val">High</div>
+            </div>
+            <div class="schema-field">
+              <div class="schema-field-key">secondary_role_families</div>
+              <div class="schema-field-type">array</div>
+              <div class="schema-field-val">["Administrator"]</div>
+            </div>
+            <div class="schema-field">
+              <div class="schema-field-key">active_cert_count</div>
+              <div class="schema-field-type">number</div>
+              <div class="schema-field-val">3</div>
+            </div>
+            <div class="schema-field">
+              <div class="schema-field-key">has_retired_certs</div>
+              <div class="schema-field-type">boolean</div>
+              <div class="schema-field-val">true</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Column 3: Canonical role family -->
         <div class="card">
           <div class="card-header">
             <div class="card-title">Canonical role family</div>
@@ -1763,78 +1804,8 @@ html, body {
           </div>
         </div>
 
-        <!-- Card 3: Impact / what changes -->
-        <div class="card">
-          <div class="card-header">
-            <div class="card-title">What changes for the customer</div>
-            <span class="badge badge-blue">Beyond Lifecycle Success</span>
-          </div>
-          <div style="display:flex;flex-direction:column;gap:16px;flex:1;min-height:0;justify-content:center;">
-            <div class="impact-metric">
-              <div class="impact-metric-label">Response depth adjusts to who's asking</div>
-              <div class="impact-metric-row">
-                <div class="impact-stat">
-                  <div class="impact-stat-kicker before">Foundational</div>
-                  <div class="impact-stat-value" style="font-size:22px;line-height:1.2;">Step-by-step<br>click paths</div>
-                </div>
-                <div class="impact-arrow" aria-hidden="true">→</div>
-                <div class="impact-stat is-after">
-                  <div class="impact-stat-kicker after">Advanced</div>
-                  <div class="impact-stat-value" style="font-size:22px;line-height:1.2;">Best practices<br>+ use cases</div>
-                </div>
-              </div>
-            </div>
-            <div class="impact-block">
-              <div class="impact-block-title">Teams that benefit immediately</div>
-              <div class="impact-block-body">Lifecycle Success (Onboarding + Adoption SubAgents) — then Help Agent, In-App, and any future agent experience on Data Graph.</div>
-            </div>
-            <div class="impact-block">
-              <div class="impact-block-title">Status</div>
-              <div class="impact-block-body">Spec locked with Trailhead, Credentials, and Data Graph. DRM object path confirmed. Snowflake join path in progress.</div>
-            </div>
-          </div>
-        </div>
-
       </div>
-
-      <div class="schema-strip">
-        <div class="schema-strip-head">
-          <div class="schema-strip-title">Derived field schema · agent consumption shape</div>
-          <div class="schema-strip-note">One person, one record on Data Graph. Agents read these fields — they do not recalculate role.</div>
-        </div>
-        <div class="schema-grid">
-          <div class="schema-field is-primary">
-            <div class="schema-field-key">canonical_role_family</div>
-            <div class="schema-field-val">Developer</div>
-            <div class="schema-field-type">string · primary</div>
-          </div>
-          <div class="schema-field">
-            <div class="schema-field-key">expertise_tier</div>
-            <div class="schema-field-val">Advanced</div>
-            <div class="schema-field-type">string</div>
-          </div>
-          <div class="schema-field">
-            <div class="schema-field-key">role_confidence</div>
-            <div class="schema-field-val">High</div>
-            <div class="schema-field-type">string</div>
-          </div>
-          <div class="schema-field">
-            <div class="schema-field-key">secondary_role_families</div>
-            <div class="schema-field-val">["Administrator"]</div>
-            <div class="schema-field-type">array</div>
-          </div>
-          <div class="schema-field">
-            <div class="schema-field-key">active_cert_count</div>
-            <div class="schema-field-val">3</div>
-            <div class="schema-field-type">number</div>
-          </div>
-          <div class="schema-field">
-            <div class="schema-field-key">has_retired_certs</div>
-            <div class="schema-field-val">true</div>
-            <div class="schema-field-type">boolean</div>
-          </div>
-        </div>
-      </div>
+      <!-- Held for placement: Response depth adjusts to who's asking · Foundational = step-by-step click paths → Advanced = best practices + use cases -->
 
       <div class="slide-footer">
         <span>Salesforce Digital Success · Product Council · Personalization</span>

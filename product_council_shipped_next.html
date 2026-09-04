@@ -1151,9 +1151,8 @@ html, body {
   text-align: center;
   line-height: 1.25;
 }
-/* Timeline legend: Green=Sept · Yellow=Oct · Orange=Nov · Red=Dec · Purple=Q2 · Grey=H2 (Q3 → Sept green) */
-.road-months .m.is-sept,
-.road-months .m.is-q3 {
+/* Timeline legend: Green=Sept · Yellow=Oct · Orange=Nov · Red=Dec · Purple=Q3 (also Q2) · Grey=H2 */
+.road-months .m.is-sept {
   color: var(--emerald-ink);
   background: var(--emerald-light);
 }
@@ -1169,7 +1168,8 @@ html, body {
   color: var(--rose);
   background: var(--rose-light);
 }
-.road-months .m.is-q2 {
+.road-months .m.is-q2,
+.road-months .m.is-q3 {
   color: var(--purple);
   background: var(--purple-light);
 }

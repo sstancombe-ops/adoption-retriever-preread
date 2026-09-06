@@ -2013,8 +2013,6 @@ html, body {
   }
 
   fit();
-  var hashSlide = parseInt((location.hash || '').replace('#', ''), 10);
-  if (hashSlide >= 1 && hashSlide <= slides.length) show(hashSlide - 1);
   window.addEventListener('resize', fit);
   document.addEventListener('fullscreenchange', fit);
 
@@ -2081,9 +2079,12 @@ html, body {
     if (e.key === '3') show(2);
   });
 
-  // Ensure first slide active and counter matches total slide count on load
-  slides.forEach(function (s, i) { s.classList.toggle('active', i === 0); });
-  if (counter) counter.textContent = '1 / ' + slides.length;
+  var start = 0;
+  var hashSlide = parseInt((location.hash || '').replace('#', ''), 10);
+  if (hashSlide >= 1 && hashSlide <= slides.length) start = hashSlide - 1;
+  idx = start;
+  slides.forEach(function (s, i) { s.classList.toggle('active', i === start); });
+  if (counter) counter.textContent = (start + 1) + ' / ' + slides.length;
 })();
 </script>
 </body>

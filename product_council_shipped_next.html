@@ -1303,6 +1303,10 @@ html, body {
   grid-template-columns: 0.95fr 1.25fr 1fr;
   gap: 20px;
 }
+.slide[data-layout="personalization"] .subhead {
+  margin-bottom: 16px;
+  font-size: 20px;
+}
 .schema-panel {
   display: flex;
   flex-direction: column;
@@ -1380,17 +1384,20 @@ html, body {
 
 .cx-rail {
   flex-shrink: 0;
-  margin-top: 16px;
+  margin: 4px 0 20px;
+  padding: 0 0 18px;
+  border-bottom: 1px solid var(--border);
   display: grid;
-  grid-template-columns: minmax(220px, 280px) 1fr auto 1fr;
-  gap: 16px 20px;
-  align-items: stretch;
+  grid-template-columns: minmax(240px, 320px) 1fr auto 1fr;
+  gap: 8px 36px;
+  align-items: start;
 }
 .cx-rail-label {
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: flex-start;
   gap: 4px;
+  padding-top: 2px;
 }
 .cx-rail-kicker {
   font-size: 12px;
@@ -1400,24 +1407,34 @@ html, body {
   color: var(--blue-dark);
 }
 .cx-rail-title {
-  font-size: 20px;
+  font-size: 22px;
   font-weight: 700;
   color: var(--text);
   line-height: 1.25;
 }
-.cx-rail .impact-stat {
-  padding: 14px 18px;
+.cx-rail .impact-stat,
+.cx-rail .impact-stat.is-after {
+  background: transparent;
+  border: none;
+  border-radius: 0;
+  box-shadow: none;
+  padding: 0;
+  justify-content: flex-start;
 }
 .cx-rail .impact-stat-value {
-  font-size: 20px;
+  font-size: 22px;
   font-weight: 700;
   line-height: 1.25;
 }
 .cx-rail .impact-stat-sub {
   margin-top: 6px;
-  font-size: 14px;
+  font-size: 16px;
   color: var(--text-2);
   line-height: 1.35;
+}
+.cx-rail .impact-arrow {
+  align-self: center;
+  padding-top: 18px;
 }
 
 </style>
@@ -1862,6 +1879,25 @@ html, body {
 
       <div class="kicker">Personalization · What's Coming</div>
       <h1 class="headline">Bringing more <em>context</em> to AI awareness</h1>
+
+      <div class="cx-rail">
+        <div class="cx-rail-label">
+          <div class="cx-rail-kicker">What the customer hears</div>
+          <div class="cx-rail-title">Response depth adjusts to who's asking</div>
+        </div>
+        <div class="impact-stat">
+          <div class="impact-stat-kicker before">Foundational</div>
+          <div class="impact-stat-value">Step-by-step click paths</div>
+          <div class="impact-stat-sub">Setup → Enable Lead Management → assign the queue</div>
+        </div>
+        <div class="impact-arrow" aria-hidden="true">→</div>
+        <div class="impact-stat is-after">
+          <div class="impact-stat-kicker after">Advanced</div>
+          <div class="impact-stat-value">Best practices + use cases</div>
+          <div class="impact-stat-sub">When queues beat assignment rules — and why</div>
+        </div>
+      </div>
+
       <p class="subhead">The agent currently treats every customer the same. A <strong>canonical role family</strong> derived from Trailhead certifications gives it a durable, portable signal — who this person is — before they ask a single question.</p>
 
       <div class="main">
@@ -1939,24 +1975,6 @@ html, body {
 
       </div>
 
-      <div class="cx-rail">
-        <div class="cx-rail-label">
-          <div class="cx-rail-kicker">What the customer hears</div>
-          <div class="cx-rail-title">Response depth adjusts to who's asking</div>
-        </div>
-        <div class="impact-stat">
-          <div class="impact-stat-kicker before">Foundational</div>
-          <div class="impact-stat-value">Step-by-step click paths</div>
-          <div class="impact-stat-sub">Setup → Enable Lead Management → assign the queue</div>
-        </div>
-        <div class="impact-arrow" aria-hidden="true">→</div>
-        <div class="impact-stat is-after">
-          <div class="impact-stat-kicker after">Advanced</div>
-          <div class="impact-stat-value">Best practices + use cases</div>
-          <div class="impact-stat-sub">When queues beat assignment rules — and why</div>
-        </div>
-      </div>
-
       <div class="slide-footer">
         <span>Salesforce Digital Success · Product Council · Personalization</span>
         <span>3 / 3</span>
@@ -1995,6 +2013,8 @@ html, body {
   }
 
   fit();
+  var hashSlide = parseInt((location.hash || '').replace('#', ''), 10);
+  if (hashSlide >= 1 && hashSlide <= slides.length) show(hashSlide - 1);
   window.addEventListener('resize', fit);
   document.addEventListener('fullscreenchange', fit);
 

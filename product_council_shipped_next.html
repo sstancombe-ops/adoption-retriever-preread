@@ -1301,10 +1301,12 @@ html, body {
 /* —— Slide 3: derived field schema (center column) —— */
 .slide[data-layout="personalization"] .main {
   flex: 0 1 auto;
-  grid-template-columns: 0.95fr 1.35fr;
-  gap: 22px;
+  grid-template-columns: 0.95fr 1fr 1.25fr;
+  gap: 20px;
   align-items: start;
 }
+.slide[data-layout="personalization"] .col-gap { grid-column: 1; }
+.slide[data-layout="personalization"] .schema-panel { grid-column: 3; }
 .slide[data-layout="personalization"] .subhead {
   margin-bottom: 12px;
   font-size: 20px;

@@ -1,0 +1,766 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="color-scheme" content="light">
+    <title>November 2026 Workback Plan — OrgCS.264.3</title>
+    <style>
+        :root {
+            color-scheme: light;
+            --sf-navy: #032D60;
+            --sf-electric-blue: #0176D3;
+            --sf-cloud-blue: #00A1E0;
+            --sf-cloud-blue-light: #E5F5FC;
+            --sf-white: #FFFFFF;
+            --sf-gray-50: #F3F3F3;
+            --sf-gray-100: #E5E5E5;
+            --sf-gray-600: #5C5C5C;
+            --sf-gray-900: #181818;
+            --sf-success: #2E844A;
+            --sf-success-light: #EBF7E6;
+            --sf-warning: #DD7A01;
+            --sf-warning-light: #FEF1E1;
+            --sf-error: #C23934;
+            --sf-error-light: #FEDAD8;
+            --sf-purple: #7526C2;
+            --sf-purple-light: #F0E6FB;
+            --build: #0176D3;
+            --eval: #7526C2;
+            --gate: #2E844A;
+            --ms: #DD7A01;
+            --cp: #B54708;
+            --cp-glow: #F79009;
+            --radius-lg: 16px;
+            --shadow-sm: 0 1px 3px rgba(3, 45, 96, 0.08);
+            --label-w: 210px;
+            --cols: 8;
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Salesforce Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: var(--sf-gray-50);
+            color: var(--sf-gray-900);
+            line-height: 1.5;
+        }
+        .top-bar {
+            background: var(--sf-navy);
+            padding: 16px 40px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 16px;
+            flex-wrap: wrap;
+            box-shadow: 0 2px 8px rgba(3, 45, 96, 0.3);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        .top-bar-text { display: flex; align-items: center; gap: 14px; color: #fff; flex-wrap: wrap; }
+        .top-bar-title { font-weight: 700; font-size: 1.05rem; }
+        .top-bar-sep { opacity: 0.45; }
+        .top-bar-subtitle { opacity: 0.9; font-size: 0.95rem; }
+        .top-bar a.back {
+            color: #fff;
+            text-decoration: none;
+            font-size: 0.85rem;
+            font-weight: 600;
+            border: 1px solid rgba(255,255,255,0.35);
+            border-radius: 999px;
+            padding: 6px 14px;
+        }
+        .top-bar a.back:hover { background: rgba(255,255,255,0.1); }
+        .wrap { max-width: 1180px; margin: 0 auto; padding: 28px 24px 64px; }
+        .hero {
+            background: linear-gradient(135deg, #EAF5FE 0%, #fff 55%);
+            border: 1px solid var(--sf-gray-100);
+            border-radius: var(--radius-lg);
+            padding: 24px 28px;
+            box-shadow: var(--shadow-sm);
+            margin-bottom: 16px;
+        }
+        .hero h1 { font-size: 1.55rem; color: var(--sf-navy); margin-bottom: 8px; letter-spacing: -0.01em; }
+        .hero p { color: var(--sf-gray-600); max-width: 900px; }
+        .facts { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 16px; }
+        .fact {
+            background: var(--sf-white);
+            border: 1px solid var(--sf-gray-100);
+            border-radius: 8px;
+            padding: 8px 12px;
+            font-size: 12.5px;
+        }
+        .fact b { display: block; color: var(--sf-gray-600); font-size: 10.5px; text-transform: uppercase; letter-spacing: 0.05em; }
+        .callout {
+            border-radius: 10px;
+            padding: 12px 15px;
+            font-size: 0.9rem;
+            margin-top: 12px;
+        }
+        .callout.warn { background: var(--sf-warning-light); border: 1px dashed var(--sf-warning); }
+        .callout.info { background: var(--sf-cloud-blue-light); border: 1px solid #B0D5F0; }
+        .callout.now { background: var(--sf-error-light); border: 1px solid var(--sf-error); }
+        .section {
+            background: var(--sf-white);
+            border: 1px solid var(--sf-gray-100);
+            border-radius: var(--radius-lg);
+            padding: 22px 24px;
+            margin-bottom: 16px;
+            box-shadow: var(--shadow-sm);
+        }
+        .section h2 {
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 0.06em;
+            color: var(--sf-gray-600);
+            margin-bottom: 14px;
+        }
+        .legend {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 14px;
+            margin: 0 0 14px;
+            font-size: 0.8rem;
+            color: var(--sf-gray-600);
+        }
+        .legend span { display: inline-flex; align-items: center; gap: 6px; }
+        .dot { width: 12px; height: 12px; border-radius: 3px; display: inline-block; }
+        .d-eval { background: var(--eval); }
+        .d-build { background: var(--build); }
+        .d-gate { background: var(--gate); }
+        .d-ms { background: var(--ms); }
+        .d-done { background: #94A3B8; }
+        .d-cp {
+            width: auto;
+            height: auto;
+            background: none;
+            border-radius: 0;
+            color: var(--cp);
+            font-size: 0.95rem;
+            line-height: 1;
+        }
+
+        .gantt-wrap {
+            overflow-x: auto;
+            overflow-y: visible;
+            margin: 0 -4px;
+            padding: 0 4px 12px;
+        }
+        .gantt {
+            position: relative;
+            min-width: 1040px;
+            border: 1px solid var(--sf-gray-100);
+            border-radius: 12px;
+            background: #FAFCFF;
+            padding: 14px 24px 18px 14px;
+            overflow: visible;
+        }
+        .cp-overlay {
+            position: absolute;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 4;
+            overflow: visible;
+        }
+        .cp-overlay path {
+            fill: none;
+            stroke: var(--cp-glow);
+            stroke-width: 2.5;
+            stroke-linecap: round;
+            stroke-linejoin: round;
+            stroke-dasharray: 5 4;
+            filter: drop-shadow(0 0 3px rgba(247, 144, 9, 0.55));
+        }
+        .cp-overlay .cp-node {
+            fill: #fff;
+            stroke: var(--cp);
+            stroke-width: 1.75;
+        }
+        .cp-overlay .cp-spark {
+            fill: var(--cp-glow);
+            stroke: var(--cp);
+            stroke-width: 0.6;
+        }
+        .months {
+            display: grid;
+            grid-template-columns: var(--label-w) repeat(var(--cols), 1fr);
+            align-items: end;
+            margin-bottom: 4px;
+        }
+        .months .corner {
+            font-size: 0.68rem;
+            font-weight: 700;
+            color: var(--sf-gray-600);
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            padding-right: 8px;
+        }
+        .months .m {
+            font-size: 0.72rem;
+            font-weight: 700;
+            color: var(--sf-gray-600);
+            text-align: center;
+            border-left: 1px solid var(--sf-gray-100);
+            padding: 2px 0 6px;
+        }
+        .row {
+            display: grid;
+            grid-template-columns: var(--label-w) 1fr;
+            align-items: center;
+            min-height: 42px;
+        }
+        .row.cp {
+            background: linear-gradient(90deg, rgba(247, 144, 9, 0.08) 0%, rgba(247, 144, 9, 0.02) var(--label-w), transparent calc(var(--label-w) + 8px));
+            border-radius: 8px;
+            margin: 1px 0;
+        }
+        .row .label {
+            font-size: 0.8rem;
+            color: var(--sf-navy);
+            font-weight: 600;
+            padding-right: 10px;
+            line-height: 1.25;
+        }
+        .row.cp .label {
+            display: flex;
+            flex-direction: column;
+            gap: 0;
+            padding-left: 2px;
+        }
+        .row.cp .label .cp-title {
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+        }
+        .spark {
+            display: inline-flex;
+            color: var(--cp-glow);
+            flex-shrink: 0;
+            filter: drop-shadow(0 0 2px rgba(247, 144, 9, 0.45));
+        }
+        .spark svg { width: 12px; height: 12px; display: block; }
+        .row .label small {
+            display: block;
+            color: var(--sf-gray-600);
+            font-size: 0.68rem;
+            font-weight: 500;
+            margin-top: 1px;
+        }
+        .track {
+            position: relative;
+            height: 42px;
+            border-left: 1px solid var(--sf-gray-100);
+            background-image: repeating-linear-gradient(
+                90deg,
+                transparent 0,
+                transparent calc(100% / var(--cols) - 1px),
+                var(--sf-gray-100) calc(100% / var(--cols) - 1px),
+                var(--sf-gray-100) calc(100% / var(--cols))
+            );
+        }
+        .bar {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            height: 22px;
+            border-radius: 6px;
+            display: flex;
+            align-items: center;
+            padding: 0 8px;
+            font-size: 0.68rem;
+            font-weight: 700;
+            color: #fff;
+            white-space: nowrap;
+            overflow: hidden;
+            z-index: 1;
+            box-shadow: 0 1px 2px rgba(3,45,96,0.12);
+        }
+        .bar.eval { background: var(--eval); }
+        .bar.build { background: var(--build); }
+        .bar.gate { background: var(--gate); }
+        .bar.done { background: #94A3B8; }
+        .bar.now {
+            background: var(--sf-error);
+            box-shadow: 0 0 0 2px #fff, 0 0 0 3px var(--sf-error);
+        }
+        .bar.cp {
+            box-shadow:
+                0 0 0 2px #fff,
+                0 0 0 3.5px var(--cp-glow),
+                0 1px 2px rgba(3,45,96,0.12);
+            z-index: 2;
+        }
+        .bar.cp.now {
+            box-shadow:
+                0 0 0 2px #fff,
+                0 0 0 3.5px var(--cp-glow),
+                0 0 0 5px var(--sf-error);
+        }
+        .bar.cp .spark {
+            margin-right: 4px;
+            color: #fff;
+            filter: drop-shadow(0 0 2px rgba(255,255,255,0.35));
+        }
+        .bar.cp .spark svg { width: 10px; height: 10px; }
+        /* Milestone labels sit BELOW the bar so they never cover bar text */
+        .row.has-markers .track {
+            height: 74px;
+        }
+        .row.has-markers.release-ms .track {
+            height: 120px;
+        }
+        .row.has-markers .bar {
+            top: 10px;
+            bottom: auto;
+            transform: none;
+        }
+        .marker {
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            width: 0;
+            border: none;
+            z-index: 6;
+            pointer-events: none;
+        }
+        .marker .mlabel {
+            position: absolute;
+            left: 6px;
+            top: 40px;
+            font-size: 0.64rem;
+            font-weight: 800;
+            color: var(--ms);
+            white-space: nowrap;
+            background: #fff;
+            border: 1px solid var(--sf-gray-100);
+            padding: 3px 7px;
+            border-radius: 4px;
+            box-shadow: 0 1px 2px rgba(3,45,96,0.1);
+            z-index: 8;
+            display: inline-flex;
+            align-items: center;
+            gap: 4px;
+            line-height: 1.2;
+        }
+        .marker.suite .mlabel {
+            color: var(--sf-navy);
+            border-color: #032D60;
+            background: #EAF5FE;
+        }
+        .marker.uat .mlabel {
+            color: var(--build);
+            border-color: #B0D5F0;
+            top: 40px;
+        }
+        .marker.signoff .mlabel {
+            color: var(--sf-navy);
+            border-color: #032D60;
+            background: #EAF5FE;
+            top: 64px;
+            bottom: auto;
+            right: auto;
+            left: 6px;
+        }
+        .marker.prod .mlabel {
+            color: var(--gate);
+            border-color: #B5E0C0;
+            background: #EBF7E6;
+            top: 88px;
+            bottom: auto;
+            right: auto;
+            left: 6px;
+            transform: none;
+        }
+        .marker .so-icon {
+            position: static;
+            display: inline-flex;
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: var(--sf-navy);
+            color: #fff;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+            font-size: 8px;
+            line-height: 1;
+            font-weight: 900;
+            border: none;
+            box-shadow: none;
+            padding: 0;
+            margin: 0;
+            top: auto;
+            left: auto;
+            right: auto;
+            bottom: auto;
+        }
+        .today {
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            width: 0;
+            border-left: 2px solid var(--sf-error);
+            z-index: 3;
+            pointer-events: none;
+        }
+        .today span {
+            position: absolute;
+            bottom: 2px;
+            left: 4px;
+            font-size: 0.62rem;
+            font-weight: 800;
+            color: var(--sf-error);
+            background: #fff;
+            padding: 0 3px;
+            border-radius: 3px;
+        }
+
+        .chip {
+            display: inline-block;
+            font-size: 0.7rem;
+            font-weight: 700;
+            border-radius: 999px;
+            padding: 2px 8px;
+        }
+        .chip.live { background: var(--sf-success-light); color: var(--sf-success); }
+        .chip.next { background: var(--sf-warning-light); color: var(--sf-warning); }
+        .chip.todo { background: var(--sf-cloud-blue-light); color: var(--sf-electric-blue); }
+        .chip.done { background: var(--sf-success-light); color: var(--sf-success); }
+        .chip.blocked { background: var(--sf-error-light); color: var(--sf-error); }
+
+        table { width: 100%; border-collapse: collapse; font-size: 0.84rem; margin-top: 4px; }
+        th, td { border: 1px solid var(--sf-gray-100); padding: 9px 11px; text-align: left; vertical-align: top; }
+        th {
+            background: var(--sf-gray-50);
+            font-size: 0.7rem;
+            text-transform: uppercase;
+            letter-spacing: 0.04em;
+            color: var(--sf-gray-600);
+        }
+        a.deep { color: var(--sf-electric-blue); font-weight: 600; text-decoration: none; }
+        a.deep:hover { text-decoration: underline; }
+        .split {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 14px;
+        }
+        @media (max-width: 800px) { .split { grid-template-columns: 1fr; } }
+        .pane {
+            border: 1px solid var(--sf-gray-100);
+            border-radius: 12px;
+            padding: 14px 16px;
+            background: #FAFCFF;
+        }
+        .pane.onb { border-top: 3px solid var(--sf-purple); }
+        .pane.adp { border-top: 3px solid var(--sf-electric-blue); }
+        .ships {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+        .pane.shared {
+            position: relative;
+            background: linear-gradient(90deg, #F7F5FC 0%, #EEF4FF 100%);
+            overflow: hidden;
+        }
+        .pane.shared::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0;
+            height: 3px;
+            background: linear-gradient(90deg, var(--sf-purple) 0%, var(--sf-electric-blue) 100%);
+        }
+        .pane h3 { font-size: 0.95rem; color: var(--sf-navy); margin-bottom: 8px; }
+        .pane ul { margin: 0; padding-left: 18px; font-size: 0.86rem; color: var(--sf-gray-600); }
+        .pane li { margin: 5px 0; }
+        .pane.shared .shared-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 14px;
+        }
+        @media (max-width: 800px) {
+            .pane.shared .shared-row { grid-template-columns: 1fr; }
+        }
+        .pane.shared .shared-item {
+            font-size: 0.86rem;
+            color: var(--sf-gray-600);
+            line-height: 1.45;
+        }
+        footer {
+            margin-top: 20px;
+            font-size: 0.8rem;
+            color: var(--sf-gray-600);
+            border-top: 1px solid var(--sf-gray-100);
+            padding-top: 14px;
+        }
+        .note { font-size: 0.78rem; color: var(--sf-gray-600); margin-top: 10px; }
+    </style>
+
+</head>
+<body>
+    <div class="top-bar">
+        <div class="top-bar-text">
+            <span class="top-bar-title">Lifecycle Success</span>
+            <span class="top-bar-sep">|</span>
+            <span class="top-bar-subtitle">November 2026 Workback · OrgCS.264.3</span>
+        </div>
+        <a class="back" href="roadmap.html#november-2026">← Back to Roadmap</a>
+    </div>
+
+    <div class="wrap">
+        <div class="hero">
+            <h1>November 2026 workback plan</h1>
+            <p>
+                High-level Gantt from the <strong>Sep 23 CSDP lock</strong> back from <strong>Prod Nov 13</strong>.
+                One ingest of the remaining 2026 clouds on the existing Adoption Retriever, then source-adds stop.
+                Digital Success locks the golden dataset on <strong>Oct 30</strong>. CSDP finishes one Quant suite on STG by <strong>Nov 6</strong>.
+                Qual runs on UAT in that same window. Oct 23 is not a cloud-add. Allyson's Oct 19 canvas is not this plan.
+            </p>
+            <div class="facts">
+                <div class="fact"><b>Release</b><span>OrgCS.264.3 · Prod Nov 13</span></div>
+                <div class="fact"><b>Scope</b><span>MC Next, Commerce, Revenue, Tableau, Field Service</span></div>
+                <div class="fact"><b>GDS lock</b><span>Oct 30 · Digital Success</span></div>
+                <div class="fact"><b>Quant</b><span>Complete Nov 6 · one suite · STG</span></div>
+                <div class="fact"><b>Qual</b><span>UAT · same window as Quant</span></div>
+                <div class="fact"><b>Out</b><span>MCAE · Oct 23 ingest · KaaS</span></div>
+                <div class="fact"><b>Program</b><span>Allyson · dates held by Stephanie</span></div>
+                <div class="fact"><b>Last refreshed</b><span>Sep 24, 2026</span></div>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>Gantt · Sep 21 → Nov 13 · refreshed Sep 24</h2>
+            <div class="legend">
+                <span><i class="dot d-cp" aria-hidden="true">✦</i> Critical path</span>
+                <span><i class="dot d-eval"></i> Eval / baseline set</span>
+                <span><i class="dot d-build"></i> Build / content / env</span>
+                <span><i class="dot d-gate"></i> Release gate</span>
+                <span><i class="dot d-done"></i> Done</span>
+                <span><i class="dot d-ms"></i> Fixed milestone</span>
+            </div>
+
+            <div class="gantt-wrap">
+                <div class="gantt" id="nov-gantt">
+                    <svg class="cp-overlay" id="cp-overlay" aria-hidden="true"></svg>
+                    <div class="months">
+                        <div class="corner">Workstream</div>
+                        <div class="m">Sep 21</div>
+                        <div class="m">Sep 28</div>
+                        <div class="m">Oct 5</div>
+                        <div class="m">Oct 12</div>
+                        <div class="m">Oct 19</div>
+                        <div class="m">Oct 26</div>
+                        <div class="m">Nov 2</div>
+                        <div class="m">Nov 9</div>
+                    </div>
+
+                    <div class="row">
+                        <div class="label">MC Next sources<small>Marketing App only · Jenny Smith</small></div>
+                        <div class="track">
+                            <div class="bar done" style="left:0%;width:6%;" title="Knowledge tags, Product Docs id=mktg, Trailhead PFT locked. Do not pull Intelligence, Engagement, Account Engagement, or Personalization.">Locked ✓</div>
+                        </div>
+                    </div>
+
+                    <div class="row cp">
+                        <div class="label">
+                            <span class="cp-title"><span class="spark" aria-hidden="true"><svg viewBox="0 0 16 16"><path fill="currentColor" d="M8 0l1.2 5.2L14.5 6.5l-4.1 3.2L11.5 16 8 12.8 4.5 16l1.1-6.3L1.5 6.5l5.3-1.3L8 0z"/></svg></span>Source IDs still open</span>
+                            <small>Commerce, Revenue, Tableau, Field Service</small>
+                        </div>
+                        <div class="track">
+                            <div class="bar now build cp" data-cp="1" style="left:4%;width:62%;" title="Stephanie fills Knowledge, Product Docs, and Trailhead IDs before the dataset lock."><span class="spark" aria-hidden="true"><svg viewBox="0 0 16 16"><path fill="currentColor" d="M8 0l1.2 5.2L14.5 6.5l-4.1 3.2L11.5 16 8 12.8 4.5 16l1.1-6.3L1.5 6.5l5.3-1.3L8 0z"/></svg></span>IDs</div>
+                            <div class="today" style="left:5%;"><span>Today · Sep 24</span></div>
+                        </div>
+                    </div>
+
+                    <div class="row cp has-markers">
+                        <div class="label">
+                            <span class="cp-title"><span class="spark" aria-hidden="true"><svg viewBox="0 0 16 16"><path fill="currentColor" d="M8 0l1.2 5.2L14.5 6.5l-4.1 3.2L11.5 16 8 12.8 4.5 16l1.1-6.3L1.5 6.5l5.3-1.3L8 0z"/></svg></span>Golden dataset</span>
+                            <small>One batch · Digital Success · Oct 30</small>
+                        </div>
+                        <div class="track">
+                            <div class="bar eval cp" data-cp="2" style="left:12%;width:58%;" title="One five-cloud dataset. Qual best content sources stay Help, product docs, and Trailhead.">Draft → SME</div>
+                            <div class="marker suite" style="left:70%;"><span class="mlabel">Lock · Oct 30</span></div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="label">Lower-env retriever<small>CSDP · early enough for STG Quant</small></div>
+                        <div class="track">
+                            <div class="bar build" style="left:62%;width:16%;" title="One rebuild of the existing index in lower env. Reuse the Sept Data Cloud permission path. Not a second emergency CR.">STG cut</div>
+                        </div>
+                    </div>
+
+                    <div class="row cp has-markers">
+                        <div class="label">
+                            <span class="cp-title"><span class="spark" aria-hidden="true"><svg viewBox="0 0 16 16"><path fill="currentColor" d="M8 0l1.2 5.2L14.5 6.5l-4.1 3.2L11.5 16 8 12.8 4.5 16l1.1-6.3L1.5 6.5l5.3-1.3L8 0z"/></svg></span>Quant</span>
+                            <small>One suite · STG · complete Nov 6</small>
+                        </div>
+                        <div class="track">
+                            <div class="bar eval cp" data-cp="3" style="left:70%;width:12%;" title="CSDP runs one Quant suite. No-regress against the Sept AF/DC + FINS baselines."><span class="spark" aria-hidden="true"><svg viewBox="0 0 16 16"><path fill="currentColor" d="M8 0l1.2 5.2L14.5 6.5l-4.1 3.2L11.5 16 8 12.8 4.5 16l1.1-6.3L1.5 6.5l5.3-1.3L8 0z"/></svg></span>Quant</div>
+                            <div class="marker signoff" style="left:82%;"><span class="mlabel">Complete · Nov 6</span></div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="label">Qual ATA<small>UAT · same window · Jelena</small></div>
+                        <div class="track">
+                            <div class="bar eval" style="left:70%;width:16%;" title="Qual on UAT alongside the Quant window. One cycle, not five.">UAT Qual</div>
+                        </div>
+                    </div>
+
+                    <div class="row cp has-markers release-ms">
+                        <div class="label">
+                            <span class="cp-title"><span class="spark" aria-hidden="true"><svg viewBox="0 0 16 16"><path fill="currentColor" d="M8 0l1.2 5.2L14.5 6.5l-4.1 3.2L11.5 16 8 12.8 4.5 16l1.1-6.3L1.5 6.5l5.3-1.3L8 0z"/></svg></span>Release readiness</span>
+                            <small>OrgCS.264.3 · Prod Nov 13</small>
+                        </div>
+                        <div class="track">
+                            <div class="bar gate cp" data-cp="4" style="left:87%;width:10%;" title="Help release. Earlier because of US Thanksgiving. Agent-side swap is Sam, behind a feature flag if the Sept pattern holds."><span class="spark" aria-hidden="true"><svg viewBox="0 0 16 16"><path fill="currentColor" d="M8 0l1.2 5.2L14.5 6.5l-4.1 3.2L11.5 16 8 12.8 4.5 16l1.1-6.3L1.5 6.5l5.3-1.3L8 0z"/></svg></span>Prod</div>
+                            <div class="marker prod" style="left:78%;"><span class="mlabel">Prod · Nov 13</span></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <p class="note">
+                Column starts = week of date. Bar positions are planning estimates.
+                <strong>Critical path:</strong> open source IDs → golden dataset Oct 30 → Quant complete Nov 6 → prod Nov 13.
+                October 19 is not a gate on this page.
+            </p>
+            <div class="callout info">
+                <strong>Sep 23 lock:</strong> Helen and Cody said Oct 23 is too soon for a five-cloud dataset. Roxanne moved the remaining clouds to November 13. One Quant and one Qual cycle. After that, no new source-adds on this index.
+            </div>
+            <div class="callout warn" style="margin-top:10px;">
+                <strong>Not agreed:</strong> the Sep 23 canvas that finishes Quant on Oct 19, puts the dataset on CSDP for Oct 1, and starts UAT on Oct 26. Stephanie and Allyson align that canvas on Sep 25 before it goes to the broader team. This page stays on Oct 30 / Nov 6 / Nov 13.
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>What ships on November 13</h2>
+            <div class="ships">
+                <div class="split">
+                    <div class="pane onb">
+                        <h3>On this retriever already</h3>
+                        <ul>
+                            <li>Sales, Service</li>
+                            <li>Agentforce, Data Cloud, Financial Services (September)</li>
+                        </ul>
+                    </div>
+                    <div class="pane adp">
+                        <h3>Add in this ingest</h3>
+                        <ul>
+                            <li><strong>Marketing Cloud Next:</strong> Marketing App taxonomy only</li>
+                            <li><strong>Commerce, Revenue, Tableau Analytics, Field Service:</strong> source IDs still open</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="pane shared">
+                    <h3>Out of this batch</h3>
+                    <div class="shared-row">
+                        <div class="shared-item"><strong>MCAE:</strong> paused. Do not treat it as a Marketing add.</div>
+                        <div class="shared-item"><strong>KaaS / Graph RAG:</strong> the vehicle after November 13, not this ingest.</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>Milestones</h2>
+            <table>
+                <thead>
+                    <tr><th>Date</th><th>Milestone</th><th>Owner</th></tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Sep 25</td>
+                        <td>Stephanie and Allyson align the canvas to these dates before a broader share.</td>
+                        <td>Stephanie · Allyson</td>
+                    </tr>
+                    <tr>
+                        <td>Oct 5</td>
+                        <td>OrgCS.264.3 release planning. October stays empty of new sources.</td>
+                        <td>Release mgmt · Allyson</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Oct 30</strong></td>
+                        <td>Golden dataset locked. One batch. Best content sources stay Help, product docs, and Trailhead.</td>
+                        <td>Stephanie</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Nov 6</strong></td>
+                        <td>Quant complete on STG. One suite. No-regress against the September baselines. Qual on UAT in this window.</td>
+                        <td>CSDP · Jelena</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Nov 13</strong></td>
+                        <td>Prod. One rebuild of the existing Adoption Retriever. Agent swap with Sam if the September pattern holds.</td>
+                        <td>Release mgmt · Sam</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <footer>
+            <p><strong>Sr. Product Manager:</strong> Stephanie Stancombe · Lifecycle Success Lead</p>
+            <p><strong>Sources:</strong>
+                <a class="deep" href="https://docs.google.com/document/d/11TGRITPgqigq8pLtpHDj1t93gsX8m0DMTMgmf9MU38M/edit?tab=t.mbhh6e17p4y6" target="_blank" rel="noopener">CSDP commitment call Sep 23</a> ·
+                Roadmap OrgCS.264.3</p>
+            <p>
+                <a class="deep" href="roadmap.html#november-2026">Return to November on Product Roadmap</a> ·
+                <a class="deep" href="roadmap.html#october-2026">October eval prep</a> ·
+                <a class="deep" href="workback-september-2026.html">September workback</a>
+            </p>
+        </footer>
+    </div>
+    <script>
+        (function () {
+            var NS = 'http://www.w3.org/2000/svg';
+            var gantt = document.getElementById('nov-gantt');
+            var svg = document.getElementById('cp-overlay');
+            if (!gantt || !svg) return;
+            function draw() {
+                var bars = Array.prototype.slice.call(gantt.querySelectorAll('.bar.cp'))
+                    .sort(function (a, b) {
+                        return Number(a.getAttribute('data-cp')) - Number(b.getAttribute('data-cp'));
+                    });
+                if (bars.length < 2) return;
+                var gRect = gantt.getBoundingClientRect();
+                var w = gantt.clientWidth;
+                var h = gantt.clientHeight;
+                svg.setAttribute('viewBox', '0 0 ' + w + ' ' + h);
+                svg.setAttribute('width', w);
+                svg.setAttribute('height', h);
+                while (svg.firstChild) svg.removeChild(svg.firstChild);
+                var nodes = bars.map(function (bar) {
+                    var r = bar.getBoundingClientRect();
+                    return {
+                        x1: r.left - gRect.left,
+                        x2: r.right - gRect.left,
+                        y: r.bottom - gRect.top + 5
+                    };
+                });
+                var d = '';
+                for (var i = 0; i < nodes.length; i++) {
+                    var n = nodes[i];
+                    if (i === 0) {
+                        d += 'M ' + n.x1.toFixed(1) + ' ' + n.y.toFixed(1);
+                        d += ' L ' + n.x2.toFixed(1) + ' ' + n.y.toFixed(1);
+                    } else {
+                        var prev = nodes[i - 1];
+                        var joinX = n.x1 > prev.x2 ? (prev.x2 + n.x1) / 2 : Math.max(prev.x2, n.x2) + 8;
+                        d += ' L ' + joinX.toFixed(1) + ' ' + prev.y.toFixed(1);
+                        d += ' L ' + joinX.toFixed(1) + ' ' + n.y.toFixed(1);
+                        d += ' L ' + n.x1.toFixed(1) + ' ' + n.y.toFixed(1);
+                        d += ' L ' + n.x2.toFixed(1) + ' ' + n.y.toFixed(1);
+                    }
+                }
+                var path = document.createElementNS(NS, 'path');
+                path.setAttribute('d', d);
+                svg.appendChild(path);
+            }
+            draw();
+            window.addEventListener('resize', draw);
+        })();
+    </script>
+</body>
+</html>

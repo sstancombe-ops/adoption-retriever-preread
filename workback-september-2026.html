@@ -515,9 +515,10 @@
                 GDS handed off Sep 11. Quant report landed Sep 23 (run was the UAT retriever, not STG).
                 Walk that readout on today's architecture call. Product GO is Friday if Data Cloud
                 permissions clear; latest live date from the Sep 23 CSDP + LS lock is
-                <strong>Wed Sep 30</strong>. No dedicated FINS feature flag. Kill is custom metadata
-                via Supportforce. AF + DC Onboarding off-switch is Sahil / Kamalesh. Qual ran in
-                parallel and is not a formal prod cert. Nov remaining-cloud ingest is not this page.
+                <strong>Wed Sep 30</strong>. Retriever is one bundle. Cannot split AF / DC / FINS.
+                Adoption can go Friday on the current retriever with signals off, then a Supportforce
+                flip. Onboarding AF + DC has no off-switch. Qual ran in parallel and is not a formal
+                prod cert. Nov remaining-cloud ingest is not this page.
             </p>
             <div class="facts">
                 <div class="fact"><b>Release</b><span>OrgCS.264.1 · Sep 25 preferred · latest Sep 30</span></div>
@@ -525,7 +526,7 @@
                 <div class="fact"><b>GDS handoff</b><span>Done Sep 11</span></div>
                 <div class="fact"><b>Quant</b><span>Report Sep 23 · walk today · UAT run</span></div>
                 <div class="fact"><b>Qual ATA env</b><span>UAT · not a formal cert</span></div>
-                <div class="fact"><b>Kill switch</b><span>FINS metadata · AF/DC Onboarding</span></div>
+                <div class="fact"><b>Kill switch</b><span>Adoption signals only · Onboarding none</span></div>
                 <div class="fact"><b>Open gate</b><span>Data Cloud perms / Friday train</span></div>
                 <div class="fact"><b>Last refreshed</b><span>Sep 24, 2026</span></div>
             </div>
@@ -747,10 +748,10 @@
                     <div class="row cp">
                         <div class="label">
                             <span class="cp-title"><span class="spark" aria-hidden="true"><svg viewBox="0 0 16 16"><path fill="currentColor" d="M8 0l1.2 5.2L14.5 6.5l-4.1 3.2L11.5 16 8 12.8 4.5 16l1.1-6.3L1.5 6.5l5.3-1.3L8 0z"/></svg></span>Kill switch / flag path</span>
-                            <small>No FINS flag · metadata + Onboarding off-switch</small>
+                            <small>Adoption signals-off Friday · Onboarding no switch · retriever one bundle</small>
                         </div>
                         <div class="track">
-                            <div class="bar now build cp" data-cp="4" style="left:78%;width:12%;" title="Sam: no dedicated FINS flag. Turn off FINS signals in custom metadata via Supportforce. AF+DC Onboarding off-switch is Sahil / Kamalesh. Agent can go prod then swap retriever."><span class="spark" aria-hidden="true"><svg viewBox="0 0 16 16"><path fill="currentColor" d="M8 0l1.2 5.2L14.5 6.5l-4.1 3.2L11.5 16 8 12.8 4.5 16l1.1-6.3L1.5 6.5l5.3-1.3L8 0z"/></svg></span>Confirm path</div>
+                            <div class="bar done" style="left:78%;width:12%;" title="Sam: Adoption Friday on current retriever, signals off, Supportforce flip later. Sahil: no AF+DC Onboarding off-switch. Kavita: cannot split AF / DC / FINS on the retriever.">Path locked</div>
                         </div>
                     </div>
                 </div>
@@ -759,8 +760,9 @@
             <p class="note">
                 Column starts = week of date. Bar positions are planning estimates.
                 <strong>Critical path (Sep 24):</strong> walk Quant today (UAT run is the number unless CSDP
-                says otherwise) → confirm Data Cloud perms / Friday train → confirm metadata kill path
-                with Sam → Friday cut if clear, else hold to <strong>Wed Sep 30</strong>.
+                says otherwise) → confirm Data Cloud perms / Friday train → Friday cut if clear,
+                else hold to <strong>Wed Sep 30</strong>. Adoption can go Friday with signals off.
+                Onboarding AF + DC has no switch. Retriever is one bundle.
                 Known leakage <code>S01</code> / <code>F05</code>. GDS fixes <code>V05</code> / <code>V10</code>.
                 Ranking still open: <code>S10</code>, <code>S12</code>, <code>F03</code>. Vidyard is not in this drop.
                 Remaining 2026 clouds are the November 13 one-and-done on the
@@ -800,7 +802,7 @@
                         <h3>Adoption experience</h3>
                         <ul>
                             <li><strong>Adoption experience:</strong> FINS only — <strong>10 features</strong> (locked Aug 20)</li>
-                            <li><strong>FSC:</strong> stays in this cut. Product GO includes FINS. Kill is metadata via Supportforce, not a dedicated flag.</li>
+                            <li><strong>FSC:</strong> stays in this cut. Adoption can go Friday with signals off if the new retriever misses. Onboarding FINS is not Sept scope.</li>
                             <li><strong>FINS 10</strong> + Sales/Service 14 regression = <strong>24-feature suite</strong> when combined; expansion slice alone = 12+12+10 = <strong>34</strong></li>
                         </ul>
                     </div>
@@ -840,9 +842,9 @@
                     </tr>
                     <tr>
                         <td>3</td>
-                        <td>Confirm kill path: FINS signals off in custom metadata via Supportforce. AF + DC Onboarding off-switch with Sahil / Kamalesh. Agent can go prod then swap retriever.</td>
-                        <td>Sam · Sahil · Kamalesh</td>
-                        <td>Before the cut</td>
+                        <td>Adoption Friday path is locked: current retriever, signals off, Supportforce flip when the new retriever lands. Onboarding AF + DC has no off-switch. Retriever cannot split AF / DC / FINS.</td>
+                        <td>Sam · Sahil · Kavita</td>
+                        <td>Locked Sep 23–24</td>
                     </tr>
                     <tr>
                         <td>4</td>
@@ -910,14 +912,19 @@
                         <td><span class="chip next">Open</span> Friday only if perms clear</td>
                     </tr>
                     <tr>
-                        <td>FINS kill: custom metadata via Supportforce</td>
+                        <td>Adoption Friday: current retriever, signals off, Supportforce flip later</td>
                         <td>Sam</td>
-                        <td><span class="chip next">Confirm</span> No dedicated FINS flag</td>
+                        <td><span class="chip live">Locked</span> Adoption only</td>
                     </tr>
                     <tr>
-                        <td>AF + DC Onboarding off-switch</td>
-                        <td>Sahil · Kamalesh</td>
-                        <td><span class="chip next">Confirm</span> If agent goes prod first</td>
+                        <td>Onboarding AF + DC off-switch</td>
+                        <td>Sahil</td>
+                        <td><span class="chip blocked">None</span> Intent. Cannot gate.</td>
+                    </tr>
+                    <tr>
+                        <td>Retriever split FINS vs AF vs DC</td>
+                        <td>Kavita · Alexis · Shantan</td>
+                        <td><span class="chip blocked">Cannot</span> One Friday bundle</td>
                     </tr>
                     <tr>
                         <td>FINS CSS signals / goal mapping</td>

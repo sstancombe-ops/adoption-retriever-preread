@@ -511,30 +511,28 @@
         <div class="hero">
             <h1>September 2026 workback plan</h1>
             <p>
-                Gantt from <strong>today (Sep 11)</strong> back from <strong>Prod Sep 25</strong>.
-                Retriever is live in QA, UAT, and STG (Alexis Sep 8). Sam pointed the STG
-                prompt template at the new retriever (Sep 10). Critical path is
-                <strong>GDS handoff → Helen Quant on STG → Jelena Qual on UAT</strong>.
-                AF/DC: Hao reviewed Sep 10; remaining gate is BCS close (Derrick D360 still a
-                gap — send the rest). FSC: dual-path expected answers + Help cleanup; UAT eval
-                this week; hold instruction / perm-set changes. Official Qual ATA =
-                <strong>UAT trial</strong>. Quant = <strong>STG</strong>. Suite-ready hard date
-                still <strong>Sep 14</strong>. Stephanie OOO Sep 10–21; Allyson covers. CSDP via Cody, then Helen.
+                Gantt from <strong>today (Sep 24)</strong> back from <strong>Prod Sep 25 preferred · latest Sep 30</strong>.
+                GDS handed off Sep 11. Quant report landed Sep 23 (run was the UAT retriever, not STG).
+                Walk that readout on today's architecture call. Product GO is Friday if Data Cloud
+                permissions clear; latest live date from the Sep 23 CSDP + LS lock is
+                <strong>Wed Sep 30</strong>. No dedicated FINS feature flag. Kill is custom metadata
+                via Supportforce. AF + DC Onboarding off-switch is Sahil / Kamalesh. Qual ran in
+                parallel and is not a formal prod cert. Nov remaining-cloud ingest is not this page.
             </p>
             <div class="facts">
-                <div class="fact"><b>Release</b><span>OrgCS.264.1 · Prod Sep 25</span></div>
-                <div class="fact"><b>ATA suite-ready</b><span>Hard date Sep 14</span></div>
-                <div class="fact"><b>GDS handoff</b><span>BCS close · then Helen</span></div>
-                <div class="fact"><b>Quant env</b><span>STG live + prompt Sep 10</span></div>
-                <div class="fact"><b>Qual ATA env</b><span>UAT trial (Aug 24)</span></div>
-                <div class="fact"><b>FSC gate</b><span>Dual-path UAT eval · ~80% bar</span></div>
-                <div class="fact"><b>Cover</b><span>Allyson · Stephanie OOO through Sep 21</span></div>
-                <div class="fact"><b>Last refreshed</b><span>Sep 11, 2026</span></div>
+                <div class="fact"><b>Release</b><span>OrgCS.264.1 · Sep 25 preferred · latest Sep 30</span></div>
+                <div class="fact"><b>Product GO</b><span>Roxanne · Fri Sep 25 if perms clear</span></div>
+                <div class="fact"><b>GDS handoff</b><span>Done Sep 11</span></div>
+                <div class="fact"><b>Quant</b><span>Report Sep 23 · walk today · UAT run</span></div>
+                <div class="fact"><b>Qual ATA env</b><span>UAT · not a formal cert</span></div>
+                <div class="fact"><b>Kill switch</b><span>FINS metadata · AF/DC Onboarding</span></div>
+                <div class="fact"><b>Open gate</b><span>Data Cloud perms / Friday train</span></div>
+                <div class="fact"><b>Last refreshed</b><span>Sep 24, 2026</span></div>
             </div>
         </div>
 
         <div class="section">
-            <h2>Gantt · Aug 17 → Sep 25 · refreshed Sep 11</h2>
+            <h2>Gantt · Aug 17 → Sep 30 · refreshed Sep 24</h2>
             <div class="legend">
                 <span><i class="dot d-cp" aria-hidden="true">✦</i> Critical path</span>
                 <span><i class="dot d-eval"></i> Eval / baseline set</span>
@@ -579,7 +577,8 @@
                         <div class="track">
                             <div class="bar done" style="left:0%;width:8%;" title="Bulk densification Aug 19">BCS ✓</div>
                             <div class="bar done" style="left:28%;width:21%;" title="SME polish through Hao review Sep 10 · Help / product docs / Trailhead only">SME polish ✓</div>
-                            <div class="bar now" style="left:49%;width:8%;" title="Close Hao comments · flag empty Derrick D360 BCS · send the rest">BCS close</div>
+                            <div class="bar done" style="left:49%;width:8%;" title="Pack sent Sep 11 · V05 / V10 BCS still to fix, not a retriever fail">BCS sent ✓</div>
+                            <div class="bar now" style="left:78%;width:8%;" title="Fix ONB_SEPT_V05 and V10 expected URLs. Do not count as retriever fails.">V05 / V10</div>
                         </div>
                     </div>
 
@@ -601,26 +600,24 @@
                     <div class="row cp has-markers">
                         <div class="label">
                             <span class="cp-title"><span class="spark" aria-hidden="true"><svg viewBox="0 0 16 16"><path fill="currentColor" d="M8 0l1.2 5.2L14.5 6.5l-4.1 3.2L11.5 16 8 12.8 4.5 16l1.1-6.3L1.5 6.5l5.3-1.3L8 0z"/></svg></span>SME confirm + GDS handoff</span>
-                            <small>Hao reviewed Sep 10 · BCS close then Helen</small>
+                            <small>Official handoff Sep 11 · Vidyard out of this drop</small>
                         </div>
                         <div class="track">
                             <div class="bar done" style="left:16%;width:20%;" title="SME kick Aug 25 · AF/DC live walkthrough Sep 3">AF/DC kick ✓</div>
                             <div class="bar done" style="left:36%;width:13%;" title="Hao reviewed assigned rows Sep 10 · treat as final SME gate">Hao lock ✓</div>
-                            <div class="bar now cp" data-cp="1" style="left:49%;width:8%;"><span class="spark" aria-hidden="true"><svg viewBox="0 0 16 16"><path fill="currentColor" d="M8 0l1.2 5.2L14.5 6.5l-4.1 3.2L11.5 16 8 12.8 4.5 16l1.1-6.3L1.5 6.5l5.3-1.3L8 0z"/></svg></span>Handoff</div>
-                            <div class="today" style="left:51%;"><span>Today · Sep 11</span></div>
-                            <div class="marker suite" style="left:49%;"><span class="mlabel">Hao reviewed · Sep 10</span></div>
+                            <div class="bar done" style="left:49%;width:8%;" title="Official GDS handoff Sep 11 · Helen first, then Jelena">Handoff ✓</div>
+                            <div class="marker suite" style="left:49%;"><span class="mlabel">Handoff · Sep 11</span></div>
                         </div>
                     </div>
 
                     <div class="row cp has-markers">
                         <div class="label">
                             <span class="cp-title"><span class="spark" aria-hidden="true"><svg viewBox="0 0 16 16"><path fill="currentColor" d="M8 0l1.2 5.2L14.5 6.5l-4.1 3.2L11.5 16 8 12.8 4.5 16l1.1-6.3L1.5 6.5l5.3-1.3L8 0z"/></svg></span>FSC MP vs Core</span>
-                            <small>Dual-path answers + Help cleanup · UAT this week · ~80% bar</small>
+                            <small>Dual-path ran · product GO holds FINS in this cut</small>
                         </div>
                         <div class="track">
                             <div class="bar done" style="left:36%;width:13%;" title="Sep 4 lock · split utterances + expected answers">Split ✓</div>
-                            <div class="bar eval cp" data-cp="3" style="left:49%;width:12%;"><span class="spark" aria-hidden="true"><svg viewBox="0 0 16 16"><path fill="currentColor" d="M8 0l1.2 5.2L14.5 6.5l-4.1 3.2L11.5 16 8 12.8 4.5 16l1.1-6.3L1.5 6.5l5.3-1.3L8 0z"/></svg></span>UAT eval</div>
-                            <div class="marker suite" style="left:61%;"><span class="mlabel">Go/no-go · post-eval</span></div>
+                            <div class="bar done" style="left:49%;width:22%;" title="UAT eval ran · Balaji: Adoption triggering on most rows. Product GO includes FINS.">UAT eval ✓</div>
                         </div>
                     </div>
 
@@ -631,14 +628,14 @@
                         </div>
                         <div class="track">
                             <div class="bar done" style="left:8%;width:12%;" title="Cross-topic negatives drafted Aug 20">Draft ✓</div>
-                            <div class="bar eval cp" data-cp="4" style="left:51%;width:18%;"><span class="spark" aria-hidden="true"><svg viewBox="0 0 16 16"><path fill="currentColor" d="M8 0l1.2 5.2L14.5 6.5l-4.1 3.2L11.5 16 8 12.8 4.5 16l1.1-6.3L1.5 6.5l5.3-1.3L8 0z"/></svg></span>Wire + run</div>
+                            <div class="bar done" style="left:51%;width:22%;" title="Negatives in the Quant miss list. S01 and F05 = known leakage, no product guardrail.">Wired · leakage known</div>
                         </div>
                     </div>
 
                     <div class="row">
                         <div class="label">Eval runs barebones TI + early ATA<small>Transcripts · TI polish · no pass/fail yet</small></div>
                         <div class="track">
-                            <div class="bar eval" style="left:16%;width:41%;">Scaffold now → suite-ready Sep 14</div>
+                            <div class="bar done" style="left:16%;width:41%;" title="Suite used for Qual ATA on UAT">Scaffold → suite ✓</div>
                         </div>
                     </div>
 
@@ -646,7 +643,7 @@
                         <div class="label">UAT Qual env<small>Agent + Retriever + signals · Sept trial</small></div>
                         <div class="track">
                             <div class="bar done" style="left:14%;width:31%;" title="Aug 24 Qual=UAT lock · retriever live UAT Sep 8">UAT connect ✓</div>
-                            <div class="bar build" style="left:49%;width:12%;" title="Cloud expansion experience UAT Sep 10–14">UAT week</div>
+                            <div class="bar done" style="left:49%;width:22%;" title="Cloud expansion UAT week Sep 10–14 · Qual ran here">UAT week ✓</div>
                         </div>
                     </div>
 
@@ -659,21 +656,22 @@
 
                     <div class="row cp">
                         <div class="label">
-                            <span class="cp-title"><span class="spark" aria-hidden="true"><svg viewBox="0 0 16 16"><path fill="currentColor" d="M8 0l1.2 5.2L14.5 6.5l-4.1 3.2L11.5 16 8 12.8 4.5 16l1.1-6.3L1.5 6.5l5.3-1.3L8 0z"/></svg></span>Helen Quant (STG)</span>
-                            <small>After GDS handoff · Cody then Helen · Qual waits</small>
+                            <span class="cp-title"><span class="spark" aria-hidden="true"><svg viewBox="0 0 16 16"><path fill="currentColor" d="M8 0l1.2 5.2L14.5 6.5l-4.1 3.2L11.5 16 8 12.8 4.5 16l1.1-6.3L1.5 6.5l5.3-1.3L8 0z"/></svg></span>Helen Quant</span>
+                            <small>Report Sep 23 · UAT retriever · walk today</small>
                         </div>
                         <div class="track">
-                            <div class="bar now eval cp" data-cp="2" style="left:51%;width:12%;"><span class="spark" aria-hidden="true"><svg viewBox="0 0 16 16"><path fill="currentColor" d="M8 0l1.2 5.2L14.5 6.5l-4.1 3.2L11.5 16 8 12.8 4.5 16l1.1-6.3L1.5 6.5l5.3-1.3L8 0z"/></svg></span>Quant run</div>
+                            <div class="bar done" style="left:51%;width:24%;" title="Quant complete. Alexis: UAT retriever CSG_Ensemble_Content_Adoption_Guidance_Retri_1Cx_g0pdb549a45. Part 1 ONB HR@10 0.79. Part 2 ADP FINS 0.80.">Quant run ✓</div>
+                            <div class="bar now eval cp" data-cp="1" style="left:77%;width:6%;" title="Architecture call today. Do not re-open setup. Walk S10, S12, F03. Confirm UAT is the official number."><span class="spark" aria-hidden="true"><svg viewBox="0 0 16 16"><path fill="currentColor" d="M8 0l1.2 5.2L14.5 6.5l-4.1 3.2L11.5 16 8 12.8 4.5 16l1.1-6.3L1.5 6.5l5.3-1.3L8 0z"/></svg></span>Readout</div>
                         </div>
                     </div>
 
                     <div class="row cp has-markers">
                         <div class="label">
                             <span class="cp-title"><span class="spark" aria-hidden="true"><svg viewBox="0 0 16 16"><path fill="currentColor" d="M8 0l1.2 5.2L14.5 6.5l-4.1 3.2L11.5 16 8 12.8 4.5 16l1.1-6.3L1.5 6.5l5.3-1.3L8 0z"/></svg></span>Official Qual ATA (pass/fail)</span>
-                            <small>UAT trial · after Quant + Sep 14 suite-ready · FSC gated on MP/Core score</small>
+                            <small>Ran in parallel on UAT · not a formal prod cert</small>
                         </div>
                         <div class="track">
-                            <div class="bar eval cp" data-cp="5" style="left:57%;width:22%;"><span class="spark" aria-hidden="true"><svg viewBox="0 0 16 16"><path fill="currentColor" d="M8 0l1.2 5.2L14.5 6.5l-4.1 3.2L11.5 16 8 12.8 4.5 16l1.1-6.3L1.5 6.5l5.3-1.3L8 0z"/></svg></span>ATA iterations</div>
+                            <div class="bar done" style="left:57%;width:20%;" title="Qual ran on UAT. Product GO Sep 23. Kavita still wants Slack UAT thumbs-up. Not a formal cert.">ATA ran</div>
                             <div class="marker suite" style="left:57%;"><span class="mlabel"><span class="so-icon" aria-hidden="true">✦</span> Suite ready · Sep 14</span></div>
                         </div>
                     </div>
@@ -684,17 +682,17 @@
                             <small>Pass/fail + leakage negatives · Phase B</small>
                         </div>
                         <div class="track">
-                            <div class="bar eval cp" data-cp="6" style="left:57%;width:20%;"><span class="spark" aria-hidden="true"><svg viewBox="0 0 16 16"><path fill="currentColor" d="M8 0l1.2 5.2L14.5 6.5l-4.1 3.2L11.5 16 8 12.8 4.5 16l1.1-6.3L1.5 6.5l5.3-1.3L8 0z"/></svg></span>SME</div>
+                            <div class="bar done" style="left:57%;width:20%;" title="Balaji FINS transcripts + Roxanne AQ GO Sep 23">SME + AQ GO</div>
                         </div>
                     </div>
 
                     <div class="row cp">
                         <div class="label">
                             <span class="cp-title"><span class="spark" aria-hidden="true"><svg viewBox="0 0 16 16"><path fill="currentColor" d="M8 0l1.2 5.2L14.5 6.5l-4.1 3.2L11.5 16 8 12.8 4.5 16l1.1-6.3L1.5 6.5l5.3-1.3L8 0z"/></svg></span>Formal eval assessment</span>
-                            <small>Release gate · FSC: miss → October enhance</small>
+                            <small>Product GO Sep 23 · CSDP deploy still open</small>
                         </div>
                         <div class="track">
-                            <div class="bar gate cp" data-cp="7" style="left:68%;width:10%;"><span class="spark" aria-hidden="true"><svg viewBox="0 0 16 16"><path fill="currentColor" d="M8 0l1.2 5.2L14.5 6.5l-4.1 3.2L11.5 16 8 12.8 4.5 16l1.1-6.3L1.5 6.5l5.3-1.3L8 0z"/></svg></span>Assess</div>
+                            <div class="bar done" style="left:74%;width:6%;" title="Roxanne product GO for Fri Sep 25 AF/DC + FINS. Not a CSDP deploy commit.">LS GO ✓</div>
                         </div>
                     </div>
 
@@ -716,20 +714,43 @@
                         <div class="label">FINS eligibility + signals<small>UAT5 en_US ready · QA6 waits mock CSS</small></div>
                         <div class="track">
                             <div class="bar done" style="left:0%;width:49%;" title="Filters filled · ATA stay on UAT5">Datagraph / CSS ✓</div>
-                            <div class="bar build" style="left:49%;width:12%;" title="QA6 mock CSS scores still open">QA6 scores</div>
+                            <div class="bar done" style="left:49%;width:12%;" title="FINS signals live for UAT ATA. CSS still blocks Adoption AF/DC experience.">UAT5 ATA ✓</div>
                         </div>
                     </div>
 
                     <div class="row cp has-markers release-ms">
                         <div class="label">
                             <span class="cp-title"><span class="spark" aria-hidden="true"><svg viewBox="0 0 16 16"><path fill="currentColor" d="M8 0l1.2 5.2L14.5 6.5l-4.1 3.2L11.5 16 8 12.8 4.5 16l1.1-6.3L1.5 6.5l5.3-1.3L8 0z"/></svg></span>Release readiness</span>
-                            <small>Exp UAT this week → Product sign-off → Prod</small>
+                            <small>Fri Sep 25 preferred · latest Wed Sep 30</small>
                         </div>
                         <div class="track">
-                            <div class="bar gate cp" data-cp="8" style="left:49%;width:31%;"><span class="spark" aria-hidden="true"><svg viewBox="0 0 16 16"><path fill="currentColor" d="M8 0l1.2 5.2L14.5 6.5l-4.1 3.2L11.5 16 8 12.8 4.5 16l1.1-6.3L1.5 6.5l5.3-1.3L8 0z"/></svg></span>UAT week → GA</div>
+                            <div class="bar done" style="left:49%;width:26%;" title="UAT week through product GO">UAT week → LS GO</div>
+                            <div class="bar now gate cp" data-cp="2" style="left:78%;width:12%;" title="Friday if Data Cloud perms clear. Latest Sep 30. Agent can go prod then swap retriever."><span class="spark" aria-hidden="true"><svg viewBox="0 0 16 16"><path fill="currentColor" d="M8 0l1.2 5.2L14.5 6.5l-4.1 3.2L11.5 16 8 12.8 4.5 16l1.1-6.3L1.5 6.5l5.3-1.3L8 0z"/></svg></span>Cut window</div>
+                            <div class="today" style="left:78%;"><span>Today · Sep 24</span></div>
                             <div class="marker uat" style="left:49%;"><span class="mlabel">Exp UAT · Sep 10–14</span></div>
-                            <div class="marker signoff" style="left:82%;"><span class="mlabel"><span class="so-icon" aria-hidden="true">✓</span> Sign-off · Sep 24</span></div>
-                            <div class="marker prod" style="left:90%;"><span class="mlabel">Prod · Sep 25</span></div>
+                            <div class="marker signoff" style="left:78%;"><span class="mlabel"><span class="so-icon" aria-hidden="true">✓</span> LS GO · Sep 23</span></div>
+                            <div class="marker prod" style="left:80%;"><span class="mlabel">Preferred · Sep 25</span></div>
+                            <div class="marker suite" style="left:90%;"><span class="mlabel">Latest · Sep 30</span></div>
+                        </div>
+                    </div>
+
+                    <div class="row cp">
+                        <div class="label">
+                            <span class="cp-title"><span class="spark" aria-hidden="true"><svg viewBox="0 0 16 16"><path fill="currentColor" d="M8 0l1.2 5.2L14.5 6.5l-4.1 3.2L11.5 16 8 12.8 4.5 16l1.1-6.3L1.5 6.5l5.3-1.3L8 0z"/></svg></span>Data Cloud perms / Friday train</span>
+                            <small>Emergency CR if needed · Kavita / Cody</small>
+                        </div>
+                        <div class="track">
+                            <div class="bar now gate cp" data-cp="3" style="left:78%;width:12%;" title="Friday preferred only if permissions clear. Kavita checking emergency CR. Ali: STG go/no-go passed."><span class="spark" aria-hidden="true"><svg viewBox="0 0 16 16"><path fill="currentColor" d="M8 0l1.2 5.2L14.5 6.5l-4.1 3.2L11.5 16 8 12.8 4.5 16l1.1-6.3L1.5 6.5l5.3-1.3L8 0z"/></svg></span>Perms / CR</div>
+                        </div>
+                    </div>
+
+                    <div class="row cp">
+                        <div class="label">
+                            <span class="cp-title"><span class="spark" aria-hidden="true"><svg viewBox="0 0 16 16"><path fill="currentColor" d="M8 0l1.2 5.2L14.5 6.5l-4.1 3.2L11.5 16 8 12.8 4.5 16l1.1-6.3L1.5 6.5l5.3-1.3L8 0z"/></svg></span>Kill switch / flag path</span>
+                            <small>No FINS flag · metadata + Onboarding off-switch</small>
+                        </div>
+                        <div class="track">
+                            <div class="bar now build cp" data-cp="4" style="left:78%;width:12%;" title="Sam: no dedicated FINS flag. Turn off FINS signals in custom metadata via Supportforce. AF+DC Onboarding off-switch is Sahil / Kamalesh. Agent can go prod then swap retriever."><span class="spark" aria-hidden="true"><svg viewBox="0 0 16 16"><path fill="currentColor" d="M8 0l1.2 5.2L14.5 6.5l-4.1 3.2L11.5 16 8 12.8 4.5 16l1.1-6.3L1.5 6.5l5.3-1.3L8 0z"/></svg></span>Confirm path</div>
                         </div>
                     </div>
                 </div>
@@ -737,22 +758,30 @@
 
             <p class="note">
                 Column starts = week of date. Bar positions are planning estimates.
-                <strong>Eval critical path (Sep 11):</strong> close remaining BCS / send AF/DC pack →
-                <em>Helen Quant on STG</em> → Jelena Qual on <strong>UAT</strong> after Quant + suite-ready
-                <strong>Sep 14</strong> → assessment before Prod Sep 25. FSC dual-path UAT eval runs this week
-                (~80% bar). Miss on accuracy → <strong>October</strong> enhance. Vidyard is not in this GDS drop.
+                <strong>Critical path (Sep 24):</strong> walk Quant today (UAT run is the number unless CSDP
+                says otherwise) → confirm Data Cloud perms / Friday train → confirm metadata kill path
+                with Sam → Friday cut if clear, else hold to <strong>Wed Sep 30</strong>.
+                Known leakage <code>S01</code> / <code>F05</code>. GDS fixes <code>V05</code> / <code>V10</code>.
+                Ranking still open: <code>S10</code>, <code>S12</code>, <code>F03</code>. Vidyard is not in this drop.
+                Remaining 2026 clouds are the November 13 one-and-done on the
+                <a href="roadmap.html#november-2026">roadmap</a>, not this cut.
             </p>
             <div class="callout now">
-                <strong>Today · Sep 11 — GDS handoff:</strong> Retriever is ready in UAT and STG. Sam pointed the STG prompt.
-                Hao reviewed AF/DC rows Sep 10. Close his comments, flag empty Derrick D360 BCS, send the rest to
-                <strong>Helen (Quant)</strong> then <strong>Jelena (Qual)</strong>. Stephanie is OOO through Sep 21 —
-                Allyson covers status. CSDP asks go through Cody, then Helen.
+                <strong>Today · Sep 24 — Quant walk + cut window:</strong> Architecture call walks the
+                <a href="https://docs.google.com/document/d/14i6Ly9YkqGidBgHb3-lctFu_Sx_P6_PkZ2ltxMgbAaE/edit" target="_blank" rel="noopener">Quant report</a>.
+                Do not re-open setup. Product GO is Friday if permissions clear. Latest live is Sep 30.
+                LS proceeds until a day-before go/no-go. Cody's 10/1 or 10/8 is not the lock.
             </div>
             <div class="callout warn" style="margin-top:10px;">
                 <span class="spark" aria-hidden="true" style="display:inline-flex;vertical-align:-1px;margin-right:4px;"><svg viewBox="0 0 16 16" width="13" height="13"><path fill="currentColor" d="M8 0l1.2 5.2L14.5 6.5l-4.1 3.2L11.5 16 8 12.8 4.5 16l1.1-6.3L1.5 6.5l5.3-1.3L8 0z"/></svg></span><strong>Critical-path read:</strong>
-                Quant before Qual. STG is Helen's lane; UAT is Jelena's. FSC MP/Core UAT eval is still the Sept
-                go/no-go for Adoption FINS. Indexing is done. Evals drop-dead remains <strong>Sep 14</strong>.
-                Perm-set → Data Graph personalization is <em>not</em> a Sept unlock.
+                This wave ran Quant and Qual in parallel. Qual is not a formal cert. Product GO is
+                Roxanne's. Deploy is still Helen / Kavita / Cody. No dedicated FINS flag. Graph RAG /
+                KaaS is not a September unlock. Oct 23 is not a cloud-add.
+            </div>
+            <div class="callout info" style="margin-top:10px;">
+                <strong>Not this page:</strong> November 13 one-and-done (MC Next, Commerce, Revenue,
+                Tableau Analytics, Field Service) lives on the
+                <a href="roadmap.html#november-2026">Expansion roadmap</a>. MCAE is paused.
             </div>
         </div>
 
@@ -763,7 +792,7 @@
                     <div class="pane onb">
                         <h3>Onboarding experience</h3>
                         <ul>
-                            <li><strong>Agentforce + Data Cloud</strong> Phase 4 (Prod 9/25 · retriever live UAT/STG Sep 8 · exp UAT 9/10–14)</li>
+                            <li><strong>Agentforce + Data Cloud</strong> Phase 4 (Prod Sep 25 preferred · latest Sep 30 · retriever live UAT/STG Sep 8)</li>
                             <li>Data 360 = Step 1 prerequisite only</li>
                         </ul>
                     </div>
@@ -771,7 +800,7 @@
                         <h3>Adoption experience</h3>
                         <ul>
                             <li><strong>Adoption experience:</strong> FINS only — <strong>10 features</strong> (locked Aug 20)</li>
-                            <li><strong>FSC gate:</strong> dual-path expected answers + Help cleanup; UAT eval this week before go/no-go; miss → October enhance</li>
+                            <li><strong>FSC:</strong> stays in this cut. Product GO includes FINS. Kill is metadata via Supportforce, not a dedicated flag.</li>
                             <li><strong>FINS 10</strong> + Sales/Service 14 regression = <strong>24-feature suite</strong> when combined; expansion slice alone = 12+12+10 = <strong>34</strong></li>
                         </ul>
                     </div>
@@ -789,9 +818,8 @@
         <div class="section">
             <h2>This week · owner checklist</h2>
             <p class="note" style="margin-top:0;">
-                Week of Sep 8–11: retriever live in QA / UAT / STG (Sep 8); STG prompt pointed (Sep 10);
-                Hao reviewed AF/DC rows (Sep 10). Quant before Qual. Official Qual stays on UAT.
-                Stephanie OOO Sep 10–21 — Allyson covers. Do not start CSDP asks with Helen; go through Cody.
+                Week of Sep 22–26. GDS and Quant are in. Product GO is Friday if permissions clear.
+                Latest live is Wed Sep 30. Do not treat Cody's 10/1 or 10/8 as the lock.
             </p>
             <table>
                 <thead>
@@ -800,51 +828,45 @@
                 <tbody>
                     <tr>
                         <td>1</td>
-                        <td>Close Hao comments on AF/DC rows; flag empty Derrick D360 BCS; send the rest. Do not invent sources.</td>
-                        <td>Allyson (status) · Hao (row notes)</td>
-                        <td><strong>Sep 11</strong></td>
+                        <td>Walk Quant on the architecture call. Official number, pass bar, S10 / S12 / F03. Do not re-open Part 1 vs Part 2, UAT retriever name, S01 / F05 leakage, or V05 / V10 as retriever fails.</td>
+                        <td>Stephanie · Kavita · Alexis</td>
+                        <td><strong>Today · Sep 24</strong></td>
                     </tr>
                     <tr>
                         <td>2</td>
-                        <td>Official GDS handoff to Helen (simplified utterance + expected answer + source URLs). Vidyard is not in this drop.</td>
-                        <td>Allyson → Helen via Cody</td>
-                        <td><strong>Sep 11</strong></td>
+                        <td>Confirm Friday train vs Data Cloud permissions. Emergency CR if needed. Same-day call-out if Friday misses.</td>
+                        <td>Kavita · Cody · Helen</td>
+                        <td><strong>Today / Fri Sep 25</strong></td>
                     </tr>
                     <tr>
                         <td>3</td>
-                        <td>Run Quant on STG (retriever + prompt already pointed). Qual waits on validated Quant.</td>
-                        <td>Helen / CSDP via Cody</td>
-                        <td>After handoff · before Sep 14</td>
+                        <td>Confirm kill path: FINS signals off in custom metadata via Supportforce. AF + DC Onboarding off-switch with Sahil / Kamalesh. Agent can go prod then swap retriever.</td>
+                        <td>Sam · Sahil · Kamalesh</td>
+                        <td>Before the cut</td>
                     </tr>
                     <tr>
                         <td>4</td>
-                        <td>Run FSC dual-path UAT eval (MP + Core variants) vs ~80% bar → Sept go/no-go</td>
-                        <td>Jelena · Katherine / Ray</td>
-                        <td>UAT week · before Sep 14</td>
+                        <td>Fix <code>ONB_SEPT_V05</code> and <code>V10</code> expected URLs on the sheet. Do not treat them as retriever fails.</td>
+                        <td>Stephanie</td>
+                        <td>This week</td>
                     </tr>
                     <tr>
                         <td>5</td>
-                        <td>Hold FSC agent instruction / perm-set / Data Graph changes until the UAT score lands</td>
-                        <td>Sam · Roxanne · Allyson</td>
-                        <td>Until go/no-go</td>
+                        <td>If Friday slips: hold the latest live date at Wed Sep 30. Hypercare after that. 10/1 and 10/8 are not the lock.</td>
+                        <td>Stephanie · Helen · Cody</td>
+                        <td>Day-before go/no-go</td>
                     </tr>
                     <tr>
                         <td>6</td>
-                        <td>Cloud expansion UAT bugs (CTA, eligibility, test users). Keep ATA on UAT5.</td>
-                        <td>Allyson · Balaji · Francis · Sam</td>
-                        <td>Sep 10–14</td>
+                        <td>Kavita Slack UAT thumbs-up if she still needs it. Qual is not a formal prod cert.</td>
+                        <td>Jelena · Stephanie</td>
+                        <td>If asked</td>
                     </tr>
                     <tr>
                         <td>7</td>
-                        <td>Wire negative suite + Ideal into suite-ready package; pass/fail ATA after Quant + Sep 14</td>
-                        <td>Jelena · Allyson</td>
-                        <td>Sep 14 hard</td>
-                    </tr>
-                    <tr>
-                        <td>8</td>
-                        <td>If FSC accuracy &lt; ~80%: park Sept FINS Adoption enhance → October monthly cadence</td>
-                        <td>Roxanne · Allyson</td>
-                        <td>Post-eval</td>
+                        <td>Do not file remaining-cloud source-adds on this index for Oct 23. That batch is November 13.</td>
+                        <td>Stephanie · Cody · Allyson</td>
+                        <td>Locked Sep 23</td>
                     </tr>
                 </tbody>
             </table>
@@ -858,29 +880,44 @@
                 </thead>
                 <tbody>
                     <tr>
-                        <td>GDS handoff (BCS close → Helen Quant on STG)</td>
-                        <td>Allyson · Helen via Cody</td>
-                        <td><span class="chip next">Now</span> Env ready; waiting on pack</td>
+                        <td>GDS handoff</td>
+                        <td>Stephanie · Helen</td>
+                        <td><span class="chip done">Done</span> Sep 11</td>
                     </tr>
                     <tr>
-                        <td>Adoption Retriever in QA / UAT / STG + STG prompt pointed</td>
+                        <td>Quant report (UAT retriever, not STG)</td>
+                        <td>Alexis · Kavita · Helen</td>
+                        <td><span class="chip next">Walk today</span> Report Sep 23</td>
+                    </tr>
+                    <tr>
+                        <td>Adoption Retriever in QA / UAT / STG + prompt pointed</td>
                         <td>Alexis · Sam</td>
                         <td><span class="chip done">Live</span> Sep 8 / Sep 10</td>
                     </tr>
                     <tr>
-                        <td>AF/DC SME lock (accurate / complete / correct; no tone)</td>
-                        <td>Hao · Allyson</td>
-                        <td><span class="chip next">Hao reviewed</span> Close comments · Derrick D360 BCS gap</td>
+                        <td>V05 / V10 best content sources</td>
+                        <td>Stephanie</td>
+                        <td><span class="chip next">Fix URLs</span> GDS, not retriever fails</td>
                     </tr>
                     <tr>
-                        <td>Coworker BCS — Help / product docs / Trailhead only (no developer.salesforce.com)</td>
-                        <td>Hao · Allyson</td>
-                        <td><span class="chip live">Locked</span> Flag missing Help as a gap</td>
+                        <td>Known leakage S01 / F05 (no product guardrail)</td>
+                        <td>Stephanie · CSDP</td>
+                        <td><span class="chip live">Accepted</span> Measure, do not block Sept</td>
                     </tr>
                     <tr>
-                        <td>FSC Managed Package vs Core (dual-path answers + Help cleanup)</td>
-                        <td>Katherine · Ray · Jelena · Allyson</td>
-                        <td><span class="chip next">UAT this week</span> ~80% bar · no perm-set</td>
+                        <td>Data Cloud perms / Friday train / emergency CR</td>
+                        <td>Kavita · Cody</td>
+                        <td><span class="chip next">Open</span> Friday only if perms clear</td>
+                    </tr>
+                    <tr>
+                        <td>FINS kill: custom metadata via Supportforce</td>
+                        <td>Sam</td>
+                        <td><span class="chip next">Confirm</span> No dedicated FINS flag</td>
+                    </tr>
+                    <tr>
+                        <td>AF + DC Onboarding off-switch</td>
+                        <td>Sahil · Kamalesh</td>
+                        <td><span class="chip next">Confirm</span> If agent goes prod first</td>
                     </tr>
                     <tr>
                         <td>FINS CSS signals / goal mapping</td>
@@ -888,34 +925,29 @@
                         <td><span class="chip live">Confirmed</span> ATA on UAT5</td>
                     </tr>
                     <tr>
-                        <td>Negative suite in Sept golden baseline</td>
-                        <td>Allyson · Jelena</td>
-                        <td><span class="chip live">Drafted</span> Wire secondary suite</td>
-                    </tr>
-                    <tr>
-                        <td>Vidyard Horizon A — serial QA swap, not a parallel bind</td>
+                        <td>Vidyard Horizon A</td>
                         <td>Sam · Danish · Balaji</td>
-                        <td><span class="chip todo">Parallel</span> Not in this GDS · don't cut Sept QE</td>
+                        <td><span class="chip todo">Parallel</span> Not in this GDS</td>
                     </tr>
                     <tr>
-                        <td>TBC PIA #2348 + privacy policy</td>
-                        <td>Owen · Allyson (status)</td>
-                        <td><span class="chip todo">Check week of Sep 14</span> Ingest-scrub is 9B</td>
+                        <td>Shared-pool leakage (beyond S01 / F05)</td>
+                        <td>Stephanie</td>
+                        <td><span class="chip live">Accepted for Sept</span> KaaS is the later fix</td>
                     </tr>
                     <tr>
-                        <td>Shared-pool leakage</td>
-                        <td>Allyson</td>
-                        <td><span class="chip todo">Sept go/no-go · negatives cover</span></td>
+                        <td>Oct 23 MC Next ingest</td>
+                        <td>Stephanie · Cody</td>
+                        <td><span class="chip blocked">Moved</span> November 13 one-and-done</td>
                     </tr>
                     <tr>
-                        <td>Perm-set / Data Graph personalization (MP vs Core signal)</td>
+                        <td>Perm-set / Data Graph personalization</td>
                         <td>Roxanne · Sam · CSDP</td>
-                        <td><span class="chip blocked">Not Sept</span> Future unlock</td>
+                        <td><span class="chip blocked">Not Sept</span></td>
                     </tr>
                     <tr>
-                        <td>KYC → Data Graph · MCP PoC · Oct 1–12 eval</td>
-                        <td>Sam / Ben / Ali</td>
-                        <td><span class="chip blocked">Track separately</span></td>
+                        <td>Graph RAG / KaaS</td>
+                        <td>Helen · CSDP</td>
+                        <td><span class="chip blocked">Post-November</span> Not this cut</td>
                     </tr>
                 </tbody>
             </table>
@@ -924,10 +956,10 @@
         <footer>
             <p><strong>Sr. Product Manager:</strong> Stephanie Stancombe · Lifecycle Success Lead</p>
             <p><strong>Sources:</strong>
-                <a class="deep" href="https://salesforce-internal.slack.com/archives/C096Z8QEY4S/p1789008060046249?thread_ts=1788377386.951359" target="_blank" rel="noopener">Retriever UAT + STG live</a> ·
-                <a class="deep" href="https://docs.google.com/document/d/1kJCUCQvFDfedR4bzfTKO_rML_cD4qtY5Hl7MWk1sEl0/edit" target="_blank" rel="noopener">Vidyard serial-swap Sep 8</a> ·
-                <a class="deep" href="https://docs.google.com/document/d/1CUCW9R_yUNn0b1yGDpec6L2KbCvYn-cOIbcnhS4Wk7k/edit?tab=t.1pwcaskvhr10" target="_blank" rel="noopener">FSC MP vs Core follow-up Sep 4</a> ·
-                <a class="deep" href="https://docs.google.com/document/d/1A5rZ1sLUQy9iXVy3KtQzvDrB76o3g7Fv440YbV6LSnE/edit?tab=t.kw3993eo7o8t" target="_blank" rel="noopener">AF/DC baseline suite Sep 3</a> ·
+                <a class="deep" href="https://docs.google.com/document/d/11TGRITPgqigq8pLtpHDj1t93gsX8m0DMTMgmf9MU38M/edit?tab=t.mbhh6e17p4y6" target="_blank" rel="noopener">CSDP commitment call Sep 23</a> ·
+                <a class="deep" href="https://docs.google.com/document/d/14i6Ly9YkqGidBgHb3-lctFu_Sx_P6_PkZ2ltxMgbAaE/edit" target="_blank" rel="noopener">Quant report Sep 23</a> ·
+                <a class="deep" href="https://salesforce-internal.slack.com/archives/C096Z8QEY4S/p1790189320706069?thread_ts=1787160820.695909" target="_blank" rel="noopener">Friday GO thread</a> ·
+                <a class="deep" href="https://salesforce-internal.slack.com/archives/C096Z8QEY4S/p1788377386951359" target="_blank" rel="noopener">QA / UAT thread</a> ·
                 Roadmap OrgCS.264.1</p>
             <p>
                 <a class="deep" href="roadmap.html#september-2026">Return to September on Product Roadmap</a> ·

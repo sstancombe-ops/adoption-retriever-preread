@@ -2795,7 +2795,7 @@
             <div class="roadmap-toggle">
                 <button class="roadmap-toggle-btn expansion active" data-view="expansion">
                     Expansion
-                    <span class="toggle-count">15</span>
+                    <span class="toggle-count">16</span>
                 </button>
                 <button class="roadmap-toggle-btn experimentation" data-view="experimentation">
                     Experimentation
@@ -2803,14 +2803,14 @@
                 </button>
                 <button class="roadmap-toggle-btn backlog" data-view="backlog">
                     Backlog
-                    <span class="toggle-count">8</span>
+                    <span class="toggle-count">9</span>
                 </button>
             </div>
 
             <!-- Expansion View -->
             <div class="roadmap-view active" id="view-expansion">
                 <div class="roadmap-description">
-                    <strong>Expansion</strong> &mdash; Extending the existing Adoption Retriever architecture to new clouds, content types, and measurement capabilities. These align to the CSDP team's standard intake workflow and expand the knowledge platform's reach.
+                    <strong>Expansion</strong> &mdash; Extending the existing Adoption Retriever architecture to new clouds, content types, and measurement capabilities. Sep 23 lock: remaining 2026 clouds land in <strong>one November 13 ingest</strong> on this index, then source-adds stop. KaaS is the post-November vehicle. MCAE is paused.
                     <span style="display:block;margin-top:8px;font-size:0.92em;">Onboarding + Adoption eligibility &amp; H2 readiness (what’s needed before a new cloud): <a href="adoption-eligibility.html#h2-readiness" style="color:var(--sf-electric-blue);font-weight:600;">Open visual summary</a></span>
                 </div>
                 <div class="roadmap-legend" aria-label="Roadmap legend">
@@ -2822,7 +2822,7 @@
                 <div class="release-lane" id="september-2026">
                     <div class="release-lane-header">
                         <div class="release-month">September 2026</div>
-                        <div class="release-branch">OrgCS.264.1 &middot; Prod Sep 25 &middot; Unified: both SubAgents</div>
+                        <div class="release-branch">OrgCS.264.1 &middot; Prod Sep 25 preferred &middot; latest Sep 30 &middot; Unified: both SubAgents</div>
                         <div class="release-header-actions">
                             <a class="release-workback-link" href="workback-september-2026.html">Workback plan →</a>
                         </div>
@@ -3111,25 +3111,64 @@
                 </div>
 
                 <!-- Release Lane: October -->
-                <div class="release-lane">
+                <div class="release-lane" id="october-2026">
                     <div class="release-lane-header">
                         <div class="release-month">October 2026</div>
-                        <div class="release-branch">OrgCS.264.2 &middot; Prod Oct 23 &middot; Both SubAgents</div>
+                        <div class="release-branch">OrgCS.264.2 &middot; Prod Oct 23 &middot; No cloud ingest on this index</div>
                     </div>
                     <div class="release-lane-grid">
-                    <!-- Card: Marketing Cloud Next -->
+                    <!-- Card: Nov one-and-done eval prep -->
                     <div class="initiative-card expansion-card">
                         <div class="card-header">
                             <span class="status-badge planned">PLANNED</span>
-                            <span class="card-phase">October Release</span>
+                            <span class="card-phase">October &middot; eval prep</span>
+                        </div>
+                        <h3 class="card-title">November one-and-done &mdash; golden dataset and Quant workback</h3>
+                        <p class="card-description">Oct 23 is not a cloud-add. MC Next moved to November 13 so Evals have time. Lock the five-cloud golden dataset by October 30. Quant complete by November 6. Cody and Allyson own the project plan. Kickoff with Maya and Yelli for one Quant and one Qual cycle.</p>
+                        <div class="card-pills">
+                            <span class="pill target">GDS lock 10/30</span>
+                            <span class="pill target">Quant 11/6</span>
+                            <span class="pill metric">One eval cycle</span>
+                            <span class="pill dependency">CSDP</span>
+                            <span class="pill dependency">Evals</span>
+                        </div>
+                        <span class="expand-indicator">&#x25BC;</span>
+                        <div class="expanded-content">
+                            <div class="detail-section-title">Why October is empty of clouds</div>
+                            <ul class="dependency-list">
+                                <li><strong>Sep 23 lock:</strong> Helen and Cody: Oct 23 is too soon for a five-cloud golden dataset. Roxanne moved MC Next three weeks.</li>
+                                <li><strong>Not this month:</strong> No new sources on the existing Adoption Retriever. KaaS is not the October delivery vehicle.</li>
+                                <li><strong>Source IDs still open:</strong> Commerce, Revenue, Tableau, Field Service. MC Next (Marketing App) already locked with Jenny Smith.</li>
+                            </ul>
+                            <div class="detail-section-title">Related</div>
+                            <ul class="workflow-links">
+                                <li><a href="https://docs.google.com/document/d/11TGRITPgqigq8pLtpHDj1t93gsX8m0DMTMgmf9MU38M/edit?tab=t.mbhh6e17p4y6" target="_blank" rel="noopener">CSDP commitment call &mdash; Sep 23</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                    </div>
+                </div>
+
+                <!-- Release Lane: November -->
+                <div class="release-lane" id="november-2026">
+                    <div class="release-lane-header">
+                        <div class="release-month">November 2026</div>
+                        <div class="release-branch">OrgCS.264.3 &middot; Prod Nov 13 &middot; One-and-done on existing retriever</div>
+                    </div>
+                    <div class="release-lane-grid">
+                    <!-- Card: Marketing Cloud Next (moved from Oct 23) -->
+                    <div class="initiative-card expansion-card">
+                        <div class="card-header">
+                            <span class="status-badge planned">PLANNED</span>
+                            <span class="card-phase">November one-and-done</span>
                         </div>
                         <h3 class="card-title">Adoption & Onboarding &mdash; Marketing Cloud Next <span class="verified-badge" title="CSDP workflow submitted">&#x2713;</span></h3>
-                        <p class="card-description">Expand both Adoption and Onboarding SubAgents to Marketing Cloud Next (Marketing App taxonomy). Covers onboarding setup guidance and adoption feature expansion paths &mdash; same-release enablement for both experiences.</p>
+                        <p class="card-description">Moved from Oct 23. Expand both SubAgents to Marketing Cloud Next (Marketing App taxonomy only). Do not pull Intelligence, Engagement, Account Engagement, or Personalization. Same-release enablement for Onboarding and Adoption.</p>
                         <div class="card-pills">
                             <span class="pill product">Marketing Cloud Next</span>
                             <span class="pill dependency">Adoption</span>
                             <span class="pill dependency">Onboarding</span>
-                            <span class="pill target">Prod 10/23</span>
+                            <span class="pill target">Prod 11/13</span>
                             <span class="pill metric">Marketing App taxonomy</span>
                         </div>
                         <span class="expand-indicator">&#x25BC;</span>
@@ -3151,33 +3190,23 @@
                                 </div>
                                 <div class="detail-kpi-item">
                                     <span class="detail-kpi-label">Scope</span>
-                                    <span class="detail-kpi-value">Both SubAgents · one release</span>
+                                    <span class="detail-kpi-value">Both SubAgents · Nov 13 batch</span>
                                 </div>
                             </div>
                             <div class="detail-section-title">Hard Dependencies</div>
                             <ul class="dependency-list">
-                                <li><strong>CSDP:</strong> Retriever indexing for Marketing Cloud Next content sources</li>
-                                <li><strong>Content:</strong> Knowledge taxonomy tags (CaseRoutingTaxonomy <code>Marketing App</code>), Product Documentation IDs, Trailhead PFT confirmation</li>
-                                <li><strong>Business Readiness:</strong> MC Next GA status and customer eligibility criteria</li>
-                                <li><strong>Architecture:</strong> Same shared-retriever model as Sept &mdash; both SubAgents expand together</li>
+                                <li><strong>CSDP:</strong> One November 13 rebuild of the existing Adoption Retriever. Not a solo MC Next wave.</li>
+                                <li><strong>Content:</strong> CaseRoutingTaxonomy <code>Marketing App (Marketing Cloud Growth/Advanced)</code>, Product Docs <code>id=mktg</code>, Trailhead PFT <code>aLVEE000000141Z4AQ</code></li>
+                                <li><strong>Evals:</strong> In the single five-cloud Quant / Qual cycle. GDS 10/30. Quant 11/6.</li>
                             </ul>
                         </div>
                     </div>
-                    </div>
-                </div>
 
-                <!-- Release Lane: November -->
-                <div class="release-lane">
-                    <div class="release-lane-header">
-                        <div class="release-month">November 2026</div>
-                        <div class="release-branch">OrgCS.264.3 &middot; Prod Nov 13</div>
-                    </div>
-                    <div class="release-lane-grid">
                     <!-- Card 10: Commerce Cloud -->
                     <div class="initiative-card expansion-card">
                         <div class="card-header">
                             <span class="status-badge planned">PLANNED</span>
-                            <span class="card-phase">November Release</span>
+                            <span class="card-phase">November one-and-done</span>
                         </div>
                         <h3 class="card-title">Adoption & Onboarding &mdash; Commerce Cloud</h3>
                         <p class="card-description">Expand both SubAgents to Commerce Cloud. Covers storefront setup guidance (onboarding) and feature expansion paths for existing Commerce customers (adoption).</p>
@@ -3202,9 +3231,9 @@
                             </div>
                             <div class="detail-section-title">Hard Dependencies</div>
                             <ul class="dependency-list">
-                                <li><strong>CSDP:</strong> Retriever indexing for Commerce Cloud content sources</li>
+                                <li><strong>CSDP:</strong> Same November 13 rebuild as the rest of the one-and-done. Source IDs still open.</li>
                                 <li><strong>Content:</strong> Knowledge taxonomy tags, Product Documentation IDs, Trailhead PFT</li>
-                                <li><strong>Business Readiness:</strong> Commerce Cloud eligibility and edition gating criteria</li>
+                                <li><strong>Evals:</strong> In the single five-cloud Quant / Qual cycle. GDS 10/30. Quant 11/6.</li>
                             </ul>
                         </div>
                     </div>
@@ -3213,7 +3242,7 @@
                     <div class="initiative-card expansion-card">
                         <div class="card-header">
                             <span class="status-badge planned">PLANNED</span>
-                            <span class="card-phase">November Release</span>
+                            <span class="card-phase">November one-and-done</span>
                         </div>
                         <h3 class="card-title">Adoption & Onboarding &mdash; Industry Cloud (Revenue)</h3>
                         <p class="card-description">Expand both SubAgents to Industry Cloud Revenue (CPQ, Billing, Revenue Lifecycle). Covers implementation guidance and feature adoption paths for revenue-focused industry customers.</p>
@@ -3238,23 +3267,23 @@
                             </div>
                             <div class="detail-section-title">Hard Dependencies</div>
                             <ul class="dependency-list">
-                                <li><strong>CSDP:</strong> Retriever indexing for Industry Cloud Revenue content</li>
+                                <li><strong>CSDP:</strong> Same November 13 rebuild as the rest of the one-and-done. Source IDs still open.</li>
                                 <li><strong>Content:</strong> Knowledge taxonomy, Product Documentation IDs, Trailhead modules</li>
-                                <li><strong>Scope:</strong> CPQ, Billing, Revenue Lifecycle Management features</li>
+                                <li><strong>Evals:</strong> In the single five-cloud Quant / Qual cycle. GDS 10/30. Quant 11/6.</li>
                             </ul>
                         </div>
                     </div>
 
-                    <!-- Card 12: Marketing Cloud Account Engagement -->
+                    <!-- Card 13: Tableau Analytics (moved from Dec 11) -->
                     <div class="initiative-card expansion-card">
                         <div class="card-header">
                             <span class="status-badge planned">PLANNED</span>
-                            <span class="card-phase">November Release</span>
+                            <span class="card-phase">November one-and-done</span>
                         </div>
-                        <h3 class="card-title">Adoption & Onboarding &mdash; Marketing Cloud Account Engagement</h3>
-                        <p class="card-description">Expand both SubAgents to Marketing Cloud Account Engagement (formerly Pardot). Covers B2B marketing automation setup and feature adoption guidance.</p>
+                        <h3 class="card-title">Adoption & Onboarding &mdash; Tableau Analytics</h3>
+                        <p class="card-description">Moved from Dec 11 into the November 13 ingest. Expand both SubAgents to Tableau Analytics. Covers dashboard setup guidance (onboarding) and analytics feature adoption. CRM Analytics is not a separate add in this batch unless source IDs land with Tableau.</p>
                         <div class="card-pills">
-                            <span class="pill product">MC Account Engagement</span>
+                            <span class="pill product">Tableau Analytics</span>
                             <span class="pill dependency">Adoption</span>
                             <span class="pill dependency">Onboarding</span>
                             <span class="pill target">Prod 11/13</span>
@@ -3265,53 +3294,7 @@
                             <div class="detail-kpi-grid">
                                 <div class="detail-kpi-item">
                                     <span class="detail-kpi-label">Content Coverage</span>
-                                    <span class="detail-kpi-value">MCAE KAs + Docs</span>
-                                </div>
-                                <div class="detail-kpi-item">
-                                    <span class="detail-kpi-label">B2B Activation</span>
-                                    <span class="detail-kpi-value">Automation Setup Rate</span>
-                                </div>
-                            </div>
-                            <div class="detail-section-title">Hard Dependencies</div>
-                            <ul class="dependency-list">
-                                <li><strong>CSDP:</strong> Retriever indexing for MCAE content sources</li>
-                                <li><strong>Content:</strong> Knowledge taxonomy, Product Documentation, Trailhead PFT</li>
-                                <li><strong>Business Readiness:</strong> MCAE edition gating and eligibility criteria</li>
-                            </ul>
-                        </div>
-                    </div>
-                    </div>
-                </div>
-
-                <!-- Release Lane: December -->
-                <div class="release-lane">
-                    <div class="release-lane-header">
-                        <div class="release-month">December 2026</div>
-                        <div class="release-branch">OrgCS.264.4 &middot; Prod Dec 11</div>
-                    </div>
-                    <div class="release-lane-grid">
-                    <!-- Card 13: Tableau / Analytics -->
-                    <div class="initiative-card expansion-card">
-                        <div class="card-header">
-                            <span class="status-badge planned">PLANNED</span>
-                            <span class="card-phase">December Release</span>
-                        </div>
-                        <h3 class="card-title">Adoption & Onboarding &mdash; Tableau / Analytics</h3>
-                        <p class="card-description">Expand both SubAgents to Tableau and CRM Analytics. Covers dashboard setup guidance (onboarding) and advanced analytics feature adoption for existing customers.</p>
-                        <div class="card-pills">
-                            <span class="pill product">Tableau</span>
-                            <span class="pill product">CRM Analytics</span>
-                            <span class="pill dependency">Adoption</span>
-                            <span class="pill dependency">Onboarding</span>
-                            <span class="pill target">Prod 12/11</span>
-                        </div>
-                        <span class="expand-indicator">&#x25BC;</span>
-                        <div class="expanded-content">
-                            <div class="detail-section-title">Related KPIs</div>
-                            <div class="detail-kpi-grid">
-                                <div class="detail-kpi-item">
-                                    <span class="detail-kpi-label">Content Coverage</span>
-                                    <span class="detail-kpi-value">Tableau + CRMA Docs</span>
+                                    <span class="detail-kpi-value">Tableau Docs</span>
                                 </div>
                                 <div class="detail-kpi-item">
                                     <span class="detail-kpi-label">Dashboard Activation</span>
@@ -3320,26 +3303,25 @@
                             </div>
                             <div class="detail-section-title">Hard Dependencies</div>
                             <ul class="dependency-list">
-                                <li><strong>CSDP:</strong> Retriever indexing for Tableau and CRM Analytics content</li>
-                                <li><strong>Content:</strong> Knowledge taxonomy, Product Documentation, Trailhead PFT</li>
-                                <li><strong>Business Readiness:</strong> Tableau edition gating and eligibility</li>
+                                <li><strong>CSDP:</strong> Same November 13 rebuild. Source IDs still open.</li>
+                                <li><strong>Evals:</strong> In the single five-cloud Quant / Qual cycle.</li>
                             </ul>
                         </div>
                     </div>
 
-                    <!-- Card 14: Field Service Cloud -->
+                    <!-- Card 14: Field Service (moved from Dec 11) -->
                     <div class="initiative-card expansion-card">
                         <div class="card-header">
                             <span class="status-badge planned">PLANNED</span>
-                            <span class="card-phase">December Release</span>
+                            <span class="card-phase">November one-and-done</span>
                         </div>
-                        <h3 class="card-title">Adoption & Onboarding &mdash; Field Service Cloud</h3>
-                        <p class="card-description">Expand both SubAgents to Field Service Cloud. Covers mobile workforce setup guidance and feature adoption paths for dispatching, scheduling, and work order management.</p>
+                        <h3 class="card-title">Adoption & Onboarding &mdash; Field Service</h3>
+                        <p class="card-description">Moved from Dec 11 into the November 13 ingest. Expand both SubAgents to Field Service. Covers mobile workforce setup guidance and feature adoption paths for dispatching, scheduling, and work order management.</p>
                         <div class="card-pills">
                             <span class="pill product">Field Service</span>
                             <span class="pill dependency">Adoption</span>
                             <span class="pill dependency">Onboarding</span>
-                            <span class="pill target">Prod 12/11</span>
+                            <span class="pill target">Prod 11/13</span>
                         </div>
                         <span class="expand-indicator">&#x25BC;</span>
                         <div class="expanded-content">
@@ -3356,9 +3338,46 @@
                             </div>
                             <div class="detail-section-title">Hard Dependencies</div>
                             <ul class="dependency-list">
-                                <li><strong>CSDP:</strong> Retriever indexing for Field Service content sources</li>
-                                <li><strong>Content:</strong> Knowledge taxonomy, Product Documentation, Trailhead PFT</li>
-                                <li><strong>Business Readiness:</strong> Field Service edition gating and eligibility</li>
+                                <li><strong>CSDP:</strong> Same November 13 rebuild. Source IDs still open.</li>
+                                <li><strong>Evals:</strong> In the single five-cloud Quant / Qual cycle.</li>
+                            </ul>
+                        </div>
+                    </div>
+                    </div>
+                </div>
+
+                <!-- Release Lane: December -->
+                <div class="release-lane" id="december-2026">
+                    <div class="release-lane-header">
+                        <div class="release-month">December 2026</div>
+                        <div class="release-branch">No source-adds on this index &middot; KaaS after November</div>
+                    </div>
+                    <div class="release-lane-grid">
+                    <!-- Card: KaaS post-November -->
+                    <div class="initiative-card expansion-card">
+                        <div class="card-header">
+                            <span class="status-badge planned">PLANNED</span>
+                            <span class="card-phase">Post-November</span>
+                        </div>
+                        <h3 class="card-title">KaaS / Graph RAG &mdash; next vehicle after one-and-done</h3>
+                        <p class="card-description">After November 13, stop adding sources on the current Adoption Retriever. CSDP's V2MOM is Graph RAG. KaaS is the path so product teams filter products instead of shipping monthly retriever releases. Not a December cloud ingest. Not the November delivery vehicle.</p>
+                        <div class="card-pills">
+                            <span class="pill product">KaaS</span>
+                            <span class="pill product">Graph RAG</span>
+                            <span class="pill dependency">CSDP V2MOM</span>
+                            <span class="pill metric">Product filters</span>
+                        </div>
+                        <span class="expand-indicator">&#x25BC;</span>
+                        <div class="expanded-content">
+                            <div class="detail-section-title">Sep 23 lock</div>
+                            <ul class="dependency-list">
+                                <li><strong>Roxanne:</strong> One November ingest of remaining clouds, then pivot to KaaS. Do not keep a monthly cloud-add cadence on this index.</li>
+                                <li><strong>Helen:</strong> Graph RAG hits every CSDP consumer team. Adding more clouds at once is not more engineering. The cost is spacing and evals.</li>
+                                <li><strong>Leakage:</strong> Accepted for this batch. Volume is low. Customers pick the product they are on.</li>
+                            </ul>
+                            <div class="detail-section-title">Related</div>
+                            <ul class="workflow-links">
+                                <li><a href="https://docs.google.com/document/d/11TGRITPgqigq8pLtpHDj1t93gsX8m0DMTMgmf9MU38M/edit?tab=t.mbhh6e17p4y6" target="_blank" rel="noopener">CSDP commitment call &mdash; Sep 23</a></li>
                             </ul>
                         </div>
                     </div>
@@ -3635,6 +3654,40 @@
                 <div class="roadmap-legend" aria-label="Roadmap legend">
                     <span class="verified-badge" aria-hidden="true">&#x2713;</span>
                     <span class="roadmap-legend-label"><strong>CSDP Intake Request Workflow Completed</strong></span>
+                </div>
+
+                <div class="release-lane">
+                    <div class="release-lane-header">
+                        <div class="release-month">Paused clouds</div>
+                        <div class="release-branch">Sep 23 lock &middot; not in the November ingest</div>
+                    </div>
+                    <div class="release-lane-grid">
+                    <div class="initiative-card backlog-card">
+                        <div class="card-header">
+                            <span class="status-badge on-hold">ON HOLD</span>
+                            <span class="card-phase">Paused &middot; no longer supporting</span>
+                        </div>
+                        <h3 class="card-title">Marketing Cloud Account Engagement &mdash; off the November batch</h3>
+                        <p class="card-description">MCAE (formerly Pardot) is paused. Do not include it in the November 13 one-and-done. Marketing Cloud Next on this batch is Marketing App taxonomy only. Do not pull Intelligence, Engagement, Account Engagement, or Personalization.</p>
+                        <div class="card-pills">
+                            <span class="pill product">MCAE</span>
+                            <span class="pill dependency">Paused</span>
+                            <span class="source-chip">Sep 23 call</span>
+                        </div>
+                        <span class="expand-indicator">&#x25BC;</span>
+                        <div class="expanded-content">
+                            <div class="detail-section-title">Why it's on hold</div>
+                            <ul class="dependency-list">
+                                <li><strong>Sep 23:</strong> Remaining-cloud list is MC Next, Commerce, Industry Cloud Revenue, Tableau Analytics, Field Service. MCAE is out.</li>
+                                <li><strong>MC Next scope:</strong> Jenny Smith confirmed Marketing App. Adjacent MC products stay out of this ingest.</li>
+                            </ul>
+                            <div class="detail-section-title">Related</div>
+                            <ul class="workflow-links">
+                                <li><a href="https://docs.google.com/document/d/11TGRITPgqigq8pLtpHDj1t93gsX8m0DMTMgmf9MU38M/edit?tab=t.mbhh6e17p4y6" target="_blank" rel="noopener">CSDP commitment call &mdash; Sep 23</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                    </div>
                 </div>
 
                 <div class="release-lane">
@@ -4419,7 +4472,7 @@
             <p><strong>Sr. Product Manager:</strong> Stephanie Stancombe (sstancombe@salesforce.com)</p>
             <p><strong>V2MOM Alignment:</strong> M1. Improve Help Agent Answer Quality | Digital Success Method 2</p>
             <p><strong>CSDP Program:</strong> AI Engineering & Agentic Systems | FY27</p>
-            <p><strong>Last Updated:</strong> August 20, 2026</p>
+            <p><strong>Last Updated:</strong> September 24, 2026 &middot; CSDP commitment call Sep 23</p>
         </footer>
     </div>
 

@@ -2810,7 +2810,7 @@
             <!-- Expansion View -->
             <div class="roadmap-view active" id="view-expansion">
                 <div class="roadmap-description">
-                    <strong>Expansion</strong> &mdash; Extending the existing Adoption Retriever architecture to new clouds, content types, and measurement capabilities. Sep 23 lock: remaining 2026 clouds land in <strong>one November 13 ingest</strong> on this index, then source-adds stop. KaaS is the post-November vehicle. MCAE is paused.
+                    <strong>Expansion</strong> &mdash; Extending the existing Adoption Retriever architecture to new clouds, content types, and measurement capabilities. Sep 23 lock: remaining 2026 clouds land in <strong>one November 13 ingest</strong> on this index, then source-adds stop. CSDP stack-rank (Sep 24): <strong>1) remaining-cloud expansion</strong> (finish Sept AF/DC + FINS, then Nov 13 one-and-done), <strong>2) KaaS</strong>, <strong>3) Vidyard and TBC when there is room</strong>. Do not put cloud expansion at risk. MCAE is paused.
                     <span style="display:block;margin-top:8px;font-size:0.92em;">Onboarding + Adoption eligibility &amp; H2 readiness (what’s needed before a new cloud): <a href="adoption-eligibility.html#h2-readiness" style="color:var(--sf-electric-blue);font-weight:600;">Open visual summary</a></span>
                 </div>
                 <div class="roadmap-legend" aria-label="Roadmap legend">
@@ -3137,7 +3137,7 @@
                             <div class="detail-section-title">Why October is empty of clouds</div>
                             <ul class="dependency-list">
                                 <li><strong>Sep 23 lock:</strong> Helen and Cody: Oct 23 is too soon for a five-cloud golden dataset. Roxanne moved MC Next three weeks.</li>
-                                <li><strong>Not this month:</strong> No new sources on the existing Adoption Retriever. KaaS is not the October delivery vehicle.</li>
+                                <li><strong>Not this month:</strong> No new sources on the existing Adoption Retriever. KaaS is not the October delivery vehicle. Vidyard and TBC are not October surface work. Hold both until remaining-cloud expansion has room.</li>
                                 <li><strong>Source IDs still open:</strong> Commerce, Revenue, Tableau, Field Service. MC Next (Marketing App) already locked with Jenny Smith.</li>
                             </ul>
                             <div class="detail-section-title">Related</div>
@@ -3296,10 +3296,11 @@
                             <span class="status-badge planned">PLANNED</span>
                             <span class="card-phase">November one-and-done</span>
                         </div>
-                        <h3 class="card-title">Adoption & Onboarding &mdash; Tableau Analytics <span class="verified-badge" title="CSDP workflow submitted">&#x2713;</span></h3>
-                        <p class="card-description">Moved from Dec 11 into the November 13 ingest. Expand both SubAgents to Tableau Analytics. Covers dashboard setup guidance (onboarding) and analytics feature adoption. CRM Analytics is not a separate add in this batch unless source IDs land with Tableau.</p>
+                        <h3 class="card-title">Adoption & Onboarding &mdash; Tableau Next <span class="verified-badge" title="CSDP workflow submitted">&#x2713;</span></h3>
+                        <p class="card-description">Moved from Dec 11 into the November 13 ingest. Product 2.0 (Sep 24) bundles Tableau Next into Core / Advanced / Max, so this content has to be in the batch. Not a sixth cloud. Confirm source IDs as Tableau Next. CRM Analytics is not a separate add unless those IDs land with Tableau Next.</p>
                         <div class="card-pills">
-                            <span class="pill product">Tableau Analytics</span>
+                            <span class="pill product">Tableau Next</span>
+                            <span class="pill metric">Product 2.0</span>
                             <span class="pill dependency">Adoption</span>
                             <span class="pill dependency">Onboarding</span>
                             <span class="pill target">Prod 11/13</span>
@@ -3323,6 +3324,7 @@
                             </div>
                             <div class="detail-section-title">Hard Dependencies</div>
                             <ul class="dependency-list">
+                                <li><strong>Product 2.0:</strong> Tableau Next ships inside Core / Advanced / Max. Confirm source IDs as Tableau Next. Not a sixth cloud.</li>
                                 <li><strong>CSDP:</strong> Same November 13 rebuild. Source IDs still open.</li>
                                 <li><strong>Evals:</strong> In the single five-cloud Quant / Qual cycle.</li>
                             </ul>
@@ -3384,11 +3386,12 @@
                             <span class="card-phase">Post-November</span>
                         </div>
                         <h3 class="card-title">KaaS / Graph RAG &mdash; next vehicle after one-and-done</h3>
-                        <p class="card-description">After November 13, stop adding sources on the current Adoption Retriever. CSDP's V2MOM is Graph RAG. KaaS is the path so product teams filter products instead of shipping monthly retriever releases. Not a December cloud ingest. Not the November delivery vehicle.</p>
+                        <p class="card-description">CSDP stack-rank #2, after remaining-cloud expansion. After November 13, stop adding sources on the current Adoption Retriever. CSDP's V2MOM is Graph RAG. KaaS is the path so product teams filter products instead of shipping monthly retriever releases. Not a December cloud ingest. Not the November delivery vehicle.</p>
                         <div class="card-pills">
                             <span class="pill product">KaaS</span>
                             <span class="pill product">Graph RAG</span>
                             <span class="pill dependency">CSDP V2MOM</span>
+                            <span class="pill metric">Stack-rank #2</span>
                             <span class="pill metric">Product filters</span>
                         </div>
                         <span class="expand-indicator">&#x25BC;</span>
@@ -3412,21 +3415,22 @@
                 <div class="release-lane">
                     <div class="release-lane-header">
                         <div class="release-month">Pipeline</div>
-                        <div class="release-branch">Waves 2 & 3 &middot; Content & Measurement</div>
+                        <div class="release-branch">When CSDP has room &middot; after remaining-cloud expansion + KaaS</div>
                     </div>
                     <div class="release-lane-grid">
                     <!-- Card 3: VidYard Videos -->
                     <div class="initiative-card expansion-card">
                         <div class="card-header">
-                            <span class="status-badge planned">PLANNED</span>
-                            <span class="card-phase">Wave 2</span>
+                            <span class="status-badge on-hold">ON HOLD</span>
+                            <span class="card-phase">When CSDP has room</span>
                         </div>
                         <h3 class="card-title">VidYard Videos Integration <span class="verified-badge" title="CSDP workflow submitted">&#x2713;</span></h3>
-                        <p class="card-description">Surface video transcripts and embedded players for "watch & learn" experiences, supporting visual learners who struggle with text-only instructions. Requires Agent UI video player component and VidYard SDK integration.</p>
+                        <p class="card-description">CSDP stack-rank #3, with TBC. Horizon A ingest is already in QA (4 videos). What is left is a serial QA window: Help Agent consumes one retriever at a time, so this swap takes the live Adoption Retriever offline for that window. Hold until remaining-cloud expansion has room. Test timing still open with Help Agent. Bigger window now that October is not a cloud-add.</p>
                         <div class="card-pills">
                             <span class="pill product">VidYard API</span>
-                            <span class="pill product">Agent UI</span>
-                            <span class="pill metric">Video &rarr; CTA &rarr; Setup</span>
+                            <span class="pill product">Horizon A</span>
+                            <span class="pill metric">4 videos in QA</span>
+                            <span class="pill dependency">Serial QA swap</span>
                         </div>
                         <span class="expand-indicator">&#x25BC;</span>
                         <div class="expanded-content">
@@ -3437,28 +3441,28 @@
                             <div class="detail-section-title">Related KPIs</div>
                             <div class="detail-kpi-grid">
                                 <div class="detail-kpi-item">
-                                    <span class="detail-kpi-label">Video Engagement</span>
-                                    <span class="detail-kpi-value">Starts & Completions</span>
+                                    <span class="detail-kpi-label">Horizon A ingest</span>
+                                    <span class="detail-kpi-value">4 videos in QA</span>
                                 </div>
                                 <div class="detail-kpi-item">
-                                    <span class="detail-kpi-label">Task Completion</span>
-                                    <span class="detail-kpi-value">&uarr; Setup Success</span>
+                                    <span class="detail-kpi-label">QA shape</span>
+                                    <span class="detail-kpi-value">Serial retriever swap</span>
                                 </div>
                                 <div class="detail-kpi-item">
                                     <span class="detail-kpi-label">Conversion Path</span>
                                     <span class="detail-kpi-value">Video &rarr; CTA &rarr; Setup</span>
                                 </div>
                                 <div class="detail-kpi-item">
-                                    <span class="detail-kpi-label">Player Load Time</span>
-                                    <span class="detail-kpi-value">&lt;1 second</span>
+                                    <span class="detail-kpi-label">CSDP rank</span>
+                                    <span class="detail-kpi-value">#3 when there is room</span>
                                 </div>
                             </div>
                             <div class="detail-section-title">Hard Dependencies</div>
                             <ul class="dependency-list">
-                                <li><strong>CSDP:</strong> Video transcript indexing pipeline, metadata extraction</li>
+                                <li><strong>Priority:</strong> Do not put remaining-cloud expansion at risk. Hold the serial QA window until CSDP has room.</li>
+                                <li><strong>Help Agent:</strong> Test window still open. One retriever at a time. Not a parallel bind next to Onboarding / Adoption.</li>
+                                <li><strong>CSDP:</strong> Video transcript indexing is already in QA for Horizon A. Remaining work is the serial swap + eval window.</li>
                                 <li><strong>Platform Engineering:</strong> Embedded video player component in Agent UI</li>
-                                <li><strong>VidYard:</strong> SDK access, transcript extraction API, analytics hooks</li>
-                                <li><strong>Content Security:</strong> CSP policies for video embedding, iframe sandboxing</li>
                             </ul>
                         </div>
                     </div>
@@ -3466,43 +3470,44 @@
                     <!-- Card 4: Trailblazer Community Q&A -->
                     <div class="initiative-card expansion-card">
                         <div class="card-header">
-                            <span class="status-badge at-risk">AT RISK</span>
-                            <span class="card-phase">Wave 3</span>
+                            <span class="status-badge on-hold">ON HOLD</span>
+                            <span class="card-phase">When CSDP has room</span>
                         </div>
                         <h3 class="card-title">Trailblazer Community Q&A</h3>
-                        <p class="card-description">Incorporate peer-validated "Best Answers" for edge cases and real-world troubleshooting not covered in official documentation. Requires legal approval for UGC ingestion and PII scrubbing.</p>
+                        <p class="card-description">CSDP stack-rank #3, with Vidyard. Legal (PIA 2348) is still with Legal. CSDP ingest, comments-in-retriever, and ingest-scrub can slip. October is not a surface date. Hold until remaining-cloud expansion has room.</p>
                         <div class="card-pills">
                             <span class="pill product">Community</span>
                             <span class="pill product">Legal</span>
-                            <span class="pill dependency">Requires: Legal Sign-Off</span>
+                            <span class="pill dependency">PIA 2348 open</span>
+                            <span class="pill metric">Not an Oct surface</span>
                         </div>
                         <span class="expand-indicator">&#x25BC;</span>
                         <div class="expanded-content">
                             <div class="detail-section-title">Related KPIs</div>
                             <div class="detail-kpi-grid">
                                 <div class="detail-kpi-item">
-                                    <span class="detail-kpi-label">Edge Case Coverage</span>
-                                    <span class="detail-kpi-value">&uarr; Uncommon Scenarios</span>
+                                    <span class="detail-kpi-label">Legal</span>
+                                    <span class="detail-kpi-value">PIA 2348 open</span>
                                 </div>
                                 <div class="detail-kpi-item">
-                                    <span class="detail-kpi-label">Troubleshooting Success</span>
-                                    <span class="detail-kpi-value">&uarr; Issue Resolution</span>
+                                    <span class="detail-kpi-label">CSDP work</span>
+                                    <span class="detail-kpi-value">Can slip</span>
                                 </div>
                                 <div class="detail-kpi-item">
-                                    <span class="detail-kpi-label">Real-World Relevance</span>
-                                    <span class="detail-kpi-value">Peer-Validated</span>
+                                    <span class="detail-kpi-label">Surface date</span>
+                                    <span class="detail-kpi-value">Not October</span>
                                 </div>
                                 <div class="detail-kpi-item">
-                                    <span class="detail-kpi-label">Content Freshness</span>
-                                    <span class="detail-kpi-value">Recent Q&A Index</span>
+                                    <span class="detail-kpi-label">CSDP rank</span>
+                                    <span class="detail-kpi-value">#3 when there is room</span>
                                 </div>
                             </div>
                             <div class="detail-section-title">Hard Dependencies</div>
                             <ul class="dependency-list">
-                                <li><strong>Legal:</strong> UGC usage rights, attribution requirements, PII scrubbing pre-ingestion</li>
-                                <li><strong>Trust Team:</strong> PIA (Privacy Impact Assessment) approval</li>
-                                <li><strong>AI Council:</strong> Community content use case approval for Agentforce</li>
-                                <li><strong>CSDP:</strong> Community indexing architecture, Best Answer filtering</li>
+                                <li><strong>Priority:</strong> Do not put remaining-cloud expansion at risk. CSDP ingest / comments-in-retriever / ingest-scrub can wait.</li>
+                                <li><strong>Legal:</strong> PIA 2348 still open. UGC usage rights, attribution, PII scrubbing pre-ingestion.</li>
+                                <li><strong>Trust Team:</strong> PIA approval before any CSDP ingest.</li>
+                                <li><strong>CSDP:</strong> Community indexing and Best Answer filtering only after Legal closes and cloud expansion has room.</li>
                             </ul>
                         </div>
                     </div>
@@ -4496,7 +4501,7 @@
             <p><strong>Sr. Product Manager:</strong> Stephanie Stancombe (sstancombe@salesforce.com)</p>
             <p><strong>V2MOM Alignment:</strong> M1. Improve Help Agent Answer Quality | Digital Success Method 2</p>
             <p><strong>CSDP Program:</strong> AI Engineering & Agentic Systems | FY27</p>
-            <p><strong>Last Updated:</strong> September 24, 2026 &middot; CSDP commitment call Sep 23</p>
+            <p><strong>Last Updated:</strong> September 24, 2026 &middot; CSDP stack-rank: remaining-cloud expansion, then KaaS, then Vidyard / TBC</p>
         </footer>
     </div>
 
